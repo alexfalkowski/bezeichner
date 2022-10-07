@@ -5,7 +5,12 @@ go 1.19
 require (
 	github.com/alexfalkowski/go-health v1.10.4
 	github.com/alexfalkowski/go-service v1.74.20
+	github.com/grpc-ecosystem/grpc-gateway/v2 v2.11.3
 	go.uber.org/fx v1.18.2
+	go.uber.org/zap v1.23.0
+	google.golang.org/genproto v0.0.0-20220829175752-36a9c930ecbf
+	google.golang.org/grpc v1.50.0
+	google.golang.org/protobuf v1.28.1
 )
 
 require (
@@ -28,7 +33,6 @@ require (
 	github.com/golang/snappy v0.0.4 // indirect
 	github.com/google/uuid v1.3.0 // indirect
 	github.com/grpc-ecosystem/go-grpc-middleware v1.3.0 // indirect
-	github.com/grpc-ecosystem/grpc-gateway/v2 v2.11.3 // indirect
 	github.com/hashicorp/errwrap v1.1.0 // indirect
 	github.com/hashicorp/go-cleanhttp v0.5.2 // indirect
 	github.com/hashicorp/go-multierror v1.1.1 // indirect
@@ -72,7 +76,6 @@ require (
 	go.uber.org/dig v1.15.0 // indirect
 	go.uber.org/goleak v1.1.12 // indirect
 	go.uber.org/multierr v1.8.0 // indirect
-	go.uber.org/zap v1.23.0 // indirect
 	golang.org/x/crypto v0.0.0-20220829220503-c86fa9a7ed90 // indirect
 	golang.org/x/exp v0.0.0-20220827204233-334a2380cb91 // indirect
 	golang.org/x/net v0.0.0-20220826154423-83b083e8dc8b // indirect
@@ -81,9 +84,6 @@ require (
 	golang.org/x/text v0.3.7 // indirect
 	golang.org/x/time v0.0.0-20220722155302-e5dcc9cfc0b9 // indirect
 	golang.org/x/xerrors v0.0.0-20220609144429-65e65417b02f // indirect
-	google.golang.org/genproto v0.0.0-20220829175752-36a9c930ecbf // indirect
-	google.golang.org/grpc v1.50.0 // indirect
-	google.golang.org/protobuf v1.28.1 // indirect
 	gopkg.in/DataDog/dd-trace-go.v1 v1.42.1 // indirect
 	gopkg.in/check.v1 v1.0.0-20201130134442-10cb98267c6c // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect

@@ -6,6 +6,9 @@ require 'base64'
 
 require 'grpc/health/v1/health_services_pb'
 
+require 'bezeichner/v1/http'
+require 'bezeichner/v1/service_services_pb'
+
 module Bezeichner
   class << self
     def observability
@@ -22,5 +25,14 @@ module Bezeichner
   end
 
   module V1
+    class << self
+      def server_http
+        @server_http ||= Bezeichner::V1::HTTP.new('http://localhost:8080')
+      end
+
+      def server_grpc
+        @server_grpc ||= Bezeichner::V1::Service::Stub.new('localhost:8080', :this_channel_is_insecure)
+      end
+    end
   end
 end

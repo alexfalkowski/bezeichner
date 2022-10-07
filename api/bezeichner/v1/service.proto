@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package bezeichner.v1;
+
+import "google/api/annotations.proto";
+
+option go_package = "github.com/alexfalkowski/bezeichner/api/bezeichner/v1";
+option ruby_package = "Bezeichner::V1";
+
+// GetIdentifiersRequest for a specific application.
+message GetIdentifiersRequest {
+  string application = 1;
+  uint64 count = 2;
+}
+
+// GetIdentifierResponse for a specific application.
+message GetIdentifiersResponse {
+  repeated string ids = 1;
+}
+
+// Service allows to get a list of identifiers.
+service Service {
+  // GetIdentifiers for a specific application.
+  rpc GetIdentifiers(GetIdentifiersRequest) returns (GetIdentifiersResponse) {
+    option (google.api.http) = {
+      get: "/v1/ids/{application}/{count}"
+    };
+  }
+}
