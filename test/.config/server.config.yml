@@ -1,20 +1,18 @@
 health:
   duration: 1s
   timeout: 1s
-migrate:
-  databases:
-    -
-      name: postgres
-      source: file://migrations
-      url: postgres://test:test@localhost:5432/test?sslmode=disable
-    -
-      name: invalid_source
-      source: file:///migrations
-      url: postgres://test:test@localhost:5432/test?sslmode=disable
-    -
-      name: invalid_db
-      source: file://migrations
-      url: postgres://test:test@localhost:5433/test?sslmode=disable
+generator:
+  applications:
+    - name: uuid
+      kind: uuid
+      prefix: prefix
+      suffix: suffix
+      separator: "-"
+    - name: invalid_kind
+      kind: invalid_kind
+      prefix: prefix
+      suffix: suffix
+      separator: "-"
 trace:
   opentracing:
     kind: jaeger
@@ -22,12 +20,12 @@ trace:
 transport:
   port: 8080
   http:
-    user_agent: "Example-server/1.0 http/1.0"
+    user_agent: "Bezeichner-server/1.0 http/1.0"
     retry:
       timeout: 2s
       attempts: 3
   grpc:
-    user_agent: "Example-server/1.0 grpc/1.0"
+    user_agent: "Bezeichner-server/1.0 grpc/1.0"
     retry:
       timeout: 2s
       attempts: 3

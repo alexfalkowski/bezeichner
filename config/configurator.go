@@ -1,6 +1,7 @@
 package config
 
 import (
+	"github.com/alexfalkowski/bezeichner/generator"
 	"github.com/alexfalkowski/bezeichner/health"
 	"github.com/alexfalkowski/go-service/config"
 )
@@ -14,4 +15,8 @@ func NewConfigurator() config.Configurator {
 
 func healthConfig(cfg config.Configurator) *health.Config {
 	return &cfg.(*Config).Health
+}
+
+func generatorConfig(cfg config.Configurator) *generator.Config {
+	return &cfg.(*Config).Generator
 }
