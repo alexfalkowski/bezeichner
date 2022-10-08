@@ -21,6 +21,8 @@ Feature: Server
       | ulid        | 2     |
       | pg          | 1     |
       | pg          | 2     |
+      | redis       | 1     |
+      | redis       | 2     |
 
   Scenario Outline: Identifiers for missing applications
     When I request to identifiers with gRPC:
