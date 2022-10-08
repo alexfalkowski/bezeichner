@@ -4,10 +4,12 @@ require 'securerandom'
 require 'yaml'
 require 'base64'
 
+require 'pg'
 require 'grpc/health/v1/health_services_pb'
 
 require 'bezeichner/v1/http'
 require 'bezeichner/v1/service_services_pb'
+require 'bezeichner/generator/pg'
 
 module Bezeichner
   class << self
@@ -21,6 +23,10 @@ module Bezeichner
 
     def health_grpc
       @health_grpc ||= Grpc::Health::V1::Health::Stub.new('localhost:8080', :this_channel_is_insecure)
+    end
+
+    def pg
+      @pg ||= Bezeichner::Generator::PG.new
     end
   end
 

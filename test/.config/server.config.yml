@@ -1,6 +1,3 @@
-health:
-  duration: 1s
-  timeout: 1s
 generator:
   applications:
     - name: uuid
@@ -18,11 +15,28 @@ generator:
       prefix: prefix
       suffix: suffix
       separator: "-"
+    - name: pg
+      kind: pg
+      prefix: prefix
+      suffix: suffix
+      separator: "-"
     - name: invalid_kind
       kind: invalid_kind
       prefix: prefix
       suffix: suffix
       separator: "-"
+health:
+  duration: 1s
+  timeout: 1s
+sql:
+  pg:
+    masters:
+      - url: postgres://test:test@localhost:5432/test?sslmode=disable
+    slaves:
+      - url: postgres://test:test@localhost:5432/test?sslmode=disable
+    max_open_conns: 5
+    max_idle_conns: 5
+    conn_max_lifetime: 1h
 trace:
   opentracing:
     kind: jaeger

@@ -3,6 +3,8 @@ package generator
 import (
 	"context"
 	"errors"
+
+	"github.com/linxGnu/mssqlx"
 )
 
 // ErrNotFound for generator.
@@ -15,7 +17,7 @@ type Generator interface {
 }
 
 // NewGenerator from kind.
-func NewGenerator(kind string) (Generator, error) {
+func NewGenerator(name, kind string, db *mssqlx.DBs) (Generator, error) {
 	switch kind {
 	case "uuid":
 		return &UUID{}, nil
@@ -23,6 +25,8 @@ func NewGenerator(kind string) (Generator, error) {
 		return &KSUID{}, nil
 	case "ulid":
 		return &ULID{}, nil
+	case "pg":
+		return &PG{name: name, db: db}, nil
 	}
 
 	return nil, ErrNotFound

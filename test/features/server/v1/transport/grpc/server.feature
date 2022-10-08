@@ -1,4 +1,4 @@
-@startup
+@startup @pg
 Feature: Server
 
   Server allows users to get different types of identifiers.
@@ -19,6 +19,8 @@ Feature: Server
       | ksuid       | 2     |
       | ulid        | 1     |
       | ulid        | 2     |
+      | pg          | 1     |
+      | pg          | 2     |
 
   Scenario Outline: Identifiers for missing applications
     When I request to identifiers with gRPC:
