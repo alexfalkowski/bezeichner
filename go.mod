@@ -7,6 +7,7 @@ require (
 	github.com/alexfalkowski/go-service v1.74.20
 	github.com/google/uuid v1.3.0
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.11.3
+	github.com/oklog/ulid v1.3.1
 	github.com/segmentio/ksuid v1.0.4
 	go.uber.org/fx v1.18.2
 	go.uber.org/zap v1.23.0

@@ -13,6 +13,11 @@ generator:
       prefix: prefix
       suffix: suffix
       separator: "-"
+    - name: ulid
+      kind: ulid
+      prefix: prefix
+      suffix: suffix
+      separator: "-"
     - name: invalid_kind
       kind: invalid_kind
       prefix: prefix

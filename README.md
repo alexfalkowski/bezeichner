@@ -38,6 +38,11 @@ generator:
       prefix: prefix
       suffix: suffix
       separator: "-"
+    - name: ulid
+      kind: ulid
+      prefix: prefix
+      suffix: suffix
+      separator: "-"
 ```
 
 Each generator has the following properties:
