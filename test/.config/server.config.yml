@@ -8,6 +8,11 @@ generator:
       prefix: prefix
       suffix: suffix
       separator: "-"
+    - name: ksuid
+      kind: ksuid
+      prefix: prefix
+      suffix: suffix
+      separator: "-"
     - name: invalid_kind
       kind: invalid_kind
       prefix: prefix
