@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.6.0](https://github.com/alexfalkowski/bezeichner/compare/v1.5.0...v1.6.0) (2022-10-08)
+
+
+### Features
+
+* **redis:** generate identifiers ([#7](https://github.com/alexfalkowski/bezeichner/issues/7)) ([2aee99f](https://github.com/alexfalkowski/bezeichner/commit/2aee99f8a22b9e59281e93d847efc28fd8bc68cd))
+
 ## [1.5.0](https://github.com/alexfalkowski/bezeichner/compare/v1.4.0...v1.5.0) (2022-10-08)
 
 
