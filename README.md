@@ -43,6 +43,11 @@ generator:
       prefix: prefix
       suffix: suffix
       separator: "-"
+    - name: snowflake
+      kind: snowflake
+      prefix: prefix
+      suffix: suffix
+      separator: "-"
     - name: pg
       kind: pg
       prefix: prefix
@@ -57,7 +62,7 @@ generator:
 
 Each generator has the following properties:
 - A distinct name.
-- The kind of generator (UUID, KSUID, ULID, PG, etc).
+- The kind of generator (uuid, ksuid, ulid, snowflake, pg, redis).
 - The prefix of the identifier.
 - The suffix of the identifier.
 - The separator used between the prefix and suffix.
@@ -92,6 +97,7 @@ The service uses the awesome work of others. You can check out:
 - https://github.com/segmentio/ksuid
 - https://github.com/google/uuid
 - https://github.com/oklog/ulid
+- https://github.com/godruoyi/go-snowflake
 - https://github.com/alexfalkowski/go-service
 
 ## Development
