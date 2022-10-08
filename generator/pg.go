@@ -8,7 +8,7 @@ import (
 	"github.com/linxGnu/mssqlx"
 )
 
-// PG ID generator.
+// PG generator.
 type PG struct {
 	name string
 	db   *mssqlx.DBs

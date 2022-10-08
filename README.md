@@ -48,6 +48,11 @@ generator:
       prefix: prefix
       suffix: suffix
       separator: "-"
+    - name: redis
+      kind: redis
+      prefix: prefix
+      suffix: suffix
+      separator: "-"
 ```
 
 Each generator has the following properties:
@@ -60,6 +65,10 @@ Each generator has the following properties:
 #### Postgres
 
 The postgres kind expects a sequence named after the application. The service does not create one. So you would need to use a [migration](https://github.com/alexfalkowski/migrieren) service.
+
+#### Redis
+
+The redis kind expects a value named after the application. If it does not exist, the system will create one.
 
 ## Health
 

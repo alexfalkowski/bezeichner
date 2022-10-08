@@ -1,3 +1,6 @@
+cache:
+  redis:
+    host: localhost:6379
 generator:
   applications:
     - name: uuid
@@ -17,6 +20,11 @@ generator:
       separator: "-"
     - name: pg
       kind: pg
+      prefix: prefix
+      suffix: suffix
+      separator: "-"
+    - name: redis
+      kind: redis
       prefix: prefix
       suffix: suffix
       separator: "-"

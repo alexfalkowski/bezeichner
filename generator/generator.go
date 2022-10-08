@@ -4,6 +4,7 @@ import (
 	"context"
 	"errors"
 
+	"github.com/alexfalkowski/go-service/cache/redis/client"
 	"github.com/linxGnu/mssqlx"
 )
 
@@ -17,7 +18,7 @@ type Generator interface {
 }
 
 // NewGenerator from kind.
-func NewGenerator(name, kind string, db *mssqlx.DBs) (Generator, error) {
+func NewGenerator(name, kind string, db *mssqlx.DBs, client client.Client) (Generator, error) {
 	switch kind {
 	case "uuid":
 		return &UUID{}, nil
@@ -27,6 +28,8 @@ func NewGenerator(name, kind string, db *mssqlx.DBs) (Generator, error) {
 		return &ULID{}, nil
 	case "pg":
 		return &PG{name: name, db: db}, nil
+	case "redis":
+		return &Redis{name: name, client: client}, nil
 	}
 
 	return nil, ErrNotFound
