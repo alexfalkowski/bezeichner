@@ -15,6 +15,8 @@ Feature: Server
       | application | count |
       | uuid        | 1     |
       | uuid        | 2     |
+      | ksuid       | 1     |
+      | ksuid       | 2     |
 
   Scenario Outline: Identifiers for missing applications
     When I request to identifiers with HTTP:

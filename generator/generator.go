@@ -20,7 +20,7 @@ func NewGenerator(kind string) (Generator, error) {
 	case "uuid":
 		return &UUID{}, nil
 	case "ksuid":
-		return nil, nil
+		return &KSUID{}, nil
 	}
 
 	return nil, ErrNotFound
