@@ -30,6 +30,8 @@ func NewGenerator(name, kind string, db *mssqlx.DBs, client client.Client) (Gene
 		return &PG{name: name, db: db}, nil
 	case "redis":
 		return &Redis{name: name, client: client}, nil
+	case "snowflake":
+		return &Snowflake{}, nil
 	}
 
 	return nil, ErrNotFound

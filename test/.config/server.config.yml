@@ -23,6 +23,11 @@ generator:
       prefix: prefix
       suffix: suffix
       separator: "-"
+    - name: snowflake
+      kind: snowflake
+      prefix: prefix
+      suffix: suffix
+      separator: "-"
     - name: redis
       kind: redis
       prefix: prefix

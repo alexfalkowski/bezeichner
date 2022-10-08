@@ -19,6 +19,8 @@ Feature: Server
       | ksuid       | 2     |
       | ulid        | 1     |
       | ulid        | 2     |
+      | snowflake   | 1     |
+      | snowflake   | 2     |
       | pg          | 1     |
       | pg          | 2     |
       | redis       | 1     |
