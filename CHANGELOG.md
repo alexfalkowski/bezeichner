@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.4.0](https://github.com/alexfalkowski/bezeichner/compare/v1.3.0...v1.4.0) (2022-10-08)
+
+
+### Features
+
+* **ulid:** generate identifiers ([#5](https://github.com/alexfalkowski/bezeichner/issues/5)) ([d672dc0](https://github.com/alexfalkowski/bezeichner/commit/d672dc07d6ac6ee7041fcae8fc1e5ff74db72a22))
+
 ## [1.3.0](https://github.com/alexfalkowski/bezeichner/compare/v1.2.0...v1.3.0) (2022-10-08)
 
 
