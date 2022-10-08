@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-When('I request to identifiers with gRPC:') do |table|
+When('I request identifiers with gRPC:') do |table|
   rows = table.rows_hash
   @request_id = SecureRandom.uuid
   metadata = { 'request-id' => @request_id, 'ua' => Bezeichner.server_config['transport']['grpc']['user_agent'] }
@@ -11,13 +11,17 @@ rescue StandardError => e
   @response = e
 end
 
-Then('I should receive a successfuly identifiers from gRPC:') do |table|
+Then('I should receive identifiers from gRPC:') do |table|
   rows = table.rows_hash
 
   expect(@response.ids.length).to eq(rows['count'].to_i)
   expect(@response.ids.first.length).to be > 0
 end
 
-Then('I should receive a not found identifiers from gRPC') do
+Then('I should receive a not found error from gRPC') do
   expect(@response).to be_a(GRPC::NotFound)
+end
+
+Then('I should receive an internal error from gRPC') do
+  expect(@response).to be_a(GRPC::Internal)
 end

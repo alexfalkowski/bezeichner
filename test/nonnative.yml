@@ -1,7 +1,6 @@
 version: 1.0
 processes:
-  -
-    name: server
+  - name: server
     go:
       output: reports
       executable: ../bezeichner
@@ -11,3 +10,20 @@ processes:
     log: reports/server.log
     environment:
       CONFIG_FILE: .config/server.config.yml
+services:
+  - name: pg
+    port: 5433
+    proxy:
+      kind: fault_injection
+      port: 5432
+      log: reports/proxy_pg.log
+      options:
+        delay: 2
+  - name: redis
+    port: 6380
+    proxy:
+      kind: fault_injection
+      port: 6379
+      log: reports/proxy_redis.log
+      options:
+        delay: 2

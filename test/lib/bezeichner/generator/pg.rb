@@ -4,7 +4,7 @@ module Bezeichner
   module Generator
     class PG
       def initialize
-        uri = URI.parse(Bezeichner.server_config['sql']['pg']['masters'][0]['url'])
+        uri = URI.parse('postgres://test:test@localhost:5432/test?sslmode=disable')
         @conn = ::PG.connect(uri.hostname, uri.port, nil, nil, uri.path[1..], uri.user, uri.password)
       end
 
