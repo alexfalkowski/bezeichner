@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
-Before('@pg') do
-  Bezeichner.pg.create
-end
+Bezeichner.pg.create
 
-After('@pg') do
+at_exit do
   Bezeichner.pg.destroy
 end
