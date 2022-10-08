@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.7.0](https://github.com/alexfalkowski/bezeichner/compare/v1.6.1...v1.7.0) (2022-10-08)
+
+
+### Features
+
+* **snowflake:** generate identifiers ([#9](https://github.com/alexfalkowski/bezeichner/issues/9)) ([de37f54](https://github.com/alexfalkowski/bezeichner/commit/de37f547b60b8ab56f821bd440e04423e7a2a081))
+
 ### [1.6.1](https://github.com/alexfalkowski/bezeichner/compare/v1.6.0...v1.6.1) (2022-10-08)
 
 ## [1.6.0](https://github.com/alexfalkowski/bezeichner/compare/v1.5.0...v1.6.0) (2022-10-08)
