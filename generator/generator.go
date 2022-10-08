@@ -21,6 +21,8 @@ func NewGenerator(kind string) (Generator, error) {
 		return &UUID{}, nil
 	case "ksuid":
 		return &KSUID{}, nil
+	case "ulid":
+		return &ULID{}, nil
 	}
 
 	return nil, ErrNotFound

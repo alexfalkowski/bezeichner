@@ -17,6 +17,8 @@ Feature: Server
       | uuid        | 2     |
       | ksuid       | 1     |
       | ksuid       | 2     |
+      | ulid        | 1     |
+      | ulid        | 2     |
 
   Scenario Outline: Identifiers for missing applications
     When I request to identifiers with HTTP:
