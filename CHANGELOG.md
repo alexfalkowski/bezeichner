@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.8.0](https://github.com/alexfalkowski/bezeichner/compare/v1.7.1...v1.8.0) (2022-10-09)
+
+
+### Features
+
+* map identifiers ([#11](https://github.com/alexfalkowski/bezeichner/issues/11)) ([0496f25](https://github.com/alexfalkowski/bezeichner/commit/0496f25d90045ca3aab9897031a23818a7a96a39))
+
 ### [1.7.1](https://github.com/alexfalkowski/bezeichner/compare/v1.7.0...v1.7.1) (2022-10-09)
 
 ## [1.7.0](https://github.com/alexfalkowski/bezeichner/compare/v1.6.1...v1.7.0) (2022-10-08)
