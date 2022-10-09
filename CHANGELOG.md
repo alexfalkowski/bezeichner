@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.8.1](https://github.com/alexfalkowski/bezeichner/compare/v1.8.0...v1.8.1) (2022-10-09)
+
+
+### Bug Fixes
+
+* **api:** enable breaking changes ([#12](https://github.com/alexfalkowski/bezeichner/issues/12)) ([997ffe6](https://github.com/alexfalkowski/bezeichner/commit/997ffe65629e96bde0c203326d62817e98d3b8f3))
+
 ## [1.8.0](https://github.com/alexfalkowski/bezeichner/compare/v1.7.1...v1.8.0) (2022-10-09)
 
 
