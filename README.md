@@ -19,9 +19,9 @@ Lot's of distributed systems need global unique IDs. Since you are more than lik
 
 The server is defined by the following [proto contract](api/bezeichner/v1/service.proto). So each version of the service will have a new contract.
 
-### Generators
+### Generator
 
-This system allows you to configure many generators.
+This system allows you to configure an application with a generator.
 
 To configure we just need the have the following configuration:
 
@@ -74,6 +74,19 @@ The postgres kind expects a sequence named after the application. The service do
 #### Redis
 
 The redis kind expects a value named after the application. If it does not exist, the system will create one.
+
+### Mapper
+
+The system allows you to map to different identifiers. This allows you to deal with legacy identifiers.
+
+To configure we just need the have the following configuration:
+
+```yaml
+mapper:
+  identifiers:
+    req1: resp1
+    req2: resp2
+```
 
 ## Health
 
