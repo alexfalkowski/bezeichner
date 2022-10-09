@@ -22,8 +22,10 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ServiceClient interface {
-	// GetIdentifiers for a specific application.
-	GetIdentifiers(ctx context.Context, in *GetIdentifiersRequest, opts ...grpc.CallOption) (*GetIdentifiersResponse, error)
+	// GenerateIdentifiers for a specific application.
+	GenerateIdentifiers(ctx context.Context, in *GenerateIdentifiersRequest, opts ...grpc.CallOption) (*GenerateIdentifiersResponse, error)
+	// MapIdentifiers for some identifiers.
+	MapIdentifiers(ctx context.Context, in *MapIdentifiersRequest, opts ...grpc.CallOption) (*MapIdentifiersResponse, error)
 }
 
 type serviceClient struct {
@@ -34,9 +36,18 @@ func NewServiceClient(cc grpc.ClientConnInterface) ServiceClient {
 	return &serviceClient{cc}
 }
 
-func (c *serviceClient) GetIdentifiers(ctx context.Context, in *GetIdentifiersRequest, opts ...grpc.CallOption) (*GetIdentifiersResponse, error) {
-	out := new(GetIdentifiersResponse)
-	err := c.cc.Invoke(ctx, "/bezeichner.v1.Service/GetIdentifiers", in, out, opts...)
+func (c *serviceClient) GenerateIdentifiers(ctx context.Context, in *GenerateIdentifiersRequest, opts ...grpc.CallOption) (*GenerateIdentifiersResponse, error) {
+	out := new(GenerateIdentifiersResponse)
+	err := c.cc.Invoke(ctx, "/bezeichner.v1.Service/GenerateIdentifiers", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *serviceClient) MapIdentifiers(ctx context.Context, in *MapIdentifiersRequest, opts ...grpc.CallOption) (*MapIdentifiersResponse, error) {
+	out := new(MapIdentifiersResponse)
+	err := c.cc.Invoke(ctx, "/bezeichner.v1.Service/MapIdentifiers", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -47,8 +58,10 @@ func (c *serviceClient) GetIdentifiers(ctx context.Context, in *GetIdentifiersRe
 // All implementations must embed UnimplementedServiceServer
 // for forward compatibility
 type ServiceServer interface {
-	// GetIdentifiers for a specific application.
-	GetIdentifiers(context.Context, *GetIdentifiersRequest) (*GetIdentifiersResponse, error)
+	// GenerateIdentifiers for a specific application.
+	GenerateIdentifiers(context.Context, *GenerateIdentifiersRequest) (*GenerateIdentifiersResponse, error)
+	// MapIdentifiers for some identifiers.
+	MapIdentifiers(context.Context, *MapIdentifiersRequest) (*MapIdentifiersResponse, error)
 	mustEmbedUnimplementedServiceServer()
 }
 
@@ -56,8 +69,11 @@ type ServiceServer interface {
 type UnimplementedServiceServer struct {
 }
 
-func (UnimplementedServiceServer) GetIdentifiers(context.Context, *GetIdentifiersRequest) (*GetIdentifiersResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetIdentifiers not implemented")
+func (UnimplementedServiceServer) GenerateIdentifiers(context.Context, *GenerateIdentifiersRequest) (*GenerateIdentifiersResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GenerateIdentifiers not implemented")
+}
+func (UnimplementedServiceServer) MapIdentifiers(context.Context, *MapIdentifiersRequest) (*MapIdentifiersResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method MapIdentifiers not implemented")
 }
 func (UnimplementedServiceServer) mustEmbedUnimplementedServiceServer() {}
 
@@ -72,20 +88,38 @@ func RegisterServiceServer(s grpc.ServiceRegistrar, srv ServiceServer) {
 	s.RegisterService(&Service_ServiceDesc, srv)
 }
 
-func _Service_GetIdentifiers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetIdentifiersRequest)
+func _Service_GenerateIdentifiers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GenerateIdentifiersRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ServiceServer).GetIdentifiers(ctx, in)
+		return srv.(ServiceServer).GenerateIdentifiers(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/bezeichner.v1.Service/GetIdentifiers",
+		FullMethod: "/bezeichner.v1.Service/GenerateIdentifiers",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ServiceServer).GetIdentifiers(ctx, req.(*GetIdentifiersRequest))
+		return srv.(ServiceServer).GenerateIdentifiers(ctx, req.(*GenerateIdentifiersRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Service_MapIdentifiers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MapIdentifiersRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ServiceServer).MapIdentifiers(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/bezeichner.v1.Service/MapIdentifiers",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ServiceServer).MapIdentifiers(ctx, req.(*MapIdentifiersRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -98,8 +132,12 @@ var Service_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*ServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "GetIdentifiers",
-			Handler:    _Service_GetIdentifiers_Handler,
+			MethodName: "GenerateIdentifiers",
+			Handler:    _Service_GenerateIdentifiers_Handler,
+		},
+		{
+			MethodName: "MapIdentifiers",
+			Handler:    _Service_MapIdentifiers_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

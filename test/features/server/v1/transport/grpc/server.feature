@@ -51,3 +51,24 @@ Feature: Server
       | application | count |
       | pg          | 1     |
       | redis       | 1     |
+
+  Scenario Outline: Map existing identifiers
+    When I request to map identifiers with gRPC:
+      | request | <request> |
+    Then I should receive mapped identifiers from gRPC:
+      | response | <response> |
+
+    Examples:
+      | request   | response    |
+      | req1      | resp1       |
+      | req1,req2 | resp1,resp2 |
+
+  Scenario Outline: Map non existing identifiers
+    When I request to map identifiers with gRPC:
+      | request | <request> |
+    Then I should receive a not found error from gRPC
+
+    Examples:
+      | request   |
+      | req3      |
+      | req1,req3 |

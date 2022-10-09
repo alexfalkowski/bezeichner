@@ -6,6 +6,7 @@ import (
 
 	v1 "github.com/alexfalkowski/bezeichner/api/bezeichner/v1"
 	"github.com/alexfalkowski/bezeichner/generator"
+	"github.com/alexfalkowski/bezeichner/mapper"
 	"github.com/alexfalkowski/go-service/cache/redis/client"
 	"github.com/alexfalkowski/go-service/transport"
 	"github.com/alexfalkowski/go-service/transport/grpc"
@@ -30,6 +31,7 @@ type RegisterParams struct {
 	Tracer          opentracing.Tracer
 	Metrics         *prometheus.ClientMetrics
 	GeneratorConfig *generator.Config
+	MapperConfig    *mapper.Config
 	DB              *mssqlx.DBs
 	Client          client.Client
 }
@@ -37,7 +39,7 @@ type RegisterParams struct {
 // Register server.
 func Register(params RegisterParams) error {
 	ctx := context.Background()
-	server := NewServer(ServerParams{Config: params.GeneratorConfig, DB: params.DB, Client: params.Client})
+	server := NewServer(ServerParams{GeneratorConfig: params.GeneratorConfig, MapperConfig: params.MapperConfig, DB: params.DB, Client: params.Client})
 
 	v1.RegisterServiceServer(params.GRPCServer.Server, server)
 

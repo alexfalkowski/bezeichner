@@ -7,7 +7,7 @@ require 'bezeichner/v1/service_pb'
 module Bezeichner
   module V1
     module Service
-      # Service allows to get a list of identifiers.
+      # Service allows to manage identifiers.
       class Service
 
         include ::GRPC::GenericService
@@ -16,8 +16,10 @@ module Bezeichner
         self.unmarshal_class_method = :decode
         self.service_name = 'bezeichner.v1.Service'
 
-        # GetIdentifiers for a specific application.
-        rpc :GetIdentifiers, ::Bezeichner::V1::GetIdentifiersRequest, ::Bezeichner::V1::GetIdentifiersResponse
+        # GenerateIdentifiers for a specific application.
+        rpc :GenerateIdentifiers, ::Bezeichner::V1::GenerateIdentifiersRequest, ::Bezeichner::V1::GenerateIdentifiersResponse
+        # MapIdentifiers for some identifiers.
+        rpc :MapIdentifiers, ::Bezeichner::V1::MapIdentifiersRequest, ::Bezeichner::V1::MapIdentifiersResponse
       end
 
       Stub = Service.rpc_stub_class
