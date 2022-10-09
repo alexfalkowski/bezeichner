@@ -1,6 +1,7 @@
 cache:
   redis:
-    host: localhost:6380
+    addresses:
+      server: localhost:6380
 generator:
   applications:
     - name: uuid
@@ -44,8 +45,6 @@ health:
 sql:
   pg:
     masters:
-      - url: postgres://test:test@localhost:5433/test?sslmode=disable
-    slaves:
       - url: postgres://test:test@localhost:5433/test?sslmode=disable
     max_open_conns: 5
     max_idle_conns: 5
