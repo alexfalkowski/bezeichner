@@ -3,6 +3,7 @@ package config
 import (
 	"github.com/alexfalkowski/bezeichner/generator"
 	"github.com/alexfalkowski/bezeichner/health"
+	"github.com/alexfalkowski/bezeichner/mapper"
 	"github.com/alexfalkowski/go-service/config"
 )
 
@@ -19,4 +20,8 @@ func healthConfig(cfg config.Configurator) *health.Config {
 
 func generatorConfig(cfg config.Configurator) *generator.Config {
 	return &cfg.(*Config).Generator
+}
+
+func mapperConfig(cfg config.Configurator) *mapper.Config {
+	return &cfg.(*Config).Mapper
 }

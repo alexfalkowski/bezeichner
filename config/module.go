@@ -14,5 +14,6 @@ var (
 		config.WatchModule,
 		fx.Provide(healthConfig),
 		fx.Provide(generatorConfig),
+		fx.Provide(mapperConfig),
 	)
 )

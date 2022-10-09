@@ -7,11 +7,17 @@ require 'google/api/annotations_pb'
 
 Google::Protobuf::DescriptorPool.generated_pool.build do
   add_file("bezeichner/v1/service.proto", :syntax => :proto3) do
-    add_message "bezeichner.v1.GetIdentifiersRequest" do
+    add_message "bezeichner.v1.GenerateIdentifiersRequest" do
       optional :application, :string, 1, json_name: "application"
       optional :count, :uint64, 2, json_name: "count"
     end
-    add_message "bezeichner.v1.GetIdentifiersResponse" do
+    add_message "bezeichner.v1.GenerateIdentifiersResponse" do
+      repeated :ids, :string, 1, json_name: "ids"
+    end
+    add_message "bezeichner.v1.MapIdentifiersRequest" do
+      repeated :ids, :string, 1, json_name: "ids"
+    end
+    add_message "bezeichner.v1.MapIdentifiersResponse" do
       repeated :ids, :string, 1, json_name: "ids"
     end
   end
@@ -19,7 +25,9 @@ end
 
 module Bezeichner
   module V1
-    GetIdentifiersRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("bezeichner.v1.GetIdentifiersRequest").msgclass
-    GetIdentifiersResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("bezeichner.v1.GetIdentifiersResponse").msgclass
+    GenerateIdentifiersRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("bezeichner.v1.GenerateIdentifiersRequest").msgclass
+    GenerateIdentifiersResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("bezeichner.v1.GenerateIdentifiersResponse").msgclass
+    MapIdentifiersRequest = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("bezeichner.v1.MapIdentifiersRequest").msgclass
+    MapIdentifiersResponse = ::Google::Protobuf::DescriptorPool.generated_pool.lookup("bezeichner.v1.MapIdentifiersResponse").msgclass
   end
 end

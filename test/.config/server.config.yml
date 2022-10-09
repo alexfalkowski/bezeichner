@@ -2,6 +2,10 @@ cache:
   redis:
     addresses:
       server: localhost:6380
+mapper:
+  identifiers:
+    req1: resp1
+    req2: resp2
 generator:
   applications:
     - name: uuid
