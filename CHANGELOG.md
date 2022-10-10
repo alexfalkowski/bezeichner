@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.9.1](https://github.com/alexfalkowski/bezeichner/compare/v1.9.0...v1.9.1) (2022-10-10)
+
+
+### Bug Fixes
+
+* **snowflake:** initialise once ([#15](https://github.com/alexfalkowski/bezeichner/issues/15)) ([5dfa7ed](https://github.com/alexfalkowski/bezeichner/commit/5dfa7edbb19363a6cc8f3da98d709cb169eea9aa))
+
 ## [1.9.0](https://github.com/alexfalkowski/bezeichner/compare/v1.8.2...v1.9.0) (2022-10-10)
 
 
