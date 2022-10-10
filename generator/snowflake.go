@@ -4,7 +4,7 @@ import (
 	"context"
 	"strconv"
 
-	"github.com/godruoyi/go-snowflake"
+	"github.com/sony/sonyflake"
 )
 
 // Snowflake generator.
@@ -12,7 +12,9 @@ type Snowflake struct{}
 
 // Generate a id with snowflake.
 func (s *Snowflake) Generate(ctx context.Context) (string, error) {
-	id, err := snowflake.NextID()
+	sf := sonyflake.NewSonyflake(sonyflake.Settings{})
+
+	id, err := sf.NextID()
 	if err != nil {
 		return "", err
 	}

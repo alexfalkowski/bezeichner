@@ -110,7 +110,7 @@ The service uses the awesome work of others. You can check out:
 - https://github.com/segmentio/ksuid
 - https://github.com/google/uuid
 - https://github.com/oklog/ulid
-- https://github.com/godruoyi/go-snowflake
+- https://github.com/sony/sonyflake
 - https://github.com/alexfalkowski/go-service
 
 ## Development
