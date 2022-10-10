@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.10.0](https://github.com/alexfalkowski/bezeichner/compare/v1.9.1...v1.10.0) (2022-10-10)
+
+
+### Features
+
+* **generator:** create only once ([#16](https://github.com/alexfalkowski/bezeichner/issues/16)) ([e6ff884](https://github.com/alexfalkowski/bezeichner/commit/e6ff884885ffc2d9a2fc5d8ac0627ccbf44ea6e5))
+
 ### [1.9.1](https://github.com/alexfalkowski/bezeichner/compare/v1.9.0...v1.9.1) (2022-10-10)
 
 
