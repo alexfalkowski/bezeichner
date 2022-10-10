@@ -11,28 +11,32 @@ import (
 // ErrNotFound for generator.
 var ErrNotFound = errors.New("generator not found")
 
-// Generator to generate an identifier.
-type Generator interface {
-	// Generate an identifier.
-	Generate(ctx context.Context) (string, error)
+// NewGenerators of identifiers.
+func NewGenerators(db *mssqlx.DBs, client client.Client) Generators {
+	return Generators{
+		"uuid":      &UUID{},
+		"ksuid":     &KSUID{},
+		"ulid":      &ULID{},
+		"pg":        &PG{db: db},
+		"redis":     &Redis{client: client},
+		"snowflake": NewSnowflake(),
+	}
 }
 
-// NewGenerator from kind.
-func NewGenerator(name, kind string, db *mssqlx.DBs, client client.Client) (Generator, error) {
-	switch kind {
-	case "uuid":
-		return &UUID{}, nil
-	case "ksuid":
-		return &KSUID{}, nil
-	case "ulid":
-		return &ULID{}, nil
-	case "pg":
-		return &PG{name: name, db: db}, nil
-	case "redis":
-		return &Redis{name: name, client: client}, nil
-	case "snowflake":
-		return NewSnowflake(), nil
+// Generators of identifiers.
+type Generators map[string]Generator
+
+// Generator from kind.
+func (gs Generators) Generator(kind string) (Generator, error) {
+	if g, ok := gs[kind]; ok {
+		return g, nil
 	}
 
 	return nil, ErrNotFound
+}
+
+// Generator to generate an identifier.
+type Generator interface {
+	// Generate an identifier.
+	Generate(ctx context.Context, name string) (string, error)
 }

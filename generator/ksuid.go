@@ -10,7 +10,7 @@ import (
 type KSUID struct{}
 
 // Generate a KSUID.
-func (k *KSUID) Generate(ctx context.Context) (string, error) {
+func (k *KSUID) Generate(ctx context.Context, name string) (string, error) {
 	id, err := ksuid.NewRandom()
 	if err != nil {
 		return "", err

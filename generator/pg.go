@@ -10,15 +10,14 @@ import (
 
 // PG generator.
 type PG struct {
-	name string
-	db   *mssqlx.DBs
+	db *mssqlx.DBs
 }
 
 // Generate an ID using a sequence.
-func (p *PG) Generate(ctx context.Context) (string, error) {
+func (p *PG) Generate(ctx context.Context, name string) (string, error) {
 	var id int64
 
-	row := p.db.QueryRowContext(ctx, fmt.Sprintf("SELECT nextval('%s')", p.name))
+	row := p.db.QueryRowContext(ctx, fmt.Sprintf("SELECT nextval('%s')", name))
 	if err := row.Scan(&id); err != nil {
 		return "", err
 	}
