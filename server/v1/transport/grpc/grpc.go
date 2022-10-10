@@ -7,13 +7,11 @@ import (
 	v1 "github.com/alexfalkowski/bezeichner/api/bezeichner/v1"
 	"github.com/alexfalkowski/bezeichner/generator"
 	"github.com/alexfalkowski/bezeichner/mapper"
-	"github.com/alexfalkowski/go-service/cache/redis/client"
 	"github.com/alexfalkowski/go-service/transport"
 	"github.com/alexfalkowski/go-service/transport/grpc"
 	"github.com/alexfalkowski/go-service/transport/grpc/metrics/prometheus"
 	"github.com/alexfalkowski/go-service/transport/grpc/trace/opentracing"
 	"github.com/alexfalkowski/go-service/transport/http"
-	"github.com/linxGnu/mssqlx"
 	"go.uber.org/fx"
 	"go.uber.org/zap"
 )
@@ -32,14 +30,13 @@ type RegisterParams struct {
 	Metrics         *prometheus.ClientMetrics
 	GeneratorConfig *generator.Config
 	MapperConfig    *mapper.Config
-	DB              *mssqlx.DBs
-	Client          client.Client
+	Generators      generator.Generators
 }
 
 // Register server.
 func Register(params RegisterParams) error {
 	ctx := context.Background()
-	server := NewServer(ServerParams{GeneratorConfig: params.GeneratorConfig, MapperConfig: params.MapperConfig, DB: params.DB, Client: params.Client})
+	server := NewServer(ServerParams{GeneratorConfig: params.GeneratorConfig, MapperConfig: params.MapperConfig, Generators: params.Generators})
 
 	v1.RegisterServiceServer(params.GRPCServer.Server, server)
 

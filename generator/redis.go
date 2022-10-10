@@ -9,13 +9,12 @@ import (
 
 // Redis generator.
 type Redis struct {
-	name   string
 	client client.Client
 }
 
 // Generate an ID using INCR.
-func (r *Redis) Generate(ctx context.Context) (string, error) {
-	c := r.client.Incr(ctx, r.name)
+func (r *Redis) Generate(ctx context.Context, name string) (string, error) {
+	c := r.client.Incr(ctx, name)
 	if err := c.Err(); err != nil {
 		return "", err
 	}
