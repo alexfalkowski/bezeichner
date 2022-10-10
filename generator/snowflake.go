@@ -8,13 +8,18 @@ import (
 )
 
 // Snowflake generator.
-type Snowflake struct{}
+type Snowflake struct {
+	sf *sonyflake.Sonyflake
+}
+
+// NewSnowflake generator.
+func NewSnowflake() *Snowflake {
+	return &Snowflake{sf: sonyflake.NewSonyflake(sonyflake.Settings{})}
+}
 
 // Generate a id with snowflake.
 func (s *Snowflake) Generate(ctx context.Context) (string, error) {
-	sf := sonyflake.NewSonyflake(sonyflake.Settings{})
-
-	id, err := sf.NextID()
+	id, err := s.sf.NextID()
 	if err != nil {
 		return "", err
 	}
