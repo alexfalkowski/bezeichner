@@ -9,6 +9,7 @@ require (
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.11.3
 	github.com/linxGnu/mssqlx v1.1.7
 	github.com/oklog/ulid v1.3.1
+	github.com/rs/xid v1.2.1
 	github.com/segmentio/ksuid v1.0.4
 	github.com/sony/sonyflake v1.1.0
 	go.uber.org/fx v1.18.2
