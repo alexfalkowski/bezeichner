@@ -23,13 +23,18 @@ generator:
       prefix: prefix
       suffix: suffix
       separator: "-"
-    - name: pg
-      kind: pg
+    - name: snowflake
+      kind: snowflake
       prefix: prefix
       suffix: suffix
       separator: "-"
-    - name: snowflake
-      kind: snowflake
+    - name: xid
+      kind: xid
+      prefix: prefix
+      suffix: suffix
+      separator: "-"
+    - name: pg
+      kind: pg
       prefix: prefix
       suffix: suffix
       separator: "-"
