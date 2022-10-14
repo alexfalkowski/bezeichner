@@ -53,6 +53,11 @@ generator:
       prefix: prefix
       suffix: suffix
       separator: "-"
+    - name: nanoid
+      kind: nanoid
+      prefix: prefix
+      suffix: suffix
+      separator: "-"
     - name: pg
       kind: pg
       prefix: prefix
@@ -67,7 +72,7 @@ generator:
 
 Each generator has the following properties:
 - A distinct name.
-- The kind of generator (uuid, ksuid, ulid, xid, snowflake, pg, redis).
+- The kind of generator (uuid, ksuid, ulid, xid, snowflake, nanoid, pg, redis).
 - The prefix of the identifier.
 - The suffix of the identifier.
 - The separator used between the prefix and suffix.
