@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.12.0](https://github.com/alexfalkowski/bezeichner/compare/v1.11.2...v1.12.0) (2022-10-14)
+
+
+### Features
+
+* **nanoid:** generate identifiers ([#21](https://github.com/alexfalkowski/bezeichner/issues/21)) ([2177ad9](https://github.com/alexfalkowski/bezeichner/commit/2177ad9fef3319ae37c901415d6d10c29f7178f1))
+
 ### [1.11.2](https://github.com/alexfalkowski/bezeichner/compare/v1.11.1...v1.11.2) (2022-10-13)
 
 ### [1.11.1](https://github.com/alexfalkowski/bezeichner/compare/v1.11.0...v1.11.1) (2022-10-13)
