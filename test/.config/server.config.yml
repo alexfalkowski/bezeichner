@@ -33,6 +33,11 @@ generator:
       prefix: prefix
       suffix: suffix
       separator: "-"
+    - name: nanoid
+      kind: nanoid
+      prefix: prefix
+      suffix: suffix
+      separator: "-"
     - name: pg
       kind: pg
       prefix: prefix

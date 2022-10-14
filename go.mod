@@ -7,6 +7,7 @@ require (
 	github.com/alexfalkowski/go-service v1.76.2
 	github.com/google/uuid v1.3.0
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.11.3
+	github.com/jaevor/go-nanoid v1.3.0
 	github.com/linxGnu/mssqlx v1.1.7
 	github.com/oklog/ulid v1.3.1
 	github.com/rs/xid v1.4.0
