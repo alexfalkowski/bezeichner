@@ -4,9 +4,9 @@ go 1.19
 
 require (
 	github.com/alexfalkowski/go-health v1.10.4
-	github.com/alexfalkowski/go-service v1.76.10
+	github.com/alexfalkowski/go-service v1.76.11
 	github.com/google/uuid v1.3.0
-	github.com/grpc-ecosystem/grpc-gateway/v2 v2.12.0
+	github.com/grpc-ecosystem/grpc-gateway/v2 v2.13.0
 	github.com/jaevor/go-nanoid v1.3.0
 	github.com/linxGnu/mssqlx v1.1.7
 	github.com/oklog/ulid v1.3.1
@@ -15,7 +15,7 @@ require (
 	github.com/sony/sonyflake v1.1.0
 	go.uber.org/fx v1.18.2
 	go.uber.org/zap v1.23.0
-	google.golang.org/genproto v0.0.0-20221014213838-99cd37c6964a
+	google.golang.org/genproto v0.0.0-20221027153422-115e99e71e1c
 	google.golang.org/grpc v1.50.1
 	google.golang.org/protobuf v1.28.1
 )
@@ -85,10 +85,10 @@ require (
 	go4.org/unsafe/assume-no-moving-gc v0.0.0-20220617031537-928513b29760 // indirect
 	golang.org/x/crypto v0.0.0-20220829220503-c86fa9a7ed90 // indirect
 	golang.org/x/exp v0.0.0-20220827204233-334a2380cb91 // indirect
-	golang.org/x/net v0.0.0-20220909164309-bea034e7d591 // indirect
+	golang.org/x/net v0.1.0 // indirect
 	golang.org/x/sync v0.0.0-20220819030929-7fc1605a5dde // indirect
-	golang.org/x/sys v0.0.0-20221010170243-090e33056c14 // indirect
-	golang.org/x/text v0.3.8 // indirect
+	golang.org/x/sys v0.1.0 // indirect
+	golang.org/x/text v0.4.0 // indirect
 	golang.org/x/time v0.0.0-20220722155302-e5dcc9cfc0b9 // indirect
 	golang.org/x/xerrors v0.0.0-20220609144429-65e65417b02f // indirect
 	gopkg.in/DataDog/dd-trace-go.v1 v1.43.1 // indirect
