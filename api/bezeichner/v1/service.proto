@@ -32,15 +32,11 @@ message MapIdentifiersResponse {
 service Service {
   // GenerateIdentifiers for a specific application.
   rpc GenerateIdentifiers(GenerateIdentifiersRequest) returns (GenerateIdentifiersResponse) {
-    option (google.api.http) = {
-      get: "/v1/generate/{application}/{count}"
-    };
+    option (google.api.http) = {get: "/v1/generate/{application}/{count}"};
   }
 
   // MapIdentifiers for some identifiers.
   rpc MapIdentifiers(MapIdentifiersRequest) returns (MapIdentifiersResponse) {
-    option (google.api.http) = {
-      get: "/v1/map/{ids}"
-    };
+    option (google.api.http) = {get: "/v1/map/{ids}"};
   }
 }
