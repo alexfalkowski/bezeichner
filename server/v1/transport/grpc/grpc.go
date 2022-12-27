@@ -5,8 +5,6 @@ import (
 	"fmt"
 
 	v1 "github.com/alexfalkowski/bezeichner/api/bezeichner/v1"
-	"github.com/alexfalkowski/bezeichner/generator"
-	"github.com/alexfalkowski/bezeichner/mapper"
 	"github.com/alexfalkowski/go-service/transport"
 	"github.com/alexfalkowski/go-service/transport/grpc"
 	"github.com/alexfalkowski/go-service/transport/grpc/metrics/prometheus"
@@ -28,17 +26,14 @@ type RegisterParams struct {
 	Logger          *zap.Logger
 	Tracer          opentracing.Tracer
 	Metrics         *prometheus.ClientMetrics
-	GeneratorConfig *generator.Config
-	MapperConfig    *mapper.Config
-	Generators      generator.Generators
+	Server          v1.ServiceServer
 }
 
 // Register server.
 func Register(params RegisterParams) error {
 	ctx := context.Background()
-	server := NewServer(ServerParams{GeneratorConfig: params.GeneratorConfig, MapperConfig: params.MapperConfig, Generators: params.Generators})
 
-	v1.RegisterServiceServer(params.GRPCServer.Server, server)
+	v1.RegisterServiceServer(params.GRPCServer.Server, params.Server)
 
 	conn, err := grpc.NewClient(
 		grpc.ClientParams{Context: ctx, Host: fmt.Sprintf("127.0.0.1:%s", params.TransportConfig.Port), Config: params.GRPCConfig},

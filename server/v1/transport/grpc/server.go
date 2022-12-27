@@ -7,12 +7,15 @@ import (
 	v1 "github.com/alexfalkowski/bezeichner/api/bezeichner/v1"
 	"github.com/alexfalkowski/bezeichner/generator"
 	"github.com/alexfalkowski/bezeichner/mapper"
+	"go.uber.org/fx"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
 
 // ServerParams for gRPC.
 type ServerParams struct {
+	fx.In
+
 	GeneratorConfig *generator.Config
 	MapperConfig    *mapper.Config
 	Generators      generator.Generators
