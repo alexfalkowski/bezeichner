@@ -4,7 +4,7 @@ go 1.19
 
 require (
 	github.com/alexfalkowski/go-health v1.11.0
-	github.com/alexfalkowski/go-service v1.77.7
+	github.com/alexfalkowski/go-service v1.77.8
 	github.com/google/uuid v1.3.0
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.15.0
 	github.com/jaevor/go-nanoid v1.3.0
@@ -13,7 +13,7 @@ require (
 	github.com/rs/xid v1.4.0
 	github.com/segmentio/ksuid v1.0.4
 	github.com/sony/sonyflake v1.1.0
-	go.uber.org/fx v1.19.0
+	go.uber.org/fx v1.18.2
 	go.uber.org/zap v1.24.0
 	google.golang.org/genproto v0.0.0-20221207170731-23e4bf6bdc37
 	google.golang.org/grpc v1.51.0
