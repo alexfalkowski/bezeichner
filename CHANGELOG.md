@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.14.0](https://github.com/alexfalkowski/bezeichner/compare/v1.13.3...v1.14.0) (2023-01-09)
+
+
+### Features
+
+* **main:** use the same command ([#83](https://github.com/alexfalkowski/bezeichner/issues/83)) ([5c132f8](https://github.com/alexfalkowski/bezeichner/commit/5c132f8ea38d35d8ad1a699dee20c05c529e752d))
+
 ### [1.13.3](https://github.com/alexfalkowski/bezeichner/compare/v1.13.2...v1.13.3) (2023-01-07)
 
 ### [1.13.2](https://github.com/alexfalkowski/bezeichner/compare/v1.13.1...v1.13.2) (2023-01-07)
