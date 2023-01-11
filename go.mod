@@ -13,7 +13,7 @@ require (
 	github.com/rs/xid v1.4.0
 	github.com/segmentio/ksuid v1.0.4
 	github.com/sony/sonyflake v1.1.0
-	go.uber.org/fx v1.18.2
+	go.uber.org/fx v1.19.1
 	go.uber.org/zap v1.24.0
 	google.golang.org/genproto v0.0.0-20221207170731-23e4bf6bdc37
 	google.golang.org/grpc v1.51.0
