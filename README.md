@@ -70,6 +70,64 @@ generator:
       separator: "-"
 ```
 
+```toml
+[[generator.applications]]
+name = "uuid"
+kind = "uuid"
+prefix = "prefix"
+suffix = "suffix"
+separator = "-"
+
+[[generator.applications]]
+name = "ksuid"
+kind = "ksuid"
+prefix = "prefix"
+suffix = "suffix"
+separator = "-"
+
+[[generator.applications]]
+name = "ulid"
+kind = "ulid"
+prefix = "prefix"
+suffix = "suffix"
+separator = "-"
+
+[[generator.applications]]
+name = "xid"
+kind = "xid"
+prefix = "prefix"
+suffix = "suffix"
+separator = "-"
+
+[[generator.applications]]
+name = "snowflake"
+kind = "snowflake"
+prefix = "prefix"
+suffix = "suffix"
+separator = "-"
+
+[[generator.applications]]
+name = "nanoid"
+kind = "nanoid"
+prefix = "prefix"
+suffix = "suffix"
+separator = "-"
+
+[[generator.applications]]
+name = "pg"
+kind = "pg"
+prefix = "prefix"
+suffix = "suffix"
+separator = "-"
+
+[[generator.applications]]
+name = "redis"
+kind = "redis"
+prefix = "prefix"
+suffix = "suffix"
+separator = "-"
+```
+
 Each generator has the following properties:
 - A distinct name.
 - The kind of generator (uuid, ksuid, ulid, xid, snowflake, nanoid, pg, redis).
@@ -98,6 +156,12 @@ mapper:
     req2: resp2
 ```
 
+```toml
+[mapper.identifiers]
+req1 = "resp1"
+req2 = "resp2"
+```
+
 ## Health
 
 The system defines a way to monitor all of it's dependencies.
@@ -108,6 +172,12 @@ To configure we just need the have the following configuration:
 health:
   duration: 1s (how often to check)
   timeout: 1s (when we should timeout the check)
+```
+
+```toml
+[health]
+duration = "1s (how often to check)"
+timeout = "1s (when we should timeout the check)"
 ```
 
 ## Deployment
