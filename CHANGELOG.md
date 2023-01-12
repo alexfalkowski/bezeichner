@@ -1,238 +1,307 @@
 # Changelog
 
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+All notable changes to this project will be documented in this file.
 
-### [1.14.5](https://github.com/alexfalkowski/bezeichner/compare/v1.14.4...v1.14.5) (2023-01-11)
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-### [1.14.4](https://github.com/alexfalkowski/bezeichner/compare/v1.14.3...v1.14.4) (2023-01-11)
+## Unreleased
 
-### [1.14.3](https://github.com/alexfalkowski/bezeichner/compare/v1.14.2...v1.14.3) (2023-01-11)
+## [v1.14.5](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.14.5) - 2023-01-11
 
-### [1.14.2](https://github.com/alexfalkowski/bezeichner/compare/v1.14.1...v1.14.2) (2023-01-11)
+- [`19cd692`](https://github.com/alexfalkowski/bezeichner/commit/19cd692168df3c029ecb56dc357489a88fdec8df) build(deps): update github.com/alexfalkowski/go-service v1.81.3 (#92)
 
-### [1.14.1](https://github.com/alexfalkowski/bezeichner/compare/v1.14.0...v1.14.1) (2023-01-09)
+## [v1.14.4](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.14.4) - 2023-01-11
 
-## [1.14.0](https://github.com/alexfalkowski/bezeichner/compare/v1.13.3...v1.14.0) (2023-01-09)
+- [`1cae49c`](https://github.com/alexfalkowski/bezeichner/commit/1cae49c68f030991e086e373fe1212658123eb52) docs: add toml (#87)
 
+## [v1.14.3](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.14.3) - 2023-01-11
 
-### Features
+- [`fb5c94d`](https://github.com/alexfalkowski/bezeichner/commit/fb5c94d90c5ca3cf16adf29cb34961fc1de2fb5b) build(deps): bump rubocop from 1.42.0 to 1.43.0 in /test (#85)
 
-* **main:** use the same command ([#83](https://github.com/alexfalkowski/bezeichner/issues/83)) ([5c132f8](https://github.com/alexfalkowski/bezeichner/commit/5c132f8ea38d35d8ad1a699dee20c05c529e752d))
+## [v1.14.2](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.14.2) - 2023-01-11
 
-### [1.13.3](https://github.com/alexfalkowski/bezeichner/compare/v1.13.2...v1.13.3) (2023-01-07)
+- [`864faad`](https://github.com/alexfalkowski/bezeichner/commit/864faadc73e8e16b9a8f198a5ab53f9f8e4fdea0) build(deps): bump github.com/alexfalkowski/go-service (#86)
 
-### [1.13.2](https://github.com/alexfalkowski/bezeichner/compare/v1.13.1...v1.13.2) (2023-01-07)
+## [v1.14.1](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.14.1) - 2023-01-09
 
-### [1.13.1](https://github.com/alexfalkowski/bezeichner/compare/v1.13.0...v1.13.1) (2023-01-06)
+- [`a6a67f2`](https://github.com/alexfalkowski/bezeichner/commit/a6a67f2020d4d07621f4fe463593ac42c8b7b05b) build(deps): bump github.com/alexfalkowski/go-service (#84)
 
-## [1.13.0](https://github.com/alexfalkowski/bezeichner/compare/v1.12.44...v1.13.0) (2023-01-06)
+## [v1.14.0](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.14.0) - 2023-01-09
 
+- [`5c132f8`](https://github.com/alexfalkowski/bezeichner/commit/5c132f8ea38d35d8ad1a699dee20c05c529e752d) feat(main): use the same command (#83)
 
-### Features
+## [v1.13.3](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.13.3) - 2023-01-07
 
-* update github.com/alexfalkowski/go-service to v1.78.0 ([#79](https://github.com/alexfalkowski/bezeichner/issues/79)) ([c05bd5b](https://github.com/alexfalkowski/bezeichner/commit/c05bd5bf7c4205c01d29c06cd100ec761616c639))
+- [`76cb30b`](https://github.com/alexfalkowski/bezeichner/commit/76cb30bd1365b6da63ba1b2eb3dffc944a954eb0) build(deps): bump rspec-expectations from 3.12.1 to 3.12.2 in /test (#81)
 
-### [1.12.44](https://github.com/alexfalkowski/bezeichner/compare/v1.12.43...v1.12.44) (2023-01-05)
+## [v1.13.2](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.13.2) - 2023-01-07
 
+- [`3967563`](https://github.com/alexfalkowski/bezeichner/commit/3967563911d145c7f6de772fe416b3321d474c25) build(deps): bump github.com/alexfalkowski/go-service (#82)
 
-### Bug Fixes
+## [v1.13.1](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.13.1) - 2023-01-06
 
-* downgrade go.uber.org/fx to v1.18.2 ([#78](https://github.com/alexfalkowski/bezeichner/issues/78)) ([847fbc3](https://github.com/alexfalkowski/bezeichner/commit/847fbc36b3bd8e074d3ba3864b47e25f5358ea8e))
+- [`f18d162`](https://github.com/alexfalkowski/bezeichner/commit/f18d1627746c4eff7d625efec99eb7b3dd2ea213) build(deps): bump github.com/alexfalkowski/go-service (#80)
 
-### [1.12.43](https://github.com/alexfalkowski/bezeichner/compare/v1.12.42...v1.12.43) (2023-01-05)
+## [v1.13.0](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.13.0) - 2023-01-06
 
-### [1.12.42](https://github.com/alexfalkowski/bezeichner/compare/v1.12.41...v1.12.42) (2023-01-05)
+- [`c05bd5b`](https://github.com/alexfalkowski/bezeichner/commit/c05bd5bf7c4205c01d29c06cd100ec761616c639) feat: update github.com/alexfalkowski/go-service to v1.78.0 (#79)
 
-### [1.12.41](https://github.com/alexfalkowski/bezeichner/compare/v1.12.40...v1.12.41) (2023-01-03)
+## [v1.12.44](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.12.44) - 2023-01-05
 
-### [1.12.40](https://github.com/alexfalkowski/bezeichner/compare/v1.12.39...v1.12.40) (2022-12-29)
+- [`847fbc3`](https://github.com/alexfalkowski/bezeichner/commit/847fbc36b3bd8e074d3ba3864b47e25f5358ea8e) fix: downgrade go.uber.org/fx to v1.18.2 (#78)
 
-### [1.12.39](https://github.com/alexfalkowski/bezeichner/compare/v1.12.38...v1.12.39) (2022-12-27)
+## [v1.12.43](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.12.43) - 2023-01-05
 
-### [1.12.38](https://github.com/alexfalkowski/bezeichner/compare/v1.12.37...v1.12.38) (2022-12-26)
+- [`8b590a0`](https://github.com/alexfalkowski/bezeichner/commit/8b590a069189d7958dc9cff9bc63edf4b7c6f06a) build(deps): bump github.com/alexfalkowski/go-service (#76)
 
-### [1.12.37](https://github.com/alexfalkowski/bezeichner/compare/v1.12.36...v1.12.37) (2022-12-23)
+## [v1.12.42](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.12.42) - 2023-01-05
 
-### [1.12.36](https://github.com/alexfalkowski/bezeichner/compare/v1.12.35...v1.12.36) (2022-12-23)
+- [`b8708c4`](https://github.com/alexfalkowski/bezeichner/commit/b8708c4def19666f2d7ae288d155b10ae3a8dace) build(deps): bump github.com/alexfalkowski/go-service (#75)
 
-### [1.12.35](https://github.com/alexfalkowski/bezeichner/compare/v1.12.34...v1.12.35) (2022-12-21)
+## [v1.12.41](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.12.41) - 2023-01-03
 
-### [1.12.34](https://github.com/alexfalkowski/bezeichner/compare/v1.12.33...v1.12.34) (2022-12-21)
+- [`01f87df`](https://github.com/alexfalkowski/bezeichner/commit/01f87dfe6a9eda4a4d0b9b03d4212b72b33b2047) build(deps): bump rubocop from 1.41.1 to 1.42.0 in /test (#72)
 
-### [1.12.33](https://github.com/alexfalkowski/bezeichner/compare/v1.12.32...v1.12.33) (2022-12-20)
+## [v1.12.40](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.12.40) - 2022-12-29
 
-### [1.12.32](https://github.com/alexfalkowski/bezeichner/compare/v1.12.31...v1.12.32) (2022-12-20)
+- [`7854d27`](https://github.com/alexfalkowski/bezeichner/commit/7854d2729f8a5362d56c8875aebae3b435aeba63) build(deps): bump github.com/alexfalkowski/go-service (#70)
 
-### [1.12.31](https://github.com/alexfalkowski/bezeichner/compare/v1.12.30...v1.12.31) (2022-12-17)
+## [v1.12.39](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.12.39) - 2022-12-27
 
-### [1.12.30](https://github.com/alexfalkowski/bezeichner/compare/v1.12.29...v1.12.30) (2022-12-17)
+- [`d8a1da9`](https://github.com/alexfalkowski/bezeichner/commit/d8a1da956ccf3d93e7599939ac6b2e39e0d2c294) refactor: move to server (#69)
 
-### [1.12.29](https://github.com/alexfalkowski/bezeichner/compare/v1.12.28...v1.12.29) (2022-12-13)
+## [v1.12.38](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.12.38) - 2022-12-26
 
-### [1.12.28](https://github.com/alexfalkowski/bezeichner/compare/v1.12.27...v1.12.28) (2022-12-09)
+- [`0b5fbbc`](https://github.com/alexfalkowski/bezeichner/commit/0b5fbbc2848c1c0ed790b872ea659b9078f4e693) style: format proto (#68)
 
-### [1.12.27](https://github.com/alexfalkowski/bezeichner/compare/v1.12.26...v1.12.27) (2022-12-09)
+## [v1.12.37](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.12.37) - 2022-12-23
 
-### [1.12.26](https://github.com/alexfalkowski/bezeichner/compare/v1.12.25...v1.12.26) (2022-12-09)
+- [`fbbcb67`](https://github.com/alexfalkowski/bezeichner/commit/fbbcb6726fcd7906ce4fb426bbd35477a45e5a44) build(deps): bump rubocop from 1.41.0 to 1.41.1 in /test (#66)
 
-### [1.12.25](https://github.com/alexfalkowski/bezeichner/compare/v1.12.24...v1.12.25) (2022-12-07)
+## [v1.12.36](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.12.36) - 2022-12-23
 
-### [1.12.24](https://github.com/alexfalkowski/bezeichner/compare/v1.12.23...v1.12.24) (2022-12-07)
+- [`6a5eab6`](https://github.com/alexfalkowski/bezeichner/commit/6a5eab6388c8e6109631c26e5473e57154d68d60) build(deps): bump github.com/alexfalkowski/go-service (#67)
 
-### [1.12.23](https://github.com/alexfalkowski/bezeichner/compare/v1.12.22...v1.12.23) (2022-12-01)
+## [v1.12.35](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.12.35) - 2022-12-21
 
-### [1.12.22](https://github.com/alexfalkowski/bezeichner/compare/v1.12.21...v1.12.22) (2022-11-30)
+- [`50316d7`](https://github.com/alexfalkowski/bezeichner/commit/50316d7dea7049d1fdc104506422ef0596056e52) build(deps): bump rubocop from 1.40.0 to 1.41.0 in /test (#63)
 
-### [1.12.21](https://github.com/alexfalkowski/bezeichner/compare/v1.12.20...v1.12.21) (2022-11-25)
+## [v1.12.34](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.12.34) - 2022-12-21
 
-### [1.12.20](https://github.com/alexfalkowski/bezeichner/compare/v1.12.19...v1.12.20) (2022-11-23)
+- [`e22cc9e`](https://github.com/alexfalkowski/bezeichner/commit/e22cc9e354e742a42245763c9c2e053a0d7c1a9b) build(deps): bump github.com/alexfalkowski/go-service (#64)
 
-### [1.12.19](https://github.com/alexfalkowski/bezeichner/compare/v1.12.18...v1.12.19) (2022-11-18)
+## [v1.12.33](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.12.33) - 2022-12-20
 
-### [1.12.18](https://github.com/alexfalkowski/bezeichner/compare/v1.12.17...v1.12.18) (2022-11-17)
+- [`7900b97`](https://github.com/alexfalkowski/bezeichner/commit/7900b97afa3ac687722cc491377f05abfc48953b) build(deps): bump solargraph from 0.47.2 to 0.48.0 in /test (#62)
 
-### [1.12.17](https://github.com/alexfalkowski/bezeichner/compare/v1.12.16...v1.12.17) (2022-11-15)
+## [v1.12.32](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.12.32) - 2022-12-20
 
-### [1.12.16](https://github.com/alexfalkowski/bezeichner/compare/v1.12.15...v1.12.16) (2022-11-15)
+- [`25b5522`](https://github.com/alexfalkowski/bezeichner/commit/25b5522854f6309bb6fd275b0e01d8d7102f7d89) build(deps): bump nonnative from 1.66.0 to 1.67.0 in /test (#61)
 
-### [1.12.15](https://github.com/alexfalkowski/bezeichner/compare/v1.12.14...v1.12.15) (2022-11-10)
+## [v1.12.31](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.12.31) - 2022-12-17
 
-### [1.12.14](https://github.com/alexfalkowski/bezeichner/compare/v1.12.13...v1.12.14) (2022-11-05)
+- [`6392e6c`](https://github.com/alexfalkowski/bezeichner/commit/6392e6c08603b8b8505354497064681ca89e78b8) build(deps): update buf versions (#60)
 
-### [1.12.13](https://github.com/alexfalkowski/bezeichner/compare/v1.12.12...v1.12.13) (2022-11-03)
+## [v1.12.30](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.12.30) - 2022-12-17
 
-### [1.12.12](https://github.com/alexfalkowski/bezeichner/compare/v1.12.11...v1.12.12) (2022-11-03)
+- [`3e62d6f`](https://github.com/alexfalkowski/bezeichner/commit/3e62d6fd64085c9076ebf611a5362d38da5942db) build(deps): bump rspec-expectations from 3.12.0 to 3.12.1 in /test (#59)
 
-### [1.12.11](https://github.com/alexfalkowski/bezeichner/compare/v1.12.10...v1.12.11) (2022-10-29)
+## [v1.12.29](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.12.29) - 2022-12-13
 
-### [1.12.10](https://github.com/alexfalkowski/bezeichner/compare/v1.12.9...v1.12.10) (2022-10-28)
+- [`d659744`](https://github.com/alexfalkowski/bezeichner/commit/d65974406fd309f43e0e7e126cb3c204e3fbb2e2) build(deps): bump github.com/alexfalkowski/go-service (#58)
 
-### [1.12.9](https://github.com/alexfalkowski/bezeichner/compare/v1.12.8...v1.12.9) (2022-10-27)
+## [v1.12.28](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.12.28) - 2022-12-09
 
-### [1.12.8](https://github.com/alexfalkowski/bezeichner/compare/v1.12.7...v1.12.8) (2022-10-27)
+- [`68711f3`](https://github.com/alexfalkowski/bezeichner/commit/68711f3e8f2c0ad50b7fae46b11eb5bf69923c8c) build(deps): bump github.com/alexfalkowski/go-service (#56)
 
-### [1.12.7](https://github.com/alexfalkowski/bezeichner/compare/v1.12.6...v1.12.7) (2022-10-25)
+## [v1.12.27](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.12.27) - 2022-12-09
 
-### [1.12.6](https://github.com/alexfalkowski/bezeichner/compare/v1.12.5...v1.12.6) (2022-10-21)
+- [`581a46e`](https://github.com/alexfalkowski/bezeichner/commit/581a46efef3c115344f43d0c7863f1024fa60280) build(deps): bump rubocop from 1.39.0 to 1.40.0 in /test (#54)
 
-### [1.12.5](https://github.com/alexfalkowski/bezeichner/compare/v1.12.4...v1.12.5) (2022-10-21)
+## [v1.12.26](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.12.26) - 2022-12-09
 
-### [1.12.4](https://github.com/alexfalkowski/bezeichner/compare/v1.12.3...v1.12.4) (2022-10-19)
+- [`2e08072`](https://github.com/alexfalkowski/bezeichner/commit/2e08072c9a6dd4e6183eee67dd71e721da9369bf) build(deps): bump github.com/alexfalkowski/go-service (#55)
 
-### [1.12.3](https://github.com/alexfalkowski/bezeichner/compare/v1.12.2...v1.12.3) (2022-10-18)
+## [v1.12.25](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.12.25) - 2022-12-07
 
-### [1.12.2](https://github.com/alexfalkowski/bezeichner/compare/v1.12.1...v1.12.2) (2022-10-15)
+- [`01b660c`](https://github.com/alexfalkowski/bezeichner/commit/01b660c33b02e7b3d6b4c7d6701c4ae0c1e7f4fa) ci: use latest images (#53)
 
-### [1.12.1](https://github.com/alexfalkowski/bezeichner/compare/v1.12.0...v1.12.1) (2022-10-15)
+## [v1.12.24](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.12.24) - 2022-12-07
 
-## [1.12.0](https://github.com/alexfalkowski/bezeichner/compare/v1.11.2...v1.12.0) (2022-10-14)
+- [`1f03c49`](https://github.com/alexfalkowski/bezeichner/commit/1f03c497f2159d7be1a91270d1f0bc08a33f6bf1) build(deps): bump golang from 1.19.3-bullseye to 1.19.4-bullseye (#52)
 
+## [v1.12.23](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.12.23) - 2022-12-01
 
-### Features
+- [`ff9553a`](https://github.com/alexfalkowski/bezeichner/commit/ff9553ac7e0144bb6efefd3e05fb528ca8b5213f) build(deps): bump github.com/alexfalkowski/go-service (#50)
 
-* **nanoid:** generate identifiers ([#21](https://github.com/alexfalkowski/bezeichner/issues/21)) ([2177ad9](https://github.com/alexfalkowski/bezeichner/commit/2177ad9fef3319ae37c901415d6d10c29f7178f1))
+## [v1.12.22](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.12.22) - 2022-11-30
 
-### [1.11.2](https://github.com/alexfalkowski/bezeichner/compare/v1.11.1...v1.11.2) (2022-10-13)
+- [`844c6b5`](https://github.com/alexfalkowski/bezeichner/commit/844c6b57bedd1290a4f9bead675ecd882782eed6) build(deps): bump github.com/alexfalkowski/go-service (#49)
 
-### [1.11.1](https://github.com/alexfalkowski/bezeichner/compare/v1.11.0...v1.11.1) (2022-10-13)
+## [v1.12.21](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.12.21) - 2022-11-25
 
-## [1.11.0](https://github.com/alexfalkowski/bezeichner/compare/v1.10.1...v1.11.0) (2022-10-12)
+- [`95f794b`](https://github.com/alexfalkowski/bezeichner/commit/95f794b0b4560f2fd9dfd8843c825a37f30e9d34) build(deps): bump github.com/alexfalkowski/go-service (#48)
 
+## [v1.12.20](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.12.20) - 2022-11-23
 
-### Features
+- [`77edc1c`](https://github.com/alexfalkowski/bezeichner/commit/77edc1c124cb77ffe932f1746abb1eb3843440b0) build(deps): bump github.com/alexfalkowski/go-service (#47)
 
-* **xid:** generate identifiers ([#18](https://github.com/alexfalkowski/bezeichner/issues/18)) ([4e0ae70](https://github.com/alexfalkowski/bezeichner/commit/4e0ae70eb1b72421d054d8c9574cb35651a8553d))
+## [v1.12.19](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.12.19) - 2022-11-18
 
-### [1.10.1](https://github.com/alexfalkowski/bezeichner/compare/v1.10.0...v1.10.1) (2022-10-12)
+- [`96a5688`](https://github.com/alexfalkowski/bezeichner/commit/96a5688cddf207700d3ea9a5a1411737b7029462) build(deps): bump pg from 1.4.4 to 1.4.5 in /test (#45)
 
-## [1.10.0](https://github.com/alexfalkowski/bezeichner/compare/v1.9.1...v1.10.0) (2022-10-10)
+## [v1.12.18](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.12.18) - 2022-11-17
 
+- [`e47a72f`](https://github.com/alexfalkowski/bezeichner/commit/e47a72f56810485c1ffe42bb26438d5d386f31fe) build(deps): bump github.com/alexfalkowski/go-service (#44)
 
-### Features
+## [v1.12.17](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.12.17) - 2022-11-15
 
-* **generator:** create only once ([#16](https://github.com/alexfalkowski/bezeichner/issues/16)) ([e6ff884](https://github.com/alexfalkowski/bezeichner/commit/e6ff884885ffc2d9a2fc5d8ac0627ccbf44ea6e5))
+- [`98d2477`](https://github.com/alexfalkowski/bezeichner/commit/98d247700e1f56561215faf09d58baa570fc3937) build(deps): bump rubocop from 1.38.0 to 1.39.0 in /test (#39)
 
-### [1.9.1](https://github.com/alexfalkowski/bezeichner/compare/v1.9.0...v1.9.1) (2022-10-10)
+## [v1.12.16](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.12.16) - 2022-11-15
 
+- [`4018b48`](https://github.com/alexfalkowski/bezeichner/commit/4018b48cc26e8cac9d26590f035c12b8a41b9110) build(deps): bump github.com/alexfalkowski/go-service (#40)
 
-### Bug Fixes
+## [v1.12.15](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.12.15) - 2022-11-10
 
-* **snowflake:** initialise once ([#15](https://github.com/alexfalkowski/bezeichner/issues/15)) ([5dfa7ed](https://github.com/alexfalkowski/bezeichner/commit/5dfa7edbb19363a6cc8f3da98d709cb169eea9aa))
+- [`7de5190`](https://github.com/alexfalkowski/bezeichner/commit/7de5190da4b205d93211de66e6ab60f600c42b62) build(deps): bump github.com/alexfalkowski/go-service (#38)
 
-## [1.9.0](https://github.com/alexfalkowski/bezeichner/compare/v1.8.2...v1.9.0) (2022-10-10)
+## [v1.12.14](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.12.14) - 2022-11-05
 
+- [`bb1f9ad`](https://github.com/alexfalkowski/bezeichner/commit/bb1f9ad1da18793f5b787ae4666238d985b7ee8d) build(deps): bump golang from 1.19.2-bullseye to 1.19.3-bullseye (#34)
 
-### Features
+## [v1.12.13](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.12.13) - 2022-11-03
 
-* **snowflake:** use github.com/sony/sonyflake ([#14](https://github.com/alexfalkowski/bezeichner/issues/14)) ([8c43e13](https://github.com/alexfalkowski/bezeichner/commit/8c43e13d4edaeef6386eee15fff3997abb59a1b0))
+- [`e156e42`](https://github.com/alexfalkowski/bezeichner/commit/e156e4288af19d9836319b0922e3f62997a858b4) build(deps): bump rubocop from 1.37.1 to 1.38.0 in /test (#37)
 
-### [1.8.2](https://github.com/alexfalkowski/bezeichner/compare/v1.8.1...v1.8.2) (2022-10-09)
+## [v1.12.12](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.12.12) - 2022-11-03
 
-### [1.8.1](https://github.com/alexfalkowski/bezeichner/compare/v1.8.0...v1.8.1) (2022-10-09)
+- [`e61fdd8`](https://github.com/alexfalkowski/bezeichner/commit/e61fdd8df57f10b459da38d150e5659c502f6326) build(deps): bump github.com/alexfalkowski/go-service (#36)
 
+## [v1.12.11](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.12.11) - 2022-10-29
 
-### Bug Fixes
+- [`db2170e`](https://github.com/alexfalkowski/bezeichner/commit/db2170e0efeec2052f3364c235a03f82ca1bf4de) build(deps): bump github.com/alexfalkowski/go-service (#33)
 
-* **api:** enable breaking changes ([#12](https://github.com/alexfalkowski/bezeichner/issues/12)) ([997ffe6](https://github.com/alexfalkowski/bezeichner/commit/997ffe65629e96bde0c203326d62817e98d3b8f3))
+## [v1.12.10](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.12.10) - 2022-10-28
 
-## [1.8.0](https://github.com/alexfalkowski/bezeichner/compare/v1.7.1...v1.8.0) (2022-10-09)
+- [`16088a8`](https://github.com/alexfalkowski/bezeichner/commit/16088a826013152bed7661109bfcc570e06b331c) build(deps): bump github.com/alexfalkowski/go-service (#32)
 
+## [v1.12.9](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.12.9) - 2022-10-27
 
-### Features
+- [`1394104`](https://github.com/alexfalkowski/bezeichner/commit/139410423778d439e8596e4cd83dd1408f5d4943) build(deps): bump rspec-expectations from 3.11.1 to 3.12.0 in /test (#30)
 
-* map identifiers ([#11](https://github.com/alexfalkowski/bezeichner/issues/11)) ([0496f25](https://github.com/alexfalkowski/bezeichner/commit/0496f25d90045ca3aab9897031a23818a7a96a39))
+## [v1.12.8](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.12.8) - 2022-10-27
 
-### [1.7.1](https://github.com/alexfalkowski/bezeichner/compare/v1.7.0...v1.7.1) (2022-10-09)
+- [`5714a86`](https://github.com/alexfalkowski/bezeichner/commit/5714a867a1fa75836f5809f23be7f16803650696) build(deps): bump github.com/alexfalkowski/go-service (#31)
 
-## [1.7.0](https://github.com/alexfalkowski/bezeichner/compare/v1.6.1...v1.7.0) (2022-10-08)
+## [v1.12.7](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.12.7) - 2022-10-25
 
+- [`be8c96d`](https://github.com/alexfalkowski/bezeichner/commit/be8c96d6fcc4ff4dae226c611cfe793b034c4c81) build(deps): bump rubocop from 1.37.0 to 1.37.1 in /test (#29)
 
-### Features
+## [v1.12.6](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.12.6) - 2022-10-21
 
-* **snowflake:** generate identifiers ([#9](https://github.com/alexfalkowski/bezeichner/issues/9)) ([de37f54](https://github.com/alexfalkowski/bezeichner/commit/de37f547b60b8ab56f821bd440e04423e7a2a081))
+- [`96479e2`](https://github.com/alexfalkowski/bezeichner/commit/96479e2700212e0dad09223dab2faca1341f623e) build(deps): bump rubocop from 1.36.0 to 1.37.0 in /test (#28)
 
-### [1.6.1](https://github.com/alexfalkowski/bezeichner/compare/v1.6.0...v1.6.1) (2022-10-08)
+## [v1.12.5](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.12.5) - 2022-10-21
 
-## [1.6.0](https://github.com/alexfalkowski/bezeichner/compare/v1.5.0...v1.6.0) (2022-10-08)
+- [`fdc3307`](https://github.com/alexfalkowski/bezeichner/commit/fdc3307284767b31703d91db120d0d9f90d58390) build(deps): bump github.com/grpc-ecosystem/grpc-gateway/v2 (#25)
 
+## [v1.12.4](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.12.4) - 2022-10-19
 
-### Features
+- [`6a4b15d`](https://github.com/alexfalkowski/bezeichner/commit/6a4b15dd3f326c7286d44acfedf18467618e58ac) build(deps): bump github.com/alexfalkowski/go-service (#27)
 
-* **redis:** generate identifiers ([#7](https://github.com/alexfalkowski/bezeichner/issues/7)) ([2aee99f](https://github.com/alexfalkowski/bezeichner/commit/2aee99f8a22b9e59281e93d847efc28fd8bc68cd))
+## [v1.12.3](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.12.3) - 2022-10-18
 
-## [1.5.0](https://github.com/alexfalkowski/bezeichner/compare/v1.4.0...v1.5.0) (2022-10-08)
+- [`559e173`](https://github.com/alexfalkowski/bezeichner/commit/559e173316fcfa32dcf0577e1c7da3f3e5a71299) build(deps): bump github.com/alexfalkowski/go-service (#26)
 
+## [v1.12.2](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.12.2) - 2022-10-15
 
-### Features
+- [`5ec87e4`](https://github.com/alexfalkowski/bezeichner/commit/5ec87e4f18a2041c5ef18d30edee962fd875a823) build(deps): bump nonnative from 1.65.0 to 1.66.0 in /test (#22)
 
-* **pg:** generate identifiers ([#6](https://github.com/alexfalkowski/bezeichner/issues/6)) ([83b0c3d](https://github.com/alexfalkowski/bezeichner/commit/83b0c3da5840e7f86b2f0f3e239a26d834c94d17))
+## [v1.12.1](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.12.1) - 2022-10-15
 
-## [1.4.0](https://github.com/alexfalkowski/bezeichner/compare/v1.3.0...v1.4.0) (2022-10-08)
+- [`3880bda`](https://github.com/alexfalkowski/bezeichner/commit/3880bda7318836f24ddfd94967b6ae30820c4143) build(deps): bump github.com/alexfalkowski/go-service (#23)
 
+## [v1.12.0](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.12.0) - 2022-10-14
 
-### Features
+- [`2177ad9`](https://github.com/alexfalkowski/bezeichner/commit/2177ad9fef3319ae37c901415d6d10c29f7178f1) feat(nanoid): generate identifiers (#21)
 
-* **ulid:** generate identifiers ([#5](https://github.com/alexfalkowski/bezeichner/issues/5)) ([d672dc0](https://github.com/alexfalkowski/bezeichner/commit/d672dc07d6ac6ee7041fcae8fc1e5ff74db72a22))
+## [v1.11.2](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.11.2) - 2022-10-13
 
-## [1.3.0](https://github.com/alexfalkowski/bezeichner/compare/v1.2.0...v1.3.0) (2022-10-08)
+- [`640c302`](https://github.com/alexfalkowski/bezeichner/commit/640c302a71b7b12780250357665d7f141f634b41) build(deps): bump github.com/rs/xid from 1.2.1 to 1.4.0 (#20)
 
+## [v1.11.1](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.11.1) - 2022-10-13
 
-### Features
+- [`6aa6461`](https://github.com/alexfalkowski/bezeichner/commit/6aa64612bb42e73c35833a54edd6e048ed8c287d) build(deps): bump github.com/alexfalkowski/go-service (#19)
 
-* **ksuid:** generate identifiers ([#4](https://github.com/alexfalkowski/bezeichner/issues/4)) ([e3cf0ca](https://github.com/alexfalkowski/bezeichner/commit/e3cf0ca32317e5daea7e6c5c493d30fa69386705))
+## [v1.11.0](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.11.0) - 2022-10-12
 
-## [1.2.0](https://github.com/alexfalkowski/bezeichner/compare/v1.1.1...v1.2.0) (2022-10-08)
+- [`4e0ae70`](https://github.com/alexfalkowski/bezeichner/commit/4e0ae70eb1b72421d054d8c9574cb35651a8553d) feat(xid): generate identifiers (#18)
 
+## [v1.10.1](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.10.1) - 2022-10-12
 
-### Features
+- [`6a26653`](https://github.com/alexfalkowski/bezeichner/commit/6a2665314fa5b401662fe5f2ac311716125bb145) build(deps): bump pg from 1.4.3 to 1.4.4 in /test (#17)
 
-* **uuid:** generate identifiers ([#3](https://github.com/alexfalkowski/bezeichner/issues/3)) ([b8ef6ed](https://github.com/alexfalkowski/bezeichner/commit/b8ef6edfc66f4075338b69784cad52bbc56791cd))
+## [v1.10.0](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.10.0) - 2022-10-10
 
-### [1.1.1](https://github.com/alexfalkowski/bezeichner/compare/v1.1.0...v1.1.1) (2022-10-07)
+- [`e6ff884`](https://github.com/alexfalkowski/bezeichner/commit/e6ff884885ffc2d9a2fc5d8ac0627ccbf44ea6e5) feat(generator): create only once (#16)
 
-## 1.1.0 (2022-10-07)
+## [v1.9.1](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.9.1) - 2022-10-10
 
+- [`5dfa7ed`](https://github.com/alexfalkowski/bezeichner/commit/5dfa7edbb19363a6cc8f3da98d709cb169eea9aa) fix(snowflake): initialise once (#15)
 
-### Features
+## [v1.9.0](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.9.0) - 2022-10-10
 
-* create new from ./tools/new bezeichner ~/code/bezeichner ([f6a9a47](https://github.com/alexfalkowski/bezeichner/commit/f6a9a4774218b120228ae5be8f0f41f19592b629))
+- [`8c43e13`](https://github.com/alexfalkowski/bezeichner/commit/8c43e13d4edaeef6386eee15fff3997abb59a1b0) feat(snowflake): use github.com/sony/sonyflake (#14)
+
+## [v1.8.2](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.8.2) - 2022-10-09
+
+- [`4be9d15`](https://github.com/alexfalkowski/bezeichner/commit/4be9d15783175d4f7eed825b00b59c4dc49b8d8f) doc(mapper): add information (#13)
+
+## [v1.8.1](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.8.1) - 2022-10-09
+
+- [`997ffe6`](https://github.com/alexfalkowski/bezeichner/commit/997ffe65629e96bde0c203326d62817e98d3b8f3) fix(api): enable breaking changes (#12)
+
+## [v1.8.0](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.8.0) - 2022-10-09
+
+- [`0496f25`](https://github.com/alexfalkowski/bezeichner/commit/0496f25d90045ca3aab9897031a23818a7a96a39) feat: map identifiers (#11)
+
+## [v1.7.1](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.7.1) - 2022-10-09
+
+- [`791934e`](https://github.com/alexfalkowski/bezeichner/commit/791934eb64801ca261b25af7a5771db8c3152d66) build(deps): update github.com/alexfalkowski/go-service to v1.76.0 (#10)
+
+## [v1.7.0](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.7.0) - 2022-10-08
+
+- [`de37f54`](https://github.com/alexfalkowski/bezeichner/commit/de37f547b60b8ab56f821bd440e04423e7a2a081) feat(snowflake): generate identifiers (#9)
+
+## [v1.6.1](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.6.1) - 2022-10-08
+
+- [`d04c8a4`](https://github.com/alexfalkowski/bezeichner/commit/d04c8a484092bab627b7774c4ff28d49961033d7) test: add fault (#8)
+
+## [v1.6.0](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.6.0) - 2022-10-08
+
+- [`2aee99f`](https://github.com/alexfalkowski/bezeichner/commit/2aee99f8a22b9e59281e93d847efc28fd8bc68cd) feat(redis): generate identifiers (#7)
+
+## [v1.5.0](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.5.0) - 2022-10-08
+
+- [`83b0c3d`](https://github.com/alexfalkowski/bezeichner/commit/83b0c3da5840e7f86b2f0f3e239a26d834c94d17) feat(pg): generate identifiers (#6)
+
+## [v1.4.0](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.4.0) - 2022-10-08
+
+- [`d672dc0`](https://github.com/alexfalkowski/bezeichner/commit/d672dc07d6ac6ee7041fcae8fc1e5ff74db72a22) feat(ulid): generate identifiers (#5)
+
+## [v1.3.0](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.3.0) - 2022-10-08
+
+- [`e3cf0ca`](https://github.com/alexfalkowski/bezeichner/commit/e3cf0ca32317e5daea7e6c5c493d30fa69386705) feat(ksuid): generate identifiers (#4)
+
+## [v1.2.0](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.2.0) - 2022-10-08
+
+- [`b8ef6ed`](https://github.com/alexfalkowski/bezeichner/commit/b8ef6edfc66f4075338b69784cad52bbc56791cd) feat(uuid): generate identifiers (#3)
+
+## [v1.1.1](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.1.1) - 2022-10-07
+
+- [`ae0b6a4`](https://github.com/alexfalkowski/bezeichner/commit/ae0b6a42360f3b75e54815ab85fd1dde761a8bff) build(deps): bump github.com/alexfalkowski/go-service (#2)
+
+## [v1.1.0](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.1.0) - 2022-10-07
+
+- [`f6a9a47`](https://github.com/alexfalkowski/bezeichner/commit/f6a9a4774218b120228ae5be8f0f41f19592b629) feat: create new from ./tools/new bezeichner ~/code/bezeichner
