@@ -12,6 +12,8 @@ jobs:
       - image: redis:latest
     steps:
       - checkout
+      - run: git submodule sync
+      - run: git submodule update --init
       - run: dockerize -wait tcp://localhost:5432 -wait tcp://localhost:6379
       - run: make dep
       - run: make lint
@@ -20,23 +22,27 @@ jobs:
       - run: make goveralls
       - store_artifacts:
           path: test/reports
+    resource_class: large
   release:
     docker:
       - image: alexfalkowski/release:3.1
     steps:
       - checkout
       - run: release
+    resource_class: large
   docker:
     docker:
       - image: alexfalkowski/go:1.19-3.1
     steps:
       - checkout
-      - run: make assets
+      - run: git submodule sync
+      - run: git submodule update --init
       - setup_remote_docker
       - run:
           name: make login
           command: echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
       - run: make docker
+    resource_class: large
 
 workflows:
   bezeichner:
