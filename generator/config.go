@@ -6,11 +6,11 @@ import (
 
 // Application fto generate identifiers.
 type Application struct {
-	Name      string `yaml:"name"`
-	Kind      string `yaml:"kind"`
-	Prefix    string `yaml:"prefix"`
-	Suffix    string `yaml:"suffix"`
-	Separator string `yaml:"separator"`
+	Name      string `yaml:"name" json:"name" toml:"name"`
+	Kind      string `yaml:"kind" json:"kind" toml:"kind"`
+	Prefix    string `yaml:"prefix" json:"prefix" toml:"prefix"`
+	Suffix    string `yaml:"suffix" json:"suffix" toml:"suffix"`
+	Separator string `yaml:"separator" json:"separator" toml:"separator"`
 }
 
 // ID for the application.
