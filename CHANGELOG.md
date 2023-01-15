@@ -6,6 +6,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.15.0](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.15.0) - 2023-01-15
+
+- [`5e07084`](https://github.com/alexfalkowski/bezeichner/commit/5e0708435f80c5b5f1b4bdde5fdfb710f845a566) feat(config): add other kinds (#97)
+- [`0c6e3b5`](https://github.com/alexfalkowski/bezeichner/commit/0c6e3b5c87dce822f98e9393a439c2568bb3fb8b) build(deps): bump golang from 1.19.4-bullseye to 1.19.5-bullseye (#88)
+- [`55d94a1`](https://github.com/alexfalkowski/bezeichner/commit/55d94a1111683bdfdee863af2c7c4520af60d6cd) build: add bin (#96)
+- [`a4e742b`](https://github.com/alexfalkowski/bezeichner/commit/a4e742becc8fd650929118eae8233b4f2d13a4fe) ci(dependabot): change commit message (#95)
+- [`13cddfb`](https://github.com/alexfalkowski/bezeichner/commit/13cddfb229d9526ace30d1a0857bf9cb3c8431db) ci: use release 3.1 (#94)
+- [`fa4e288`](https://github.com/alexfalkowski/bezeichner/commit/fa4e28862cee82289088338626a82c0ec36a026e) ci: move to release 3.0 (#93)
+
 ## [v1.14.5](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.14.5) - 2023-01-11
 
 - [`19cd692`](https://github.com/alexfalkowski/bezeichner/commit/19cd692168df3c029ecb56dc357489a88fdec8df) build(deps): update github.com/alexfalkowski/go-service v1.81.3 (#92)
