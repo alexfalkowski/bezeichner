@@ -5,5 +5,5 @@ type Identifiers map[string]string
 
 // Config for mapper.
 type Config struct {
-	Identifiers Identifiers `yaml:"identifiers"`
+	Identifiers Identifiers `yaml:"identifiers" json:"identifiers" toml:"identifiers"`
 }
