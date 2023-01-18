@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.16.0](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.16.0) - 2023-01-18
+
+- [`6155ed6`](https://github.com/alexfalkowski/bezeichner/commit/6155ed6d851e574a3bb4f043abe42f1ae6c9a434) feat(cmd): add fx module (#99)
+
 ## [v1.15.1](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.15.1) - 2023-01-18
 
 - [`8ecc68e`](https://github.com/alexfalkowski/bezeichner/commit/8ecc68e63c48cbc4ded365b5a58b98f087a89090) fix(deps): bump github.com/alexfalkowski/go-service (#98)
