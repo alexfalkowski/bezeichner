@@ -162,7 +162,7 @@ req1 = "resp1"
 req2 = "resp2"
 ```
 
-## Health
+### Health
 
 The system defines a way to monitor all of it's dependencies.
 
@@ -180,11 +180,11 @@ duration = "1s (how often to check)"
 timeout = "1s (when we should timeout the check)"
 ```
 
-## Deployment
+### Deployment
 
 Since we are advocating building microservices, you would normally use a [container orchestration system](https://newrelic.com/blog/best-practices/container-orchestration-explained) and have a global service or shard these services per [bounded context](https://martinfowler.com/bliki/BoundedContext.html).
 
-## Design
+### Design
 
 The service uses the awesome work of others. You can check out:
 - https://github.com/segmentio/ksuid
@@ -193,6 +193,23 @@ The service uses the awesome work of others. You can check out:
 - https://github.com/rs/xid
 - https://github.com/sony/sonyflake
 - https://github.com/alexfalkowski/go-service
+
+## Client
+
+The client can be used in other projects. This is configured as follows:
+
+```yaml
+client:
+  v1:
+    host: server_host
+    timeout: 1s
+```
+
+```toml
+[client.v1]
+host = "server_host"
+timeout = "1s"
+```
 
 ## Development
 
