@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.17.0](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.17.0) - 2023-01-20
+
+- [`3f40c1e`](https://github.com/alexfalkowski/bezeichner/commit/3f40c1ef2066fcf223c3a10995184decb5490fcb) feat(client): create sdk (#101)
+- [`9e6d416`](https://github.com/alexfalkowski/bezeichner/commit/9e6d416d7992d8aff881443bfc0280cc7e53b0d4) test(deps): update (#100)
+
 ## [v1.16.0](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.16.0) - 2023-01-18
 
 - [`6155ed6`](https://github.com/alexfalkowski/bezeichner/commit/6155ed6d851e574a3bb4f043abe42f1ae6c9a434) feat(cmd): add fx module (#99)
