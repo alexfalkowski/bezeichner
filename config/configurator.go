@@ -1,6 +1,7 @@
 package config
 
 import (
+	v1c "github.com/alexfalkowski/bezeichner/client/v1/config"
 	"github.com/alexfalkowski/bezeichner/generator"
 	"github.com/alexfalkowski/bezeichner/health"
 	"github.com/alexfalkowski/bezeichner/mapper"
@@ -24,4 +25,8 @@ func generatorConfig(cfg config.Configurator) *generator.Config {
 
 func mapperConfig(cfg config.Configurator) *mapper.Config {
 	return &cfg.(*Config).Mapper
+}
+
+func v1ClientConfig(cfg config.Configurator) *v1c.Config {
+	return &cfg.(*Config).Client.V1
 }

@@ -1,0 +1,14 @@
+client:
+  v1:
+    host: localhost:8080
+    timeout: 1s
+trace:
+  opentracing:
+    kind: jaeger
+    host: localhost:6831
+transport:
+  grpc:
+    user_agent: "Bezeichner-client/1.0 grpc/1.0"
+    retry:
+      timeout: 2s
+      attempts: 3
