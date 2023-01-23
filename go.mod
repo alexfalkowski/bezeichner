@@ -4,7 +4,7 @@ go 1.19
 
 require (
 	github.com/alexfalkowski/go-health v1.11.0
-	github.com/alexfalkowski/go-service v1.82.0
+	github.com/alexfalkowski/go-service v1.82.2
 	github.com/google/uuid v1.3.0
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.15.0
 	github.com/jaevor/go-nanoid v1.3.0
@@ -59,7 +59,7 @@ require (
 	github.com/jackc/pgx/v4 v4.17.2 // indirect
 	github.com/jmoiron/sqlx v1.3.5 // indirect
 	github.com/jtolds/gls v4.20.0+incompatible // indirect
-	github.com/klauspost/compress v1.15.14 // indirect
+	github.com/klauspost/compress v1.15.15 // indirect
 	github.com/lib/pq v1.10.7 // indirect
 	github.com/matttproud/golang_protobuf_extensions v1.0.2-0.20181231171920-c182affec369 // indirect
 	github.com/ngrok/sqlmw v0.0.0-20220520173518-97c9c04efc79 // indirect
@@ -97,7 +97,7 @@ require (
 	golang.org/x/text v0.6.0 // indirect
 	golang.org/x/time v0.0.0-20220722155302-e5dcc9cfc0b9 // indirect
 	golang.org/x/xerrors v0.0.0-20220609144429-65e65417b02f // indirect
-	gopkg.in/DataDog/dd-trace-go.v1 v1.46.0 // indirect
+	gopkg.in/DataDog/dd-trace-go.v1 v1.46.1 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 	inet.af/netaddr v0.0.0-20220617031823-097006376321 // indirect
 )
