@@ -4,7 +4,7 @@ go 1.20
 
 require (
 	github.com/alexfalkowski/go-health v1.12.0
-	github.com/alexfalkowski/go-service v1.84.20
+	github.com/alexfalkowski/go-service v1.85.0
 	github.com/google/uuid v1.3.0
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.15.2
 	github.com/jaevor/go-nanoid v1.3.0
