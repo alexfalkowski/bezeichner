@@ -10,7 +10,7 @@ import (
 type XID struct{}
 
 // Generate an XID.
-func (x *XID) Generate(ctx context.Context, name string) (string, error) {
+func (x *XID) Generate(_ context.Context, _ string) (string, error) {
 	id := xid.New()
 
 	return id.String(), nil

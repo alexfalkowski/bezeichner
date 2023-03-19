@@ -69,7 +69,7 @@ func (s *Server) GenerateIdentifiers(ctx context.Context, req *v1.GenerateIdenti
 }
 
 // MapIdentifiers for gRPC.
-func (s *Server) MapIdentifiers(ctx context.Context, req *v1.MapIdentifiersRequest) (*v1.MapIdentifiersResponse, error) {
+func (s *Server) MapIdentifiers(_ context.Context, req *v1.MapIdentifiersRequest) (*v1.MapIdentifiersResponse, error) {
 	resp := &v1.MapIdentifiersResponse{
 		Ids: make([]string, len(req.Ids)),
 	}

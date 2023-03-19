@@ -10,7 +10,7 @@ import (
 type UUID struct{}
 
 // Generate a UUID.
-func (g *UUID) Generate(ctx context.Context, name string) (string, error) {
+func (g *UUID) Generate(_ context.Context, _ string) (string, error) {
 	id, err := uuid.NewRandom()
 	if err != nil {
 		return "", err
