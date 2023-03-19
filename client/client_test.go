@@ -124,24 +124,20 @@ func TestInvalidMapIdentifiers(t *testing.T) {
 
 type validClient struct{}
 
-func (*validClient) GenerateIdentifiers(ctx context.Context,
-	in *v1.GenerateIdentifiersRequest, opts ...grpc.CallOption) (*v1.GenerateIdentifiersResponse, error) {
+func (*validClient) GenerateIdentifiers(_ context.Context, _ *v1.GenerateIdentifiersRequest, _ ...grpc.CallOption) (*v1.GenerateIdentifiersResponse, error) {
 	return &v1.GenerateIdentifiersResponse{Ids: []string{"test"}}, nil
 }
 
-func (*validClient) MapIdentifiers(ctx context.Context,
-	in *v1.MapIdentifiersRequest, opts ...grpc.CallOption) (*v1.MapIdentifiersResponse, error) {
+func (*validClient) MapIdentifiers(_ context.Context, _ *v1.MapIdentifiersRequest, _ ...grpc.CallOption) (*v1.MapIdentifiersResponse, error) {
 	return &v1.MapIdentifiersResponse{Ids: []string{"test"}}, nil
 }
 
 type invalidClient struct{}
 
-func (*invalidClient) GenerateIdentifiers(ctx context.Context,
-	in *v1.GenerateIdentifiersRequest, opts ...grpc.CallOption) (*v1.GenerateIdentifiersResponse, error) {
+func (*invalidClient) GenerateIdentifiers(_ context.Context, _ *v1.GenerateIdentifiersRequest, _ ...grpc.CallOption) (*v1.GenerateIdentifiersResponse, error) {
 	return &v1.GenerateIdentifiersResponse{}, errors.New("invalid")
 }
 
-func (*invalidClient) MapIdentifiers(ctx context.Context,
-	in *v1.MapIdentifiersRequest, opts ...grpc.CallOption) (*v1.MapIdentifiersResponse, error) {
+func (*invalidClient) MapIdentifiers(_ context.Context, _ *v1.MapIdentifiersRequest, _ ...grpc.CallOption) (*v1.MapIdentifiersResponse, error) {
 	return &v1.MapIdentifiersResponse{}, errors.New("invalid")
 }

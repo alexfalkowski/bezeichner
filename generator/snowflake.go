@@ -18,7 +18,7 @@ func NewSnowflake() *Snowflake {
 }
 
 // Generate a id with snowflake.
-func (s *Snowflake) Generate(ctx context.Context, name string) (string, error) {
+func (s *Snowflake) Generate(_ context.Context, _ string) (string, error) {
 	id, err := s.sf.NextID()
 	if err != nil {
 		return "", err
