@@ -19,7 +19,7 @@ var ServerOptions = []fx.Option{
 	fx.NopLogger, marshaller.Module, Module,
 	config.Module, health.Module, logger.ZapModule,
 	metrics.PrometheusModule, transport.Module,
-	sql.PostgreSQLModule, sql.PostgreSQLOpentracingModule,
-	cache.RedisModule, cache.RedisOpentracingModule,
+	sql.PostgreSQLModule, sql.PostgreSQLOTELModule,
+	cache.RedisModule, cache.RedisOTELModule,
 	generator.Module, v1.Module,
 }
