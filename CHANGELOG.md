@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.20.2](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.20.2) - 2023-04-06
+
+- [`0157008`](https://github.com/alexfalkowski/bezeichner/commit/015700833631cc5a02d670b5a0ab8f6ca576eadc) fix(deps): bump golang from 1.20.2-bullseye to 1.20.3-bullseye (#153)
+- [`27179a3`](https://github.com/alexfalkowski/bezeichner/commit/27179a3d75f448e137508f5d1f5b5c70a2c6752a) build(deps): bump rubocop from 1.48.1 to 1.49.0 in /test (#152)
+
 ## [v1.20.1](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.20.1) - 2023-03-31
 
 - [`20efb21`](https://github.com/alexfalkowski/bezeichner/commit/20efb21b106311a2a06dccbb84f190e96b1d7925) fix(cmd): register otel module (#151)
