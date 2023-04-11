@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.20.6](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.20.6) - 2023-04-11
+
+- [`4ffc04b`](https://github.com/alexfalkowski/bezeichner/commit/4ffc04b86d84eeb608657f5f2539e880ce1b0cfd) fix(deps): bump github.com/smartystreets/goconvey from 1.7.2 to 1.8.0 (#157)
+- [`5bbd275`](https://github.com/alexfalkowski/bezeichner/commit/5bbd27554f6756a8b70ca94317fc520496fadafc) build(deps): bump solargraph from 0.48.0 to 0.49.0 in /test (#158)
+
 ## [v1.20.5](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.20.5) - 2023-04-08
 
 - [`aa6873a`](https://github.com/alexfalkowski/bezeichner/commit/aa6873a16f65f7d94f30518c248c9ddfa56f001a) fix(deps): bump github.com/alexfalkowski/go-service (#156)
