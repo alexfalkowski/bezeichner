@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.20.8](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.20.8) - 2023-04-13
+
+- [`2b8db8f`](https://github.com/alexfalkowski/bezeichner/commit/2b8db8f0ad153ecdff0283410266868e69a44d90) fix(deps): bump github.com/alexfalkowski/go-service (#165)
+- [`bf45113`](https://github.com/alexfalkowski/bezeichner/commit/bf45113e372232f9d617fa8de2cfa4b8752c3c77) build(deps): bump rubocop from 1.50.0 to 1.50.1 in /test (#164)
+- [`1b514c1`](https://github.com/alexfalkowski/bezeichner/commit/1b514c1e023f7e9a796f5aed59ce4bb25a9dfb00) build(deps): bump rubocop from 1.49.0 to 1.50.0 in /test (#163)
+- [`2435a19`](https://github.com/alexfalkowski/bezeichner/commit/2435a19bac7674ebae613a59e298d79ebcd49b74) build(deps): update bin (#161)
+- [`fbbc8c3`](https://github.com/alexfalkowski/bezeichner/commit/fbbc8c3411bc8e9bb20859dfb7cdd0f342d383e0) build(deps): update bin (#160)
+
 ## [v1.20.7](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.20.7) - 2023-04-11
 
 - [`c02289a`](https://github.com/alexfalkowski/bezeichner/commit/c02289aa25b7ca0d99934dcf6a811650759d2169) fix(deps): bump github.com/alexfalkowski/go-service (#159)
