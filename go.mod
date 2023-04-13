@@ -10,7 +10,7 @@ require (
 	github.com/jaevor/go-nanoid v1.3.0
 	github.com/linxGnu/mssqlx v1.1.8
 	github.com/oklog/ulid v1.3.1
-	github.com/rs/xid v1.4.0
+	github.com/rs/xid v1.5.0
 	github.com/segmentio/ksuid v1.0.4
 	github.com/smartystreets/goconvey v1.8.0
 	github.com/sony/sonyflake v1.1.0
