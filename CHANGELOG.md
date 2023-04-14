@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.20.9](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.20.9) - 2023-04-14
+
+- [`18f6c00`](https://github.com/alexfalkowski/bezeichner/commit/18f6c00b304df1f3d0d0dcc88c8061cf31fee923) fix(deps): bump github.com/rs/xid from 1.4.0 to 1.5.0 (#167)
+- [`ed010d5`](https://github.com/alexfalkowski/bezeichner/commit/ed010d5bf3135046aefea1a94b273c588154d504) build(deps): update grpc-gateway to v2.15.0-1 (#166)
+
 ## [v1.20.8](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.20.8) - 2023-04-13
 
 - [`2b8db8f`](https://github.com/alexfalkowski/bezeichner/commit/2b8db8f0ad153ecdff0283410266868e69a44d90) fix(deps): bump github.com/alexfalkowski/go-service (#165)
