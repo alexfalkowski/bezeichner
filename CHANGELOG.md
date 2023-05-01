@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.20.12](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.20.12) - 2023-05-01
+
+- [`bf29754`](https://github.com/alexfalkowski/bezeichner/commit/bf297544585d2a7da5a6282553885bdd339f431a) fix(deps): bump github.com/alexfalkowski/go-service (#176)
+- [`86966ab`](https://github.com/alexfalkowski/bezeichner/commit/86966abc6c3816c1c1bb14af0c41b3d8a8129e49) build(deps): bump pg from 1.5.2 to 1.5.3 in /test (#175)
+- [`320f4ab`](https://github.com/alexfalkowski/bezeichner/commit/320f4abb9e9965383422a32bfbf1d9fa8c6e4028) build(deps): bump pg from 1.5.1 to 1.5.2 in /test (#174)
+- [`6c9c497`](https://github.com/alexfalkowski/bezeichner/commit/6c9c4973d983ff835cc140ce6a5fa7bc07ace9e9) build(deps): bump pg from 1.4.6 to 1.5.1 in /test (#173)
+- [`c199ac5`](https://github.com/alexfalkowski/bezeichner/commit/c199ac561cb167497e917aa4da1bff57caad2bb2) build(deps): bump rspec-expectations from 3.12.2 to 3.12.3 in /test (#172)
+
 ## [v1.20.11](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.20.11) - 2023-04-19
 
 - [`fe55e06`](https://github.com/alexfalkowski/bezeichner/commit/fe55e06ab6afe9c7001a5bba3eaac4b6dddca504) fix(deps): bump github.com/alexfalkowski/go-service (#171)
