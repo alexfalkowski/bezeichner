@@ -14,6 +14,7 @@ require (
 	github.com/segmentio/ksuid v1.0.4
 	github.com/smartystreets/goconvey v1.8.1
 	github.com/sony/sonyflake v1.1.0
+	go.jetpack.io/typeid v0.1.0
 	go.uber.org/fx v1.20.0
 	go.uber.org/zap v1.24.0
 	google.golang.org/genproto/googleapis/api v0.0.0-20230530153820-e85fd2cbaebc
@@ -34,6 +35,7 @@ require (
 	github.com/go-redis/cache/v8 v8.4.4 // indirect
 	github.com/go-redis/redis/v8 v8.11.5 // indirect
 	github.com/go-sql-driver/mysql v1.6.0 // indirect
+	github.com/gofrs/uuid/v5 v5.0.0 // indirect
 	github.com/golang-jwt/jwt/v4 v4.5.0 // indirect
 	github.com/golang/glog v1.1.0 // indirect
 	github.com/golang/protobuf v1.5.3 // indirect

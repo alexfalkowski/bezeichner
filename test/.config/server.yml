@@ -38,6 +38,11 @@ generator:
       prefix: prefix
       suffix: suffix
       separator: "-"
+    - name: typeid
+      kind: typeid
+      prefix: prefix
+      suffix: suffix
+      separator: "-"
     - name: pg
       kind: pg
       prefix: prefix

@@ -25,6 +25,8 @@ Feature: Server
       | snowflake   | 2     |
       | nanoid      | 1     |
       | nanoid      | 2     |
+      | typeid      | 1     |
+      | typeid      | 2     |
       | pg          | 1     |
       | pg          | 2     |
       | redis       | 1     |
