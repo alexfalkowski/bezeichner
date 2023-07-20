@@ -20,6 +20,7 @@ func NewGenerators(db *mssqlx.DBs, client client.Client) Generators {
 		"xid":       &XID{},
 		"snowflake": NewSnowflake(),
 		"nanoid":    &NanoID{},
+		"typeid":    &TypeID{},
 		"pg":        &PG{db: db},
 		"redis":     &Redis{client: client},
 	}

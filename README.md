@@ -58,6 +58,11 @@ generator:
       prefix: prefix
       suffix: suffix
       separator: "-"
+    - name: typeid
+      kind: typeid
+      prefix: prefix
+      suffix: suffix
+      separator: "-"
     - name: pg
       kind: pg
       prefix: prefix
@@ -114,6 +119,13 @@ suffix = "suffix"
 separator = "-"
 
 [[generator.applications]]
+name = "typeid"
+kind = "typeid"
+prefix = "prefix"
+suffix = "suffix"
+separator = "-"
+
+[[generator.applications]]
 name = "pg"
 kind = "pg"
 prefix = "prefix"
@@ -130,7 +142,7 @@ separator = "-"
 
 Each generator has the following properties:
 - A distinct name.
-- The kind of generator (uuid, ksuid, ulid, xid, snowflake, nanoid, pg, redis).
+- The kind of generator (uuid, ksuid, ulid, xid, snowflake, nanoid, typeid, pg, redis).
 - The prefix of the identifier.
 - The suffix of the identifier.
 - The separator used between the prefix and suffix.
@@ -192,6 +204,7 @@ The service uses the awesome work of others. You can check out:
 - https://github.com/oklog/ulid
 - https://github.com/rs/xid
 - https://github.com/sony/sonyflake
+- https://github.com/jetpack-io/typeid-go
 - https://github.com/alexfalkowski/go-service
 
 ## Client
