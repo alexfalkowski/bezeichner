@@ -3,8 +3,8 @@ module github.com/alexfalkowski/bezeichner
 go 1.21
 
 require (
-	github.com/alexfalkowski/go-health v1.12.2
-	github.com/alexfalkowski/go-service v1.86.46
+	github.com/alexfalkowski/go-health v1.13.0
+	github.com/alexfalkowski/go-service v1.87.1
 	github.com/google/uuid v1.3.0
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.16.2
 	github.com/jaevor/go-nanoid v1.3.0
