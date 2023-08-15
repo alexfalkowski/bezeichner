@@ -13,7 +13,7 @@ require (
 	github.com/rs/xid v1.5.0
 	github.com/segmentio/ksuid v1.0.4
 	github.com/smartystreets/goconvey v1.8.1
-	github.com/sony/sonyflake v1.1.0
+	github.com/sony/sonyflake v1.2.0
 	go.jetpack.io/typeid v0.1.0
 	go.uber.org/fx v1.20.0
 	go.uber.org/zap v1.25.0
