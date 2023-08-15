@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.22.3](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.22.3) - 2023-08-15
+
+- [`5b678d5`](https://github.com/alexfalkowski/bezeichner/commit/5b678d56e32b8693f581f0da264adaebcd031cda) fix(deps): bump github.com/sony/sonyflake from 1.1.0 to 1.2.0 (#244)
+
 ## [v1.22.2](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.22.2) - 2023-08-11
 
 - [`a5ab08f`](https://github.com/alexfalkowski/bezeichner/commit/a5ab08f582de572c2651a4c1f81748aca3be1dd2) fix(deps): bump github.com/alexfalkowski/go-service (#243)
