@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.22.4](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.22.4) - 2023-08-23
+
+- [`533766f`](https://github.com/alexfalkowski/bezeichner/commit/533766fa1f8346524e2b277c36cfc8b57a8f2d99) fix(deps): bump github.com/alexfalkowski/go-service (#248)
+- [`f709f27`](https://github.com/alexfalkowski/bezeichner/commit/f709f27a3b3ec7432127d53f117aca0c338aab3b) build(deps): bump rubocop from 1.56.0 to 1.56.1 in /test (#247)
+- [`740c2b8`](https://github.com/alexfalkowski/bezeichner/commit/740c2b868ed474a223b0011f753cb3661a6fd5ef) build(deps): bump puma from 6.3.0 to 6.3.1 in /test (#245)
+
 ## [v1.22.3](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.22.3) - 2023-08-15
 
 - [`5b678d5`](https://github.com/alexfalkowski/bezeichner/commit/5b678d56e32b8693f581f0da264adaebcd031cda) fix(deps): bump github.com/sony/sonyflake from 1.1.0 to 1.2.0 (#244)
