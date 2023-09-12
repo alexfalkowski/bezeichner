@@ -11,13 +11,15 @@ import (
 	"github.com/alexfalkowski/go-service/marshaller"
 	"github.com/alexfalkowski/go-service/metrics"
 	"github.com/alexfalkowski/go-service/otel"
+	"github.com/alexfalkowski/go-service/runtime"
 	"github.com/alexfalkowski/go-service/transport"
 	"go.uber.org/fx"
 )
 
 // ServerOptions for cmd.
 var ServerOptions = []fx.Option{
-	fx.NopLogger, marshaller.Module, Module, otel.Module,
+	fx.NopLogger, runtime.Module,
+	marshaller.Module, Module, otel.Module,
 	config.Module, health.Module, logger.ZapModule,
 	metrics.PrometheusModule, transport.Module,
 	sql.PostgreSQLModule, sql.PostgreSQLOTELModule,
