@@ -16,7 +16,7 @@ require (
 	github.com/sony/sonyflake v1.2.0
 	go.jetpack.io/typeid v0.1.0
 	go.uber.org/fx v1.20.0
-	go.uber.org/zap v1.25.0
+	go.uber.org/zap v1.26.0
 	google.golang.org/genproto/googleapis/api v0.0.0-20230822172742-b8732ec3820d
 	google.golang.org/grpc v1.58.0
 	google.golang.org/protobuf v1.31.0
