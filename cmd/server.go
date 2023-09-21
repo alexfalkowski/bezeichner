@@ -22,7 +22,6 @@ var ServerOptions = []fx.Option{
 	marshaller.Module, Module, otel.Module,
 	config.Module, health.Module, logger.ZapModule,
 	metrics.PrometheusModule, transport.Module,
-	sql.PostgreSQLModule, sql.PostgreSQLOTELModule,
-	cache.RedisModule, cache.RedisOTELModule,
+	sql.PostgreSQLModule, cache.RedisModule,
 	generator.Module, v1.Module,
 }
