@@ -18,10 +18,8 @@ import (
 
 // ServerOptions for cmd.
 var ServerOptions = []fx.Option{
-	fx.NopLogger, runtime.Module,
-	marshaller.Module, Module, otel.Module,
+	fx.NopLogger, runtime.Module, marshaller.Module, Module, otel.Module,
 	config.Module, health.Module, logger.ZapModule,
 	metrics.PrometheusModule, transport.Module,
-	sql.PostgreSQLModule, cache.RedisModule,
-	generator.Module, v1.Module,
+	sql.PostgreSQLModule, cache.RedisModule, generator.Module, v1.Module,
 }

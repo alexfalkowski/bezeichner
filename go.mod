@@ -4,7 +4,7 @@ go 1.21
 
 require (
 	github.com/alexfalkowski/go-health v1.13.0
-	github.com/alexfalkowski/go-service v1.90.1
+	github.com/alexfalkowski/go-service v1.90.4
 	github.com/google/uuid v1.3.1
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.18.0
 	github.com/jaevor/go-nanoid v1.3.0
@@ -18,7 +18,7 @@ require (
 	go.uber.org/fx v1.20.0
 	go.uber.org/zap v1.26.0
 	google.golang.org/genproto/googleapis/api v0.0.0-20230822172742-b8732ec3820d
-	google.golang.org/grpc v1.58.1
+	google.golang.org/grpc v1.58.2
 	google.golang.org/protobuf v1.31.0
 )
 
