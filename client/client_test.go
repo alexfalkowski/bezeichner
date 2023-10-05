@@ -25,7 +25,8 @@ import (
 var options = []fx.Option{
 	fx.NopLogger, marshaller.Module,
 	cmd.Module, config.Module,
-	telemetry.Module, metrics.Module, transport.Module,
+	telemetry.Module, metrics.Module,
+	transport.HTTPModule, transport.GRPCModule,
 	client.Module, fx.Invoke(register),
 }
 
@@ -33,7 +34,7 @@ func TestValidSetup(t *testing.T) {
 	Convey("Given I have a app", t, func() {
 		So(os.Setenv("CONFIG_FILE", "../test/.config/client.yml"), ShouldBeNil)
 
-		l, err := net.Listen("tcp", "localhost:8080")
+		l, err := net.Listen("tcp", "localhost:9090")
 		So(err, ShouldBeNil)
 
 		server := grpc.NewServer()
