@@ -29,6 +29,7 @@ jobs:
   release:
     docker:
       - image: alexfalkowski/release:3.1
+    working_directory: ~/bezeichner
     steps:
       - checkout
       - run: release
@@ -36,6 +37,7 @@ jobs:
   docker:
     docker:
       - image: alexfalkowski/go:1.21-3.2
+    working_directory: ~/bezeichner
     steps:
       - checkout
       - run: git submodule sync
