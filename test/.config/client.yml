@@ -8,6 +8,7 @@ telemetry:
     secure: false
 transport:
   grpc:
+    enabled: true
     port: 9090
     user_agent: "Bezeichner-client/1.0 grpc/1.0"
     retry:
