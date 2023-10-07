@@ -68,9 +68,10 @@ sql:
     max_open_conns: 5
     max_idle_conns: 5
     conn_max_lifetime: 1h
-otel:
-  host: localhost:4318
-  secure: false
+telemetry:
+  tracer:
+    host: localhost:4318
+    secure: false
 transport:
   http:
     port: 8080
