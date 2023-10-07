@@ -7,6 +7,7 @@ import (
 	v1 "github.com/alexfalkowski/bezeichner/api/bezeichner/v1"
 	"github.com/alexfalkowski/bezeichner/generator"
 	"github.com/alexfalkowski/bezeichner/mapper"
+	"github.com/alexfalkowski/go-service/meta"
 	"go.uber.org/fx"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
@@ -64,14 +65,16 @@ func (s *Server) GenerateIdentifiers(ctx context.Context, req *v1.GenerateIdenti
 	}
 
 	resp.Ids = ids
+	resp.Meta = meta.Attributes(ctx)
 
 	return resp, nil
 }
 
 // MapIdentifiers for gRPC.
-func (s *Server) MapIdentifiers(_ context.Context, req *v1.MapIdentifiersRequest) (*v1.MapIdentifiersResponse, error) {
+func (s *Server) MapIdentifiers(ctx context.Context, req *v1.MapIdentifiersRequest) (*v1.MapIdentifiersResponse, error) {
 	resp := &v1.MapIdentifiersResponse{
-		Ids: make([]string, len(req.Ids)),
+		Ids:  make([]string, len(req.Ids)),
+		Meta: meta.Attributes(ctx),
 	}
 
 	for i, id := range req.Ids {

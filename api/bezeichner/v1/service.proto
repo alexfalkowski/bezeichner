@@ -15,7 +15,8 @@ message GenerateIdentifiersRequest {
 
 // GenerateIdentifiersResponse for a specific application.
 message GenerateIdentifiersResponse {
-  repeated string ids = 1;
+  map<string, string> meta = 1;
+  repeated string ids = 2;
 }
 
 // MapIdentifiersRequest for some identifiers.
@@ -25,7 +26,8 @@ message MapIdentifiersRequest {
 
 // MapIdentifiersResponse for some identifiers.
 message MapIdentifiersResponse {
-  repeated string ids = 1;
+  map<string, string> meta = 1;
+  repeated string ids = 2;
 }
 
 // Service allows to manage identifiers.
