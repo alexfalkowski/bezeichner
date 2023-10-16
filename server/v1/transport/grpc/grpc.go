@@ -6,7 +6,8 @@ import (
 
 	v1 "github.com/alexfalkowski/bezeichner/api/bezeichner/v1"
 	"github.com/alexfalkowski/go-service/transport/grpc"
-	"github.com/alexfalkowski/go-service/transport/grpc/telemetry/metrics/prometheus"
+	"go.opentelemetry.io/otel/metric"
+
 	"github.com/alexfalkowski/go-service/transport/grpc/telemetry/tracer"
 	"github.com/alexfalkowski/go-service/transport/http"
 	"go.uber.org/fx"
@@ -23,7 +24,7 @@ type RegisterParams struct {
 	GRPCConfig *grpc.Config
 	Logger     *zap.Logger
 	Tracer     tracer.Tracer
-	Metrics    *prometheus.ClientCollector
+	Meter      metric.Meter
 	Server     v1.ServiceServer
 }
 
@@ -34,7 +35,7 @@ func Register(params RegisterParams) error {
 	v1.RegisterServiceServer(params.GRPCServer.Server, params.Server)
 
 	conn, err := grpc.NewClient(ctx, fmt.Sprintf("127.0.0.1:%s", params.GRPCConfig.Port), params.GRPCConfig,
-		grpc.WithClientLogger(params.Logger), grpc.WithClientTracer(params.Tracer), grpc.WithClientMetrics(params.Metrics),
+		grpc.WithClientLogger(params.Logger), grpc.WithClientTracer(params.Tracer), grpc.WithClientMetrics(params.Meter),
 	)
 	if err != nil {
 		return err

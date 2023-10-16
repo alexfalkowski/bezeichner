@@ -12,7 +12,6 @@ import (
 	"github.com/alexfalkowski/bezeichner/client"
 	"github.com/alexfalkowski/bezeichner/cmd"
 	"github.com/alexfalkowski/bezeichner/config"
-	"github.com/alexfalkowski/go-service/marshaller"
 	"github.com/alexfalkowski/go-service/telemetry"
 	"github.com/alexfalkowski/go-service/telemetry/metrics"
 	"github.com/alexfalkowski/go-service/transport"
@@ -23,8 +22,7 @@ import (
 )
 
 var options = []fx.Option{
-	fx.NopLogger, marshaller.Module,
-	cmd.Module, config.Module,
+	fx.NopLogger, cmd.Module, config.Module,
 	telemetry.Module, metrics.Module,
 	transport.HTTPModule, transport.GRPCModule,
 	client.Module, fx.Invoke(register),
