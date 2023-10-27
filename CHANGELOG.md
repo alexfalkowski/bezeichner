@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.34.2](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.34.2) - 2023-10-27
+
+- [`916d02e`](https://github.com/alexfalkowski/bezeichner/commit/916d02e35df451bf5d78ce07f912b8d3924d0c82) fix(server): revert only connect on start (#297)
+
 ## [v1.34.1](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.34.1) - 2023-10-27
 
 - [`96c80cc`](https://github.com/alexfalkowski/bezeichner/commit/96c80cc7215fc335aeecc42853f04f27fff164a5) fix(server): only connect on start (#296)
