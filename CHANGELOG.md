@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.34.3](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.34.3) - 2023-10-27
+
+- [`e87da7c`](https://github.com/alexfalkowski/bezeichner/commit/e87da7cd0c016ed2371c04f6e9aa8935e43398b9) fix(deps): bump github.com/google/uuid from 1.3.1 to 1.4.0 (#294)
+
 ## [v1.34.2](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.34.2) - 2023-10-27
 
 - [`916d02e`](https://github.com/alexfalkowski/bezeichner/commit/916d02e35df451bf5d78ce07f912b8d3924d0c82) fix(server): revert only connect on start (#297)
