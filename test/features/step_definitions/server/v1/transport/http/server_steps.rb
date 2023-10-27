@@ -21,6 +21,7 @@ Then('I should receive generated identifiers from HTTP:') do |table|
   ids = resp['ids']
   rows = table.rows_hash
 
+  expect(resp['meta'].length).to be > 0
   expect(ids.length).to eq(rows['count'].to_i)
   expect(ids.first.length).to be > 0
 end
@@ -32,6 +33,7 @@ Then('I should receive mapped identifiers from HTTP:') do |table|
   ids = resp['ids']
   rows = table.rows_hash
 
+  expect(resp['meta'].length).to be > 0
   expect(ids).to eq(rows['response'].split(','))
 end
 
