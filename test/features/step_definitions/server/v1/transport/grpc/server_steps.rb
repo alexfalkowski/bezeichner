@@ -25,6 +25,7 @@ end
 Then('I should receive generated identifiers from gRPC:') do |table|
   rows = table.rows_hash
 
+  expect(@response.meta.length).to be > 0
   expect(@response.ids.length).to eq(rows['count'].to_i)
   expect(@response.ids.first.length).to be > 0
 end
@@ -32,6 +33,7 @@ end
 Then('I should receive mapped identifiers from gRPC:') do |table|
   rows = table.rows_hash
 
+  expect(@response.meta.length).to be > 0
   expect(@response.ids).to eq(rows['response'].split(','))
 end
 
