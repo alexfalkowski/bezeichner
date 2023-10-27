@@ -6,12 +6,12 @@ import (
 
 	v1 "github.com/alexfalkowski/bezeichner/api/bezeichner/v1"
 	"github.com/alexfalkowski/go-service/transport/grpc"
+	"go.opentelemetry.io/otel/metric"
+
 	"github.com/alexfalkowski/go-service/transport/grpc/telemetry/tracer"
 	"github.com/alexfalkowski/go-service/transport/http"
-	"go.opentelemetry.io/otel/metric"
 	"go.uber.org/fx"
 	"go.uber.org/zap"
-	g "google.golang.org/grpc"
 )
 
 // RegisterParams for gRPC.
@@ -29,30 +29,32 @@ type RegisterParams struct {
 }
 
 // Register server.
-func Register(params RegisterParams) {
+func Register(params RegisterParams) error {
+	ctx := context.Background()
+
 	v1.RegisterServiceServer(params.GRPCServer.Server, params.Server)
 
-	var conn *g.ClientConn
+	conn, err := grpc.NewClient(ctx, fmt.Sprintf("127.0.0.1:%s", params.GRPCConfig.Port), params.GRPCConfig,
+		grpc.WithClientLogger(params.Logger), grpc.WithClientTracer(params.Tracer), grpc.WithClientMetrics(params.Meter),
+	)
+	if err != nil {
+		return err
+	}
+
+	if err := v1.RegisterServiceHandler(ctx, params.HTTPServer.Mux, conn); err != nil {
+		return err
+	}
 
 	params.Lifecycle.Append(fx.Hook{
 		OnStart: func(ctx context.Context) error {
-			c, err := grpc.NewClient(ctx, fmt.Sprintf("127.0.0.1:%s", params.GRPCConfig.Port), params.GRPCConfig,
-				grpc.WithClientLogger(params.Logger), grpc.WithClientTracer(params.Tracer), grpc.WithClientMetrics(params.Meter),
-			)
-			if err != nil {
-				return err
-			}
+			conn.ResetConnectBackoff()
 
-			conn = c
-
-			return v1.RegisterServiceHandler(ctx, params.HTTPServer.Mux, c)
+			return nil
 		},
 		OnStop: func(ctx context.Context) error {
-			if conn == nil {
-				return nil
-			}
-
 			return conn.Close()
 		},
 	})
+
+	return nil
 }
