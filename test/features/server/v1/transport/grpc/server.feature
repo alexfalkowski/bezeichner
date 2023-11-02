@@ -1,4 +1,3 @@
-@startup
 Feature: Server
 
   Server allows users to get different types of identifiers.
