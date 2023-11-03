@@ -1,5 +1,5 @@
 version: v1
-name: buf.build/alexfalkowski/bezeichner
+name: buf.build/afalkowski/bezeichner
 deps:
   - buf.build/googleapis/googleapis
 breaking:
