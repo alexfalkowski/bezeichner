@@ -4,7 +4,7 @@ import (
 	"context"
 	"errors"
 
-	"github.com/alexfalkowski/go-service/cache/redis/client"
+	"github.com/alexfalkowski/go-service/redis"
 	"github.com/linxGnu/mssqlx"
 )
 
@@ -12,7 +12,7 @@ import (
 var ErrNotFound = errors.New("generator not found")
 
 // NewGenerators of identifiers.
-func NewGenerators(db *mssqlx.DBs, client client.Client) Generators {
+func NewGenerators(db *mssqlx.DBs, client redis.Client) Generators {
 	return Generators{
 		"uuid":      &UUID{},
 		"ksuid":     &KSUID{},

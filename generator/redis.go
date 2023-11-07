@@ -4,12 +4,12 @@ import (
 	"context"
 	"strconv"
 
-	"github.com/alexfalkowski/go-service/cache/redis/client"
+	"github.com/alexfalkowski/go-service/redis"
 )
 
 // Redis generator.
 type Redis struct {
-	client client.Client
+	client redis.Client
 }
 
 // Generate an ID using INCR.
