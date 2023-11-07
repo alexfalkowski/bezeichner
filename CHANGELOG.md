@@ -6,6 +6,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.37.1](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.37.1) - 2023-11-07
+
+- [`7cc391a`](https://github.com/alexfalkowski/bezeichner/commit/7cc391aed8bf5eaee4cb5cf86dbf118822b35dcb) fix(deps): bump golang from 1.21.3-bullseye to 1.21.4-bullseye (#310)
+- [`92b201a`](https://github.com/alexfalkowski/bezeichner/commit/92b201a1792f9e67cf227747ee7e185e0ad1fdc2) ci: add trivy (#309)
+- [`e20e272`](https://github.com/alexfalkowski/bezeichner/commit/e20e2722a40f63b5729b1058410ba71292e6d8a7) ci: move to new structure (#308)
+- [`931ad40`](https://github.com/alexfalkowski/bezeichner/commit/931ad40499d6a3c8dd50f3ab9ec5f85caab55481) test(deps): remove solargraph (#307)
+- [`cc4b88c`](https://github.com/alexfalkowski/bezeichner/commit/cc4b88c08c61d5018dea14a49dff4bab42c0210a) ci: use go:1.21-ruby (#306)
+- [`b89cdfb`](https://github.com/alexfalkowski/bezeichner/commit/b89cdfb39763ec67199909cda783d1b30b45c580) build: push to buf (#305)
+- [`e655eb2`](https://github.com/alexfalkowski/bezeichner/commit/e655eb2ce2a45967ed076bf5fd5d0096f80fba34) build(deps): update bin (#304)
+- [`cf236f0`](https://github.com/alexfalkowski/bezeichner/commit/cf236f0faf70cc42b5d758aba095bbdd5f5e5040) test: use grpc port (#303)
+
 ## [v1.37.0](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.37.0) - 2023-11-03
 
 - [`d2ea399`](https://github.com/alexfalkowski/bezeichner/commit/d2ea39968f0eb66723bf8dc1102f0083db13d484) feat(deps): update github.com/alexfalkowski/go-service to v1.103.2 (#302)
