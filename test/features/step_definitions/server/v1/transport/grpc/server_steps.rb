@@ -3,7 +3,7 @@
 When('I request to generate identifiers with gRPC:') do |table|
   rows = table.rows_hash
   @request_id = SecureRandom.uuid
-  metadata = { 'request-id' => @request_id, 'user-agent' => Bezeichner.server_config['transport']['grpc']['user_agent'] }
+  metadata = { 'request-id' => @request_id }
 
   request = Bezeichner::V1::GenerateIdentifiersRequest.new(application: rows['application'], count: rows['count'].to_i)
   @response = Bezeichner::V1.server_grpc.generate_identifiers(request, { metadata: })
@@ -14,7 +14,7 @@ end
 When('I request to map identifiers with gRPC:') do |table|
   rows = table.rows_hash
   @request_id = SecureRandom.uuid
-  metadata = { 'request-id' => @request_id, 'user-agent' => Bezeichner.server_config['transport']['grpc']['user_agent'] }
+  metadata = { 'request-id' => @request_id }
 
   request = Bezeichner::V1::MapIdentifiersRequest.new(ids: rows['request'].split(','))
   @response = Bezeichner::V1.server_grpc.map_identifiers(request, { metadata: })
