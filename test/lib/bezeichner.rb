@@ -22,11 +22,15 @@ module Bezeichner
     end
 
     def health_grpc
-      @health_grpc ||= Grpc::Health::V1::Health::Stub.new('localhost:9090', :this_channel_is_insecure)
+      @health_grpc ||= Grpc::Health::V1::Health::Stub.new('localhost:9090', :this_channel_is_insecure, channel_args: Bezeichner.user_agent)
     end
 
     def pg
       @pg ||= Bezeichner::Generator::PG.new
+    end
+
+    def user_agent
+      @user_agent ||= { 'grpc.primary_user_agent' => server_config['transport']['grpc']['user_agent'] }
     end
   end
 
@@ -37,7 +41,7 @@ module Bezeichner
       end
 
       def server_grpc
-        @server_grpc ||= Bezeichner::V1::Service::Stub.new('localhost:9090', :this_channel_is_insecure)
+        @server_grpc ||= Bezeichner::V1::Service::Stub.new('localhost:9090', :this_channel_is_insecure, channel_args: Bezeichner.user_agent)
       end
     end
   end
