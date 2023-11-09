@@ -2,14 +2,14 @@
 
 When('I request to generate identifiers with HTTP:') do |table|
   rows = table.rows_hash
-  headers = { request_id: SecureRandom.uuid, user_agent: Bezeichner.server_config['transport']['grpc']['user_agent'] }
+  headers = { request_id: SecureRandom.uuid, user_agent: Bezeichner.server_config['transport']['http']['user_agent'] }
 
   @response = Bezeichner::V1.server_http.generate(rows['application'], rows['count'], headers)
 end
 
 When('I request to map identifiers with HTTP:') do |table|
   rows = table.rows_hash
-  headers = { request_id: SecureRandom.uuid, user_agent: Bezeichner.server_config['transport']['grpc']['user_agent'] }
+  headers = { request_id: SecureRandom.uuid, user_agent: Bezeichner.server_config['transport']['http']['user_agent'] }
 
   @response = Bezeichner::V1.server_http.map(rows['request'], headers)
 end
