@@ -3,16 +3,12 @@
 module Bezeichner
   module V1
     class HTTP < Nonnative::HTTPClient
-      def generate(application, count, headers = {})
-        headers.merge!(content_type: :json, accept: :json)
-
-        get("v1/generate/#{application}/#{count}", headers, 10)
+      def generate(application, count, opts = {})
+        get("v1/generate/#{application}/#{count}", opts)
       end
 
-      def map(ids, headers = {})
-        headers.merge!(content_type: :json, accept: :json)
-
-        get("v1/map/#{ids}", headers, 10)
+      def map(ids, opts = {})
+        get("v1/map/#{ids}", opts)
       end
     end
   end

@@ -2,16 +2,28 @@
 
 When('I request to generate identifiers with HTTP:') do |table|
   rows = table.rows_hash
-  headers = { request_id: SecureRandom.uuid, user_agent: Bezeichner.server_config['transport']['http']['user_agent'] }
+  opts = {
+    headers: {
+      request_id: SecureRandom.uuid, user_agent: Bezeichner.server_config['transport']['http']['user_agent'],
+      content_type: :json, accept: :json
+    },
+    read_timeout: 10, open_timeout: 10
+  }
 
-  @response = Bezeichner::V1.server_http.generate(rows['application'], rows['count'], headers)
+  @response = Bezeichner::V1.server_http.generate(rows['application'], rows['count'], opts)
 end
 
 When('I request to map identifiers with HTTP:') do |table|
   rows = table.rows_hash
-  headers = { request_id: SecureRandom.uuid, user_agent: Bezeichner.server_config['transport']['http']['user_agent'] }
+  opts = {
+    headers: {
+      request_id: SecureRandom.uuid, user_agent: Bezeichner.server_config['transport']['http']['user_agent'],
+      content_type: :json, accept: :json
+    },
+    read_timeout: 10, open_timeout: 10
+  }
 
-  @response = Bezeichner::V1.server_http.map(rows['request'], headers)
+  @response = Bezeichner::V1.server_http.map(rows['request'], opts)
 end
 
 Then('I should receive generated identifiers from HTTP:') do |table|
