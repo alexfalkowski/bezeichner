@@ -18,11 +18,11 @@ func NewSnowflake() *Snowflake {
 }
 
 // Generate a id with snowflake.
-func (s *Snowflake) Generate(_ context.Context, _ string) (string, error) {
+func (s *Snowflake) Generate(_ context.Context, app *Application) (string, error) {
 	id, err := s.sf.NextID()
 	if err != nil {
 		return "", err
 	}
 
-	return strconv.FormatInt(int64(id), 10), nil
+	return app.ID(strconv.FormatInt(int64(id), 10)), nil
 }

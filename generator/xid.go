@@ -10,8 +10,8 @@ import (
 type XID struct{}
 
 // Generate an XID.
-func (x *XID) Generate(_ context.Context, _ string) (string, error) {
+func (x *XID) Generate(_ context.Context, app *Application) (string, error) {
 	id := xid.New()
 
-	return id.String(), nil
+	return app.ID(id.String()), nil
 }

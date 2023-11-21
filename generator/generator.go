@@ -41,5 +41,5 @@ func (gs Generators) Generator(kind string) (Generator, error) {
 // Generator to generate an identifier.
 type Generator interface {
 	// Generate an identifier.
-	Generate(ctx context.Context, name string) (string, error)
+	Generate(ctx context.Context, app *Application) (string, error)
 }
