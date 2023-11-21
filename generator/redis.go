@@ -13,8 +13,8 @@ type Redis struct {
 }
 
 // Generate an ID using INCR.
-func (r *Redis) Generate(ctx context.Context, name string) (string, error) {
-	c := r.client.Incr(ctx, name)
+func (r *Redis) Generate(ctx context.Context, app *Application) (string, error) {
+	c := r.client.Incr(ctx, app.Name)
 	if err := c.Err(); err != nil {
 		return "", err
 	}
@@ -24,5 +24,5 @@ func (r *Redis) Generate(ctx context.Context, name string) (string, error) {
 		return "", err
 	}
 
-	return strconv.FormatInt(res, 10), nil
+	return app.ID(strconv.FormatInt(res, 10)), nil
 }

@@ -44,8 +44,6 @@ generator:
     - name: typeid
       kind: typeid
       prefix: prefix
-      suffix: suffix
-      separator: "-"
     - name: pg
       kind: pg
       prefix: prefix

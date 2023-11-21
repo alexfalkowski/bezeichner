@@ -12,7 +12,7 @@ import (
 type ULID struct{}
 
 // Generate a ULID.
-func (k *ULID) Generate(_ context.Context, _ string) (string, error) {
+func (k *ULID) Generate(_ context.Context, app *Application) (string, error) {
 	ms := ulid.Timestamp(time.Now())
 
 	id, err := ulid.New(ms, rand.Reader)
@@ -20,5 +20,5 @@ func (k *ULID) Generate(_ context.Context, _ string) (string, error) {
 		return "", err
 	}
 
-	return id.String(), nil
+	return app.ID(id.String()), nil
 }

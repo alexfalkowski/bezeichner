@@ -56,12 +56,12 @@ func (s *Server) GenerateIdentifiers(ctx context.Context, req *v1.GenerateIdenti
 
 	ids := make([]string, req.Count)
 	for i := 0; i < len(ids); i++ {
-		id, err := g.Generate(ctx, app.Name)
+		id, err := g.Generate(ctx, app)
 		if err != nil {
 			return resp, status.Error(codes.Internal, err.Error())
 		}
 
-		ids[i] = app.ID(id)
+		ids[i] = id
 	}
 
 	resp.Ids = ids
