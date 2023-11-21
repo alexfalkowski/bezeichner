@@ -12,9 +12,9 @@ import (
 	"github.com/alexfalkowski/bezeichner/client"
 	"github.com/alexfalkowski/bezeichner/cmd"
 	"github.com/alexfalkowski/bezeichner/config"
+	"github.com/alexfalkowski/bezeichner/transport"
 	"github.com/alexfalkowski/go-service/telemetry"
 	"github.com/alexfalkowski/go-service/telemetry/metrics"
-	"github.com/alexfalkowski/go-service/transport"
 	. "github.com/smartystreets/goconvey/convey" //nolint:revive
 	"go.uber.org/fx"
 	"go.uber.org/fx/fxtest"
@@ -22,9 +22,9 @@ import (
 )
 
 var options = []fx.Option{
-	fx.NopLogger, cmd.Module, config.Module,
+	fx.NopLogger, cmd.Module,
+	config.Module, transport.Module,
 	telemetry.Module, metrics.Module,
-	transport.HTTPModule, transport.GRPCModule,
 	client.Module, fx.Invoke(register),
 }
 
