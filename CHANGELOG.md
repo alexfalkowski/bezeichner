@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.41.1](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.41.1) - 2023-11-21
+
+- [`ca5e652`](https://github.com/alexfalkowski/bezeichner/commit/ca5e652d954530574e5fb67060085db010662dd1) fix(deps): bump go.jetpack.io/typeid from 0.1.0 to 1.0.0 (#335)
+- [`cc02e73`](https://github.com/alexfalkowski/bezeichner/commit/cc02e73d8b1f6e9dafbc38afa72e81f62635b4a5) build(deps): update bin (#334)
+
 ## [v1.41.0](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.41.0) - 2023-11-20
 
 - [`6ed6edd`](https://github.com/alexfalkowski/bezeichner/commit/6ed6eddff2cc05963f7da25913b030f1bbb737bd) feat(deps): update github.com/alexfalkowski/go-service to v1.119.0 (#333)
