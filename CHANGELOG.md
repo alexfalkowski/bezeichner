@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.42.0](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.42.0) - 2023-11-21
+
+- [`a3cf31f`](https://github.com/alexfalkowski/bezeichner/commit/a3cf31f47969539e7bce7195aadb488c176b7d38) feat(deps): update github.com/alexfalkowski/go-service to v1.120.0 (#337)
+
 ## [v1.41.2](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.41.2) - 2023-11-21
 
 - [`d2c2026`](https://github.com/alexfalkowski/bezeichner/commit/d2c2026187fbefae784d10a0d4d5dfeead8b7723) fix(generator): pass app so the generator controls the prefix/suffix (#336)
