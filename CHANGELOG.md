@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.41.2](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.41.2) - 2023-11-21
+
+- [`d2c2026`](https://github.com/alexfalkowski/bezeichner/commit/d2c2026187fbefae784d10a0d4d5dfeead8b7723) fix(generator): pass app so the generator controls the prefix/suffix (#336)
+
 ## [v1.41.1](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.41.1) - 2023-11-21
 
 - [`ca5e652`](https://github.com/alexfalkowski/bezeichner/commit/ca5e652d954530574e5fb67060085db010662dd1) fix(deps): bump go.jetpack.io/typeid from 0.1.0 to 1.0.0 (#335)
