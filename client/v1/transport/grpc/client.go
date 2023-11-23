@@ -27,8 +27,8 @@ type ServiceClientParams struct {
 // NewServiceClient for gRPC.
 func NewServiceClient(params ServiceClientParams) (v1.ServiceClient, error) {
 	conn, err := grpc.NewClient(context.Background(), params.Client.Host,
-		grpc.WithClientLogger(params.Logger), grpc.WithClientTracer(params.Tracer),
-		grpc.WithClientMetrics(params.Meter), grpc.WithClientUserAgent(params.Config.UserAgent),
+		grpc.WithClientLogger(params.Logger), grpc.WithClientTracer(params.Tracer), grpc.WithClientMetrics(params.Meter),
+		grpc.WithClientRetry(&params.Config.Retry), grpc.WithClientUserAgent(params.Config.UserAgent),
 	)
 	if err != nil {
 		return nil, err
