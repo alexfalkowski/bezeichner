@@ -25,7 +25,7 @@ func (c *Client) GenerateIdentifiers(ctx context.Context, app string, count uint
 		return nil, err
 	}
 
-	return resp.Ids, nil
+	return resp.GetIds(), nil
 }
 
 // MapIdentifiers for client.
@@ -37,5 +37,5 @@ func (c *Client) MapIdentifiers(ctx context.Context, ids []string) ([]string, er
 		return nil, err
 	}
 
-	return resp.Ids, nil
+	return resp.GetIds(), nil
 }

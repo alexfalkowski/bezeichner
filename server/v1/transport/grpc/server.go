@@ -38,15 +38,15 @@ type Server struct {
 
 // GetIdentifiers for gRPC.
 func (s *Server) GenerateIdentifiers(ctx context.Context, req *v1.GenerateIdentifiersRequest) (*v1.GenerateIdentifiersResponse, error) {
-	if req.Count == 0 {
+	if req.GetCount() == 0 {
 		req.Count = 1
 	}
 
 	resp := &v1.GenerateIdentifiersResponse{}
 
-	app := s.generatorConfig.Application(req.Application)
+	app := s.generatorConfig.Application(req.GetApplication())
 	if app == nil {
-		return resp, status.Error(codes.NotFound, fmt.Sprintf("%s: not found", req.Application))
+		return resp, status.Error(codes.NotFound, fmt.Sprintf("%s: not found", req.GetApplication()))
 	}
 
 	g, err := s.generators.Generator(app.Kind)
@@ -54,7 +54,7 @@ func (s *Server) GenerateIdentifiers(ctx context.Context, req *v1.GenerateIdenti
 		return resp, status.Error(codes.NotFound, err.Error())
 	}
 
-	ids := make([]string, req.Count)
+	ids := make([]string, req.GetCount())
 	for i := 0; i < len(ids); i++ {
 		id, err := g.Generate(ctx, app)
 		if err != nil {
@@ -72,12 +72,13 @@ func (s *Server) GenerateIdentifiers(ctx context.Context, req *v1.GenerateIdenti
 
 // MapIdentifiers for gRPC.
 func (s *Server) MapIdentifiers(ctx context.Context, req *v1.MapIdentifiersRequest) (*v1.MapIdentifiersResponse, error) {
+	ids := req.GetIds()
 	resp := &v1.MapIdentifiersResponse{
-		Ids:  make([]string, len(req.Ids)),
+		Ids:  make([]string, len(ids)),
 		Meta: meta.Attributes(ctx),
 	}
 
-	for i, id := range req.Ids {
+	for i, id := range ids {
 		mid, ok := s.mapperConfig.Identifiers[id]
 		if !ok {
 			return resp, status.Error(codes.NotFound, fmt.Sprintf("%s: not found", id))
