@@ -4,7 +4,5 @@ import (
 	"go.uber.org/fx"
 )
 
-var (
-	// Module for fx.
-	Module = fx.Options(fx.Provide(NewGenerators))
-)
+// Module for fx.
+var Module = fx.Options(fx.Provide(NewGenerators))

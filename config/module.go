@@ -6,15 +6,13 @@ import (
 	"go.uber.org/fx"
 )
 
-var (
-	// Module for fx.
-	Module = fx.Options(
-		fx.Provide(NewConfigurator),
-		marshaller.Module,
-		config.ConfigModule,
-		fx.Provide(healthConfig),
-		fx.Provide(generatorConfig),
-		fx.Provide(mapperConfig),
-		fx.Provide(v1ClientConfig),
-	)
+// Module for fx.
+var Module = fx.Options(
+	fx.Provide(NewConfigurator),
+	marshaller.Module,
+	config.ConfigModule,
+	fx.Provide(healthConfig),
+	fx.Provide(generatorConfig),
+	fx.Provide(mapperConfig),
+	fx.Provide(v1ClientConfig),
 )

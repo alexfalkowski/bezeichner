@@ -6,10 +6,9 @@ import (
 
 	v1 "github.com/alexfalkowski/bezeichner/api/bezeichner/v1"
 	"github.com/alexfalkowski/go-service/transport/grpc"
-	"go.opentelemetry.io/otel/metric"
-
 	"github.com/alexfalkowski/go-service/transport/grpc/telemetry/tracer"
 	"github.com/alexfalkowski/go-service/transport/http"
+	"go.opentelemetry.io/otel/metric"
 	"go.uber.org/fx"
 	"go.uber.org/zap"
 )
