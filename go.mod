@@ -4,7 +4,7 @@ go 1.21
 
 require (
 	github.com/alexfalkowski/go-health v1.13.0
-	github.com/alexfalkowski/go-service v1.122.3
+	github.com/alexfalkowski/go-service v1.122.4
 	github.com/google/uuid v1.4.0
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.18.1
 	github.com/jaevor/go-nanoid v1.3.0
@@ -57,7 +57,7 @@ require (
 	github.com/jackc/puddle/v2 v2.2.1 // indirect
 	github.com/jmoiron/sqlx v1.3.5 // indirect
 	github.com/jtolds/gls v4.20.0+incompatible // indirect
-	github.com/klauspost/compress v1.17.3 // indirect
+	github.com/klauspost/compress v1.17.4 // indirect
 	github.com/lib/pq v1.10.7 // indirect
 	github.com/lufia/plan9stats v0.0.0-20211012122336-39d0f177ccd0 // indirect
 	github.com/mattn/go-isatty v0.0.14 // indirect
