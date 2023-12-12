@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.44.5](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.44.5) - 2023-12-12
+
+- [`a795c53`](https://github.com/alexfalkowski/bezeichner/commit/a795c530046f437f7db08ca5e28e024298054822) fix(deps): bump github.com/alexfalkowski/go-service (#352)
+- [`6af2fda`](https://github.com/alexfalkowski/bezeichner/commit/6af2fda167602d5cee282ebf9cc5cbf40ebed2e1) build(deps): bump rubocop from 1.58.0 to 1.59.0 in /test (#351)
+
 ## [v1.44.4](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.44.4) - 2023-12-06
 
 - [`6a5adb2`](https://github.com/alexfalkowski/bezeichner/commit/6a5adb2c323fc423e2e3001a9e12d368a36e2a68) fix(deps): bump golang from 1.21.4-bullseye to 1.21.5-bullseye (#348)
