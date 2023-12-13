@@ -4,8 +4,8 @@ go 1.21
 
 require (
 	github.com/alexfalkowski/go-health v1.13.1
-	github.com/alexfalkowski/go-service v1.122.7
-	github.com/google/uuid v1.4.0
+	github.com/alexfalkowski/go-service v1.122.8
+	github.com/google/uuid v1.5.0
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.18.1
 	github.com/jaevor/go-nanoid v1.3.0
 	github.com/linxGnu/mssqlx v1.1.8
