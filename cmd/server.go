@@ -9,6 +9,7 @@ import (
 	"github.com/alexfalkowski/go-service/cache"
 	"github.com/alexfalkowski/go-service/database/sql"
 	"github.com/alexfalkowski/go-service/debug"
+	"github.com/alexfalkowski/go-service/feature"
 	"github.com/alexfalkowski/go-service/runtime"
 	"github.com/alexfalkowski/go-service/telemetry"
 	"github.com/alexfalkowski/go-service/telemetry/metrics"
@@ -17,7 +18,7 @@ import (
 
 // ServerOptions for cmd.
 var ServerOptions = []fx.Option{
-	fx.NopLogger, runtime.Module, debug.Module,
+	fx.NopLogger, runtime.Module, debug.Module, feature.Module,
 	config.Module, health.Module, Module,
 	telemetry.Module, metrics.Module, transport.Module,
 	cache.RedisModule, cache.SnappyCompressorModule, cache.ProtoMarshallerModule,
