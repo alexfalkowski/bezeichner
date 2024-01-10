@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.45.4](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.45.4) - 2024-01-10
+
+- [`423232d`](https://github.com/alexfalkowski/bezeichner/commit/423232dbd5cb6de88247b1481fdcf0199a2dd249) fix(deps): bump github.com/alexfalkowski/go-service (#368)
+- [`a33680f`](https://github.com/alexfalkowski/bezeichner/commit/a33680f5c337f210e71427307f796a7bea33970d) build(deps): bump puma from 6.4.0 to 6.4.2 in /test (#366)
+
 ## [v1.45.3](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.45.3) - 2024-01-05
 
 - [`7e7966a`](https://github.com/alexfalkowski/bezeichner/commit/7e7966aa99f1b9c324f9257cdf3c454e60dd554e) fix(deps): bump github.com/alexfalkowski/go-service (#364)
