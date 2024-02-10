@@ -2,7 +2,6 @@ package grpc
 
 import (
 	"context"
-	"fmt"
 
 	v1 "github.com/alexfalkowski/bezeichner/api/bezeichner/v1"
 	"github.com/alexfalkowski/bezeichner/generator"
@@ -46,7 +45,7 @@ func (s *Server) GenerateIdentifiers(ctx context.Context, req *v1.GenerateIdenti
 
 	app := s.generatorConfig.Application(req.GetApplication())
 	if app == nil {
-		return resp, status.Error(codes.NotFound, fmt.Sprintf("%s: not found", req.GetApplication()))
+		return resp, status.Error(codes.NotFound, req.GetApplication()+": not found")
 	}
 
 	g, err := s.generators.Generator(app.Kind)
@@ -81,7 +80,7 @@ func (s *Server) MapIdentifiers(ctx context.Context, req *v1.MapIdentifiersReque
 	for i, id := range ids {
 		mid, ok := s.mapperConfig.Identifiers[id]
 		if !ok {
-			return resp, status.Error(codes.NotFound, fmt.Sprintf("%s: not found", id))
+			return resp, status.Error(codes.NotFound, id+": not found")
 		}
 
 		resp.Ids[i] = mid
