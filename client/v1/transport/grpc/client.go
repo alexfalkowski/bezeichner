@@ -16,19 +16,18 @@ import (
 type ServiceClientParams struct {
 	fx.In
 
-	Lifecycle fx.Lifecycle
-	Config    *grpc.Config
-	Logger    *zap.Logger
-	Tracer    tracer.Tracer
-	Client    *v1c.Config
-	Meter     metric.Meter
+	Lifecycle    fx.Lifecycle
+	ClientConfig *v1c.Config
+	Logger       *zap.Logger
+	Tracer       tracer.Tracer
+	Meter        metric.Meter
 }
 
 // NewServiceClient for gRPC.
 func NewServiceClient(params ServiceClientParams) (v1.ServiceClient, error) {
-	conn, err := grpc.NewClient(context.Background(), params.Client.Host,
+	conn, err := grpc.NewClient(context.Background(), params.ClientConfig.Host,
 		grpc.WithClientLogger(params.Logger), grpc.WithClientTracer(params.Tracer), grpc.WithClientMetrics(params.Meter),
-		grpc.WithClientRetry(&params.Config.Retry), grpc.WithClientUserAgent(params.Config.UserAgent),
+		grpc.WithClientRetry(&params.ClientConfig.Retry), grpc.WithClientUserAgent(params.ClientConfig.UserAgent),
 	)
 	if err != nil {
 		return nil, err
