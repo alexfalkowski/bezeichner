@@ -25,10 +25,21 @@ type ServiceClientParams struct {
 
 // NewServiceClient for gRPC.
 func NewServiceClient(params ServiceClientParams) (v1.ServiceClient, error) {
-	conn, err := grpc.NewClient(context.Background(), params.ClientConfig.Host,
+	opts := []grpc.ClientOption{
 		grpc.WithClientLogger(params.Logger), grpc.WithClientTracer(params.Tracer), grpc.WithClientMetrics(params.Meter),
 		grpc.WithClientRetry(&params.ClientConfig.Retry), grpc.WithClientUserAgent(params.ClientConfig.UserAgent),
-	)
+	}
+
+	if params.ClientConfig.Security.IsEnabled() {
+		sec, err := grpc.WithClientSecure(params.ClientConfig.Security)
+		if err != nil {
+			return nil, err
+		}
+
+		opts = append(opts, sec)
+	}
+
+	conn, err := grpc.NewClient(context.Background(), params.ClientConfig.Host, opts...)
 	if err != nil {
 		return nil, err
 	}
