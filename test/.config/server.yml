@@ -1,6 +1,3 @@
-environment: production
-debug:
-  port: 6060
 cache:
   redis:
     addresses:
@@ -13,6 +10,9 @@ client:
     retry:
       timeout: 2s
       attempts: 3
+debug:
+  port: 6060
+environment: production
 mapper:
   identifiers:
     req1: resp1
@@ -87,6 +87,7 @@ telemetry:
     secure: false
 transport:
   http:
+    enabled: true
     port: 8080
     user_agent: "Bezeichner-server/1.0 http/1.0"
     retry:
