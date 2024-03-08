@@ -1,10 +1,8 @@
 package config
 
 import (
-	"github.com/alexfalkowski/go-service/config"
+	"github.com/alexfalkowski/go-service/client"
 )
 
 // Config for client.
-type Config struct {
-	config.Client `yaml:",inline" json:",inline" toml:",inline"`
-}
+type Config client.Config
