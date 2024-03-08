@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.50.2](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.50.2) - 2024-03-08
+
+- [`b5162ce`](https://github.com/alexfalkowski/bezeichner/commit/b5162ceaa6ef460a8c3464154e2619480b0842a8) fix(deps): bump github.com/alexfalkowski/go-service (#428)
+- [`56a868c`](https://github.com/alexfalkowski/bezeichner/commit/56a868ca614cfa1d403e39d7ca7f7336a46269d5) build(deps): bump ruby-lsp from 0.14.4 to 0.14.5 in /test (#427)
+- [`849867b`](https://github.com/alexfalkowski/bezeichner/commit/849867b158f6b16abb71b968091163e64bf81420) build(deps): bump bin from `e6271f5` to `66f6a24` (#426)
+- [`1571060`](https://github.com/alexfalkowski/bezeichner/commit/15710609cceca3dfbe96563a8c1907876ab19883) build(deps): bump rubocop from 1.61.0 to 1.62.0 in /test (#424)
+
 ## [v1.50.1](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.50.1) - 2024-03-06
 
 - [`f90a1f0`](https://github.com/alexfalkowski/bezeichner/commit/f90a1f0aa021cd8474d13ef19964113e1b115316) fix(transport): add secure (#423)
