@@ -1,6 +1,3 @@
-environment: production
-debug:
-  port: 6060
 client:
   v1:
     host: localhost:9090
@@ -9,6 +6,9 @@ client:
     retry:
       timeout: 2s
       attempts: 3
+debug:
+  port: 6060
+environment: production
 telemetry:
   logger:
     enabled: true
@@ -19,6 +19,7 @@ telemetry:
     secure: false
 transport:
   http:
+    enabled: true
     port: 8081
     user_agent: "Bezeichner-client/1.0 http/1.0"
     retry:
