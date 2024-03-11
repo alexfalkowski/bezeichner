@@ -30,7 +30,7 @@ func NewServiceClient(params ServiceClientParams) (v1.ServiceClient, error) {
 		grpc.WithClientRetry(&params.ClientConfig.Retry), grpc.WithClientUserAgent(params.ClientConfig.UserAgent),
 	}
 
-	if params.ClientConfig.Security.IsEnabled() {
+	if params.ClientConfig.Security.Enabled {
 		sec, err := grpc.WithClientSecure(params.ClientConfig.Security)
 		if err != nil {
 			return nil, err
