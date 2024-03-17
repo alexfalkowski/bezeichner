@@ -20,14 +20,14 @@ func (a *Application) ID(id string) string {
 
 // Config for generator.
 type Config struct {
-	Applications []Application `yaml:"applications"`
+	Applications []*Application `yaml:"applications"`
 }
 
 // Application by name.
 func (c *Config) Application(name string) *Application {
 	for _, d := range c.Applications {
 		if d.Name == name {
-			return &d
+			return d
 		}
 	}
 

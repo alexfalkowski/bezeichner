@@ -5,7 +5,7 @@ import (
 
 	v1 "github.com/alexfalkowski/bezeichner/api/bezeichner/v1"
 	v1c "github.com/alexfalkowski/bezeichner/client/v1/config"
-	"github.com/alexfalkowski/go-service/transport/grpc"
+	"github.com/alexfalkowski/bezeichner/transport/grpc"
 	"github.com/alexfalkowski/go-service/transport/grpc/telemetry/tracer"
 	"go.opentelemetry.io/otel/metric"
 	"go.uber.org/fx"
@@ -25,35 +25,18 @@ type ServiceClientParams struct {
 
 // NewServiceClient for gRPC.
 func NewServiceClient(params ServiceClientParams) (v1.ServiceClient, error) {
-	opts := []grpc.ClientOption{
-		grpc.WithClientLogger(params.Logger), grpc.WithClientTracer(params.Tracer), grpc.WithClientMetrics(params.Meter),
-		grpc.WithClientRetry(&params.ClientConfig.Retry), grpc.WithClientUserAgent(params.ClientConfig.UserAgent),
+	opts := grpc.ClientOpts{
+		Lifecycle:    params.Lifecycle,
+		ClientConfig: params.ClientConfig.Config,
+		Logger:       params.Logger,
+		Tracer:       params.Tracer,
+		Meter:        params.Meter,
 	}
 
-	if params.ClientConfig.Security.Enabled {
-		sec, err := grpc.WithClientSecure(params.ClientConfig.Security)
-		if err != nil {
-			return nil, err
-		}
-
-		opts = append(opts, sec)
-	}
-
-	conn, err := grpc.NewClient(context.Background(), params.ClientConfig.Host, opts...)
+	conn, err := grpc.NewClient(context.Background(), opts)
 	if err != nil {
 		return nil, err
 	}
-
-	params.Lifecycle.Append(fx.Hook{
-		OnStart: func(_ context.Context) error {
-			conn.ResetConnectBackoff()
-
-			return nil
-		},
-		OnStop: func(_ context.Context) error {
-			return conn.Close()
-		},
-	})
 
 	return v1.NewServiceClient(conn), nil
 }

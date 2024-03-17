@@ -5,4 +5,6 @@ import (
 )
 
 // Config for client.
-type Config client.Config
+type Config struct {
+	client.Config `yaml:",inline" json:",inline" toml:",inline"`
+}

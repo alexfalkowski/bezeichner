@@ -17,17 +17,17 @@ func NewConfigurator(i *cmd.InputConfig) (config.Configurator, error) {
 }
 
 func healthConfig(cfg config.Configurator) *health.Config {
-	return &cfg.(*Config).Health
+	return cfg.(*Config).Health
 }
 
 func generatorConfig(cfg config.Configurator) *generator.Config {
-	return &cfg.(*Config).Generator
+	return cfg.(*Config).Generator
 }
 
 func mapperConfig(cfg config.Configurator) *mapper.Config {
-	return &cfg.(*Config).Mapper
+	return cfg.(*Config).Mapper
 }
 
 func v1ClientConfig(cfg config.Configurator) *v1c.Config {
-	return &cfg.(*Config).Client.V1
+	return cfg.(*Config).Client.V1
 }
