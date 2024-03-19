@@ -13,6 +13,7 @@ import (
 	"github.com/alexfalkowski/bezeichner/cmd"
 	"github.com/alexfalkowski/bezeichner/config"
 	"github.com/alexfalkowski/bezeichner/transport"
+	"github.com/alexfalkowski/go-service/debug"
 	"github.com/alexfalkowski/go-service/telemetry"
 	"github.com/alexfalkowski/go-service/telemetry/metrics"
 	. "github.com/smartystreets/goconvey/convey" //nolint:revive
@@ -22,10 +23,8 @@ import (
 )
 
 var options = []fx.Option{
-	fx.NopLogger, cmd.Module,
-	config.Module, transport.Module,
-	telemetry.Module, metrics.Module,
-	client.Module, fx.Invoke(register),
+	fx.NopLogger, cmd.Module, debug.Module, config.Module, transport.Module,
+	telemetry.Module, metrics.Module, client.Module, fx.Invoke(register),
 }
 
 func TestValidSetup(t *testing.T) {
