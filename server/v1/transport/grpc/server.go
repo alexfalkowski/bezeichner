@@ -64,7 +64,7 @@ func (s *Server) GenerateIdentifiers(ctx context.Context, req *v1.GenerateIdenti
 	}
 
 	resp.Ids = ids
-	resp.Meta = meta.Attributes(ctx)
+	resp.Meta = meta.Strings(ctx)
 
 	return resp, nil
 }
@@ -74,7 +74,7 @@ func (s *Server) MapIdentifiers(ctx context.Context, req *v1.MapIdentifiersReque
 	ids := req.GetIds()
 	resp := &v1.MapIdentifiersResponse{
 		Ids:  make([]string, len(ids)),
-		Meta: meta.Attributes(ctx),
+		Meta: meta.Strings(ctx),
 	}
 
 	for i, id := range ids {
