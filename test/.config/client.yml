@@ -2,7 +2,7 @@ client:
   v1:
     host: localhost:9090
     timeout: 1s
-    user_agent: "Bezeichner-client/1.0 grpc/1.0"
+    user_agent: "Bezeichner-client/1.0 gRPC/1.0"
     retry:
       timeout: 2s
       attempts: 3
@@ -17,18 +17,3 @@ telemetry:
     enabled: true
     host: localhost:4318
     secure: false
-transport:
-  http:
-    enabled: true
-    port: 8081
-    user_agent: "Bezeichner-client/1.0 http/1.0"
-    retry:
-      timeout: 2s
-      attempts: 3
-  grpc:
-    enabled: true
-    port: 9091
-    user_agent: "Bezeichner-client/1.0 grpc/1.0"
-    retry:
-      timeout: 2s
-      attempts: 3

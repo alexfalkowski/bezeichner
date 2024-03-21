@@ -4,7 +4,7 @@ When('I request to generate identifiers with HTTP:') do |table|
   rows = table.rows_hash
   opts = {
     headers: {
-      request_id: SecureRandom.uuid, user_agent: Bezeichner.server_config.transport.http.user_agent,
+      request_id: SecureRandom.uuid, user_agent: 'Bezeichner-ruby-client/1.0 HTTP/1.0',
       content_type: :json, accept: :json
     },
     read_timeout: 10, open_timeout: 10
@@ -17,7 +17,7 @@ When('I request to map identifiers with HTTP:') do |table|
   rows = table.rows_hash
   opts = {
     headers: {
-      request_id: SecureRandom.uuid, user_agent: Bezeichner.server_config.transport.http.user_agent,
+      request_id: SecureRandom.uuid, user_agent: 'Bezeichner-ruby-client/1.0 HTTP/1.0',
       content_type: :json, accept: :json
     },
     read_timeout: 10, open_timeout: 10
