@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.59.0](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.59.0) - 2024-03-22
+
+- [`531db3b`](https://github.com/alexfalkowski/bezeichner/commit/531db3b278be1d55b1c945d49113e0b40a3cd907) feat: add ldflags to minimise binary size (#454)
+
 ## [v1.58.0](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.58.0) - 2024-03-22
 
 - [`e4c953c`](https://github.com/alexfalkowski/bezeichner/commit/e4c953cedfe4194ea5f1b04ee5dc7833c2d3c0f3) feat(deps): github.com/alexfalkowski/go-service to v1.148.0 (#453)
