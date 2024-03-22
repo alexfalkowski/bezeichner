@@ -31,7 +31,7 @@ func TestValidSetup(t *testing.T) {
 	Convey("Given I have a app", t, func() {
 		So(os.Setenv("CONFIG_FILE", "../test/.config/client.yml"), ShouldBeNil)
 
-		l, err := net.Listen("tcp", "localhost:9090")
+		l, err := net.Listen("tcp", "localhost:12000")
 		So(err, ShouldBeNil)
 
 		server := grpc.NewServer()
