@@ -29,5 +29,10 @@ func mapperConfig(cfg config.Configurator) *mapper.Config {
 }
 
 func v1ClientConfig(cfg config.Configurator) *v1c.Config {
-	return cfg.(*Config).Client.V1
+	c := cfg.(*Config)
+	if c.Client == nil {
+		return nil
+	}
+
+	return c.Client.V1
 }
