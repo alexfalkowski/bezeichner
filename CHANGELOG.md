@@ -6,6 +6,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.59.2](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.59.2) - 2024-03-28
+
+- [`45fb533`](https://github.com/alexfalkowski/bezeichner/commit/45fb5339a1542be48e7b2b17ec9e4cc2f2f33598) fix(deps): bump github.com/alexfalkowski/go-service (#461)
+- [`f3edec5`](https://github.com/alexfalkowski/bezeichner/commit/f3edec5bd4f953b0986344e0d25435f3b9c0a014) test(deps): bump ruby-lsp from 0.14.6 to 0.15.0 in /test (#462)
+- [`7ada56f`](https://github.com/alexfalkowski/bezeichner/commit/7ada56f4a981031d3c9e086fa6d41e9f199dadef) build(deps): bump bin from `b9b6ae3` to `a19d7ca` (#460)
+- [`62d7f1d`](https://github.com/alexfalkowski/bezeichner/commit/62d7f1dce19196fb8c2d1f6b2be8198da5126693) build(deps): bump bin from `60071ae` to `b9b6ae3` (#459)
+- [`e87362c`](https://github.com/alexfalkowski/bezeichner/commit/e87362cc53bae3de1438430bec87dedb489a09f6) build(dependabot): change prefixes (#458)
+- [`9016521`](https://github.com/alexfalkowski/bezeichner/commit/9016521c5f0a49404ccadca61e579855ab7c98c5) build(make): add git commands (#457)
+
 ## [v1.59.1](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.59.1) - 2024-03-24
 
 - [`2fa32fa`](https://github.com/alexfalkowski/bezeichner/commit/2fa32fad6ddaa9e5edffad8bd6ccc19d0362ec4d) fix(config): check presense (#455)
