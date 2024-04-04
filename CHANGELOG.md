@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.60.1](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.60.1) - 2024-04-04
+
+- [`55e392c`](https://github.com/alexfalkowski/bezeichner/commit/55e392cbe4cd782da1da6919a2ff91fd7ac52617) fix(deps): upgraded github.com/alexfalkowski/go-service v1.150.0 => v1.150.2 (#475)
+- [`37e107b`](https://github.com/alexfalkowski/bezeichner/commit/37e107b50e7ea3d047b3a60c6e7bca83d3df988d) test(deps): bump ruby-lsp from 0.15.0 to 0.16.0 in /test (#471)
+- [`2d1cc48`](https://github.com/alexfalkowski/bezeichner/commit/2d1cc48505c6d983640c1a5a71d4deb0b78d52c6) build(deps): bump bin from `ed17684` to `13a7302` (#472)
+- [`ecb00b0`](https://github.com/alexfalkowski/bezeichner/commit/ecb00b0c63e89ac843db29df063e36bfe792b2f9) build(deps): bump bin from `024be7f` to `ed17684` (#470)
+
 ## [v1.60.0](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.60.0) - 2024-04-01
 
 - [`62f09a4`](https://github.com/alexfalkowski/bezeichner/commit/62f09a470b00e2519c1364ff9b56294c43ad2eba) feat(deps): update github.com/alexfalkowski/go-service to v1.150.0 (#469)
