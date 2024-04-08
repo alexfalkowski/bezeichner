@@ -1,8 +1,6 @@
 package grpc
 
 import (
-	"context"
-
 	v1 "github.com/alexfalkowski/bezeichner/api/bezeichner/v1"
 	v1c "github.com/alexfalkowski/bezeichner/client/v1/config"
 	"github.com/alexfalkowski/bezeichner/transport/grpc"
@@ -33,7 +31,7 @@ func NewServiceClient(params ServiceClientParams) (v1.ServiceClient, error) {
 		Meter:        params.Meter,
 	}
 
-	conn, err := grpc.NewClient(context.Background(), opts)
+	conn, err := grpc.NewClient(opts)
 	if err != nil {
 		return nil, err
 	}
