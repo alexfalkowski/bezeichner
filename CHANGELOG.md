@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.62.0](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.62.0) - 2024-04-11
+
+- [`be69982`](https://github.com/alexfalkowski/bezeichner/commit/be69982538b2e62eea403b528edd3ea107d7c848) feat(deps): upgraded github.com/alexfalkowski/go-service v1.151.2 => v1.153.0 (#485)
+
 ## [v1.61.2](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.61.2) - 2024-04-11
 
 - [`b50c431`](https://github.com/alexfalkowski/bezeichner/commit/b50c4319ccfccbeb60db6957bfaf808318dd1d60) fix(deps): bump github.com/jaevor/go-nanoid from 1.3.0 to 1.4.0 (#484)
