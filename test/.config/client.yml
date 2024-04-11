@@ -13,7 +13,11 @@ telemetry:
   logger:
     enabled: true
     level: info
+  metrics:
+    enabled: true
+    kind: otlp
+    host: http://localhost:9009/otlp/v1/metrics
   tracer:
     enabled: true
-    host: localhost:4318
-    secure: false
+    kind: otlp
+    host: http://localhost:4318/v1/traces
