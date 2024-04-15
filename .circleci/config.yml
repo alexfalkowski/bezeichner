@@ -18,7 +18,25 @@ jobs:
       - run: git submodule sync
       - run: git submodule update --init
       - run: dockerize -wait tcp://localhost:5432 -wait tcp://localhost:6379 -wait tcp://localhost:9009
+      - restore_cache:
+          name: restore go deps
+          keys:
+            - bezeichner-go-cache-{{ checksum "go.sum" }}
+      - restore_cache:
+          name: restore ruby deps
+          keys:
+            - bezeichner-ruby-cache-{{ checksum "test/Gemfile.lock" }}
       - run: make dep
+      - save_cache:
+          name: save go deps
+          key: bezeichner-go-cache-{{ checksum "go.sum" }}
+          paths:
+            - /home/circleci/go/pkg/mod
+      - save_cache:
+          name: save ruby deps
+          key: bezeichner-ruby-cache-{{ checksum "test/Gemfile.lock" }}
+          paths:
+            - test/vendor
       - run: make lint
       - run: make proto-breaking
       - run: make sec
