@@ -4,7 +4,7 @@ go 1.22.2
 
 require (
 	github.com/alexfalkowski/go-health v1.16.1
-	github.com/alexfalkowski/go-service v1.154.5
+	github.com/alexfalkowski/go-service v1.154.6
 	github.com/google/uuid v1.6.0
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.19.1
 	github.com/jaevor/go-nanoid v1.4.0
@@ -26,7 +26,7 @@ require (
 
 require (
 	github.com/BurntSushi/toml v1.3.2 // indirect
-	github.com/KimMachineGun/automemlimit v0.5.0 // indirect
+	github.com/KimMachineGun/automemlimit v0.6.0 // indirect
 	github.com/arl/statsviz v0.6.0 // indirect
 	github.com/avast/retry-go/v3 v3.1.1 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
