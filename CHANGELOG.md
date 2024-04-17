@@ -6,6 +6,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.63.5](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.63.5) - 2024-04-17
+
+- [`ee22b13`](https://github.com/alexfalkowski/bezeichner/commit/ee22b13b490a1021010002c0c69edf013f42208f) fix(grpc): remove reset conn (#502)
+- [`15d8088`](https://github.com/alexfalkowski/bezeichner/commit/15d8088f3296f846d038cd351b944927ab9b50f3) test(deps): bump rubocop from 1.63.1 to 1.63.2 in /test (#500)
+- [`2011d18`](https://github.com/alexfalkowski/bezeichner/commit/2011d18935993bf392a59ff0e5d0e9c99dd338b1) build(deps): bump bin from `b850b19` to `d5f116d` (#501)
+- [`7472f85`](https://github.com/alexfalkowski/bezeichner/commit/7472f8549996317ea982e39bc822eb875c4f76da) build(ci): store tests (#499)
+- [`05b1786`](https://github.com/alexfalkowski/bezeichner/commit/05b1786f35ca6320514606f20b45bceb490f1a0f) build(deps): bump bin from `51c6ece` to `b850b19` (#498)
+- [`1adbd6e`](https://github.com/alexfalkowski/bezeichner/commit/1adbd6ed420d752c9d00d82d2c392c3d4ccaccff) build(ci): cache go build (#497)
+
 ## [v1.63.4](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.63.4) - 2024-04-16
 
 - [`b271fb9`](https://github.com/alexfalkowski/bezeichner/commit/b271fb9a3a818d41c1e629bfe98649621e8c99c1) fix(deps): bump github.com/alexfalkowski/go-service (#496)
