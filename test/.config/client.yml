@@ -6,8 +6,6 @@ client:
     retry:
       timeout: 2s
       attempts: 3
-debug:
-  port: 6060
 environment: production
 telemetry:
   logger:
