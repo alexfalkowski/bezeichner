@@ -1,5 +1,7 @@
 cache:
   redis:
+    compressor: snappy
+    marshaller: proto
     addresses:
       server: localhost:6380
 client:
