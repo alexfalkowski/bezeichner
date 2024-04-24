@@ -4,7 +4,7 @@ go 1.22.2
 
 require (
 	github.com/alexfalkowski/go-health v1.16.1
-	github.com/alexfalkowski/go-service v1.163.0
+	github.com/alexfalkowski/go-service v1.163.2
 	github.com/google/uuid v1.6.0
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.19.1
 	github.com/jaevor/go-nanoid v1.4.0
@@ -25,6 +25,7 @@ require (
 )
 
 require (
+	filippo.io/edwards25519 v1.1.0 // indirect
 	github.com/BurntSushi/toml v1.3.2 // indirect
 	github.com/KimMachineGun/automemlimit v0.6.0 // indirect
 	github.com/arl/statsviz v0.6.0 // indirect
@@ -46,7 +47,7 @@ require (
 	github.com/go-ole/go-ole v1.3.0 // indirect
 	github.com/go-redis/cache/v8 v8.4.4 // indirect
 	github.com/go-redis/redis/v8 v8.11.5 // indirect
-	github.com/go-sql-driver/mysql v1.6.0 // indirect
+	github.com/go-sql-driver/mysql v1.8.1 // indirect
 	github.com/goccy/go-json v0.10.2 // indirect
 	github.com/godbus/dbus/v5 v5.0.4 // indirect
 	github.com/gofrs/uuid/v5 v5.0.0 // indirect
@@ -67,10 +68,10 @@ require (
 	github.com/jackc/pgservicefile v0.0.0-20221227161230-091c0ba34f0a // indirect
 	github.com/jackc/pgx/v5 v5.5.5 // indirect
 	github.com/jackc/puddle/v2 v2.2.1 // indirect
-	github.com/jmoiron/sqlx v1.3.5 // indirect
+	github.com/jmoiron/sqlx v1.4.0 // indirect
 	github.com/jtolds/gls v4.20.0+incompatible // indirect
 	github.com/klauspost/compress v1.17.8 // indirect
-	github.com/lib/pq v1.10.7 // indirect
+	github.com/lib/pq v1.10.9 // indirect
 	github.com/lufia/plan9stats v0.0.0-20231016141302-07b5767bb0ed // indirect
 	github.com/mattn/go-isatty v0.0.14 // indirect
 	github.com/ngrok/sqlmw v0.0.0-20220520173518-97c9c04efc79 // indirect
