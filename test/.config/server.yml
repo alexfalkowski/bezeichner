@@ -15,6 +15,10 @@ client:
 debug:
   port: 6060
 environment: production
+limiter:
+  enabled: true
+  kind: user-agent
+  pattern: 1000-S
 mapper:
   identifiers:
     req1: resp1
