@@ -1,5 +1,4 @@
 [![CircleCI](https://circleci.com/gh/alexfalkowski/bezeichner.svg?style=svg)](https://circleci.com/gh/alexfalkowski/bezeichner)
-[![Coverage Status](https://coveralls.io/repos/github/alexfalkowski/bezeichner/badge.svg?branch=master)](https://coveralls.io/github/alexfalkowski/bezeichner?branch=master)
 
 # Bezeichner
 
