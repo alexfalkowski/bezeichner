@@ -6,6 +6,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.77.2](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.77.2) - 2024-04-29
+
+- [`a692884`](https://github.com/alexfalkowski/bezeichner/commit/a6928844da4fd477781bfd32d25ef311c5b8bc73) fix(deps): upgraded github.com/alexfalkowski/go-service to v1.172.2 (#544)
+- [`97096cf`](https://github.com/alexfalkowski/bezeichner/commit/97096cfbe9603e7d198b372a828b9240d1abc3ae) build(deps): bump bin from `3976e45` to `e47704b` (#542)
+- [`d3ab1c7`](https://github.com/alexfalkowski/bezeichner/commit/d3ab1c77297c1de52513d22468da22be50b3e628) build(ci): html coverage (#541)
+- [`4fb5b6c`](https://github.com/alexfalkowski/bezeichner/commit/4fb5b6c846d0cf99471cca8f95a55fad467970f1) build(deps): bump bin from `1755d45` to `3976e45` (#540)
+- [`e93b009`](https://github.com/alexfalkowski/bezeichner/commit/e93b009662b7eaca4b4080723fa33653cb176d44) build(deps): bump bin from `6fee1b8` to `1755d45` (#539)
+- [`6419c01`](https://github.com/alexfalkowski/bezeichner/commit/6419c013eeb586f30d45e8e5d4c756b4b6adacbe) build(coveralls): remove goveralls (#538)
+
 ## [v1.77.1](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.77.1) - 2024-04-27
 
 - [`90237e8`](https://github.com/alexfalkowski/bezeichner/commit/90237e8d516a970f382fa23f16025d9c4d16198d) fix(deps): upgraded github.com/alexfalkowski/go-service to v1.172.1 (#537)
