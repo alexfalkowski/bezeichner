@@ -16,7 +16,6 @@ debug:
   port: 6060
 environment: production
 limiter:
-  enabled: true
   kind: user-agent
   pattern: 1000-S
 mapper:
@@ -85,25 +84,20 @@ sql:
     conn_max_lifetime: 1h
 telemetry:
   logger:
-    enabled: true
     level: info
   metrics:
-    enabled: true
     kind: prometheus
   tracer:
-    enabled: true
     kind: otlp
     host: http://localhost:4318/v1/traces
 transport:
   http:
-    enabled: true
     port: 11000
     user_agent: "Bezeichner-server/1.0 HTTP/1.0"
     retry:
       timeout: 2s
       attempts: 3
   grpc:
-    enabled: true
     port: 12000
     user_agent: "Bezeichner-server/1.0 gRPC/1.0"
     retry:
