@@ -24,7 +24,7 @@ var ServerOptions = []fx.Option{
 	compressor.Module, marshaller.Module,
 	transport.Module, health.Module,
 	telemetry.Module, metrics.Module,
-	cache.Module, sql.PostgreSQLModule,
+	cache.Module, sql.Module,
 	generator.Module, v1.Module,
 	config.Module, Module,
 }
