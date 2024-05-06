@@ -5,7 +5,6 @@ import (
 	"github.com/alexfalkowski/bezeichner/generator"
 	"github.com/alexfalkowski/bezeichner/server/health"
 	v1 "github.com/alexfalkowski/bezeichner/server/v1"
-	"github.com/alexfalkowski/bezeichner/transport"
 	"github.com/alexfalkowski/go-service/cache"
 	"github.com/alexfalkowski/go-service/compressor"
 	"github.com/alexfalkowski/go-service/database/sql"
@@ -15,6 +14,7 @@ import (
 	"github.com/alexfalkowski/go-service/runtime"
 	"github.com/alexfalkowski/go-service/telemetry"
 	"github.com/alexfalkowski/go-service/telemetry/metrics"
+	"github.com/alexfalkowski/go-service/transport"
 	"go.uber.org/fx"
 )
 
