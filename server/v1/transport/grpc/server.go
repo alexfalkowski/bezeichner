@@ -28,11 +28,10 @@ func NewServer(params ServerParams) v1.ServiceServer {
 
 // Server for gRPC.
 type Server struct {
+	v1.UnimplementedServiceServer
 	generatorConfig *generator.Config
 	mapperConfig    *mapper.Config
 	generators      generator.Generators
-
-	v1.UnimplementedServiceServer
 }
 
 // GetIdentifiers for gRPC.
