@@ -24,11 +24,10 @@ const (
 // GenerateIdentifiersRequest for a specific application.
 type GenerateIdentifiersRequest struct {
 	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
+	Application   string `protobuf:"bytes,1,opt,name=application,proto3" json:"application,omitempty"`
 	unknownFields protoimpl.UnknownFields
-
-	Application string `protobuf:"bytes,1,opt,name=application,proto3" json:"application,omitempty"`
-	Count       uint64 `protobuf:"varint,2,opt,name=count,proto3" json:"count,omitempty"`
+	Count         uint64 `protobuf:"varint,2,opt,name=count,proto3" json:"count,omitempty"`
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *GenerateIdentifiersRequest) Reset() {
@@ -80,11 +79,10 @@ func (x *GenerateIdentifiersRequest) GetCount() uint64 {
 // GenerateIdentifiersResponse for a specific application.
 type GenerateIdentifiersResponse struct {
 	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
+	Meta          map[string]string `protobuf:"bytes,1,rep,name=meta,proto3" json:"meta,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
 	unknownFields protoimpl.UnknownFields
-
-	Meta map[string]string `protobuf:"bytes,1,rep,name=meta,proto3" json:"meta,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
-	Ids  []string          `protobuf:"bytes,2,rep,name=ids,proto3" json:"ids,omitempty"`
+	Ids           []string `protobuf:"bytes,2,rep,name=ids,proto3" json:"ids,omitempty"`
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *GenerateIdentifiersResponse) Reset() {
@@ -136,10 +134,9 @@ func (x *GenerateIdentifiersResponse) GetIds() []string {
 // MapIdentifiersRequest for some identifiers.
 type MapIdentifiersRequest struct {
 	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
-
-	Ids []string `protobuf:"bytes,1,rep,name=ids,proto3" json:"ids,omitempty"`
+	Ids           []string `protobuf:"bytes,1,rep,name=ids,proto3" json:"ids,omitempty"`
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *MapIdentifiersRequest) Reset() {
@@ -184,11 +181,10 @@ func (x *MapIdentifiersRequest) GetIds() []string {
 // MapIdentifiersResponse for some identifiers.
 type MapIdentifiersResponse struct {
 	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
+	Meta          map[string]string `protobuf:"bytes,1,rep,name=meta,proto3" json:"meta,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
 	unknownFields protoimpl.UnknownFields
-
-	Meta map[string]string `protobuf:"bytes,1,rep,name=meta,proto3" json:"meta,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
-	Ids  []string          `protobuf:"bytes,2,rep,name=ids,proto3" json:"ids,omitempty"`
+	Ids           []string `protobuf:"bytes,2,rep,name=ids,proto3" json:"ids,omitempty"`
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *MapIdentifiersResponse) Reset() {
