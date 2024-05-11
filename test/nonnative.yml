@@ -11,7 +11,7 @@ processes:
     port: 12000
     log: reports/server.log
     environment:
-      CONFIG_FILE: .config/server.yml
+      BEZEICHNER_CONFIG_FILE: .config/server.yml
 services:
   - name: pg
     host: 127.0.0.1
