@@ -3,15 +3,13 @@ package client_test
 import (
 	"context"
 	"errors"
-	"net"
-	"os"
 	"testing"
-	"time"
 
 	v1 "github.com/alexfalkowski/bezeichner/api/bezeichner/v1"
 	"github.com/alexfalkowski/bezeichner/client"
 	"github.com/alexfalkowski/bezeichner/cmd"
 	"github.com/alexfalkowski/bezeichner/config"
+	sc "github.com/alexfalkowski/go-service/cmd"
 	"github.com/alexfalkowski/go-service/compressor"
 	"github.com/alexfalkowski/go-service/debug"
 	"github.com/alexfalkowski/go-service/marshaller"
@@ -30,21 +28,11 @@ var options = []fx.Option{
 	compressor.Module, marshaller.Module,
 	telemetry.Module, metrics.Module,
 	client.Module, fx.Invoke(register),
+	fx.Decorate(decorate),
 }
 
 func TestValidSetup(t *testing.T) {
 	Convey("Given I have a app", t, func() {
-		So(os.Setenv("CONFIG_FILE", "../test/.config/client.yml"), ShouldBeNil)
-
-		l, err := net.Listen("tcp", "localhost:12000")
-		So(err, ShouldBeNil)
-
-		server := grpc.NewServer()
-
-		go server.Serve(l) //nolint:errcheck
-
-		time.Sleep(time.Second)
-
 		app := fxtest.New(t, options...)
 
 		Convey("When I start the app", func() {
@@ -54,14 +42,8 @@ func TestValidSetup(t *testing.T) {
 				app.RequireStop()
 			})
 		})
-
-		server.Stop()
-
-		So(os.Unsetenv("CONFIG_FILE"), ShouldBeNil)
 	})
 }
-
-func register(_ *client.Client) {}
 
 func TestValidGenerateIdentifiers(t *testing.T) {
 	Convey("Given I have a valid client", t, func() {
@@ -144,3 +126,11 @@ func (*invalidClient) GenerateIdentifiers(_ context.Context, _ *v1.GenerateIdent
 func (*invalidClient) MapIdentifiers(_ context.Context, _ *v1.MapIdentifiersRequest, _ ...grpc.CallOption) (*v1.MapIdentifiersResponse, error) {
 	return &v1.MapIdentifiersResponse{}, errors.New("invalid")
 }
+
+func decorate() *sc.InputConfig {
+	*sc.InputFlag = "file:../test/.config/server.yml"
+
+	return sc.NewInputConfig(marshaller.NewMap())
+}
+
+func register(_ *client.Client) {}
