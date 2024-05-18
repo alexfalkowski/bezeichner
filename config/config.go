@@ -17,6 +17,11 @@ func NewConfig(i *cmd.InputConfig) (*Config, error) {
 	return c, i.Unmarshal(c)
 }
 
+// IsEnabled for config.
+func IsEnabled(cfg *Config) bool {
+	return cfg != nil
+}
+
 // Config for the service.
 type Config struct {
 	Client         *client.Config    `yaml:"client,omitempty" json:"client,omitempty" toml:"client,omitempty"`
@@ -27,23 +32,39 @@ type Config struct {
 }
 
 func decorateConfig(cfg *Config) *config.Config {
+	if !IsEnabled(cfg) {
+		return nil
+	}
+
 	return cfg.Config
 }
 
 func healthConfig(cfg *Config) *health.Config {
+	if !IsEnabled(cfg) {
+		return nil
+	}
+
 	return cfg.Health
 }
 
 func generatorConfig(cfg *Config) *generator.Config {
+	if !IsEnabled(cfg) {
+		return nil
+	}
+
 	return cfg.Generator
 }
 
 func mapperConfig(cfg *Config) *mapper.Config {
+	if !IsEnabled(cfg) {
+		return nil
+	}
+
 	return cfg.Mapper
 }
 
 func v1ClientConfig(cfg *Config) *v1c.Config {
-	if !client.IsEnabled(cfg.Client) {
+	if !IsEnabled(cfg) || !client.IsEnabled(cfg.Client) {
 		return nil
 	}
 

@@ -20,7 +20,7 @@ func (a *Application) ID(id string) string {
 
 // Config for generator.
 type Config struct {
-	Applications []*Application `yaml:"applications"`
+	Applications []*Application `yaml:"applications,omitempty" json:"applications,omitempty" toml:"applications,omitempty"`
 }
 
 // Application by name.
