@@ -4,6 +4,7 @@ cache:
     marshaller: proto
     addresses:
       server: localhost:6380
+    url: secrets/redis
 client:
   v1:
     host: localhost:12000
@@ -78,7 +79,7 @@ health:
 sql:
   pg:
     masters:
-      - url: postgres://test:test@localhost:5433/test?sslmode=disable
+      - url: secrets/pg
     max_open_conns: 5
     max_idle_conns: 5
     conn_max_lifetime: 1h
