@@ -7,8 +7,10 @@ import (
 
 	v1 "github.com/alexfalkowski/bezeichner/api/bezeichner/v1"
 	"github.com/alexfalkowski/bezeichner/client"
+	v1c "github.com/alexfalkowski/bezeichner/client/v1/config"
 	"github.com/alexfalkowski/bezeichner/cmd"
 	"github.com/alexfalkowski/bezeichner/config"
+	c "github.com/alexfalkowski/go-service/client"
 	sc "github.com/alexfalkowski/go-service/cmd"
 	"github.com/alexfalkowski/go-service/compressor"
 	"github.com/alexfalkowski/go-service/debug"
@@ -48,7 +50,7 @@ func TestValidSetup(t *testing.T) {
 func TestValidGenerateIdentifiers(t *testing.T) {
 	Convey("Given I have a valid client", t, func() {
 		v := &validClient{}
-		c := client.NewClient(v)
+		c := client.NewClient(v, conf())
 
 		Convey("When I generate identifiers", func() {
 			t, err := c.GenerateIdentifiers(context.Background(), "test", 1)
@@ -64,7 +66,7 @@ func TestValidGenerateIdentifiers(t *testing.T) {
 func TestInvalidGenerateIdentifiers(t *testing.T) {
 	Convey("Given I have a valid client", t, func() {
 		v := &invalidClient{}
-		c := client.NewClient(v)
+		c := client.NewClient(v, conf())
 
 		Convey("When I generate identifiers", func() {
 			_, err := c.GenerateIdentifiers(context.Background(), "test", 1)
@@ -79,7 +81,7 @@ func TestInvalidGenerateIdentifiers(t *testing.T) {
 func TestValidMapIdentifiers(t *testing.T) {
 	Convey("Given I have a valid client", t, func() {
 		v := &validClient{}
-		c := client.NewClient(v)
+		c := client.NewClient(v, conf())
 
 		Convey("When I map identifiers", func() {
 			t, err := c.MapIdentifiers(context.Background(), []string{"test"})
@@ -95,7 +97,7 @@ func TestValidMapIdentifiers(t *testing.T) {
 func TestInvalidMapIdentifiers(t *testing.T) {
 	Convey("Given I have a valid client", t, func() {
 		v := &invalidClient{}
-		c := client.NewClient(v)
+		c := client.NewClient(v, conf())
 
 		Convey("When I map identifiers", func() {
 			_, err := c.MapIdentifiers(context.Background(), []string{"test"})
@@ -134,3 +136,7 @@ func decorate() *sc.InputConfig {
 }
 
 func register(_ *client.Client) {}
+
+func conf() *v1c.Config {
+	return &v1c.Config{Config: &c.Config{Timeout: "5s"}}
+}
