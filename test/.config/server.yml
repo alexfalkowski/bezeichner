@@ -8,13 +8,12 @@ cache:
 client:
   v1:
     host: localhost:12000
-    timeout: 5s
     user_agent: "Bezeichner-client/1.0 gRPC/1.0"
     retry:
-      timeout: 2s
       attempts: 3
-debug:
-  port: 6060
+      backoff: 100ms
+      timeout: 10s
+    timeout: 5s
 environment: production
 limiter:
   kind: user-agent
@@ -96,11 +95,15 @@ transport:
     port: 11000
     user_agent: "Bezeichner-server/1.0 HTTP/1.0"
     retry:
-      timeout: 2s
       attempts: 3
+      backoff: 100ms
+      timeout: 10s
+    timeout: 5s
   grpc:
     port: 12000
     user_agent: "Bezeichner-server/1.0 gRPC/1.0"
     retry:
-      timeout: 2s
       attempts: 3
+      backoff: 100ms
+      timeout: 10s
+    timeout: 5s
