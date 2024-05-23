@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.93.0](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.93.0) - 2024-05-23
+
+- [`73d9728`](https://github.com/alexfalkowski/bezeichner/commit/73d9728cc4385b43940fd6b1a7d078608f830f40) test(deps): update rubocop to v1.64.0 (#586)
+- [`52b7e9c`](https://github.com/alexfalkowski/bezeichner/commit/52b7e9c15dc493556f9d51e2f183d177f0f79785) feat(deps): upgraded github.com/alexfalkowski/go-service to v1.202.0 (#585)
+
 ## [v1.92.0](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.92.0) - 2024-05-22
 
 - [`21c9d6d`](https://github.com/alexfalkowski/bezeichner/commit/21c9d6d05cc4759e16cff0058c9cf9084b7c2468) feat(deps): upgraded github.com/alexfalkowski/go-service to v1.201.0 (#584)
