@@ -10,28 +10,7 @@ require 'google/api/annotations_pb'
 descriptor_data = "\n\x1b\x62\x65zeichner/v1/service.proto\x12\rbezeichner.v1\x1a\x1cgoogle/api/annotations.proto\"T\n\x1aGenerateIdentifiersRequest\x12 \n\x0b\x61pplication\x18\x01 \x01(\tR\x0b\x61pplication\x12\x14\n\x05\x63ount\x18\x02 \x01(\x04R\x05\x63ount\"\xb2\x01\n\x1bGenerateIdentifiersResponse\x12H\n\x04meta\x18\x01 \x03(\x0b\x32\x34.bezeichner.v1.GenerateIdentifiersResponse.MetaEntryR\x04meta\x12\x10\n\x03ids\x18\x02 \x03(\tR\x03ids\x1a\x37\n\tMetaEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n\x05value\x18\x02 \x01(\tR\x05value:\x02\x38\x01\")\n\x15MapIdentifiersRequest\x12\x10\n\x03ids\x18\x01 \x03(\tR\x03ids\"\xa8\x01\n\x16MapIdentifiersResponse\x12\x43\n\x04meta\x18\x01 \x03(\x0b\x32/.bezeichner.v1.MapIdentifiersResponse.MetaEntryR\x04meta\x12\x10\n\x03ids\x18\x02 \x03(\tR\x03ids\x1a\x37\n\tMetaEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n\x05value\x18\x02 \x01(\tR\x05value:\x02\x38\x01\x32\x9a\x02\n\x07Service\x12\x98\x01\n\x13GenerateIdentifiers\x12).bezeichner.v1.GenerateIdentifiersRequest\x1a*.bezeichner.v1.GenerateIdentifiersResponse\"*\x82\xd3\xe4\x93\x02$\x12\"/v1/generate/{application}/{count}\x12t\n\x0eMapIdentifiers\x12$.bezeichner.v1.MapIdentifiersRequest\x1a%.bezeichner.v1.MapIdentifiersResponse\"\x15\x82\xd3\xe4\x93\x02\x0f\x12\r/v1/map/{ids}BHZ5github.com/alexfalkowski/bezeichner/api/bezeichner/v1\xea\x02\x0e\x42\x65zeichner::V1b\x06proto3"
 
 pool = Google::Protobuf::DescriptorPool.generated_pool
-
-begin
-  pool.add_serialized_file(descriptor_data)
-rescue TypeError => e
-  # Compatibility code: will be removed in the next major version.
-  require 'google/protobuf/descriptor_pb'
-  parsed = Google::Protobuf::FileDescriptorProto.decode(descriptor_data)
-  parsed.clear_dependency
-  serialized = parsed.class.encode(parsed)
-  file = pool.add_serialized_file(serialized)
-  warn "Warning: Protobuf detected an import path issue while loading generated file #{__FILE__}"
-  imports = [
-  ]
-  imports.each do |type_name, expected_filename|
-    import_file = pool.lookup(type_name).file_descriptor
-    if import_file.name != expected_filename
-      warn "- #{file.name} imports #{expected_filename}, but that import was loaded as #{import_file.name}"
-    end
-  end
-  warn "Each proto file must use a consistent fully-qualified name."
-  warn "This will become an error in the next major version."
-end
+pool.add_serialized_file(descriptor_data)
 
 module Bezeichner
   module V1
