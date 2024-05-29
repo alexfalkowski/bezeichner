@@ -3,7 +3,7 @@ package generator
 import (
 	"context"
 
-	"go.jetpack.io/typeid"
+	"go.jetify.com/typeid"
 )
 
 // TypeID generator.
