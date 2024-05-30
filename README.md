@@ -129,6 +129,10 @@ The service uses the awesome work of others. You can check out:
 - https://github.com/jetpack-io/typeid-go
 - https://github.com/alexfalkowski/go-service
 
+### Dependencies
+
+![Dependencies](./assets/server.png)
+
 ## Client
 
 The client can be used in other projects. This is configured as follows:
@@ -139,6 +143,10 @@ client:
     host: server_host
     timeout: 1s
 ```
+
+### Dependencies
+
+![Dependencies](./assets/client.png)
 
 ## Development
 
