@@ -14,7 +14,7 @@ require (
 	github.com/segmentio/ksuid v1.0.4
 	github.com/smartystreets/goconvey v1.8.1
 	github.com/sony/sonyflake v1.2.0
-	go.jetify.com/typeid v1.1.0
+	go.jetify.com/typeid v1.2.0
 	go.opentelemetry.io/otel/metric v1.27.0
 	go.opentelemetry.io/otel/trace v1.27.0
 	go.uber.org/fx v1.22.0
@@ -54,7 +54,7 @@ require (
 	github.com/go-sql-driver/mysql v1.8.1 // indirect
 	github.com/goccy/go-json v0.10.3 // indirect
 	github.com/godbus/dbus/v5 v5.0.4 // indirect
-	github.com/gofrs/uuid/v5 v5.1.0 // indirect
+	github.com/gofrs/uuid/v5 v5.2.0 // indirect
 	github.com/golang/glog v1.2.0 // indirect
 	github.com/golang/protobuf v1.5.4 // indirect
 	github.com/google/pprof v0.0.0-20240227163752-401108e1b7e7 // indirect
