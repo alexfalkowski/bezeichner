@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.107.0](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.107.0) - 2024-06-09
+
+- [`5671b37`](https://github.com/alexfalkowski/bezeichner/commit/5671b374fee9459945cf49ea929066d7a6530521) feat(deps): upgraded github.com/alexfalkowski/go-service to v1.214.1 (#618)
+- [`9240a7c`](https://github.com/alexfalkowski/bezeichner/commit/9240a7c32b2f78895d2f3e33bbb7b2027aabc6fd) build(deps): bump bin from `955891d` to `897d5f1` (#617)
+- [`12acb6c`](https://github.com/alexfalkowski/bezeichner/commit/12acb6c63f10035725fdbb3caeeb6dd8fb6d4ceb) build(ci): fix bundler dependabot (#616)
+
 ## [v1.106.0](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.106.0) - 2024-06-06
 
 - [`ffa4246`](https://github.com/alexfalkowski/bezeichner/commit/ffa42468f2bf269630cd995519ca56fe6aee98a8) feat(deps): bump go.jetify.com/typeid from 1.1.0 to 1.2.0 (#615)
