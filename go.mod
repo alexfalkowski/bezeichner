@@ -4,7 +4,7 @@ go 1.22.4
 
 require (
 	github.com/alexfalkowski/go-health v1.17.1
-	github.com/alexfalkowski/go-service v1.213.3
+	github.com/alexfalkowski/go-service v1.214.1
 	github.com/google/uuid v1.6.0
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.20.0
 	github.com/jaevor/go-nanoid v1.4.0
@@ -93,7 +93,7 @@ require (
 	github.com/prometheus/client_model v0.6.1 // indirect
 	github.com/prometheus/common v0.53.0 // indirect
 	github.com/prometheus/procfs v0.15.0 // indirect
-	github.com/redis/go-redis/v9 v9.5.2 // indirect
+	github.com/redis/go-redis/v9 v9.5.3 // indirect
 	github.com/rs/cors v1.11.0 // indirect
 	github.com/secure-io/siv-go v0.0.0-20180922214919-5ff40651e2c4 // indirect
 	github.com/shirou/gopsutil/v3 v3.24.5 // indirect
@@ -129,12 +129,12 @@ require (
 	go.uber.org/automaxprocs v1.5.3 // indirect
 	go.uber.org/dig v1.17.1 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
-	golang.org/x/crypto v0.23.0 // indirect
+	golang.org/x/crypto v0.24.0 // indirect
 	golang.org/x/exp v0.0.0-20240506185415-9bf2ced13842 // indirect
 	golang.org/x/net v0.25.0 // indirect
 	golang.org/x/sync v0.7.0 // indirect
-	golang.org/x/sys v0.20.0 // indirect
-	golang.org/x/text v0.15.0 // indirect
+	golang.org/x/sys v0.21.0 // indirect
+	golang.org/x/text v0.16.0 // indirect
 	google.golang.org/genproto v0.0.0-20240227224415-6ceb2ff114de // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20240515191416-fc5f0ca64291 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
