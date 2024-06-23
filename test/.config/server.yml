@@ -92,7 +92,7 @@ telemetry:
     host: http://localhost:4318/v1/traces
 transport:
   http:
-    mux: gateway
+    mux: standard
     port: 11000
     user_agent: "Bezeichner-server/1.0 HTTP/1.0"
     retry:
