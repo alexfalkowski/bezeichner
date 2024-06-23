@@ -2,8 +2,6 @@ syntax = "proto3";
 
 package bezeichner.v1;
 
-import "google/api/annotations.proto";
-
 option go_package = "github.com/alexfalkowski/bezeichner/api/bezeichner/v1";
 option ruby_package = "Bezeichner::V1";
 
@@ -33,12 +31,8 @@ message MapIdentifiersResponse {
 // Service allows to manage identifiers.
 service Service {
   // GenerateIdentifiers for a specific application.
-  rpc GenerateIdentifiers(GenerateIdentifiersRequest) returns (GenerateIdentifiersResponse) {
-    option (google.api.http) = {get: "/v1/generate/{application}/{count}"};
-  }
+  rpc GenerateIdentifiers(GenerateIdentifiersRequest) returns (GenerateIdentifiersResponse) {}
 
   // MapIdentifiers for some identifiers.
-  rpc MapIdentifiers(MapIdentifiersRequest) returns (MapIdentifiersResponse) {
-    option (google.api.http) = {get: "/v1/map/{ids}"};
-  }
+  rpc MapIdentifiers(MapIdentifiersRequest) returns (MapIdentifiersResponse) {}
 }
