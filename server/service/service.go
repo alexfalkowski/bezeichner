@@ -22,7 +22,7 @@ func NewService(gc *generator.Config, mc *mapper.Config, gs generator.Generators
 	return &Service{generatorConfig: gc, mapperConfig: mc, generators: gs}
 }
 
-// Server for the different transports.
+// Service for the different transports.
 type Service struct {
 	generatorConfig *generator.Config
 	mapperConfig    *mapper.Config
