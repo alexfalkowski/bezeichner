@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.114.1](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.114.1) - 2024-06-23
+
+- [`ab586bd`](https://github.com/alexfalkowski/bezeichner/commit/ab586bdf934c8308f19a12b8980778243b18de43) fix(http): remove package alias (#633)
+
 ## [v1.114.0](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.114.0) - 2024-06-23
 
 - [`d4eec0d`](https://github.com/alexfalkowski/bezeichner/commit/d4eec0d8880e9375e42e2bbca84341004e9dc808) feat(server): seperate operations (#632)
