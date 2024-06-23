@@ -47,7 +47,7 @@ jobs:
             - bezeichner-go-build-cache-{{ checksum "go.sum" }}
             - bezeichner-go-build-cache-
       - run: make lint
-      # - run: make proto-breaking
+      - run: make proto-breaking
       - run: make sec
       - run: make specs
       - run: make features
