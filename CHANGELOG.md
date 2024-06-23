@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.114.0](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.114.0) - 2024-06-23
+
+- [`d4eec0d`](https://github.com/alexfalkowski/bezeichner/commit/d4eec0d8880e9375e42e2bbca84341004e9dc808) feat(server): seperate operations (#632)
+- [`ff1cb12`](https://github.com/alexfalkowski/bezeichner/commit/ff1cb123dcbe4463beb38ae39195609168b028c0) docs(server): update diagrams (#631)
+- [`c6822b2`](https://github.com/alexfalkowski/bezeichner/commit/c6822b2f911bb07076f01ce7797d5960598f8eea) build(ci): add proto-breaking (#630)
+
 ## [v1.113.0](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.113.0) - 2024-06-23
 
 - [`c977576`](https://github.com/alexfalkowski/bezeichner/commit/c9775761428d5d4b1876f640b50b36c24d4c6f73) feat(http): move away from grpc gateway (#629)
