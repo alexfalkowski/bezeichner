@@ -16,7 +16,7 @@ require (
 	go.jetify.com/typeid v1.2.0
 	go.opentelemetry.io/otel/metric v1.27.0
 	go.opentelemetry.io/otel/trace v1.27.0
-	go.uber.org/fx v1.22.0
+	go.uber.org/fx v1.22.1
 	go.uber.org/zap v1.27.0
 	google.golang.org/grpc v1.64.0
 	google.golang.org/protobuf v1.34.2
