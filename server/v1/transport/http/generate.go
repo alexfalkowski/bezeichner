@@ -22,14 +22,15 @@ type (
 		IDs   []string          `json:"ids,omitempty"`
 	}
 
-	generateErrorer struct{}
+	generateHandler struct {
+		service *service.Service
+	}
 )
 
-// GenerateIdentifiers for HTTP.
-func (s *Server) GenerateIdentifiers(ctx context.Context, req *GenerateIdentifiersRequest) (*GenerateIdentifiersResponse, error) {
+func (h *generateHandler) Handle(ctx context.Context, req *GenerateIdentifiersRequest) (*GenerateIdentifiersResponse, error) {
 	resp := &GenerateIdentifiersResponse{}
 
-	ids, err := s.service.GenerateIdentifiers(ctx, req.Application, req.Count)
+	ids, err := h.service.GenerateIdentifiers(ctx, req.Application, req.Count)
 	if err != nil {
 		return resp, err
 	}
@@ -40,11 +41,11 @@ func (s *Server) GenerateIdentifiers(ctx context.Context, req *GenerateIdentifie
 	return resp, nil
 }
 
-func (*generateErrorer) Error(ctx context.Context, err error) *GenerateIdentifiersResponse {
+func (h *generateHandler) Error(ctx context.Context, err error) *GenerateIdentifiersResponse {
 	return &GenerateIdentifiersResponse{Meta: meta.CamelStrings(ctx, ""), Error: &Error{Message: err.Error()}}
 }
 
-func (*generateErrorer) Status(err error) int {
+func (h *generateHandler) Status(err error) int {
 	if service.IsNotFoundError(err) {
 		return http.StatusNotFound
 	}
