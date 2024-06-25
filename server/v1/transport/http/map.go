@@ -21,14 +21,15 @@ type (
 		IDs   []string          `json:"ids,omitempty"`
 	}
 
-	mapErrorer struct{}
+	mapHandler struct {
+		service *service.Service
+	}
 )
 
-// MapIdentifiers for HTTP.
-func (s *Server) MapIdentifiers(ctx context.Context, req *MapIdentifiersRequest) (*MapIdentifiersResponse, error) {
+func (h *mapHandler) Handle(ctx context.Context, req *MapIdentifiersRequest) (*MapIdentifiersResponse, error) {
 	resp := &MapIdentifiersResponse{}
 
-	ids, err := s.service.MapIdentifiers(req.IDs)
+	ids, err := h.service.MapIdentifiers(req.IDs)
 	if err != nil {
 		return resp, err
 	}
@@ -39,11 +40,11 @@ func (s *Server) MapIdentifiers(ctx context.Context, req *MapIdentifiersRequest)
 	return resp, nil
 }
 
-func (*mapErrorer) Error(ctx context.Context, err error) *MapIdentifiersResponse {
+func (h *mapHandler) Error(ctx context.Context, err error) *MapIdentifiersResponse {
 	return &MapIdentifiersResponse{Meta: meta.CamelStrings(ctx, ""), Error: &Error{Message: err.Error()}}
 }
 
-func (*mapErrorer) Status(err error) int {
+func (h *mapHandler) Status(err error) int {
 	if service.IsNotFoundError(err) {
 		return http.StatusNotFound
 	}
