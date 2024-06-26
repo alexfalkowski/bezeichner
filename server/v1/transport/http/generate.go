@@ -46,7 +46,7 @@ func (h *generateHandler) Error(ctx context.Context, err error) *GenerateIdentif
 }
 
 func (h *generateHandler) Status(err error) int {
-	if service.IsNotFoundError(err) {
+	if service.IsNotFound(err) {
 		return http.StatusNotFound
 	}
 
