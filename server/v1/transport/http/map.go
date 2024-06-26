@@ -45,7 +45,7 @@ func (h *mapHandler) Error(ctx context.Context, err error) *MapIdentifiersRespon
 }
 
 func (h *mapHandler) Status(err error) int {
-	if service.IsNotFoundError(err) {
+	if service.IsNotFound(err) {
 		return http.StatusNotFound
 	}
 
