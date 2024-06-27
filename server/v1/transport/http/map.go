@@ -1,11 +1,11 @@
 package http
 
 import (
-	"context"
 	"net/http"
 
 	"github.com/alexfalkowski/bezeichner/server/service"
 	"github.com/alexfalkowski/go-service/meta"
+	nh "github.com/alexfalkowski/go-service/net/http"
 )
 
 type (
@@ -26,7 +26,7 @@ type (
 	}
 )
 
-func (h *mapHandler) Handle(ctx context.Context, req *MapIdentifiersRequest) (*MapIdentifiersResponse, error) {
+func (h *mapHandler) Handle(ctx nh.Context, req *MapIdentifiersRequest) (*MapIdentifiersResponse, error) {
 	resp := &MapIdentifiersResponse{}
 
 	ids, err := h.service.MapIdentifiers(req.IDs)
@@ -40,7 +40,7 @@ func (h *mapHandler) Handle(ctx context.Context, req *MapIdentifiersRequest) (*M
 	return resp, nil
 }
 
-func (h *mapHandler) Error(ctx context.Context, err error) *MapIdentifiersResponse {
+func (h *mapHandler) Error(ctx nh.Context, err error) *MapIdentifiersResponse {
 	return &MapIdentifiersResponse{Meta: meta.CamelStrings(ctx, ""), Error: &Error{Message: err.Error()}}
 }
 

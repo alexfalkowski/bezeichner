@@ -1,11 +1,11 @@
 package http
 
 import (
-	"context"
 	"net/http"
 
 	"github.com/alexfalkowski/bezeichner/server/service"
 	"github.com/alexfalkowski/go-service/meta"
+	nh "github.com/alexfalkowski/go-service/net/http"
 )
 
 type (
@@ -27,7 +27,7 @@ type (
 	}
 )
 
-func (h *generateHandler) Handle(ctx context.Context, req *GenerateIdentifiersRequest) (*GenerateIdentifiersResponse, error) {
+func (h *generateHandler) Handle(ctx nh.Context, req *GenerateIdentifiersRequest) (*GenerateIdentifiersResponse, error) {
 	resp := &GenerateIdentifiersResponse{}
 
 	ids, err := h.service.GenerateIdentifiers(ctx, req.Application, req.Count)
@@ -41,7 +41,7 @@ func (h *generateHandler) Handle(ctx context.Context, req *GenerateIdentifiersRe
 	return resp, nil
 }
 
-func (h *generateHandler) Error(ctx context.Context, err error) *GenerateIdentifiersResponse {
+func (h *generateHandler) Error(ctx nh.Context, err error) *GenerateIdentifiersResponse {
 	return &GenerateIdentifiersResponse{Meta: meta.CamelStrings(ctx, ""), Error: &Error{Message: err.Error()}}
 }
 
