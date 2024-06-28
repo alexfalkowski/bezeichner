@@ -1,4 +1,5 @@
 [![CircleCI](https://circleci.com/gh/alexfalkowski/bezeichner.svg?style=svg)](https://circleci.com/gh/alexfalkowski/bezeichner)
+[![codecov](https://codecov.io/gh/alexfalkowski/bezeichner/graph/badge.svg?token=TDRSV3MGSM)](https://codecov.io/gh/alexfalkowski/bezeichner)
 
 # Bezeichner
 
