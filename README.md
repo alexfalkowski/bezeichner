@@ -1,5 +1,8 @@
-[![CircleCI](https://circleci.com/gh/alexfalkowski/bezeichner.svg?style=svg)](https://circleci.com/gh/alexfalkowski/bezeichner)
+[![CircleCI](https://circleci.com/gh/alexfalkowski/bezeichner.svg?style=shield)](https://circleci.com/gh/alexfalkowski/bezeichner)
 [![codecov](https://codecov.io/gh/alexfalkowski/bezeichner/graph/badge.svg?token=TDRSV3MGSM)](https://codecov.io/gh/alexfalkowski/bezeichner)
+[![Go Report Card](https://goreportcard.com/badge/github.com/alexfalkowski/bezeichner)](https://goreportcard.com/report/github.com/alexfalkowski/bezeichner)
+[![Go Reference](https://pkg.go.dev/badge/github.com/alexfalkowski/bezeichner.svg)](https://pkg.go.dev/github.com/alexfalkowski/bezeichner)
+[![Stability: Active](https://masterminds.github.io/stability/active.svg)](https://masterminds.github.io/stability/active.html)
 
 # Bezeichner
 
@@ -84,7 +87,7 @@ Each generator has the following properties:
 
 #### Postgres
 
-The postgres kind expects a sequence named after the application. The service does not create one. So you would need to use a [migration](https://github.com/alexfalkowski/migrieren) service.
+The postgres kind expects a sequence named after the application. The service does not create one. So you would need to use a [migration](https://github.com/alexfalkowski/bezeichner) service.
 
 #### Redis
 
