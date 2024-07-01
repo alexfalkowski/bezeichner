@@ -16,9 +16,8 @@ type (
 
 	// MapIdentifiersResponse for some identifiers.
 	MapIdentifiersResponse struct {
-		Meta  map[string]string `json:"meta,omitempty"`
-		Error *Error            `json:"error,omitempty"`
-		IDs   []string          `json:"ids,omitempty"`
+		Meta map[string]string `json:"meta,omitempty"`
+		IDs  []string          `json:"ids,omitempty"`
 	}
 
 	mapHandler struct {
@@ -38,10 +37,6 @@ func (h *mapHandler) Handle(ctx nh.Context, req *MapIdentifiersRequest) (*MapIde
 	resp.Meta = meta.CamelStrings(ctx, "")
 
 	return resp, nil
-}
-
-func (h *mapHandler) Error(ctx nh.Context, err error) *MapIdentifiersResponse {
-	return &MapIdentifiersResponse{Meta: meta.CamelStrings(ctx, ""), Error: &Error{Message: err.Error()}}
 }
 
 func (h *mapHandler) Status(err error) int {
