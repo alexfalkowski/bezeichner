@@ -17,9 +17,8 @@ type (
 
 	// GenerateIdentifiersResponse for a specific application.
 	GenerateIdentifiersResponse struct {
-		Meta  map[string]string `json:"meta,omitempty"`
-		Error *Error            `json:"error,omitempty"`
-		IDs   []string          `json:"ids,omitempty"`
+		Meta map[string]string `json:"meta,omitempty"`
+		IDs  []string          `json:"ids,omitempty"`
 	}
 
 	generateHandler struct {
@@ -39,10 +38,6 @@ func (h *generateHandler) Handle(ctx nh.Context, req *GenerateIdentifiersRequest
 	resp.Meta = meta.CamelStrings(ctx, "")
 
 	return resp, nil
-}
-
-func (h *generateHandler) Error(ctx nh.Context, err error) *GenerateIdentifiersResponse {
-	return &GenerateIdentifiersResponse{Meta: meta.CamelStrings(ctx, ""), Error: &Error{Message: err.Error()}}
 }
 
 func (h *generateHandler) Status(err error) int {
