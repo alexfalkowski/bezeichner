@@ -13,6 +13,8 @@ func (s *Server) GenerateIdentifiers(ctx context.Context, req *v1.GenerateIdenti
 
 	ids, err := s.service.GenerateIdentifiers(ctx, req.GetApplication(), req.GetCount())
 	if err != nil {
+		resp.Meta = meta.CamelStrings(ctx, "")
+
 		return resp, s.error(err)
 	}
 
