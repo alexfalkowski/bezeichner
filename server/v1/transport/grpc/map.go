@@ -13,6 +13,8 @@ func (s *Server) MapIdentifiers(ctx context.Context, req *v1.MapIdentifiersReque
 
 	ids, err := s.service.MapIdentifiers(req.GetIds())
 	if err != nil {
+		resp.Meta = meta.CamelStrings(ctx, "")
+
 		return resp, s.error(err)
 	}
 
