@@ -1,4 +1,4 @@
-package service
+package ids
 
 import (
 	"context"
@@ -17,20 +17,20 @@ func IsNotFound(err error) bool {
 	return errors.Is(err, ErrNotFound)
 }
 
-// NewService for the different transports.
-func NewService(gc *generator.Config, mc *mapper.Config, gs generator.Generators) *Service {
-	return &Service{generatorConfig: gc, mapperConfig: mc, generators: gs}
+// NewIdentifier for the different transports.
+func NewIdentifier(gc *generator.Config, mc *mapper.Config, gs generator.Generators) *Identifier {
+	return &Identifier{generatorConfig: gc, mapperConfig: mc, generators: gs}
 }
 
-// Service for the different transports.
-type Service struct {
+// Identifier for the different transports.
+type Identifier struct {
 	generatorConfig *generator.Config
 	mapperConfig    *mapper.Config
 	generators      generator.Generators
 }
 
-// GenerateIdentifiers for service.
-func (s *Service) GenerateIdentifiers(ctx context.Context, application string, count uint64) ([]string, error) {
+// Generate identifiers.
+func (s *Identifier) Generate(ctx context.Context, application string, count uint64) ([]string, error) {
 	if count == 0 {
 		count = 1
 	}
@@ -58,8 +58,8 @@ func (s *Service) GenerateIdentifiers(ctx context.Context, application string, c
 	return ids, nil
 }
 
-// MapIdentifiers for service.
-func (s *Service) MapIdentifiers(ids []string) ([]string, error) {
+// Map identifiers.
+func (s *Identifier) Map(ids []string) ([]string, error) {
 	mids := make([]string, len(ids))
 
 	for i, id := range ids {

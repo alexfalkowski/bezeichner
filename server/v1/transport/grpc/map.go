@@ -11,7 +11,7 @@ import (
 func (s *Server) MapIdentifiers(ctx context.Context, req *v1.MapIdentifiersRequest) (*v1.MapIdentifiersResponse, error) {
 	resp := &v1.MapIdentifiersResponse{}
 
-	ids, err := s.service.MapIdentifiers(req.GetIds())
+	ids, err := s.service.Map(req.GetIds())
 	if err != nil {
 		resp.Meta = meta.CamelStrings(ctx, "")
 

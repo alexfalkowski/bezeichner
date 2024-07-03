@@ -1,7 +1,7 @@
 package http
 
 import (
-	"github.com/alexfalkowski/bezeichner/server/service"
+	"github.com/alexfalkowski/bezeichner/server/ids"
 	"github.com/alexfalkowski/go-service/meta"
 	nh "github.com/alexfalkowski/go-service/net/http"
 )
@@ -19,14 +19,14 @@ type (
 	}
 
 	mapHandler struct {
-		service *service.Service
+		service *ids.Identifier
 	}
 )
 
 func (h *mapHandler) Handle(ctx nh.Context, req *MapIdentifiersRequest) (*MapIdentifiersResponse, error) {
 	resp := &MapIdentifiersResponse{}
 
-	ids, err := h.service.MapIdentifiers(req.IDs)
+	ids, err := h.service.Map(req.IDs)
 	if err != nil {
 		resp.Meta = meta.CamelStrings(ctx, "")
 
