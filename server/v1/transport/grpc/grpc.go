@@ -2,7 +2,7 @@ package grpc
 
 import (
 	v1 "github.com/alexfalkowski/bezeichner/api/bezeichner/v1"
-	"github.com/alexfalkowski/bezeichner/server/service"
+	"github.com/alexfalkowski/bezeichner/server/ids"
 	"github.com/alexfalkowski/go-service/transport/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
@@ -14,18 +14,18 @@ func Register(gs *grpc.Server, server v1.ServiceServer) {
 }
 
 // NewServer for gRPC.
-func NewServer(service *service.Service) v1.ServiceServer {
+func NewServer(service *ids.Identifier) v1.ServiceServer {
 	return &Server{service: service}
 }
 
 // Server for gRPC.
 type Server struct {
 	v1.UnimplementedServiceServer
-	service *service.Service
+	service *ids.Identifier
 }
 
 func (s *Server) error(err error) error {
-	if service.IsNotFound(err) {
+	if ids.IsNotFound(err) {
 		return status.Error(codes.NotFound, err.Error())
 	}
 
