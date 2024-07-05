@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	"github.com/alexfalkowski/bezeichner/server/ids"
+	nh "github.com/alexfalkowski/go-service/net/http"
 	"github.com/alexfalkowski/go-service/net/http/rpc"
 )
 
@@ -15,7 +16,7 @@ func Register(service *ids.Identifier) {
 
 func handleError(err error) error {
 	if ids.IsNotFound(err) {
-		return rpc.Error(http.StatusNotFound, err.Error())
+		return nh.Error(http.StatusNotFound, err.Error())
 	}
 
 	return err

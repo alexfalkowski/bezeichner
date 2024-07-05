@@ -3,7 +3,7 @@ package http
 import (
 	"github.com/alexfalkowski/bezeichner/server/ids"
 	"github.com/alexfalkowski/go-service/meta"
-	"github.com/alexfalkowski/go-service/net/http/rpc"
+	"github.com/alexfalkowski/go-service/net/http"
 )
 
 type (
@@ -24,7 +24,7 @@ type (
 	}
 )
 
-func (h *generateHandler) Handle(ctx rpc.Context, req *GenerateIdentifiersRequest) (*GenerateIdentifiersResponse, error) {
+func (h *generateHandler) Handle(ctx http.Context, req *GenerateIdentifiersRequest) (*GenerateIdentifiersResponse, error) {
 	resp := &GenerateIdentifiersResponse{}
 
 	ids, err := h.service.Generate(ctx, req.Application, req.Count)
