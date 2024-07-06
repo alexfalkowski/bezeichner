@@ -10,9 +10,9 @@ import (
 	"github.com/alexfalkowski/bezeichner/cmd"
 	"github.com/alexfalkowski/bezeichner/config"
 	sc "github.com/alexfalkowski/go-service/cmd"
-	"github.com/alexfalkowski/go-service/compressor"
+	"github.com/alexfalkowski/go-service/compress"
 	"github.com/alexfalkowski/go-service/debug"
-	"github.com/alexfalkowski/go-service/marshaller"
+	"github.com/alexfalkowski/go-service/encoding"
 	"github.com/alexfalkowski/go-service/telemetry"
 	"github.com/alexfalkowski/go-service/telemetry/metrics"
 	"github.com/alexfalkowski/go-service/transport"
@@ -25,7 +25,7 @@ import (
 var options = []fx.Option{
 	fx.NopLogger, cmd.Module, debug.Module,
 	config.Module, transport.Module,
-	compressor.Module, marshaller.Module,
+	compress.Module, encoding.Module,
 	telemetry.Module, metrics.Module,
 	client.Module, fx.Invoke(register),
 	fx.Decorate(decorate),
@@ -130,7 +130,7 @@ func (*invalidClient) MapIdentifiers(_ context.Context, _ *v1.MapIdentifiersRequ
 func decorate() *sc.InputConfig {
 	*sc.InputFlag = "file:../test/.config/server.yml"
 
-	return sc.NewInputConfig(marshaller.NewMap())
+	return sc.NewInputConfig(encoding.NewMap())
 }
 
 func register(_ *client.Client) {}
