@@ -1,9 +1,10 @@
 package http
 
 import (
+	"context"
+
 	"github.com/alexfalkowski/bezeichner/server/ids"
 	"github.com/alexfalkowski/go-service/meta"
-	"github.com/alexfalkowski/go-service/net/http/rpc"
 )
 
 type (
@@ -23,7 +24,7 @@ type (
 	}
 )
 
-func (h *mapHandler) Handle(ctx rpc.Context, req *MapIdentifiersRequest) (*MapIdentifiersResponse, error) {
+func (h *mapHandler) Handle(ctx context.Context, req *MapIdentifiersRequest) (*MapIdentifiersResponse, error) {
 	resp := &MapIdentifiersResponse{}
 
 	ids, err := h.service.Map(req.IDs)
