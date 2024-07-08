@@ -24,7 +24,7 @@ type (
 	}
 )
 
-func (h *mapHandler) Handle(ctx context.Context, req *MapIdentifiersRequest) (*MapIdentifiersResponse, error) {
+func (h *mapHandler) Map(ctx context.Context, req *MapIdentifiersRequest) (*MapIdentifiersResponse, error) {
 	resp := &MapIdentifiersResponse{}
 
 	ids, err := h.service.Map(req.IDs)
