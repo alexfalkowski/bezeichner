@@ -25,7 +25,7 @@ type (
 	}
 )
 
-func (h *generateHandler) Handle(ctx context.Context, req *GenerateIdentifiersRequest) (*GenerateIdentifiersResponse, error) {
+func (h *generateHandler) Generate(ctx context.Context, req *GenerateIdentifiersRequest) (*GenerateIdentifiersResponse, error) {
 	resp := &GenerateIdentifiersResponse{}
 
 	ids, err := h.service.Generate(ctx, req.Application, req.Count)
