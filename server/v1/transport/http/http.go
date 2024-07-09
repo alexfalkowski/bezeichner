@@ -5,6 +5,7 @@ import (
 
 	"github.com/alexfalkowski/bezeichner/server/ids"
 	"github.com/alexfalkowski/go-service/net/http/rpc"
+	"github.com/alexfalkowski/go-service/net/http/status"
 )
 
 // Register for HTTP.
@@ -18,7 +19,7 @@ func Register(service *ids.Identifier) {
 
 func handleError(err error) error {
 	if ids.IsNotFound(err) {
-		return rpc.Error(http.StatusNotFound, err.Error())
+		return status.Error(http.StatusNotFound, err.Error())
 	}
 
 	return err
