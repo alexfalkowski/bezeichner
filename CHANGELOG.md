@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.143.0](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.143.0) - 2024-07-24
+
+- [`44a7beb`](https://github.com/alexfalkowski/bezeichner/commit/44a7beb0f14093aee8d46bf55e871131c2b02050) feat(deps): bump github.com/alexfalkowski/go-service from 1.248.1 to 1.251.0 (#685)
+- [`eb51cac`](https://github.com/alexfalkowski/bezeichner/commit/eb51cac0967edc14fdddb870805052be8108f6dd) test(deps): bump nonnative from 1.80.0 to 1.81.0 in /test (#684)
+- [`03fe40c`](https://github.com/alexfalkowski/bezeichner/commit/03fe40ce7e57b37baf5050d61790a7849faab98f) test(deps): bump rexml from 3.3.1 to 3.3.2 in /test (#686)
+- [`040d9eb`](https://github.com/alexfalkowski/bezeichner/commit/040d9eb0b37bbf4b79d4d0c9aef6e9489729cf4e) test(deps): bump ruby-lsp from 0.17.8 to 0.17.9 in /test (#683)
+- [`f230752`](https://github.com/alexfalkowski/bezeichner/commit/f230752cfb9d2ee9d6290906033083b377320531) test(deps): bump ruby-lsp from 0.17.7 to 0.17.8 in /test (#682)
+
 ## [v1.142.0](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.142.0) - 2024-07-16
 
 - [`01d0b30`](https://github.com/alexfalkowski/bezeichner/commit/01d0b30f79d537fd0c18b834a135d637bb50891a) feat(deps): bump github.com/alexfalkowski/go-service from 1.248.0 to 1.248.1 (#681)
