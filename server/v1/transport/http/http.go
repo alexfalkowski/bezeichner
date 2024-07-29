@@ -11,10 +11,10 @@ import (
 // Register for HTTP.
 func Register(service *ids.Identifier) {
 	gh := &generateHandler{service: service}
-	rpc.Unary("/v1/generate", gh.Generate)
+	rpc.Route("/v1/generate", gh.Generate)
 
 	mh := &mapHandler{service: service}
-	rpc.Unary("/v1/map", mh.Map)
+	rpc.Route("/v1/map", mh.Map)
 }
 
 func handleError(err error) error {
