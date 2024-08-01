@@ -13,7 +13,7 @@ require (
 	github.com/segmentio/ksuid v1.0.4
 	github.com/smartystreets/goconvey v1.8.1
 	github.com/sony/sonyflake v1.2.0
-	go.jetify.com/typeid v1.2.0
+	go.jetify.com/typeid v1.3.0
 	go.opentelemetry.io/otel/metric v1.28.0
 	go.opentelemetry.io/otel/trace v1.28.0
 	go.uber.org/fx v1.22.1
