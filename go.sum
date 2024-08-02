@@ -377,8 +377,8 @@ go.flipt.io/flipt/rpc/flipt v1.30.0 h1:UWEM/mlN0rfpZymYYe6zeI0w7MTG9LQdXWKNIeJtg
 go.flipt.io/flipt/rpc/flipt v1.30.0/go.mod h1:QhlPBygpAfbTiP4ObarhJj+xgwWi+MVzoSkINy/8o9I=
 go.flipt.io/flipt/sdk/go v0.7.0 h1:eIj92tr7es/zlI5qByApvetiPEdzGx/lc71IA69wUM8=
 go.flipt.io/flipt/sdk/go v0.7.0/go.mod h1:fNdGLgm9IFSRY/og+S/9V08Wnhq//6E0AKZ2Upj1JSQ=
-go.jetify.com/typeid v1.2.0 h1:Nd1MZZoWe9q4kkh82xZHQbqCzxJX/ZxgK8RjQWxygwk=
-go.jetify.com/typeid v1.2.0/go.mod h1:CtVGyt2+TSp4Rq5+ARLvGsJqdNypKBAC6INQ9TLPlmk=
+go.jetify.com/typeid v1.3.0 h1:fuWV7oxO4mSsgpxwhaVpFXgt0IfjogR29p+XAjDCVKY=
+go.jetify.com/typeid v1.3.0/go.mod h1:CtVGyt2+TSp4Rq5+ARLvGsJqdNypKBAC6INQ9TLPlmk=
 go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc v0.49.0 h1:4Pp6oUg3+e/6M4C0A/3kJ2VYa++dsWVTtGgLVj5xtHg=
 go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc v0.49.0/go.mod h1:Mjt1i1INqiaoZOMGR1RIUJN+i3ChKoFRqzrRQhlkbs0=
 go.opentelemetry.io/contrib/instrumentation/host v0.53.0 h1:X4r+5n6bSqaQUbPlSO5baoM7tBvipkT0mJFyuPFnPAU=
