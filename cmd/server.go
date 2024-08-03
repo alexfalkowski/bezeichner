@@ -20,7 +20,7 @@ import (
 
 // ServerOptions for cmd.
 var ServerOptions = []fx.Option{
-	runtime.Module, debug.Module, feature.NoopModule,
+	runtime.Module, debug.Module, feature.Module,
 	compress.Module, encoding.Module,
 	transport.Module, health.Module,
 	telemetry.Module, metrics.Module,
