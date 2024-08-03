@@ -1,8 +1,6 @@
 package config
 
 import (
-	"github.com/alexfalkowski/bezeichner/client"
-	v1c "github.com/alexfalkowski/bezeichner/client/v1/config"
 	"github.com/alexfalkowski/bezeichner/generator"
 	"github.com/alexfalkowski/bezeichner/health"
 	"github.com/alexfalkowski/bezeichner/mapper"
@@ -24,7 +22,6 @@ func IsEnabled(cfg *Config) bool {
 
 // Config for the service.
 type Config struct {
-	Client         *client.Config    `yaml:"client,omitempty" json:"client,omitempty" toml:"client,omitempty"`
 	Health         *health.Config    `yaml:"health,omitempty" json:"health,omitempty" toml:"health,omitempty"`
 	Generator      *generator.Config `yaml:"generator,omitempty" json:"generator,omitempty" toml:"generator,omitempty"`
 	Mapper         *mapper.Config    `yaml:"mapper,omitempty" json:"mapper,omitempty" toml:"mapper,omitempty"`
@@ -61,12 +58,4 @@ func mapperConfig(cfg *Config) *mapper.Config {
 	}
 
 	return cfg.Mapper
-}
-
-func v1ClientConfig(cfg *Config) *v1c.Config {
-	if !IsEnabled(cfg) || !client.IsEnabled(cfg.Client) {
-		return nil
-	}
-
-	return cfg.Client.V1
 }
