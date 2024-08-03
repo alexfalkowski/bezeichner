@@ -7,7 +7,7 @@ cache:
     url: secrets/redis
 client:
   v1:
-    host: localhost:12000
+    address: localhost:12000
     user_agent: "Bezeichner-client/1.0 gRPC/1.0"
     retry:
       attempts: 3
@@ -90,10 +90,10 @@ telemetry:
     kind: prometheus
   tracer:
     kind: otlp
-    host: http://localhost:4318/v1/traces
+    url: http://localhost:4318/v1/traces
 transport:
   http:
-    port: 11000
+    address: :11000
     user_agent: "Bezeichner-server/1.0 HTTP/1.0"
     retry:
       attempts: 3
@@ -101,7 +101,7 @@ transport:
       timeout: 10s
     timeout: 5s
   grpc:
-    port: 12000
+    address: :12000
     user_agent: "Bezeichner-server/1.0 gRPC/1.0"
     retry:
       attempts: 3
