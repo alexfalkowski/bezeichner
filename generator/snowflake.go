@@ -24,5 +24,5 @@ func (s *Snowflake) Generate(_ context.Context, app *Application) (string, error
 		return "", err
 	}
 
-	return app.ID(strconv.FormatInt(int64(id), 10)), nil
+	return app.ID(strconv.FormatInt(int64(id), 10)), nil //nolint:gosec
 }
