@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.183.0](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.183.0) - 2024-09-10
+
+- [`73c2e23`](https://github.com/alexfalkowski/bezeichner/commit/73c2e236f847554f53996f30e3b1dabfb46d2eb2) feat(deps): bump github.com/alexfalkowski/go-service from 1.289.0 to 1.290.0 (#761)
+- [`684ab58`](https://github.com/alexfalkowski/bezeichner/commit/684ab587ef77270d6cdd78366059f4b29807be1c) test(deps): bump pg from 1.5.7 to 1.5.8 in /test (#759)
+- [`4d5d817`](https://github.com/alexfalkowski/bezeichner/commit/4d5d8176c2ed1090c6236619180cb1fea86740e4) test(deps): bump rspec-expectations from 3.13.2 to 3.13.3 in /test (#762)
+
 ## [v1.182.0](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.182.0) - 2024-09-06
 
 - [`0e53f08`](https://github.com/alexfalkowski/bezeichner/commit/0e53f08eea68a8b7b24ded8a678210416e773a15) feat(deps): upgraded github.com/alexfalkowski/go-service to v1.289.0 (#758)
