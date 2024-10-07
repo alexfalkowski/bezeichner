@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.193.0](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.193.0) - 2024-10-07
+
+- [`7b80b43`](https://github.com/alexfalkowski/bezeichner/commit/7b80b43d989a82587f756f1ff52c4d893257a23c) feat(deps): upgraded github.com/alexfalkowski/go-service to v1.302.0 (#788)
+- [`d3795cd`](https://github.com/alexfalkowski/bezeichner/commit/d3795cd6427feaf7b9977f8716bae45a378a37bf) test(deps): bump ruby-lsp from 0.19.0 to 0.19.1 in /test (#787)
+- [`bb74882`](https://github.com/alexfalkowski/bezeichner/commit/bb74882fdcbc6c837592db23550a808b2fef62a9) test(deps): bump ruby-lsp from 0.18.4 to 0.19.0 in /test (#786)
+- [`0f6376e`](https://github.com/alexfalkowski/bezeichner/commit/0f6376e6ba6d24b2fdd0fde710f8319da3a8df05) build(ci): buf lint (#785)
+
 ## [v1.192.0](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.192.0) - 2024-10-02
 
 - [`9201bdd`](https://github.com/alexfalkowski/bezeichner/commit/9201bddd341fbb437716076eb60588d266f7d348) feat(deps): bump golang from 1.23.1-bullseye to 1.23.2-bullseye (#784)
