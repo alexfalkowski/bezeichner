@@ -6,7 +6,7 @@ toolchain go1.23.0
 
 require (
 	github.com/alexfalkowski/go-health v1.19.0
-	github.com/alexfalkowski/go-service v1.307.2
+	github.com/alexfalkowski/go-service v1.308.0
 	github.com/google/uuid v1.6.0
 	github.com/jaevor/go-nanoid v1.4.0
 	github.com/linxGnu/mssqlx v1.1.8
@@ -16,7 +16,7 @@ require (
 	github.com/sony/sonyflake v1.2.0
 	go.jetify.com/typeid v1.3.0
 	go.uber.org/fx v1.23.0
-	google.golang.org/grpc v1.67.1
+	google.golang.org/grpc v1.68.0
 	google.golang.org/protobuf v1.35.1
 )
 
