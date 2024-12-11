@@ -7,7 +7,7 @@ Given('the system is having issues for the application:') do |table|
   service.proxy.close_all
 end
 
-Then('the system should return to a healthy state for the following appliation:') do |table|
+Then('the system should return to a healthy state for the following application:') do |table|
   rows = table.rows_hash
   service = Nonnative.pool.service_by_name(rows['application'])
 
