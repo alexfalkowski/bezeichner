@@ -49,7 +49,7 @@ Feature: Server
       | application | <application> |
       | count       | <count>       |
     Then I should receive an internal error from gRPC
-    And the system should return to a healthy state for the following appliation:
+    And the system should return to a healthy state for the following application:
       | application | <application> |
 
     Examples:
