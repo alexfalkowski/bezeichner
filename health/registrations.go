@@ -1,7 +1,6 @@
 package health
 
 import (
-	h "github.com/alexfalkowski/bezeichner/health"
 	"github.com/alexfalkowski/go-health/checker"
 	"github.com/alexfalkowski/go-health/server"
 	"github.com/alexfalkowski/go-service/health"
@@ -13,7 +12,7 @@ import (
 type Params struct {
 	fx.In
 
-	Health *h.Config
+	Health *Config
 }
 
 // NewRegistrations for health.

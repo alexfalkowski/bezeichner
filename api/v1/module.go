@@ -1,9 +1,9 @@
 package v1
 
 import (
-	"github.com/alexfalkowski/bezeichner/server/ids"
-	"github.com/alexfalkowski/bezeichner/server/v1/transport/grpc"
-	"github.com/alexfalkowski/bezeichner/server/v1/transport/http"
+	"github.com/alexfalkowski/bezeichner/api/ids"
+	"github.com/alexfalkowski/bezeichner/api/v1/transport/grpc"
+	"github.com/alexfalkowski/bezeichner/api/v1/transport/http"
 	"go.uber.org/fx"
 )
 

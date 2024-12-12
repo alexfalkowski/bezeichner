@@ -1,10 +1,10 @@
 package cmd
 
 import (
+	v1 "github.com/alexfalkowski/bezeichner/api/v1"
 	"github.com/alexfalkowski/bezeichner/config"
 	"github.com/alexfalkowski/bezeichner/generator"
-	"github.com/alexfalkowski/bezeichner/server/health"
-	v1 "github.com/alexfalkowski/bezeichner/server/v1"
+	"github.com/alexfalkowski/bezeichner/health"
 	"github.com/alexfalkowski/go-service/cache"
 	"github.com/alexfalkowski/go-service/compress"
 	"github.com/alexfalkowski/go-service/database/sql"

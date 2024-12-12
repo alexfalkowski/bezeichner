@@ -3,7 +3,7 @@ package http
 import (
 	"net/http"
 
-	"github.com/alexfalkowski/bezeichner/server/ids"
+	"github.com/alexfalkowski/bezeichner/api/ids"
 	"github.com/alexfalkowski/go-service/net/http/rpc"
 	"github.com/alexfalkowski/go-service/net/http/status"
 )
