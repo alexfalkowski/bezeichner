@@ -3,7 +3,7 @@ package http
 import (
 	"context"
 
-	"github.com/alexfalkowski/bezeichner/server/ids"
+	"github.com/alexfalkowski/bezeichner/api/ids"
 	"github.com/alexfalkowski/go-service/meta"
 )
 
