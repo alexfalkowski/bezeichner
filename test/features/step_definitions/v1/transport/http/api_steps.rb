@@ -10,7 +10,7 @@ When('I request to generate identifiers with HTTP:') do |table|
     read_timeout: 10, open_timeout: 10
   }
 
-  @response = Bezeichner::V1.server_http.generate(rows['application'], rows['count'].to_i, opts)
+  @response = Bezeichner::V1.http.generate(rows['application'], rows['count'].to_i, opts)
 end
 
 When('I request to map identifiers with HTTP:') do |table|
@@ -23,7 +23,7 @@ When('I request to map identifiers with HTTP:') do |table|
     read_timeout: 10, open_timeout: 10
   }
 
-  @response = Bezeichner::V1.server_http.map(rows['request'].split(','), opts)
+  @response = Bezeichner::V1.http.map(rows['request'].split(','), opts)
 end
 
 Then('I should receive generated identifiers from HTTP:') do |table|
