@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.231.1](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.231.1) - 2024-12-17
+
+- [`17943ad`](https://github.com/alexfalkowski/bezeichner/commit/17943ad32d1a21b8e3193a2fd102cf861a1ec547) fix(health): forgot to observe redis and db (#860)
+
 ## [v1.231.0](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.231.0) - 2024-12-17
 
 - [`644a29f`](https://github.com/alexfalkowski/bezeichner/commit/644a29f91233a7e790b54bbe9a8523bd502bd8fe) feat(health): register pg and redis for health (#859)
