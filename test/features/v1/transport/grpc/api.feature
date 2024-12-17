@@ -43,6 +43,7 @@ Feature: gRPC API
 
   Scenario Outline: Generate identifiers for erroneous applications
     Given the system is having issues for the application "<application>"
+    And I should see "<application>" as unhealthy
     When I request to generate identifiers with gRPC:
       | application | <application> |
       | count       | <count>       |

@@ -27,7 +27,7 @@ func NewRegistrations(params Params) health.Registrations {
 	registrations := health.Registrations{
 		server.NewRegistration("noop", d, checker.NewNoopChecker()),
 		server.NewRegistration("redis", d, hc.NewRedisChecker(params.Redis, t)),
-		server.NewRegistration("db", d, hc.NewDBChecker(params.DB, t)),
+		server.NewRegistration("pg", d, hc.NewDBChecker(params.DB, t)),
 	}
 
 	return registrations
