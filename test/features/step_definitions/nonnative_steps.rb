@@ -1,15 +1,13 @@
 # frozen_string_literal: true
 
-Given('the system is having issues for the application:') do |table|
-  rows = table.rows_hash
-  service = Nonnative.pool.service_by_name(rows['application'])
+Given('the system is having issues for the application {string}') do |application|
+  service = Nonnative.pool.service_by_name(application)
 
   service.proxy.close_all
 end
 
-Then('the system should return to a healthy state for the following application:') do |table|
-  rows = table.rows_hash
-  service = Nonnative.pool.service_by_name(rows['application'])
+Then('the system should return to a healthy state for the following application {string}') do |application|
+  service = Nonnative.pool.service_by_name(application)
 
   service.proxy.reset
 end

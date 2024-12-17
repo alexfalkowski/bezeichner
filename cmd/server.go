@@ -22,8 +22,7 @@ import (
 var ServerOptions = []fx.Option{
 	sync.Module, compress.Module, encoding.Module,
 	runtime.Module, debug.Module, feature.Module,
-	transport.Module, health.Module,
-	telemetry.Module, cache.Module, sql.Module,
-	generator.Module, v1.Module,
-	config.Module, Module,
+	transport.Module, telemetry.Module,
+	cache.Module, sql.Module, health.Module,
+	generator.Module, v1.Module, config.Module, Module,
 }
