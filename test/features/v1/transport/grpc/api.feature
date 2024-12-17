@@ -42,13 +42,13 @@ Feature: gRPC API
       | invalid_kind |     1 |
 
   Scenario Outline: Generate identifiers for erroneous applications
-    Given the system is having issues for the application "<application>"
+    Given I set the proxy for service "<application>" to "close_all"
     And I should see "<application>" as unhealthy
     When I request to generate identifiers with gRPC:
       | application | <application> |
       | count       | <count>       |
     Then I should receive an internal error from gRPC
-    And the system should return to a healthy state for the following application "<application>"
+    And I should reset the proxy for service "<application>"
     And I should see "<application>" as healthy
 
     Examples:

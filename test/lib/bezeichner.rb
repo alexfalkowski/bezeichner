@@ -13,12 +13,8 @@ require 'bezeichner/generator/pg'
 
 module Bezeichner
   class << self
-    def observability
-      @observability ||= Nonnative::Observability.new('http://localhost:11000')
-    end
-
-    def server_config
-      @server_config ||= Nonnative.configurations('.config/server.yml')
+    def config
+      @config ||= Nonnative.configurations('.config/server.yml')
     end
 
     def health_grpc
@@ -36,12 +32,12 @@ module Bezeichner
 
   module V1
     class << self
-      def server_http
-        @server_http ||= Bezeichner::V1::HTTP.new('http://localhost:11000')
+      def http
+        @http ||= Bezeichner::V1::HTTP.new('http://localhost:11000')
       end
 
-      def server_grpc
-        @server_grpc ||= Bezeichner::V1::Service::Stub.new('localhost:12000', :this_channel_is_insecure, channel_args: Bezeichner.user_agent)
+      def grpc
+        @grpc ||= Bezeichner::V1::Service::Stub.new('localhost:12000', :this_channel_is_insecure, channel_args: Bezeichner.user_agent)
       end
     end
   end
