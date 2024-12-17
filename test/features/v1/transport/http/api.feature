@@ -1,5 +1,4 @@
 Feature: HTTP API
-
   These endpoints allows users to get different types of identifiers.
 
   Scenario Outline: Generate identifiers for existing applications
@@ -12,24 +11,24 @@ Feature: HTTP API
 
     Examples:
       | application | count |
-      | uuid        | 1     |
-      | uuid        | 2     |
-      | ksuid       | 1     |
-      | ksuid       | 2     |
-      | ulid        | 1     |
-      | ulid        | 2     |
-      | xid         | 1     |
-      | xid         | 2     |
-      | snowflake   | 1     |
-      | snowflake   | 2     |
-      | nanoid      | 1     |
-      | nanoid      | 2     |
-      | typeid      | 1     |
-      | typeid      | 2     |
-      | pg          | 1     |
-      | pg          | 2     |
-      | redis       | 1     |
-      | redis       | 2     |
+      | uuid        |     1 |
+      | uuid        |     2 |
+      | ksuid       |     1 |
+      | ksuid       |     2 |
+      | ulid        |     1 |
+      | ulid        |     2 |
+      | xid         |     1 |
+      | xid         |     2 |
+      | snowflake   |     1 |
+      | snowflake   |     2 |
+      | nanoid      |     1 |
+      | nanoid      |     2 |
+      | typeid      |     1 |
+      | typeid      |     2 |
+      | pg          |     1 |
+      | pg          |     2 |
+      | redis       |     1 |
+      | redis       |     2 |
 
   Scenario Outline: Generate identifiers for missing applications
     When I request to generate identifiers with HTTP:
@@ -39,23 +38,22 @@ Feature: HTTP API
 
     Examples:
       | application  | count |
-      | not_found    | 1     |
-      | invalid_kind | 1     |
+      | not_found    |     1 |
+      | invalid_kind |     1 |
 
   Scenario Outline: Generate identifiers for erroneous applications
-    Given the system is having issues for the application:
-      | application | <application> |
+    Given the system is having issues for the application "<application>"
     When I request to generate identifiers with HTTP:
       | application | <application> |
       | count       | <count>       |
     Then I should receive an internal error from HTTP
-    And the system should return to a healthy state for the following application:
-      | application | <application> |
+    And the system should return to a healthy state for the following application "<application>"
+    And I should see "<application>" as healthy
 
     Examples:
       | application | count |
-      | pg          | 1     |
-      | redis       | 1     |
+      | pg          |     1 |
+      | redis       |     1 |
 
   Scenario Outline: Map existing identifiers
     When I request to map identifiers with HTTP:
