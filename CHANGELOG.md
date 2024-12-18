@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.232.0](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.232.0) - 2024-12-18
+
+- [`57f6349`](https://github.com/alexfalkowski/bezeichner/commit/57f63499a1f713cb45d1f1f462a47f081460a1b5) feat(deps): upgraded github.com/alexfalkowski/go-service to v1.344.0 (#864)
+- [`bf16b93`](https://github.com/alexfalkowski/bezeichner/commit/bf16b9318a2fa281ee3ed3400367341a08c384c2) feat(deps): upgraded github.com/alexfalkowski/go-service to v1.343.0 (#863)
+- [`599d4ef`](https://github.com/alexfalkowski/bezeichner/commit/599d4ef38afa46d574447dee6004ca35afb893f5) test(api): update nonnative (1.84.1) (#862)
+- [`a63ad56`](https://github.com/alexfalkowski/bezeichner/commit/a63ad561c242a50e7a422b9b65c9a6d7275337ce) docs(diagrams): update diagrams (#861)
+
 ## [v1.231.1](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.231.1) - 2024-12-17
 
 - [`17943ad`](https://github.com/alexfalkowski/bezeichner/commit/17943ad32d1a21b8e3193a2fd102cf861a1ec547) fix(health): forgot to observe redis and db (#860)
