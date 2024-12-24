@@ -6,7 +6,7 @@ toolchain go1.23.0
 
 require (
 	github.com/alexfalkowski/go-health v1.19.0
-	github.com/alexfalkowski/go-service v1.351.0
+	github.com/alexfalkowski/go-service v1.351.1
 	github.com/google/uuid v1.6.0
 	github.com/jaevor/go-nanoid v1.4.0
 	github.com/linxGnu/mssqlx v1.1.8
@@ -17,7 +17,7 @@ require (
 	go.jetify.com/typeid v1.3.0
 	go.uber.org/fx v1.23.0
 	google.golang.org/grpc v1.69.2
-	google.golang.org/protobuf v1.36.0
+	google.golang.org/protobuf v1.36.1
 )
 
 require (
@@ -76,7 +76,7 @@ require (
 	github.com/klauspost/compress v1.17.11 // indirect
 	github.com/lib/pq v1.10.9 // indirect
 	github.com/lufia/plan9stats v0.0.0-20240909124753-873cd0166683 // indirect
-	github.com/matthewhartstonge/argon2 v1.1.0 // indirect
+	github.com/matthewhartstonge/argon2 v1.1.1 // indirect
 	github.com/mitchellh/copystructure v1.2.0 // indirect
 	github.com/mitchellh/reflectwalk v1.0.2 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
