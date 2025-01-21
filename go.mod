@@ -6,7 +6,7 @@ toolchain go1.23.5
 
 require (
 	github.com/alexfalkowski/go-health v1.20.1
-	github.com/alexfalkowski/go-service v1.381.0
+	github.com/alexfalkowski/go-service v1.382.0
 	github.com/google/uuid v1.6.0
 	github.com/jaevor/go-nanoid v1.4.0
 	github.com/linxGnu/mssqlx v1.1.8
@@ -45,7 +45,7 @@ require (
 	github.com/go-logr/stdr v1.2.2 // indirect
 	github.com/go-ole/go-ole v1.3.0 // indirect
 	github.com/go-redis/cache/v9 v9.0.0 // indirect
-	github.com/go-resty/resty/v2 v2.16.3 // indirect
+	github.com/go-resty/resty/v2 v2.16.4 // indirect
 	github.com/go-sprout/sprout v1.0.0 // indirect
 	github.com/go-sql-driver/mysql v1.8.1 // indirect
 	github.com/goccy/go-json v0.10.4 // indirect
