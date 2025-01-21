@@ -31,10 +31,6 @@ type Identifier struct {
 
 // Generate identifiers.
 func (s *Identifier) Generate(ctx context.Context, application string, count uint64) ([]string, error) {
-	if count == 0 {
-		count = 1
-	}
-
 	app := s.generatorConfig.Application(application)
 	if app == nil {
 		return nil, fmt.Errorf("%s: %w", application, ErrNotFound)
