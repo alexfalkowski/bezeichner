@@ -20,9 +20,6 @@ func (r *Redis) Generate(ctx context.Context, app *Application) (string, error) 
 	}
 
 	res, err := c.Result()
-	if err != nil {
-		return "", err
-	}
 
-	return app.ID(strconv.FormatInt(res, 10)), nil
+	return app.ID(strconv.FormatInt(res, 10)), err
 }
