@@ -3,7 +3,7 @@ package generator
 import (
 	"context"
 
-	"github.com/jaevor/go-nanoid"
+	nanoid "github.com/matoous/go-nanoid"
 )
 
 // NanoID generator.
@@ -11,10 +11,7 @@ type NanoID struct{}
 
 // Generate a NanoID.
 func (n *NanoID) Generate(_ context.Context, app *Application) (string, error) {
-	id, err := nanoid.Standard(21)
-	if err != nil {
-		return "", err
-	}
+	id, err := nanoid.Nanoid()
 
-	return app.ID(id()), nil
+	return app.ID(id), err
 }
