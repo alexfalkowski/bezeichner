@@ -22,7 +22,7 @@ type (
 // MapIdentifiers for HTTP.
 func (h *Handler) MapIdentifiers(ctx context.Context, req *MapIdentifiersRequest) (*MapIdentifiersResponse, error) {
 	resp := &MapIdentifiersResponse{}
-	ids, err := h.service.Map(req.IDs)
+	ids, err := h.id.Map(req.IDs)
 
 	resp.Meta = meta.CamelStrings(ctx, "")
 	resp.IDs = ids

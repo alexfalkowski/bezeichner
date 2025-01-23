@@ -15,13 +15,13 @@ func Register(handler *Handler) {
 }
 
 // NewHandler for HTTP.
-func NewHandler(service *ids.Identifier) *Handler {
-	return &Handler{service: service}
+func NewHandler(id *ids.Identifier) *Handler {
+	return &Handler{id: id}
 }
 
 // Handler for HTTP.
 type Handler struct {
-	service *ids.Identifier
+	id *ids.Identifier
 }
 
 func (h *Handler) error(err error) error {

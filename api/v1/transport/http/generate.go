@@ -23,7 +23,7 @@ type (
 // GenerateIdentifiers for HTTP.
 func (h *Handler) GenerateIdentifiers(ctx context.Context, req *GenerateIdentifiersRequest) (*GenerateIdentifiersResponse, error) {
 	resp := &GenerateIdentifiersResponse{}
-	ids, err := h.service.Generate(ctx, req.Application, req.Count)
+	ids, err := h.id.Generate(ctx, req.Application, req.Count)
 
 	resp.Meta = meta.CamelStrings(ctx, "")
 	resp.IDs = ids

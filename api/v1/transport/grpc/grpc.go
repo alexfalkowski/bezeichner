@@ -14,14 +14,14 @@ func Register(gs *grpc.Server, server v1.ServiceServer) {
 }
 
 // NewServer for gRPC.
-func NewServer(service *ids.Identifier) v1.ServiceServer {
-	return &Server{service: service}
+func NewServer(id *ids.Identifier) v1.ServiceServer {
+	return &Server{id: id}
 }
 
 // Server for gRPC.
 type Server struct {
 	v1.UnimplementedServiceServer
-	service *ids.Identifier
+	id *ids.Identifier
 }
 
 func (s *Server) error(err error) error {
