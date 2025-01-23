@@ -9,15 +9,26 @@ import (
 )
 
 // Register for HTTP.
-func Register(service *ids.Identifier) {
-	gh := &generateHandler{service: service}
-	rpc.Route("/v1/generate", gh.Generate)
-
-	mh := &mapHandler{service: service}
-	rpc.Route("/v1/map", mh.Map)
+func Register(handler *Handler) {
+	rpc.Route("/v1/generate", handler.GenerateIdentifiers)
+	rpc.Route("/v1/map", handler.MapIdentifiers)
 }
 
-func handleError(err error) error {
+// NewHandler for HTTP.
+func NewHandler(service *ids.Identifier) *Handler {
+	return &Handler{service: service}
+}
+
+// Handler for HTTP.
+type Handler struct {
+	service *ids.Identifier
+}
+
+func (h *Handler) error(err error) error {
+	if err == nil {
+		return nil
+	}
+
 	if ids.IsNotFound(err) {
 		return status.Error(http.StatusNotFound, err.Error())
 	}

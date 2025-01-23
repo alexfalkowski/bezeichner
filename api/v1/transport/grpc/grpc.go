@@ -25,6 +25,10 @@ type Server struct {
 }
 
 func (s *Server) error(err error) error {
+	if err == nil {
+		return nil
+	}
+
 	if ids.IsNotFound(err) {
 		return status.Error(codes.NotFound, err.Error())
 	}

@@ -3,7 +3,6 @@ package http
 import (
 	"context"
 
-	"github.com/alexfalkowski/bezeichner/api/ids"
 	"github.com/alexfalkowski/go-service/meta"
 )
 
@@ -18,24 +17,15 @@ type (
 		Meta map[string]string `json:"meta,omitempty"`
 		IDs  []string          `json:"ids,omitempty"`
 	}
-
-	mapHandler struct {
-		service *ids.Identifier
-	}
 )
 
-func (h *mapHandler) Map(ctx context.Context, req *MapIdentifiersRequest) (*MapIdentifiersResponse, error) {
+// MapIdentifiers for HTTP.
+func (h *Handler) MapIdentifiers(ctx context.Context, req *MapIdentifiersRequest) (*MapIdentifiersResponse, error) {
 	resp := &MapIdentifiersResponse{}
-
 	ids, err := h.service.Map(req.IDs)
-	if err != nil {
-		resp.Meta = meta.CamelStrings(ctx, "")
 
-		return resp, handleError(err)
-	}
-
-	resp.IDs = ids
 	resp.Meta = meta.CamelStrings(ctx, "")
+	resp.IDs = ids
 
-	return resp, nil
+	return resp, h.error(err)
 }

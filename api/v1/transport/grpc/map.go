@@ -10,16 +10,10 @@ import (
 // MapIdentifiers for gRPC.
 func (s *Server) MapIdentifiers(ctx context.Context, req *v1.MapIdentifiersRequest) (*v1.MapIdentifiersResponse, error) {
 	resp := &v1.MapIdentifiersResponse{}
-
 	ids, err := s.service.Map(req.GetIds())
-	if err != nil {
-		resp.Meta = meta.CamelStrings(ctx, "")
 
-		return resp, s.error(err)
-	}
-
-	resp.Ids = ids
 	resp.Meta = meta.CamelStrings(ctx, "")
+	resp.Ids = ids
 
-	return resp, nil
+	return resp, s.error(err)
 }
