@@ -1,6 +1,5 @@
 version: 1.0
 url: http://localhost:11000
-wait: 1
 processes:
   - name: server
     go:
@@ -23,6 +22,7 @@ services:
       host: 127.0.0.1
       port: 5432
       log: reports/proxy_pg.log
+      wait: 1
       options:
         delay: 2
   - name: redis
@@ -32,6 +32,7 @@ services:
       kind: fault_injection
       host: 127.0.0.1
       port: 6379
+      wait: 1
       log: reports/proxy_redis.log
       options:
         delay: 2
