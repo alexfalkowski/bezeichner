@@ -9,12 +9,12 @@ import (
 )
 
 // Register server.
-func Register(gs *grpc.Server, server v1.ServiceServer) {
+func Register(gs *grpc.Server, server *Server) {
 	v1.RegisterServiceServer(gs.Server(), server)
 }
 
 // NewServer for gRPC.
-func NewServer(id *ids.Identifier) v1.ServiceServer {
+func NewServer(id *ids.Identifier) *Server {
 	return &Server{id: id}
 }
 
