@@ -25,14 +25,3 @@ services:
       wait: 1
       options:
         delay: 2
-  - name: redis
-    host: 127.0.0.1
-    port: 6380
-    proxy:
-      kind: fault_injection
-      host: 127.0.0.1
-      port: 6379
-      wait: 1
-      log: reports/proxy_redis.log
-      options:
-        delay: 2

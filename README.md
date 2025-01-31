@@ -71,27 +71,18 @@ generator:
       prefix: prefix
       suffix: suffix
       separator: "-"
-    - name: redis
-      kind: redis
-      prefix: prefix
-      suffix: suffix
-      separator: "-"
 ```
 
 Each generator has the following properties:
 - A distinct name.
-- The kind of generator (uuid, ksuid, ulid, xid, snowflake, nanoid, typeid, pg, redis).
+- The kind of generator (uuid, ksuid, ulid, xid, snowflake, nanoid, typeid, pg).
 - The prefix of the identifier.
 - The suffix of the identifier.
 - The separator used between the prefix and suffix.
 
 #### Postgres
 
-The postgres kind expects a sequence named after the application. The service does not create one. So you would need to use a [migration](https://github.com/alexfalkowski/bezeichner) service.
-
-#### Redis
-
-The redis kind expects a value named after the application. If it does not exist, the system will create one.
+The postgres kind expects a sequence named after the application. The service does not create one. So you would need to use a [migration](https://github.com/alexfalkowski/migrieren) service.
 
 ### Mapper
 
