@@ -27,8 +27,6 @@ Feature: HTTP API
       | typeid      |     2 |
       | pg          |     1 |
       | pg          |     2 |
-      | redis       |     1 |
-      | redis       |     2 |
 
   Scenario Outline: Generate identifiers for missing applications
     When I request to generate identifiers with HTTP:
@@ -54,7 +52,6 @@ Feature: HTTP API
     Examples:
       | application | count |
       | pg          |     1 |
-      | redis       |     1 |
 
   Scenario Outline: Map existing identifiers
     When I request to map identifiers with HTTP:

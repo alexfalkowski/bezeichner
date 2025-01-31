@@ -1,10 +1,3 @@
-cache:
-  redis:
-    compressor: snappy
-    marshaller: proto
-    addresses:
-      server: localhost:6380
-    url: secrets/redis
 environment: production
 limiter:
   kind: user-agent
@@ -51,11 +44,6 @@ generator:
       prefix: prefix
     - name: pg
       kind: pg
-      prefix: prefix
-      suffix: suffix
-      separator: "-"
-    - name: redis
-      kind: redis
       prefix: prefix
       suffix: suffix
       separator: "-"
