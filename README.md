@@ -1,3 +1,4 @@
+![Gopher](assets/gopher.png)
 [![CircleCI](https://circleci.com/gh/alexfalkowski/bezeichner.svg?style=shield)](https://circleci.com/gh/alexfalkowski/bezeichner)
 [![codecov](https://codecov.io/gh/alexfalkowski/bezeichner/graph/badge.svg?token=TDRSV3MGSM)](https://codecov.io/gh/alexfalkowski/bezeichner)
 [![Go Report Card](https://goreportcard.com/badge/github.com/alexfalkowski/bezeichner)](https://goreportcard.com/report/github.com/alexfalkowski/bezeichner)
@@ -123,10 +124,6 @@ The service uses the awesome work of others. You can check out:
 - https://github.com/sony/sonyflake
 - https://github.com/jetpack-io/typeid-go
 - https://github.com/alexfalkowski/go-service
-
-### Dependencies
-
-![Dependencies](./assets/server.png)
 
 ## Client
 
