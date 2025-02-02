@@ -6,7 +6,7 @@ toolchain go1.23.5
 
 require (
 	github.com/alexfalkowski/go-health v1.20.1
-	github.com/alexfalkowski/go-service v1.402.0
+	github.com/alexfalkowski/go-service v1.403.0
 	github.com/google/uuid v1.6.0
 	github.com/linxGnu/mssqlx v1.1.8
 	github.com/matoous/go-nanoid v1.5.1
@@ -89,12 +89,12 @@ require (
 	github.com/secure-io/siv-go v0.0.0-20180922214919-5ff40651e2c4 // indirect
 	github.com/sethvargo/go-limiter v1.0.0 // indirect
 	github.com/sethvargo/go-retry v0.3.0 // indirect
-	github.com/shirou/gopsutil/v4 v4.24.12 // indirect
+	github.com/shirou/gopsutil/v4 v4.25.1 // indirect
 	github.com/sony/gobreaker v1.0.0 // indirect
 	github.com/spf13/cast v1.7.1 // indirect
 	github.com/spf13/cobra v1.8.1 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
-	github.com/standard-webhooks/standard-webhooks/libraries v0.0.0-20250103171228-b75b9ab8ea1e // indirect
+	github.com/standard-webhooks/standard-webhooks/libraries v0.0.0-20250130150621-c1b941e3a055 // indirect
 	github.com/tklauser/go-sysconf v0.3.14 // indirect
 	github.com/tklauser/numcpus v0.9.0 // indirect
 	github.com/urfave/negroni/v3 v3.1.1 // indirect
