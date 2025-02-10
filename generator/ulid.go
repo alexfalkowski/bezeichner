@@ -3,8 +3,8 @@ package generator
 import (
 	"context"
 	"crypto/rand"
-	"time"
 
+	"github.com/alexfalkowski/go-service/time"
 	"github.com/oklog/ulid"
 )
 
