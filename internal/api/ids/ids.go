@@ -5,8 +5,8 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/alexfalkowski/bezeichner/generator"
-	"github.com/alexfalkowski/bezeichner/mapper"
+	"github.com/alexfalkowski/bezeichner/internal/generator"
+	"github.com/alexfalkowski/bezeichner/internal/mapper"
 )
 
 // ErrNotFound for service.
