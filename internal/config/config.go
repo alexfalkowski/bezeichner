@@ -1,9 +1,9 @@
 package config
 
 import (
-	"github.com/alexfalkowski/bezeichner/generator"
-	"github.com/alexfalkowski/bezeichner/health"
-	"github.com/alexfalkowski/bezeichner/mapper"
+	"github.com/alexfalkowski/bezeichner/internal/generator"
+	"github.com/alexfalkowski/bezeichner/internal/health"
+	"github.com/alexfalkowski/bezeichner/internal/mapper"
 	"github.com/alexfalkowski/go-service/config"
 )
 
