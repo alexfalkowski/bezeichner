@@ -1,9 +1,10 @@
 package main
 
 import (
+	"runtime/debug"
+
 	"github.com/alexfalkowski/bezeichner/internal/cmd"
 	sc "github.com/alexfalkowski/go-service/cmd"
-	"github.com/alexfalkowski/go-service/env"
 )
 
 func main() {
@@ -11,7 +12,9 @@ func main() {
 }
 
 func command() *sc.Command {
-	command := sc.New(env.NewVersion().String())
+	info, _ := debug.ReadBuildInfo()
+
+	command := sc.New(info.Main.Version)
 	command.RegisterInput(command.Root(), "env:BEZEICHNER_CONFIG_FILE")
 
 	cmd.RegisterServer(command)
