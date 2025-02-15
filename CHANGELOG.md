@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.317.0](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.317.0) - 2025-02-15
+
+- [`cbba944`](https://github.com/alexfalkowski/bezeichner/commit/cbba944cd2e5419dc74adb6a9dad43218299af1b) feat(deps): update github.com/alexfalkowski/go-service to v1.434.0 (#1007)
+- [`8182415`](https://github.com/alexfalkowski/bezeichner/commit/81824157bb498bd2cc10ca06571d74f454de340b) build(deps): bump bin from `6a2279d` to `e8b23ef` (#1008)
+- [`96de53d`](https://github.com/alexfalkowski/bezeichner/commit/96de53d83995e45b35cf7b9f40f69549c3981a0b) test(deps): bump rubocop from 1.71.2 to 1.72.0 in /test (#1006)
+- [`65e6791`](https://github.com/alexfalkowski/bezeichner/commit/65e6791f615e7f820da462a500d73f510cc588ba) test(deps): bump ruby-lsp from 0.23.10 to 0.23.11 in /test (#1005)
+- [`f4bd530`](https://github.com/alexfalkowski/bezeichner/commit/f4bd5303ee0263e29b3a1aa4ef6429bcbeddf9d5) build(deps): bump bin from `4a58c21` to `6a2279d` (#1004)
+
 ## [v1.316.0](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.316.0) - 2025-02-14
 
 - [`642b0ac`](https://github.com/alexfalkowski/bezeichner/commit/642b0ac57478783bfa808f898983eca728c213b3) feat(deps): upgraded github.com/alexfalkowski/go-service to v1.433.0 (#1003)
