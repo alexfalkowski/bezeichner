@@ -10,6 +10,7 @@ import (
 	"github.com/alexfalkowski/go-service/database/sql"
 	"github.com/alexfalkowski/go-service/debug"
 	"github.com/alexfalkowski/go-service/feature"
+	"github.com/alexfalkowski/go-service/flags"
 	"github.com/alexfalkowski/go-service/module"
 	"github.com/alexfalkowski/go-service/telemetry"
 	"github.com/alexfalkowski/go-service/transport"
@@ -17,7 +18,10 @@ import (
 
 // RegisterServer for cmd.
 func RegisterServer(command *cmd.Command) {
-	command.AddServer("server", "Start bezeichner server",
+	flags := flags.NewFlagSet("server")
+
+	command.RegisterInput(flags, "env:BEZEICHNER_CONFIG_FILE")
+	command.AddServer("server", "Start bezeichner server", flags,
 		module.Module, feature.Module, debug.Module,
 		transport.Module, telemetry.Module,
 		cache.Module, sql.Module, health.Module,
