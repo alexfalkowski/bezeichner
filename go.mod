@@ -2,9 +2,11 @@ module github.com/alexfalkowski/bezeichner
 
 go 1.24.0
 
+toolchain go1.24.1
+
 require (
 	github.com/alexfalkowski/go-health v1.22.0
-	github.com/alexfalkowski/go-service v1.489.0
+	github.com/alexfalkowski/go-service v1.491.0
 	github.com/google/uuid v1.6.0
 	github.com/linxGnu/mssqlx v1.1.8
 	github.com/matoous/go-nanoid v1.5.1
