@@ -22,9 +22,10 @@ type Params struct {
 func NewRegistrations(params Params) health.Registrations {
 	t := time.MustParseDuration(params.Health.Timeout)
 	d := time.MustParseDuration(params.Health.Duration)
-	registrations := health.Registrations{
-		server.NewRegistration("noop", d, checker.NewNoopChecker()),
-		server.NewRegistration("pg", d, hc.NewDBChecker(params.DB, t)),
+	registrations := health.Registrations{server.NewRegistration("noop", d, checker.NewNoopChecker())}
+
+	if params.DB != nil {
+		registrations = append(registrations, server.NewRegistration("pg", d, hc.NewDBChecker(params.DB, t)))
 	}
 
 	return registrations
