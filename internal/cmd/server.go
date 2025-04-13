@@ -18,7 +18,7 @@ import (
 // RegisterServer for cmd.
 func RegisterServer(command *cmd.Command) {
 	flags := cmd.NewFlagSet("server")
-	flags.AddInput("env:BEZEICHNER_CONFIG_FILE")
+	flags.AddInput("")
 
 	command.AddServer("server", "Start bezeichner server", flags,
 		module.Module, feature.Module, debug.Module,
