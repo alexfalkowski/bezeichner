@@ -16,13 +16,12 @@ updates:
       prefix: "test"
       prefix-development: "test"
       include: "scope"
-
   - package-ecosystem: "gitsubmodule"
     directory: "/"
     schedule:
       interval: "daily"
     commit-message:
-      prefix: "build"
+      prefix: "feat"
       prefix-development: "build"
       include: "scope"
     allow:
