@@ -4,7 +4,7 @@ go 1.24.0
 
 require (
 	github.com/alexfalkowski/go-health v1.22.0
-	github.com/alexfalkowski/go-service v1.543.0
+	github.com/alexfalkowski/go-service v1.544.0
 	github.com/google/uuid v1.6.0
 	github.com/linxGnu/mssqlx v1.1.8
 	github.com/matoous/go-nanoid v1.5.1
@@ -14,7 +14,7 @@ require (
 	github.com/sony/sonyflake v1.2.0
 	go.jetify.com/typeid v1.3.0
 	go.uber.org/fx v1.23.0
-	google.golang.org/grpc v1.71.1
+	google.golang.org/grpc v1.72.0
 	google.golang.org/protobuf v1.36.6
 )
 
