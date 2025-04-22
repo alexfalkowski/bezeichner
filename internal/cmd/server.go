@@ -17,13 +17,11 @@ import (
 
 // RegisterServer for cmd.
 func RegisterServer(command *cmd.Command) {
-	flags := cmd.NewFlagSet("server")
-	flags.AddInput("")
-
-	command.AddServer("server", "Start bezeichner server", flags,
+	flags := command.AddServer("server", "Start bezeichner server",
 		module.Module, feature.Module, debug.Module,
 		transport.Module, telemetry.Module,
 		cache.Module, sql.Module, health.Module,
 		generator.Module, v1.Module, config.Module, cmd.Module,
 	)
+	flags.AddInput("")
 }
