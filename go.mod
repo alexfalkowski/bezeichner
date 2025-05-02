@@ -11,7 +11,7 @@ require (
 	github.com/oklog/ulid v1.3.1
 	github.com/rs/xid v1.6.0
 	github.com/segmentio/ksuid v1.0.4
-	github.com/sony/sonyflake v1.2.0
+	github.com/sony/sonyflake v1.2.1
 	go.jetify.com/typeid v1.3.0
 	go.uber.org/fx v1.23.0
 	google.golang.org/grpc v1.72.0
