@@ -4,7 +4,7 @@ go 1.24.0
 
 require (
 	github.com/alexfalkowski/go-health v1.22.0
-	github.com/alexfalkowski/go-service v1.597.0
+	github.com/alexfalkowski/go-service v1.598.0
 	github.com/google/uuid v1.6.0
 	github.com/linxGnu/mssqlx v1.1.8
 	github.com/matoous/go-nanoid v1.5.1
@@ -35,7 +35,7 @@ require (
 	github.com/cloudevents/sdk-go/v2 v2.16.0 // indirect
 	github.com/cristalhq/acmd v0.12.0 // indirect
 	github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f // indirect
-	github.com/ebitengine/purego v0.8.2 // indirect
+	github.com/ebitengine/purego v0.8.3 // indirect
 	github.com/elnormous/contenttype v1.0.4 // indirect
 	github.com/faabiosr/cachego v0.26.0 // indirect
 	github.com/felixge/fgprof v0.9.5 // indirect
