@@ -7,7 +7,7 @@ import (
 
 // NewHealthObserver for HTTP.
 func NewHealthObserver(healthServer *server.Server) *http.HealthObserver {
-	return &http.HealthObserver{Observer: healthServer.Observe("pg")}
+	return &http.HealthObserver{Observer: healthServer.Observe("pg", "online")}
 }
 
 // NewLivenessObserver for HTTP.
