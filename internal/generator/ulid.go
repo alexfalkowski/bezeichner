@@ -4,7 +4,7 @@ import (
 	"context"
 	"crypto/rand"
 
-	"github.com/alexfalkowski/go-service/time"
+	"github.com/alexfalkowski/go-service/v2/time"
 	"github.com/oklog/ulid"
 )
 

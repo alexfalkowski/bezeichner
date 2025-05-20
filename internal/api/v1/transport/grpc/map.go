@@ -4,7 +4,7 @@ import (
 	"context"
 
 	v1 "github.com/alexfalkowski/bezeichner/api/bezeichner/v1"
-	"github.com/alexfalkowski/go-service/meta"
+	"github.com/alexfalkowski/go-service/v2/meta"
 )
 
 // MapIdentifiers for gRPC.
