@@ -3,7 +3,7 @@ package http
 import (
 	v1 "github.com/alexfalkowski/bezeichner/api/bezeichner/v1"
 	"github.com/alexfalkowski/bezeichner/internal/api/v1/transport/grpc"
-	"github.com/alexfalkowski/go-service/net/http/rpc"
+	"github.com/alexfalkowski/go-service/v2/net/http/rpc"
 )
 
 // Register for HTTP.

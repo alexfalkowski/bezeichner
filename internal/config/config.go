@@ -4,7 +4,7 @@ import (
 	"github.com/alexfalkowski/bezeichner/internal/generator"
 	"github.com/alexfalkowski/bezeichner/internal/health"
 	"github.com/alexfalkowski/bezeichner/internal/mapper"
-	"github.com/alexfalkowski/go-service/config"
+	"github.com/alexfalkowski/go-service/v2/config"
 )
 
 // Config for the service.

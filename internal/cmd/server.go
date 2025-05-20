@@ -5,23 +5,23 @@ import (
 	"github.com/alexfalkowski/bezeichner/internal/config"
 	"github.com/alexfalkowski/bezeichner/internal/generator"
 	"github.com/alexfalkowski/bezeichner/internal/health"
-	"github.com/alexfalkowski/go-service/cache"
-	"github.com/alexfalkowski/go-service/cmd"
-	"github.com/alexfalkowski/go-service/database/sql"
-	"github.com/alexfalkowski/go-service/debug"
-	"github.com/alexfalkowski/go-service/feature"
-	"github.com/alexfalkowski/go-service/module"
-	"github.com/alexfalkowski/go-service/telemetry"
-	"github.com/alexfalkowski/go-service/transport"
+	"github.com/alexfalkowski/go-service/v2/cache"
+	"github.com/alexfalkowski/go-service/v2/cli"
+	"github.com/alexfalkowski/go-service/v2/database/sql"
+	"github.com/alexfalkowski/go-service/v2/debug"
+	"github.com/alexfalkowski/go-service/v2/feature"
+	"github.com/alexfalkowski/go-service/v2/module"
+	"github.com/alexfalkowski/go-service/v2/telemetry"
+	"github.com/alexfalkowski/go-service/v2/transport"
 )
 
 // RegisterServer for cmd.
-func RegisterServer(command *cmd.Command) {
-	flags := command.AddServer("server", "Start bezeichner server",
+func RegisterServer(command cli.Commander) {
+	cmd := command.AddServer("server", "Start bezeichner server",
 		module.Module, feature.Module, debug.Module,
 		transport.Module, telemetry.Module,
 		cache.Module, sql.Module, health.Module,
-		generator.Module, v1.Module, config.Module, cmd.Module,
+		generator.Module, v1.Module, config.Module, cli.Module,
 	)
-	flags.AddInput("")
+	cmd.AddInput("")
 }

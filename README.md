@@ -123,7 +123,7 @@ The service uses the awesome work of others. You can check out:
 - https://github.com/rs/xid
 - https://github.com/sony/sonyflake
 - https://github.com/jetpack-io/typeid-go
-- https://github.com/alexfalkowski/go-service
+- https://github.com/alexfalkowski/go-service/v2
 
 ## Client
 

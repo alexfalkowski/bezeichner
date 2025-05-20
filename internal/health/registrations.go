@@ -3,9 +3,9 @@ package health
 import (
 	"github.com/alexfalkowski/go-health/checker"
 	"github.com/alexfalkowski/go-health/server"
-	"github.com/alexfalkowski/go-service/health"
-	hc "github.com/alexfalkowski/go-service/health/checker"
-	"github.com/alexfalkowski/go-service/time"
+	"github.com/alexfalkowski/go-service/v2/health"
+	hc "github.com/alexfalkowski/go-service/v2/health/checker"
+	"github.com/alexfalkowski/go-service/v2/time"
 	"github.com/linxGnu/mssqlx"
 	"go.uber.org/fx"
 )
