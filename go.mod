@@ -4,7 +4,7 @@ go 1.24.0
 
 require (
 	github.com/alexfalkowski/go-health v1.23.0
-	github.com/alexfalkowski/go-service/v2 v2.1.0
+	github.com/alexfalkowski/go-service/v2 v2.2.0
 	github.com/google/uuid v1.6.0
 	github.com/linxGnu/mssqlx v1.1.8
 	github.com/matoous/go-nanoid v1.5.1
@@ -31,7 +31,7 @@ require (
 	github.com/beevik/ntp v1.4.3 // indirect
 	github.com/beevik/nts v0.2.1 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
-	github.com/cenkalti/backoff/v4 v4.3.0 // indirect
+	github.com/cenkalti/backoff/v5 v5.0.2 // indirect
 	github.com/cespare/xxhash/v2 v2.3.0 // indirect
 	github.com/cloudevents/sdk-go/v2 v2.16.0 // indirect
 	github.com/cristalhq/acmd v0.12.0 // indirect
@@ -102,18 +102,18 @@ require (
 	go.opentelemetry.io/contrib/bridges/otelslog v0.10.0 // indirect
 	go.opentelemetry.io/contrib/instrumentation/host v0.60.0 // indirect
 	go.opentelemetry.io/contrib/instrumentation/runtime v0.60.0 // indirect
-	go.opentelemetry.io/otel v1.35.0 // indirect
-	go.opentelemetry.io/otel/exporters/otlp/otlplog/otlploghttp v0.11.0 // indirect
-	go.opentelemetry.io/otel/exporters/otlp/otlpmetric/otlpmetrichttp v1.35.0 // indirect
-	go.opentelemetry.io/otel/exporters/otlp/otlptrace v1.35.0 // indirect
-	go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracehttp v1.35.0 // indirect
-	go.opentelemetry.io/otel/exporters/prometheus v0.57.0 // indirect
-	go.opentelemetry.io/otel/log v0.11.0 // indirect
-	go.opentelemetry.io/otel/metric v1.35.0 // indirect
-	go.opentelemetry.io/otel/sdk v1.35.0 // indirect
-	go.opentelemetry.io/otel/sdk/log v0.11.0 // indirect
-	go.opentelemetry.io/otel/sdk/metric v1.35.0 // indirect
-	go.opentelemetry.io/otel/trace v1.35.0 // indirect
+	go.opentelemetry.io/otel v1.36.0 // indirect
+	go.opentelemetry.io/otel/exporters/otlp/otlplog/otlploghttp v0.12.1 // indirect
+	go.opentelemetry.io/otel/exporters/otlp/otlpmetric/otlpmetrichttp v1.36.0 // indirect
+	go.opentelemetry.io/otel/exporters/otlp/otlptrace v1.36.0 // indirect
+	go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracehttp v1.36.0 // indirect
+	go.opentelemetry.io/otel/exporters/prometheus v0.58.0 // indirect
+	go.opentelemetry.io/otel/log v0.12.1 // indirect
+	go.opentelemetry.io/otel/metric v1.36.0 // indirect
+	go.opentelemetry.io/otel/sdk v1.36.0 // indirect
+	go.opentelemetry.io/otel/sdk/log v0.12.1 // indirect
+	go.opentelemetry.io/otel/sdk/metric v1.36.0 // indirect
+	go.opentelemetry.io/otel/trace v1.36.0 // indirect
 	go.opentelemetry.io/proto/otlp v1.6.0 // indirect
 	go.uber.org/automaxprocs v1.6.0 // indirect
 	go.uber.org/dig v1.19.0 // indirect
