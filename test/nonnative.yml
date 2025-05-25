@@ -8,13 +8,11 @@ processes:
       output: reports
       executable: ../bezeichner
       command: server
-      parameters: ["-i env:BEZEICHNER_CONFIG_FILE"]
+      parameters: ["-i file:.config/server.yml"]
     timeout: 5
     host: 127.0.0.1
     port: 12000
     log: reports/server.log
-    environment:
-      BEZEICHNER_CONFIG_FILE: .config/server.yml
 services:
   - name: pg
     host: 127.0.0.1
