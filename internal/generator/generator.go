@@ -2,8 +2,8 @@ package generator
 
 import (
 	"context"
-	"errors"
 
+	"github.com/alexfalkowski/go-service/v2/errors"
 	"github.com/linxGnu/mssqlx"
 )
 
