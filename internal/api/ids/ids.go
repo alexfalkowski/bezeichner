@@ -2,11 +2,11 @@ package ids
 
 import (
 	"context"
-	"errors"
 	"fmt"
 
 	"github.com/alexfalkowski/bezeichner/internal/generator"
 	"github.com/alexfalkowski/bezeichner/internal/mapper"
+	"github.com/alexfalkowski/go-service/v2/errors"
 )
 
 // ErrNotFound for service.
