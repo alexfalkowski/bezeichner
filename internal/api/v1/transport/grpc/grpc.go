@@ -3,9 +3,9 @@ package grpc
 import (
 	v1 "github.com/alexfalkowski/bezeichner/api/bezeichner/v1"
 	"github.com/alexfalkowski/bezeichner/internal/api/ids"
-	"google.golang.org/grpc"
-	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/status"
+	"github.com/alexfalkowski/go-service/v2/net/grpc"
+	"github.com/alexfalkowski/go-service/v2/net/grpc/codes"
+	"github.com/alexfalkowski/go-service/v2/net/grpc/status"
 )
 
 // Register server.
