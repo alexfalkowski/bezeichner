@@ -105,12 +105,15 @@ workflows:
   bezeichner:
     jobs:
       - build-service
-      - build-docker
+      - build-docker:
+          context: gh
+          filters:
+            branches:
+              ignore: master
       - release:
           context: gh
           requires:
             - build-service
-            - build-docker
           filters:
             branches:
               only: master
