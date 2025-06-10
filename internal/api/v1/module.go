@@ -4,13 +4,13 @@ import (
 	"github.com/alexfalkowski/bezeichner/internal/api/ids"
 	"github.com/alexfalkowski/bezeichner/internal/api/v1/transport/grpc"
 	"github.com/alexfalkowski/bezeichner/internal/api/v1/transport/http"
-	"go.uber.org/fx"
+	"github.com/alexfalkowski/go-service/v2/di"
 )
 
 // Module for fx.
-var Module = fx.Options(
+var Module = di.Module(
 	ids.Module,
-	fx.Provide(grpc.NewServer),
-	fx.Invoke(grpc.Register),
-	fx.Invoke(http.Register),
+	di.Constructor(grpc.NewServer),
+	di.Register(grpc.Register),
+	di.Register(http.Register),
 )
