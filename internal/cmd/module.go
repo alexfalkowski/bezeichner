@@ -5,12 +5,12 @@ import (
 	"github.com/alexfalkowski/bezeichner/internal/config"
 	"github.com/alexfalkowski/bezeichner/internal/generator"
 	"github.com/alexfalkowski/bezeichner/internal/health"
+	"github.com/alexfalkowski/go-service/v2/di"
 	"github.com/alexfalkowski/go-service/v2/module"
-	"go.uber.org/fx"
 )
 
 // Module for fx.
-var Module = fx.Options(
+var Module = di.Module(
 	module.Server,
 	config.Module,
 	health.Module,
