@@ -7,7 +7,7 @@ require 'google/protobuf'
 
 descriptor_data = "\n\x1b\x62\x65zeichner/v1/service.proto\x12\rbezeichner.v1\"T\n\x1aGenerateIdentifiersRequest\x12 \n\x0b\x61pplication\x18\x01 \x01(\tR\x0b\x61pplication\x12\x14\n\x05\x63ount\x18\x02 \x01(\x04R\x05\x63ount\"\xb2\x01\n\x1bGenerateIdentifiersResponse\x12H\n\x04meta\x18\x01 \x03(\x0b\x32\x34.bezeichner.v1.GenerateIdentifiersResponse.MetaEntryR\x04meta\x12\x10\n\x03ids\x18\x02 \x03(\tR\x03ids\x1a\x37\n\tMetaEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n\x05value\x18\x02 \x01(\tR\x05value:\x02\x38\x01\")\n\x15MapIdentifiersRequest\x12\x10\n\x03ids\x18\x01 \x03(\tR\x03ids\"\xa8\x01\n\x16MapIdentifiersResponse\x12\x43\n\x04meta\x18\x01 \x03(\x0b\x32/.bezeichner.v1.MapIdentifiersResponse.MetaEntryR\x04meta\x12\x10\n\x03ids\x18\x02 \x03(\tR\x03ids\x1a\x37\n\tMetaEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n\x05value\x18\x02 \x01(\tR\x05value:\x02\x38\x01\x32\xda\x01\n\x07Service\x12n\n\x13GenerateIdentifiers\x12).bezeichner.v1.GenerateIdentifiersRequest\x1a*.bezeichner.v1.GenerateIdentifiersResponse\"\x00\x12_\n\x0eMapIdentifiers\x12$.bezeichner.v1.MapIdentifiersRequest\x1a%.bezeichner.v1.MapIdentifiersResponse\"\x00\x42HZ5github.com/alexfalkowski/bezeichner/api/bezeichner/v1\xea\x02\x0e\x42\x65zeichner::V1b\x06proto3"
 
-pool = Google::Protobuf::DescriptorPool.generated_pool
+pool = ::Google::Protobuf::DescriptorPool.generated_pool
 pool.add_serialized_file(descriptor_data)
 
 module Bezeichner
