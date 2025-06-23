@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.542.0](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.542.0) - 2025-06-23
+
+- [`e5a4113`](https://github.com/alexfalkowski/bezeichner/commit/e5a4113e036c6436c84b8ea1ae312318f7b48cb7) feat(deps): upgraded github.com/alexfalkowski/go-service/v2 to v2.79.0 (#1310)
+
 ## [v1.541.0](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.541.0) - 2025-06-23
 
 - [`7294d8a`](https://github.com/alexfalkowski/bezeichner/commit/7294d8ae84f1cb0154167f8db3b0d629053b5955) feat(generator): use rand.Generator (#1309)
