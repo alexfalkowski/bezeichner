@@ -2,6 +2,7 @@ package generator
 
 import (
 	"github.com/alexfalkowski/go-service/v2/context"
+	"github.com/alexfalkowski/go-service/v2/crypto/rand"
 	"github.com/alexfalkowski/go-service/v2/errors"
 	"github.com/linxGnu/mssqlx"
 )
@@ -10,11 +11,11 @@ import (
 var ErrNotFound = errors.New("generator not found")
 
 // NewGenerators of identifiers.
-func NewGenerators(db *mssqlx.DBs) Generators {
+func NewGenerators(db *mssqlx.DBs, generator *rand.Generator) Generators {
 	return Generators{
 		"uuid":      &UUID{},
 		"ksuid":     &KSUID{},
-		"ulid":      &ULID{},
+		"ulid":      &ULID{generator: generator},
 		"xid":       &XID{},
 		"snowflake": NewSnowflake(),
 		"nanoid":    &NanoID{},
