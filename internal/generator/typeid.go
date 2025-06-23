@@ -1,8 +1,7 @@
 package generator
 
 import (
-	"context"
-
+	"github.com/alexfalkowski/go-service/v2/context"
 	"go.jetify.com/typeid"
 )
 

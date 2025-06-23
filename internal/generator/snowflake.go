@@ -1,9 +1,9 @@
 package generator
 
 import (
-	"context"
 	"strconv"
 
+	"github.com/alexfalkowski/go-service/v2/context"
 	"github.com/sony/sonyflake"
 )
 

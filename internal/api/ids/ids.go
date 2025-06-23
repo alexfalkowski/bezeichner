@@ -1,11 +1,11 @@
 package ids
 
 import (
-	"context"
 	"fmt"
 
 	"github.com/alexfalkowski/bezeichner/internal/generator"
 	"github.com/alexfalkowski/bezeichner/internal/mapper"
+	"github.com/alexfalkowski/go-service/v2/context"
 	"github.com/alexfalkowski/go-service/v2/errors"
 )
 
