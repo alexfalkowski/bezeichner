@@ -1,9 +1,9 @@
 package generator
 
 import (
-	"context"
 	"crypto/rand"
 
+	"github.com/alexfalkowski/go-service/v2/context"
 	"github.com/alexfalkowski/go-service/v2/time"
 	"github.com/oklog/ulid"
 )
