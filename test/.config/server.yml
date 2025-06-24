@@ -76,7 +76,6 @@ telemetry:
 transport:
   http:
     address: :11000
-    user_agent: "Bezeichner-server/1.0 HTTP/1.0"
     retry:
       attempts: 3
       backoff: 100ms
@@ -84,7 +83,6 @@ transport:
     timeout: 5s
   grpc:
     address: :12000
-    user_agent: "Bezeichner-server/1.0 gRPC/1.0"
     retry:
       attempts: 3
       backoff: 100ms
