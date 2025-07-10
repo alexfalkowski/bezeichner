@@ -44,12 +44,12 @@ jobs:
           keys:
             - bezeichner-go-build-cache-{{ checksum "go.sum" }}-{{ checksum "~/.go-version" }}
             - bezeichner-go-build-cache-
-      - run: make clean
       - restore_cache:
           name: restore go lint cache
           keys:
             - bezeichner-go-lint-cache-{{ checksum "go.sum" }}-{{ checksum "~/.go-version" }}
             - bezeichner-go-lint-cache-
+      - run: make clean
       - run: make lint
       - save_cache:
           name: save go lint cache
