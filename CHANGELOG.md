@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.551.0](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.551.0) - 2025-07-11
+
+- [`b912dc1`](https://github.com/alexfalkowski/bezeichner/commit/b912dc1ed81d5c627d13b82fe9c10d6d687c2f59) feat(deps): bump github.com/alexfalkowski/go-service/v2 from 2.88.0 to 2.90.0 (#1325)
+- [`4671390`](https://github.com/alexfalkowski/bezeichner/commit/4671390aeb16ecadd9694b5cc56a78655de295c6) build(ci): move make clean (#1324)
+- [`b19c0d0`](https://github.com/alexfalkowski/bezeichner/commit/b19c0d0a56338eaa65368466efe1e0d51d2b6ffa) build(ci): add checksum ~/.go-version (#1323)
+- [`d2350f6`](https://github.com/alexfalkowski/bezeichner/commit/d2350f6756be63c2bbadad760b7d2c3abe25098a) build(deps): upgraded github.com/alexfalkowski/bin (#1322)
+
 ## [v1.550.0](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.550.0) - 2025-07-08
 
 - [`f296fb4`](https://github.com/alexfalkowski/bezeichner/commit/f296fb4dbdef5ee70cc3178e538f4684c6eb3457) feat(deps): upgraded github.com/alexfalkowski/go-service/v2 to v2.88.0 (#1321)
