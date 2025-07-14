@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.556.0](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.556.0) - 2025-07-14
+
+- [`784f066`](https://github.com/alexfalkowski/bezeichner/commit/784f066597799972066bf4a81d93f14ee6e68ef0) feat(deps): upgraded github.com/alexfalkowski/go-service/v2 to v2.94.0 (#1332)
+- [`f69a19d`](https://github.com/alexfalkowski/bezeichner/commit/f69a19d27a28e0b68757479ab4fa63856c3850b4) build(ci): use .source-key (#1331)
+- [`fdc5f74`](https://github.com/alexfalkowski/bezeichner/commit/fdc5f744e3ab0020e204fb4fda63b837062e38ed) build(ci): use go-lint-version (#1330)
+
 ## [v1.555.0](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.555.0) - 2025-07-12
 
 - [`d96a146`](https://github.com/alexfalkowski/bezeichner/commit/d96a146efffe950b7d7f9aad62c753f33d354ad9) feat(deps): upgraded github.com/alexfalkowski/go-service/v2 to v2.93.1 (#1329)
