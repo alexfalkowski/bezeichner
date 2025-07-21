@@ -77,7 +77,7 @@ jobs:
     resource_class: large
   release:
     docker:
-      - image: alexfalkowski/release:4.1
+      - image: alexfalkowski/release:4.2
     working_directory: ~/bezeichner
     steps:
       - checkout
