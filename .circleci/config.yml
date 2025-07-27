@@ -77,13 +77,12 @@ jobs:
     resource_class: large
   version:
     docker:
-      - image: alexfalkowski/release:5.1
+      - image: alexfalkowski/release:5.2
     working_directory: ~/bezeichner
     steps:
       - checkout
       - run: git submodule sync
       - run: git submodule update --init
-      - run: make pull
       - run: version
     resource_class: large
   build-docker-amd64:
@@ -162,13 +161,12 @@ jobs:
     resource_class: large
   deploy:
     docker:
-      - image: alexfalkowski/release:5.1
+      - image: alexfalkowski/release:5.2
     working_directory: ~/bezeichner
     steps:
       - checkout
       - run: git submodule sync
       - run: git submodule update --init
-      - run: make pull
       - run: deploy
     resource_class: large
 
