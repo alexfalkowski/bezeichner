@@ -6,6 +6,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.573.0](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.573.0) - 2025-07-31
+
+- [`c29b885`](https://github.com/alexfalkowski/bezeichner/commit/c29b8850694a30c397a6ab69f02eb6ac849153ad) feat(deps): upgraded github.com/alexfalkowski/go-service/v2 to v2.109.0 (#1366)
+- [`5c861db`](https://github.com/alexfalkowski/bezeichner/commit/5c861db9a37a989444a2f35c660c01daf5e3cf60) build(ci): use latest published images (#1365)
+- [`01d8ab7`](https://github.com/alexfalkowski/bezeichner/commit/01d8ab719ca07bf35793f06e327544990c5e8b22) test(deps): bump pg from 1.5.9 to 1.6.0 in /test (#1364)
+- [`199712b`](https://github.com/alexfalkowski/bezeichner/commit/199712b41ca8c5d235b57a22c897f4257dbd0c65) build(deps): upgraded github.com/alexfalkowski/bin (#1363)
+- [`06eb633`](https://github.com/alexfalkowski/bezeichner/commit/06eb6337dc9997f626e448066978fde7eafbe2b1) build(ci): use latest published images (#1362)
+- [`0756f04`](https://github.com/alexfalkowski/bezeichner/commit/0756f04c5bde9ac1a44f2c564778fe34ef4afe93) build(ci): use latest published images (#1361)
+
 ## [v1.572.0](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.572.0) - 2025-07-26
 
 - [`7fb7073`](https://github.com/alexfalkowski/bezeichner/commit/7fb70731ed4ca33c1f59255ea6a5ffd91805c354) feat(health): use just noop for grpc (#1360)
