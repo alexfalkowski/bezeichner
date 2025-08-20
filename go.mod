@@ -13,7 +13,7 @@ require (
 	github.com/segmentio/ksuid v1.0.4
 	github.com/sony/sonyflake v1.3.0
 	go.jetify.com/typeid v1.3.0
-	google.golang.org/grpc v1.74.2
+	google.golang.org/grpc v1.75.0
 	google.golang.org/protobuf v1.36.7
 )
 
