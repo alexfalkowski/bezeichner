@@ -15,10 +15,10 @@ import (
 // RegisterParams for health.
 type RegisterParams struct {
 	di.In
-	Name   env.Name
 	Server *server.Server
 	DB     *mssqlx.DBs
 	Config *Config
+	Name   env.Name
 }
 
 // Register for health.
