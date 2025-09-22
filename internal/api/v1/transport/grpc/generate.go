@@ -6,7 +6,7 @@ import (
 	"github.com/alexfalkowski/go-service/v2/meta"
 )
 
-// GetIdentifiers for gRPC.
+// GenerateIdentifiers for gRPC.
 func (s *Server) GenerateIdentifiers(ctx context.Context, req *v1.GenerateIdentifiersRequest) (*v1.GenerateIdentifiersResponse, error) {
 	resp := &v1.GenerateIdentifiersResponse{}
 	ids, err := s.id.Generate(ctx, req.GetApplication(), req.GetCount())
