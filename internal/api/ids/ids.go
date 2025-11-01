@@ -42,7 +42,7 @@ func (s *Identifier) Generate(ctx context.Context, application string, count uin
 	}
 
 	ids := make([]string, count)
-	for i := 0; i < len(ids); i++ {
+	for i := range ids {
 		id, err := g.Generate(ctx, app)
 		if err != nil {
 			return nil, err
