@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.630.0](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.630.0) - 2025-11-04
+
+- [`7d6387e`](https://github.com/alexfalkowski/bezeichner/commit/7d6387ed3c5521594e8d4ee461674585a34c54a7) feat(deps): bump github.com/alexfalkowski/go-service/v2 from 2.179.0 to 2.182.0 (#1483)
+- [`e590702`](https://github.com/alexfalkowski/bezeichner/commit/e5907026b6d203f6a5795bdd4be7dad6a03761ec) build(ci): use postgres:18-trixie (#1482)
+- [`1cc9434`](https://github.com/alexfalkowski/bezeichner/commit/1cc94349c6441b4ff73fc83e318effbc57df8bb0) build(ci): use latest published images (#1481)
+- [`d7ee522`](https://github.com/alexfalkowski/bezeichner/commit/d7ee522dfc7c4da32fb68c5853c13a74abe8c2b0) test(deps): bump rubocop from 1.81.6 to 1.81.7 in /test (#1480)
+
 ## [v1.629.0](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.629.0) - 2025-10-30
 
 - [`e681092`](https://github.com/alexfalkowski/bezeichner/commit/e6810922abf714de0e8b4740cf8350660b5c9229) feat(deps): bump github.com/alexfalkowski/go-service/v2 from 2.177.0 to 2.179.0 (#1479)
