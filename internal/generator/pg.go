@@ -5,6 +5,7 @@ import (
 	"strconv"
 
 	"github.com/alexfalkowski/go-service/v2/context"
+	"github.com/alexfalkowski/go-service/v2/strings"
 	"github.com/linxGnu/mssqlx"
 )
 
@@ -19,7 +20,7 @@ func (p *PG) Generate(ctx context.Context, app *Application) (string, error) {
 
 	row := p.db.QueryRowContext(ctx, fmt.Sprintf("SELECT nextval('%s')", app.Name))
 	if err := row.Scan(&id); err != nil {
-		return "", err
+		return strings.Empty, err
 	}
 
 	return app.ID(strconv.FormatInt(id, 10)), nil
