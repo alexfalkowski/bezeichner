@@ -4,7 +4,7 @@ go 1.25.0
 
 require (
 	github.com/alexfalkowski/go-health/v2 v2.6.0
-	github.com/alexfalkowski/go-service/v2 v2.225.0
+	github.com/alexfalkowski/go-service/v2 v2.229.0
 	github.com/google/uuid v1.6.0
 	github.com/linxGnu/mssqlx v1.1.8
 	github.com/matoous/go-nanoid v1.5.1
@@ -18,7 +18,7 @@ require (
 )
 
 require (
-	aidanwoods.dev/go-paseto v1.5.4 // indirect
+	aidanwoods.dev/go-paseto v1.6.0 // indirect
 	aidanwoods.dev/go-result v0.3.1 // indirect
 	dario.cat/mergo v1.0.2 // indirect
 	filippo.io/edwards25519 v1.1.0 // indirect
@@ -51,14 +51,14 @@ require (
 	github.com/go-playground/locales v0.14.1 // indirect
 	github.com/go-playground/universal-translator v0.18.1 // indirect
 	github.com/go-playground/validator/v10 v10.30.1 // indirect
-	github.com/go-sprout/sprout v1.0.2 // indirect
+	github.com/go-sprout/sprout v1.0.3 // indirect
 	github.com/go-sql-driver/mysql v1.9.3 // indirect
 	github.com/gofrs/uuid/v5 v5.4.0 // indirect
 	github.com/golang-jwt/jwt/v4 v4.5.2 // indirect
 	github.com/google/pprof v0.0.0-20251213031049-b05bdaca462f // indirect
 	github.com/gorilla/websocket v1.5.3 // indirect
 	github.com/grpc-ecosystem/go-grpc-middleware/v2 v2.3.3 // indirect
-	github.com/grpc-ecosystem/grpc-gateway/v2 v2.27.3 // indirect
+	github.com/grpc-ecosystem/grpc-gateway/v2 v2.27.4 // indirect
 	github.com/hashicorp/errwrap v1.1.0 // indirect
 	github.com/hashicorp/go-cleanhttp v0.5.2 // indirect
 	github.com/hashicorp/go-multierror v1.1.1 // indirect
@@ -66,7 +66,7 @@ require (
 	github.com/iancoleman/strcase v0.3.0 // indirect
 	github.com/jackc/pgpassfile v1.0.0 // indirect
 	github.com/jackc/pgservicefile v0.0.0-20240606120523-5a60cdf6a761 // indirect
-	github.com/jackc/pgx/v5 v5.7.6 // indirect
+	github.com/jackc/pgx/v5 v5.8.0 // indirect
 	github.com/jackc/puddle/v2 v2.2.2 // indirect
 	github.com/jmoiron/sqlx v1.4.0 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
