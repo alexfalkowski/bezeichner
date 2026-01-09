@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.670.0](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.670.0) - 2026-01-09
+
+- [`6e26537`](https://github.com/alexfalkowski/bezeichner/commit/6e265373233d0e718c570779215a54d71f169131) feat(deps): bump github.com/alexfalkowski/go-service/v2 from 2.230.0 to 2.231.0 (#1565)
+- [`27b3bb4`](https://github.com/alexfalkowski/bezeichner/commit/27b3bb41ce1851317d65a6627be7dad7fe828c72) build(deps): upgraded github.com/alexfalkowski/bin (#1564)
+- [`8c874c3`](https://github.com/alexfalkowski/bezeichner/commit/8c874c367316574e9fdec6c0514629ab23f8dda2) build(ci): use latest published images (#1563)
+- [`05d2668`](https://github.com/alexfalkowski/bezeichner/commit/05d2668344a9c687823210daf1204fd75c490d24) build(ci): use latest published images (#1562)
+- [`f3c2cc5`](https://github.com/alexfalkowski/bezeichner/commit/f3c2cc514b3f3531c841cc6aa1a6e742ac43000c) build(ci): use latest published images (#1561)
+
 ## [v1.669.0](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.669.0) - 2026-01-02
 
 - [`2398da6`](https://github.com/alexfalkowski/bezeichner/commit/2398da6aca7734ae2f08a93ebe9c406f3bce6009) feat(deps): upgraded github.com/alexfalkowski/bin (#1560)
