@@ -78,7 +78,7 @@ jobs:
     resource_class: large
   version:
     docker:
-      - image: alexfalkowski/release:5.40
+      - image: alexfalkowski/release:5.41
     working_directory: ~/bezeichner
     steps:
       - checkout:
@@ -180,7 +180,7 @@ jobs:
     resource_class: large
   deploy:
     docker:
-      - image: alexfalkowski/release:5.40
+      - image: alexfalkowski/release:5.41
     working_directory: ~/bezeichner
     steps:
       - checkout:
