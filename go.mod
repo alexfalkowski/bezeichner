@@ -3,7 +3,7 @@ module github.com/alexfalkowski/bezeichner
 go 1.25.0
 
 require (
-	github.com/alexfalkowski/go-health/v2 v2.6.0
+	github.com/alexfalkowski/go-health/v2 v2.8.0
 	github.com/alexfalkowski/go-service/v2 v2.236.0
 	github.com/google/uuid v1.6.0
 	github.com/linxGnu/mssqlx v1.1.8
