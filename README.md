@@ -83,7 +83,8 @@ Each generator has the following properties:
 
 #### Postgres
 
-The postgres kind expects a sequence named after the application. The service does not create one. So you would need to use a [migration](https://github.com/alexfalkowski/migrieren) service.
+The postgres kind expects a sequence named after the application. The service does not create one. So you you need to have something that will create the sequence, using [Evolutionary Database Design
+](https://martinfowler.com/articles/evodb.html).
 
 ### Mapper
 
@@ -124,17 +125,6 @@ The service uses the awesome work of others. You can check out:
 - https://github.com/sony/sonyflake
 - https://github.com/jetpack-io/typeid-go
 - https://github.com/alexfalkowski/go-service/v2
-
-## Client
-
-The client can be used in other projects. This is configured as follows:
-
-```yaml
-client:
-  v1:
-    host: server_host
-    timeout: 1s
-```
 
 ### Dependencies
 
