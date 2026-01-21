@@ -3,6 +3,7 @@ package generator
 import (
 	"github.com/alexfalkowski/go-service/v2/context"
 	"github.com/alexfalkowski/go-service/v2/crypto/rand"
+	"github.com/alexfalkowski/go-service/v2/strings"
 	"github.com/alexfalkowski/go-service/v2/time"
 	"github.com/oklog/ulid"
 )
@@ -16,6 +17,9 @@ type ULID struct {
 func (k *ULID) Generate(_ context.Context, app *Application) (string, error) {
 	ms := ulid.Timestamp(time.Now())
 	id, err := ulid.New(ms, k.generator)
+	if err != nil {
+		return strings.Empty, err
+	}
 
-	return app.ID(id.String()), err
+	return app.ID(id.String()), nil
 }

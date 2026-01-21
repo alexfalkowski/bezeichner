@@ -4,6 +4,7 @@ import (
 	"strconv"
 
 	"github.com/alexfalkowski/go-service/v2/context"
+	"github.com/alexfalkowski/go-service/v2/strings"
 	"github.com/sony/sonyflake"
 )
 
@@ -20,6 +21,9 @@ func NewSnowflake() *Snowflake {
 // Generate a id with snowflake.
 func (s *Snowflake) Generate(_ context.Context, app *Application) (string, error) {
 	id, err := s.sf.NextID()
+	if err != nil {
+		return strings.Empty, err
+	}
 
-	return app.ID(strconv.FormatUint(id, 10)), err
+	return app.ID(strconv.FormatUint(id, 10)), nil
 }
