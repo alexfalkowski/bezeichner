@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.678.0](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.678.0) - 2026-01-21
+
+- [`fc71d41`](https://github.com/alexfalkowski/bezeichner/commit/fc71d4175980673f3899bf7a498b67b6ab976eba) feat(generator): do not generate fake ids on error (#1585)
+
 ## [v1.677.0](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.677.0) - 2026-01-21
 
 - [`317c469`](https://github.com/alexfalkowski/bezeichner/commit/317c4696bcb16a60f622955c7fa614955b0f4b72) feat(generator): use nextval for pg (#1584)
