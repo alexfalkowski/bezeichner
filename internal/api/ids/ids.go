@@ -31,6 +31,10 @@ type Identifier struct {
 
 // Generate identifiers.
 func (s *Identifier) Generate(ctx context.Context, application string, count uint64) ([]string, error) {
+	if count > maxGenerateCount {
+		return nil, ErrInvalidArgument
+	}
+
 	app := s.generatorConfig.Application(application)
 	if app == nil {
 		return nil, fmt.Errorf("%s: %w", application, ErrNotFound)
@@ -56,8 +60,11 @@ func (s *Identifier) Generate(ctx context.Context, application string, count uin
 
 // Map identifiers.
 func (s *Identifier) Map(ids []string) ([]string, error) {
-	mids := make([]string, len(ids))
+	if len(ids) > maxMapIDs {
+		return nil, ErrInvalidArgument
+	}
 
+	mids := make([]string, len(ids))
 	for i, id := range ids {
 		mid, ok := s.mapperConfig.Identifiers[id]
 		if !ok {
@@ -66,6 +73,5 @@ func (s *Identifier) Map(ids []string) ([]string, error) {
 
 		mids[i] = mid
 	}
-
 	return mids, nil
 }

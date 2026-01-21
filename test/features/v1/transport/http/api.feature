@@ -28,6 +28,12 @@ Feature: HTTP API
       | pg          |     1 |
       | pg          |     2 |
 
+  Scenario: Generate too many identifiers for existing applications
+    When I request to generate identifiers with HTTP:
+      | application | <application> |
+      | count       |          1001 |
+    Then I should receive an invalid argument error from HTTP
+
   Scenario Outline: Generate identifiers for missing applications
     When I request to generate identifiers with HTTP:
       | application | <application> |
@@ -63,6 +69,10 @@ Feature: HTTP API
       | request   | response    |
       | req1      | resp1       |
       | req1,req2 | resp1,resp2 |
+
+  Scenario: Map too many identifiers
+    When I request to map 1001 identifiers with HTTP:
+    Then I should receive an invalid argument error from HTTP
 
   Scenario Outline: Map non existing identifiers
     When I request to map identifiers with HTTP:
