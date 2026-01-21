@@ -29,6 +29,10 @@ func (s *Server) error(err error) error {
 		return nil
 	}
 
+	if ids.IsInvalidArgument(err) {
+		return status.Error(codes.InvalidArgument, err.Error())
+	}
+
 	if ids.IsNotFound(err) {
 		return status.Error(codes.NotFound, err.Error())
 	}

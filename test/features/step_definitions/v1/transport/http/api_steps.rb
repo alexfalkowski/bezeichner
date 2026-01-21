@@ -26,6 +26,18 @@ When('I request to map identifiers with HTTP:') do |table|
   @response = Bezeichner::V1.http.map(rows['request'].split(','), opts)
 end
 
+When('I request to map {int} identifiers with HTTP:') do |count|
+  opts = {
+    headers: {
+      request_id: SecureRandom.uuid, user_agent: 'Bezeichner-ruby-client/1.0 HTTP/1.0',
+      content_type: :json, accept: :json
+    },
+    read_timeout: 10, open_timeout: 10
+  }
+
+  @response = Bezeichner::V1.http.map(count.times.map { SecureRandom.hex }, opts)
+end
+
 Then('I should receive generated identifiers from HTTP:') do |table|
   expect(@response.code).to eq(200)
 
@@ -55,4 +67,8 @@ end
 
 Then('I should receive an internal error from HTTP') do
   expect(@response.code).to eq(500)
+end
+
+Then('I should receive an invalid argument error from HTTP') do
+  expect(@response.code).to eq(400)
 end
