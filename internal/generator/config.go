@@ -1,21 +1,9 @@
 package generator
 
-import (
-	"fmt"
-)
-
 // Application fto generate identifiers.
 type Application struct {
-	Name      string `yaml:"name,omitempty" json:"name,omitempty" toml:"name,omitempty"`
-	Kind      string `yaml:"kind,omitempty" json:"kind,omitempty" toml:"kind,omitempty"`
-	Prefix    string `yaml:"prefix,omitempty" json:"prefix,omitempty" toml:"prefix,omitempty"`
-	Suffix    string `yaml:"suffix,omitempty" json:"suffix,omitempty" toml:"suffix,omitempty"`
-	Separator string `yaml:"separator,omitempty" json:"separator,omitempty" toml:"separator,omitempty"`
-}
-
-// ID for the application.
-func (a *Application) ID(id string) string {
-	return fmt.Sprintf("%s%s%s%s%s", a.Prefix, a.Separator, id, a.Separator, a.Suffix)
+	Name string `yaml:"name,omitempty" json:"name,omitempty" toml:"name,omitempty"`
+	Kind string `yaml:"kind,omitempty" json:"kind,omitempty" toml:"kind,omitempty"`
 }
 
 // Config for generator.

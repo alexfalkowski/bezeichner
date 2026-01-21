@@ -21,5 +21,5 @@ func (k *ULID) Generate(_ context.Context, app *Application) (string, error) {
 		return strings.Empty, err
 	}
 
-	return app.ID(id.String()), nil
+	return id.String(), nil
 }

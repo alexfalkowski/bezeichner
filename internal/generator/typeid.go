@@ -10,7 +10,7 @@ type TypeID struct{}
 
 // Generate a TypeID.
 func (t *TypeID) Generate(_ context.Context, app *Application) (string, error) {
-	id, err := typeid.From(app.Prefix, app.Suffix)
+	id, err := typeid.WithPrefix("")
 
 	return id.String(), err
 }
