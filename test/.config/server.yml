@@ -13,47 +13,22 @@ generator:
   applications:
     - name: uuid
       kind: uuid
-      prefix: prefix
-      suffix: suffix
-      separator: "-"
     - name: ksuid
       kind: ksuid
-      prefix: prefix
-      suffix: suffix
-      separator: "-"
     - name: ulid
       kind: ulid
-      prefix: prefix
-      suffix: suffix
-      separator: "-"
     - name: snowflake
       kind: snowflake
-      prefix: prefix
-      suffix: suffix
-      separator: "-"
     - name: xid
       kind: xid
-      prefix: prefix
-      suffix: suffix
-      separator: "-"
     - name: nanoid
       kind: nanoid
-      prefix: prefix
-      suffix: suffix
-      separator: "-"
     - name: typeid
       kind: typeid
-      prefix: prefix
     - name: pg
       kind: pg
-      prefix: prefix
-      suffix: suffix
-      separator: "-"
     - name: invalid_kind
       kind: invalid_kind
-      prefix: prefix
-      suffix: suffix
-      separator: "-"
 health:
   duration: 1s
   timeout: 1s

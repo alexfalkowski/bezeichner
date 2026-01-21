@@ -12,5 +12,5 @@ type XID struct{}
 func (x *XID) Generate(_ context.Context, app *Application) (string, error) {
 	id := xid.New()
 
-	return app.ID(id.String()), nil
+	return id.String(), nil
 }

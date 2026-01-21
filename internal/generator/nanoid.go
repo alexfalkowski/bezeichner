@@ -16,5 +16,5 @@ func (n *NanoID) Generate(_ context.Context, app *Application) (string, error) {
 		return strings.Empty, err
 	}
 
-	return app.ID(id), nil
+	return id, nil
 }

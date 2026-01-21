@@ -22,5 +22,5 @@ func (p *PG) Generate(ctx context.Context, app *Application) (string, error) {
 		return strings.Empty, err
 	}
 
-	return app.ID(strconv.FormatInt(id, 10)), nil
+	return strconv.FormatInt(id, 10), nil
 }
