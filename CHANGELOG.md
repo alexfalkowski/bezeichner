@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.677.0](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.677.0) - 2026-01-21
+
+- [`317c469`](https://github.com/alexfalkowski/bezeichner/commit/317c4696bcb16a60f622955c7fa614955b0f4b72) feat(generator): use nextval for pg (#1584)
+- [`c36a196`](https://github.com/alexfalkowski/bezeichner/commit/c36a19647f8d568ff1c10bf88f6d9dc7cd2cc291) build(ci): add AGENTS.md (#1583)
+
 ## [v1.676.0](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.676.0) - 2026-01-20
 
 - [`bee7460`](https://github.com/alexfalkowski/bezeichner/commit/bee746041eb042d36d6be4f284a95acefc9b52d2) feat(docs): remove client (#1582)
