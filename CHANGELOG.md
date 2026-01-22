@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.681.0](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.681.0) - 2026-01-22
+
+- [`dafbd3e`](https://github.com/alexfalkowski/bezeichner/commit/dafbd3ef5e3e6150239d572cc78846d3bc12ee9c) feat(deps): bump github.com/alexfalkowski/go-service/v2 from 2.237.0 to 2.237.1 (#1590)
+- [`58102bb`](https://github.com/alexfalkowski/bezeichner/commit/58102bb775b4b04fc60924735b2ab4264718fcc7) test(deps): bump ruby-lsp from 0.26.4 to 0.26.5 in /test (#1589)
+- [`59c8ada`](https://github.com/alexfalkowski/bezeichner/commit/59c8ada4eb826e6c8ca1f6a28e6f81cb11f13fa4) build(ci): update AGENTS (#1588)
+
 ## [v1.680.0](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.680.0) - 2026-01-21
 
 - [`83e79f5`](https://github.com/alexfalkowski/bezeichner/commit/83e79f53eb6325e4b6c0840638e74d8c7cd8e6a7) feat(generator): remove prefix, suffix and separator (#1587)
