@@ -27,7 +27,7 @@ func Register(params RegisterParams) {
 	d := time.MustParseDuration(params.Config.Duration)
 	regs := health.Registrations{
 		server.NewRegistration("noop", d, checker.NewNoopChecker()),
-		server.NewOnlineRegistration(d, d),
+		server.NewOnlineRegistration(t, d),
 	}
 
 	if params.DB != nil {
