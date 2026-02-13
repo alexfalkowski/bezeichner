@@ -1,10 +1,10 @@
 module github.com/alexfalkowski/bezeichner
 
-go 1.25.0
+go 1.26.0
 
 require (
-	github.com/alexfalkowski/go-health/v2 v2.12.0
-	github.com/alexfalkowski/go-service/v2 v2.277.0
+	github.com/alexfalkowski/go-health/v2 v2.13.0
+	github.com/alexfalkowski/go-service/v2 v2.279.0
 	github.com/google/uuid v1.6.0
 	github.com/linxGnu/mssqlx v1.1.8
 	github.com/matoous/go-nanoid v1.5.1
@@ -13,7 +13,7 @@ require (
 	github.com/segmentio/ksuid v1.0.4
 	github.com/sony/sonyflake v1.3.0
 	go.jetify.com/typeid v1.3.0
-	google.golang.org/grpc v1.78.0
+	google.golang.org/grpc v1.79.0
 	google.golang.org/protobuf v1.36.11
 )
 
@@ -26,7 +26,7 @@ require (
 	github.com/KimMachineGun/automemlimit v0.7.5 // indirect
 	github.com/XSAM/otelsql v0.41.0 // indirect
 	github.com/aead/cmac v0.0.0-20160719120800-7af84192f0b1 // indirect
-	github.com/alexfalkowski/go-sync v1.6.0 // indirect
+	github.com/alexfalkowski/go-sync v1.7.0 // indirect
 	github.com/arl/statsviz v0.8.0 // indirect
 	github.com/avfs/avfs v0.35.0 // indirect
 	github.com/beevik/ntp v1.5.0 // indirect
