@@ -12,7 +12,7 @@ import (
 	"github.com/linxGnu/mssqlx"
 )
 
-// RegisterParams for health.
+// RegisterParams are the dependencies required to register health checks and observers.
 type RegisterParams struct {
 	di.In
 	Server *server.Server
@@ -21,7 +21,14 @@ type RegisterParams struct {
 	Name   env.Name
 }
 
-// Register for health.
+// Register installs health checks and observers into the provided health server.
+//
+// It registers a baseline set of checks ("noop" and "online") and conditionally
+// adds a database check ("pg") when a DB handle is available.
+//
+// The process/service name (env.Name) is registered with the full set of checks,
+// while the gRPC service name (from the protobuf descriptor) is registered with
+// only the "noop" check for gRPC observer wiring.
 func Register(params RegisterParams) {
 	t := time.MustParseDuration(params.Config.Timeout)
 	d := time.MustParseDuration(params.Config.Duration)
