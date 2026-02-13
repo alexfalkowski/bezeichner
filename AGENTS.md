@@ -137,10 +137,14 @@ The v1 module wires transports and the domain service:
 A representative config used by dev/feature tests is `test/.config/server.yml`.
 
 Notable keys observed:
-- `generator.applications[]`: generator applications (name/kind/prefix/suffix/separator).
+- `generator.applications[]`: generator applications (**name** and **kind**).
 - `mapper.identifiers`: mapping table for `MapIdentifiers`.
 - `sql.pg.masters[].url`: points to `file:secrets/pg` under `test/`.
 - `transport.http.address` defaults to `tcp://:11000` and `transport.grpc.address` to `tcp://:12000`.
+
+Notes:
+- The generator application model in code currently includes only `name` and `kind` (no `prefix`, `suffix`, or `separator` fields).
+- HTTP is an RPC gateway that routes by **gRPC full method name**, so the HTTP surface mirrors the gRPC contract in `api/bezeichner/v1/service.proto`.
 
 ## Generators
 

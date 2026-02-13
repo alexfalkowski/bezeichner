@@ -7,171 +7,240 @@
 
 # Bezeichner
 
-Bezeichner takes care of identifiers used in your services.
+Bezeichner is a small Go service that **generates** and **maps** identifiers, exposed via **gRPC** and **HTTP**.
 
-## Background
+- gRPC is the primary API surface.
+- HTTP is implemented as an RPC gateway that routes by **gRPC full method name** (so both transports share the same contract).
 
-Identifiers are used everywhere and very important. There are many ways to generate one and we take inspiration from the following [design](https://www.linkedin.com/posts/alexxubyte_systemdesign-coding-interviewtips-activity-6976203240094736387-hvMT?utm_source=share&utm_medium=member_ios).
+The API contract lives in:
+- `api/bezeichner/v1/service.proto`
 
-We don't have a preferred method. We just want to provide you with the best option.
+## Why a service?
 
-### Why a service?
+Distributed systems often need globally unique identifiers across multiple languages and runtimes. Bezeichner centralizes identifier generation so:
+- you don't re-implement ID generation logic per service/language,
+- you can standardize generator choices per domain/application,
+- you can migrate/translate legacy identifiers via mapping.
 
-Lot's of distributed systems need global unique IDs. Since you are more than likely going to use microservices we don't need to reinvent the wheel for every language you use. Just use the service!
+## API Overview (v1)
 
-## Server
+The v1 service supports:
+- `GenerateIdentifiers`: generate `count` identifiers for a configured `application`
+- `MapIdentifiers`: map a list of identifiers using a configured mapping table
 
-The server is defined by the following [proto contract](api/bezeichner/v1/service.proto). So each version of the service will have a new contract.
+Both endpoints enforce request-size limits in the domain layer for basic DoS protection (limits are currently 1000 items for both generate count and map list).
 
-### Generator
+## Configuration
 
-This system allows you to configure an application with a generator.
+Bezeichner uses the `go-service` configuration conventions. A representative configuration used by development and feature tests is:
 
-To configure we just need the have the following configuration:
+- `test/.config/server.yml`
 
-```yaml
+### Generator configuration
+
+Generator configuration selects **applications**, each of which has:
+- a `name` (the public application key you pass on requests),
+- a `kind` (the generator implementation to use).
+
+Supported built-in kinds (at time of writing):
+
+- `uuid`
+- `ksuid`
+- `ulid`
+- `xid`
+- `snowflake`
+- `nanoid`
+- `typeid`
+- `pg` (Postgres sequence-backed)
+
+Example:
+
+```/dev/null/generator.yml#L1-21
 generator:
   applications:
-    - name: uuid
+    - name: public-uuid
       kind: uuid
-      prefix: prefix
-      suffix: suffix
-      separator: "-"
-    - name: ksuid
-      kind: ksuid
-      prefix: prefix
-      suffix: suffix
-      separator: "-"
-    - name: ulid
+    - name: internal-ulid
       kind: ulid
-      prefix: prefix
-      suffix: suffix
-      separator: "-"
-    - name: xid
-      kind: xid
-      prefix: prefix
-      suffix: suffix
-      separator: "-"
-    - name: snowflake
-      kind: snowflake
-      prefix: prefix
-      suffix: suffix
-      separator: "-"
-    - name: nanoid
-      kind: nanoid
-      prefix: prefix
-      suffix: suffix
-      separator: "-"
-    - name: typeid
-      kind: typeid
-      prefix: prefix
-      suffix: suffix
-      separator: "-"
-    - name: pg
+    - name: order-seq
       kind: pg
-      prefix: prefix
-      suffix: suffix
-      separator: "-"
 ```
 
-Each generator has the following properties:
-- A distinct name.
-- The kind of generator (uuid, ksuid, ulid, xid, snowflake, nanoid, typeid, pg).
-- The prefix of the identifier.
-- The suffix of the identifier.
-- The separator used between the prefix and suffix.
+#### Postgres generator (`kind: pg`)
 
-#### Postgres
+The `pg` generator reads the next value from a Postgres sequence using:
 
-The postgres kind expects a sequence named after the application. The service does not create one. So you you need to have something that will create the sequence, using [Evolutionary Database Design
-](https://martinfowler.com/articles/evodb.html).
+- `SELECT nextval($1::regclass)`
 
-### Mapper
+The sequence name is the configured `application.name` (i.e., `Application.Name`).
 
-The system allows you to map to different identifiers. This allows you to deal with legacy identifiers.
+Important:
+- The service **does not create sequences**. You must provision them separately (migrations/DB tooling/etc.).
 
-To configure we just need the have the following configuration:
+### Mapper configuration
 
-```yaml
+Mapper configuration defines a lookup table for identifier translation (useful for legacy migrations):
+
+```/dev/null/mapper.yml#L1-6
 mapper:
   identifiers:
-    req1: resp1
-    req2: resp2
+    legacy-1: canonical-1
+    legacy-2: canonical-2
 ```
 
-### Health
+Semantics:
+- Mapping is strict: if any input ID is missing from the table, the operation fails.
+- Output order matches input order.
 
-The system defines a way to monitor all of it's dependencies.
+### Health configuration
 
-To configure we just need the have the following configuration:
+Health checks are provided via `go-health` integration. Timing is configured as durations:
 
-```yaml
+```/dev/null/health.yml#L1-6
 health:
-  duration: 1s (how often to check)
-  timeout: 1s (when we should timeout the check)
+  duration: 1s   # how often to run checks
+  timeout:  1s   # max time a single check may take
 ```
 
-### Deployment
+The service registers:
+- `noop` and `online` checks always,
+- a `pg` check only if a DB handle is configured/available.
 
-Since we are advocating building microservices, you would normally use a [container orchestration system](https://newrelic.com/blog/best-practices/container-orchestration-explained) and have a global service or shard these services per [bounded context](https://martinfowler.com/bliki/BoundedContext.html).
+## Running
 
-### Design
+### Local dev (hot reload)
 
-The service uses the awesome work of others. You can check out:
-- https://github.com/segmentio/ksuid
+```/dev/null/commands.sh#L1-3
+make submodule
+make dep
+make dev
+```
+
+`make dev` runs the server using `air` and a config file like:
+
+- `./bezeichner server -i file:test/.config/server.yml`
+
+### Build
+
+```/dev/null/commands.sh#L1-4
+make build        # builds ./bezeichner (release)
+make build-test   # builds ./bezeichner test binary (features, race, coverage)
+```
+
+## Usage examples
+
+Below are examples for both transports. Exact request/response schemas are defined in `api/bezeichner/v1/service.proto`.
+
+### gRPC (grpcurl)
+
+Assuming the service is listening on `localhost:12000` (default in the sample config):
+
+Generate 3 IDs for application `public-uuid`:
+
+```/dev/null/grpcurl.sh#L1-7
+grpcurl -plaintext \
+  -d '{"application":"public-uuid","count":"3"}' \
+  localhost:12000 \
+  bezeichner.v1.Service/GenerateIdentifiers
+```
+
+Map identifiers:
+
+```/dev/null/grpcurl.sh#L1-7
+grpcurl -plaintext \
+  -d '{"ids":["legacy-1","legacy-2"]}' \
+  localhost:12000 \
+  bezeichner.v1.Service/MapIdentifiers
+```
+
+### HTTP RPC gateway (curl)
+
+HTTP routes are keyed by the **gRPC full method name**. That means your HTTP client calls the same method identifiers as gRPC.
+
+Assuming the service is listening on `localhost:11000` (default in the sample config):
+
+Generate identifiers:
+
+```/dev/null/curl.sh#L1-7
+curl -sS \
+  -X POST \
+  -H 'content-type: application/json' \
+  --data '{"application":"public-uuid","count":"3"}' \
+  http://localhost:11000/bezeichner.v1.Service/GenerateIdentifiers
+```
+
+Map identifiers:
+
+```/dev/null/curl.sh#L1-7
+curl -sS \
+  -X POST \
+  -H 'content-type: application/json' \
+  --data '{"ids":["legacy-1","legacy-2"]}' \
+  http://localhost:11000/bezeichner.v1.Service/MapIdentifiers
+```
+
+Note:
+- The exact HTTP path shape is defined by the underlying `go-service` HTTP RPC router; the important part is that routing is done by gRPC full method name.
+
+## Deployment guidance
+
+Bezeichner is typically deployed as a shared internal service. Depending on your scale and domain boundaries, you can:
+- run a single global instance,
+- shard by bounded context,
+- run per region/cluster.
+
+If you use the `pg` generator, ensure database connectivity and sequence provisioning are handled as part of your infrastructure/migrations.
+
+## Design & dependencies
+
+Bezeichner builds on established ID generation libraries:
 - https://github.com/google/uuid
+- https://github.com/segmentio/ksuid
 - https://github.com/oklog/ulid
 - https://github.com/rs/xid
 - https://github.com/sony/sonyflake
-- https://github.com/jetpack-io/typeid-go
+- https://go.jetify.com/typeid
+
+Service scaffolding and transport/DI patterns:
 - https://github.com/alexfalkowski/go-service/v2
-
-### Dependencies
-
-![Dependencies](./assets/client.png)
 
 ## Development
 
-If you would like to contribute, here is how you can get started.
+### Repository structure
 
-### Structure
+The project follows:
+- https://github.com/golang-standards/project-layout
 
-The project follows the structure in [golang-standards/project-layout](https://github.com/golang-standards/project-layout).
+### Requirements
 
-### Dependencies
-
-Please make sure that you have the following installed:
-- [Ruby](.ruby-version)
-- Golang
-
-### Style
-
-This project favours the [Uber Go Style Guide](https://github.com/uber-go/guide/blob/master/style.md)
+- Go (see `go.mod` for version)
+- Ruby (used for end-to-end feature tests; see `.ruby-version`)
 
 ### Setup
 
-The get yourself setup, please run the following:
+Most `make` targets come from the `bin/` git submodule:
 
-```sh
+```/dev/null/setup.sh#L1-3
+make submodule
+make dep
 make setup
 ```
 
-### Binaries
+### Tests
 
-To make sure everything compiles for the app, please run the following:
+Go unit/spec tests:
 
-```sh
-make build-test
+```/dev/null/tests.sh#L1-2
+make specs
+make lint
 ```
 
-### Features
+End-to-end feature tests:
 
-To run all the features, please run the following:
-
-```sh
+```/dev/null/tests.sh#L1-1
 make features
 ```
 
-### Changes
+### Changelog
 
-To see what has changed, please have a look at `CHANGELOG.md`
+See `CHANGELOG.md`.

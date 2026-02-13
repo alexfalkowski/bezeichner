@@ -9,27 +9,48 @@ import (
 	"github.com/alexfalkowski/go-service/v2/errors"
 )
 
-// ErrNotFound for service.
+// ErrNotFound indicates that a requested resource does not exist.
+//
+// In this package, it is used when:
+//   - the requested generator application name cannot be found in configuration,
+//   - the generator kind cannot be resolved from the generator registry,
+//   - or an input identifier does not have a configured mapping.
 var ErrNotFound = errors.New("not found")
 
-// IsNotFound for service.
+// IsNotFound reports whether err is (or wraps) ErrNotFound.
 func IsNotFound(err error) bool {
 	return errors.Is(err, ErrNotFound)
 }
 
-// NewIdentifier for the different transports.
+// NewIdentifier constructs an Identifier domain service.
+//
+// It requires:
+//   - generator configuration (to resolve an application by name),
+//   - mapper configuration (to map identifiers),
+//   - and a generator registry (to resolve a generator by application kind).
 func NewIdentifier(gc *generator.Config, mc *mapper.Config, gs generator.Generators) *Identifier {
 	return &Identifier{generatorConfig: gc, mapperConfig: mc, generators: gs}
 }
 
-// Identifier for the different transports.
+// Identifier is the domain service that generates and maps identifiers.
+//
+// It is transport-agnostic and is intended to be used by multiple transports
+// (for example gRPC and an HTTP gateway).
 type Identifier struct {
 	generatorConfig *generator.Config
 	mapperConfig    *mapper.Config
 	generators      generator.Generators
 }
 
-// Generate identifiers.
+// Generate returns count identifiers for the given application name.
+//
+// The application is resolved from generator configuration and selects the
+// generator kind used to produce each identifier.
+//
+// Errors:
+//   - ErrInvalidArgument if count exceeds the configured limit.
+//   - ErrNotFound if the application name does not exist, or if the application
+//     kind cannot be resolved to a generator.
 func (s *Identifier) Generate(ctx context.Context, application string, count uint64) ([]string, error) {
 	if count > maxGenerateCount {
 		return nil, ErrInvalidArgument
@@ -58,7 +79,14 @@ func (s *Identifier) Generate(ctx context.Context, application string, count uin
 	return ids, nil
 }
 
-// Map identifiers.
+// Map returns the mapped identifiers for the provided ids in the same order.
+//
+// Mapping is configured via mapper configuration. If any input identifier is
+// missing from the mapping table, the operation fails.
+//
+// Errors:
+//   - ErrInvalidArgument if len(ids) exceeds the configured limit.
+//   - ErrNotFound if any input identifier does not have a configured mapping.
 func (s *Identifier) Map(ids []string) ([]string, error) {
 	if len(ids) > maxMapIDs {
 		return nil, ErrInvalidArgument
