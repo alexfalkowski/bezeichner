@@ -6,6 +6,23 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## Unreleased
 
+## [v1.711.0](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.711.0) - 2026-03-13
+
+- [`84d1205`](https://github.com/alexfalkowski/bezeichner/commit/84d1205c9410f32a67ccd082ba84b4cae61fa447) feat(deps): bump github.com/alexfalkowski/go-service/v2 from 2.298.0 to 2.302.0 (#1677)
+- [`e96b92f`](https://github.com/alexfalkowski/bezeichner/commit/e96b92fc451b8a4e4b087972a884a3d457c6dc70) build(ci): use latest published images (#1676)
+- [`cca044b`](https://github.com/alexfalkowski/bezeichner/commit/cca044ba9ae79a6c5fa57e40f930d3dac8e4eff9) build(deps): upgraded github.com/alexfalkowski/bin (#1675)
+- [`524b2fa`](https://github.com/alexfalkowski/bezeichner/commit/524b2fa8ae158fcf3af686a9c40d85fff6e61701) build(ci): use alexfalkowski/release:5.58 (#1674)
+- [`a78dd52`](https://github.com/alexfalkowski/bezeichner/commit/a78dd52c4be291401cca52e5156d617d4d68dc7f) test(deps): bump ruby-lsp from 0.26.7 to 0.26.8 in /test (#1673)
+- [`b42acbb`](https://github.com/alexfalkowski/bezeichner/commit/b42acbb555375f49f6a29d08f46b9c0276f51757) test(deps): upgraded bundler to 4.0.8 (#1672)
+- [`c3d831a`](https://github.com/alexfalkowski/bezeichner/commit/c3d831a8e4e542cf8e9007c65eb19c5c22f9510f) build(ci): use latest published images (#1671)
+- [`6be99b9`](https://github.com/alexfalkowski/bezeichner/commit/6be99b9bf3f29b7a6685290d86d3b7a09d06baba) build(deps): upgraded github.com/alexfalkowski/bin (#1670)
+- [`b7df963`](https://github.com/alexfalkowski/bezeichner/commit/b7df963d57d9ae20a63786cc9f52bfe5d8ee8e5e) build(deps): upgraded github.com/alexfalkowski/bin (#1669)
+- [`594a2f8`](https://github.com/alexfalkowski/bezeichner/commit/594a2f8af07255dbe3bffc1e694653d49c87f388) build(deps): upgraded github.com/alexfalkowski/bin (#1668)
+- [`cf7c638`](https://github.com/alexfalkowski/bezeichner/commit/cf7c63850a674144416f55aeb459814925af075c) build(ci): add wait-all (#1667)
+- [`b229539`](https://github.com/alexfalkowski/bezeichner/commit/b2295394fd667f2e410b33cc1e77b9742b399668) build(ci): use latest published images (#1666)
+- [`770e153`](https://github.com/alexfalkowski/bezeichner/commit/770e153d5eca1916edd684c9cf117f78efea17db) build(ci): use latest published images (#1665)
+- [`38cf47a`](https://github.com/alexfalkowski/bezeichner/commit/38cf47a8097a3b53821ec12ff97fe74a5c2b066a) build(ci): use latest published images (#1664)
+
 ## [v1.710.0](https://github.com/alexfalkowski/bezeichner/releases/tag/v1.710.0) - 2026-03-10
 
 - [`f8a887f`](https://github.com/alexfalkowski/bezeichner/commit/f8a887fa6b330917ceac1e8879d136abb85882bb) feat(deps): bump github.com/alexfalkowski/go-service/v2 from 2.295.0 to 2.298.0 (#1663)
