@@ -45,8 +45,12 @@ func Register(params RegisterParams) {
 	params.Server.Register(v1.Service_ServiceDesc.ServiceName, regs[0])
 }
 
-func httpHealthObserver(name env.Name, server *server.Server) error {
-	return server.Observe(name.String(), "healthz", "pg", "online")
+func httpHealthObserver(name env.Name, db *mssqlx.DBs, server *server.Server) error {
+	if db != nil {
+		return server.Observe(name.String(), "healthz", "pg", "online")
+	}
+
+	return server.Observe(name.String(), "healthz", "online")
 }
 
 func httpLivenessObserver(name env.Name, server *server.Server) error {
