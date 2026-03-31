@@ -46,11 +46,12 @@ func Register(params RegisterParams) {
 }
 
 func httpHealthObserver(name env.Name, db *mssqlx.DBs, server *server.Server) error {
+	names := []string{"online"}
 	if db != nil {
-		return server.Observe(name.String(), "healthz", "pg", "online")
+		names = append(names, "pg")
 	}
 
-	return server.Observe(name.String(), "healthz", "online")
+	return server.Observe(name.String(), "healthz", names...)
 }
 
 func httpLivenessObserver(name env.Name, server *server.Server) error {
