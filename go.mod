@@ -4,7 +4,7 @@ go 1.26.0
 
 require (
 	github.com/alexfalkowski/go-health/v2 v2.18.0
-	github.com/alexfalkowski/go-service/v2 v2.320.0
+	github.com/alexfalkowski/go-service/v2 v2.324.0
 	github.com/google/uuid v1.6.0
 	github.com/linxGnu/mssqlx v1.1.8
 	github.com/matoous/go-nanoid v1.5.1
@@ -13,7 +13,7 @@ require (
 	github.com/segmentio/ksuid v1.0.4
 	github.com/sony/sonyflake v1.3.0
 	go.jetify.com/typeid v1.3.0
-	google.golang.org/grpc v1.79.3
+	google.golang.org/grpc v1.80.0
 	google.golang.org/protobuf v1.36.11
 )
 
@@ -24,7 +24,7 @@ require (
 	filippo.io/edwards25519 v1.2.0 // indirect
 	github.com/BurntSushi/toml v1.6.0 // indirect
 	github.com/KimMachineGun/automemlimit v0.7.5 // indirect
-	github.com/XSAM/otelsql v0.41.0 // indirect
+	github.com/XSAM/otelsql v0.42.0 // indirect
 	github.com/aead/cmac v0.0.0-20160719120800-7af84192f0b1 // indirect
 	github.com/alexfalkowski/go-sync v1.19.3 // indirect
 	github.com/arl/statsviz v0.8.0 // indirect
@@ -51,7 +51,7 @@ require (
 	github.com/go-ole/go-ole v1.3.0 // indirect
 	github.com/go-playground/locales v0.14.1 // indirect
 	github.com/go-playground/universal-translator v0.18.1 // indirect
-	github.com/go-playground/validator/v10 v10.30.1 // indirect
+	github.com/go-playground/validator/v10 v10.30.2 // indirect
 	github.com/go-sprout/sprout v1.0.3 // indirect
 	github.com/go-sql-driver/mysql v1.9.3 // indirect
 	github.com/gofrs/uuid/v5 v5.4.0 // indirect
@@ -95,7 +95,7 @@ require (
 	github.com/secure-io/siv-go v0.0.0-20180922214919-5ff40651e2c4 // indirect
 	github.com/sethvargo/go-limiter v1.1.0 // indirect
 	github.com/sethvargo/go-retry v0.3.0 // indirect
-	github.com/shirou/gopsutil/v4 v4.26.2 // indirect
+	github.com/shirou/gopsutil/v4 v4.26.3 // indirect
 	github.com/sony/gobreaker v1.0.0 // indirect
 	github.com/spf13/cast v1.10.0 // indirect
 	github.com/standard-webhooks/standard-webhooks/libraries v0.0.0-20260309172517-425968d811b9 // indirect
