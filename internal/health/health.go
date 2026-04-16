@@ -29,14 +29,13 @@ type RegisterParams struct {
 // while the gRPC service name (from the protobuf descriptor) is registered with
 // only the "noop" check for gRPC observer wiring.
 func Register(params RegisterParams) {
-	d := params.Config.Duration.Duration()
 	regs := health.Registrations{
-		server.NewRegistration("noop", d, checker.NewNoopChecker()),
-		server.NewOnlineRegistration(params.Config.Timeout.Duration(), d),
+		server.NewRegistration("noop", params.Config.Duration.Duration(), checker.NewNoopChecker()),
+		server.NewOnlineRegistration(params.Config.Timeout.Duration(), params.Config.Duration.Duration()),
 	}
 
 	if params.DB != nil {
-		regs = append(regs, server.NewRegistration("pg", d, hc.NewDBChecker(params.DB, params.Config.Timeout)))
+		regs = append(regs, server.NewRegistration("pg", params.Config.Duration.Duration(), hc.NewDBChecker(params.DB, params.Config.Timeout)))
 	}
 
 	params.Server.Register(params.Name.String(), regs...)
