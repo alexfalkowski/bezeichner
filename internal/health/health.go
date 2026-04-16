@@ -8,7 +8,6 @@ import (
 	"github.com/alexfalkowski/go-service/v2/env"
 	"github.com/alexfalkowski/go-service/v2/health"
 	hc "github.com/alexfalkowski/go-service/v2/health/checker"
-	"github.com/alexfalkowski/go-service/v2/time"
 	"github.com/linxGnu/mssqlx"
 )
 
@@ -30,15 +29,14 @@ type RegisterParams struct {
 // while the gRPC service name (from the protobuf descriptor) is registered with
 // only the "noop" check for gRPC observer wiring.
 func Register(params RegisterParams) {
-	t := time.MustParseDuration(params.Config.Timeout)
-	d := time.MustParseDuration(params.Config.Duration)
+	d := params.Config.Duration.Duration()
 	regs := health.Registrations{
 		server.NewRegistration("noop", d, checker.NewNoopChecker()),
-		server.NewOnlineRegistration(t, d),
+		server.NewOnlineRegistration(params.Config.Timeout.Duration(), d),
 	}
 
 	if params.DB != nil {
-		regs = append(regs, server.NewRegistration("pg", d, hc.NewDBChecker(params.DB, t)))
+		regs = append(regs, server.NewRegistration("pg", d, hc.NewDBChecker(params.DB, params.Config.Timeout)))
 	}
 
 	params.Server.Register(params.Name.String(), regs...)
