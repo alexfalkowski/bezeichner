@@ -4,18 +4,18 @@ import (
 	v1 "github.com/alexfalkowski/bezeichner/api/bezeichner/v1"
 	"github.com/alexfalkowski/go-health/v2/checker"
 	"github.com/alexfalkowski/go-health/v2/server"
+	"github.com/alexfalkowski/go-service/v2/database/sql"
 	"github.com/alexfalkowski/go-service/v2/di"
 	"github.com/alexfalkowski/go-service/v2/env"
 	"github.com/alexfalkowski/go-service/v2/health"
-	hc "github.com/alexfalkowski/go-service/v2/health/checker"
-	"github.com/linxGnu/mssqlx"
+	healthchecker "github.com/alexfalkowski/go-service/v2/health/checker"
 )
 
 // RegisterParams are the dependencies required to register health checks and observers.
 type RegisterParams struct {
 	di.In
 	Server *server.Server
-	DB     *mssqlx.DBs
+	DB     *sql.DBs
 	Config *Config
 	Name   env.Name
 }
@@ -35,14 +35,18 @@ func Register(params RegisterParams) {
 	}
 
 	if params.DB != nil {
-		regs = append(regs, server.NewRegistration("pg", params.Config.Duration.Duration(), hc.NewDBChecker(params.DB, params.Config.Timeout)))
+		reg := server.NewRegistration("pg",
+			params.Config.Duration.Duration(),
+			healthchecker.NewDBChecker(params.DB, params.Config.Timeout),
+		)
+		regs = append(regs, reg)
 	}
 
 	params.Server.Register(params.Name.String(), regs...)
 	params.Server.Register(v1.Service_ServiceDesc.ServiceName, regs[0])
 }
 
-func httpHealthObserver(name env.Name, db *mssqlx.DBs, server *server.Server) error {
+func httpHealthObserver(name env.Name, db *sql.DBs, server *server.Server) error {
 	names := []string{"online"}
 	if db != nil {
 		names = append(names, "pg")
