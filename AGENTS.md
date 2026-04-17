@@ -4,6 +4,13 @@ This repository contains **Bezeichner**, a Go service that generates and maps id
 
 HTTP is implemented as an RPC gateway that routes by gRPC full method name.
 
+## Shared skill
+
+Use the shared `coding-standards` skill from `./bin/skills/coding-standards`
+for cross-repository coding, review, testing, documentation, and PR
+conventions. Treat this `AGENTS.md` as the repo-specific companion to that
+skill.
+
 ## Repository at a glance
 
 - Language: **Go** (`module github.com/alexfalkowski/bezeichner`, `go 1.25.0`; see `go.mod:1-3`).
