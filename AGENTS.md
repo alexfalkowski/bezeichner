@@ -4,12 +4,11 @@ This repository contains **Bezeichner**, a Go service that generates and maps id
 
 HTTP is implemented as an RPC gateway that routes by gRPC full method name.
 
-## Shared skill
+## Shared skills
 
-Use the shared `coding-standards` skill from `./bin/skills/coding-standards`
-for cross-repository coding, review, testing, documentation, and PR
-conventions. Treat this `AGENTS.md` as the repo-specific companion to that
-skill.
+This repository uses the shared skills from `bin/skills/`. Read
+`bin/AGENTS.md` for the canonical shared skill list and use the smallest
+matching skill for the task.
 
 ## Repository at a glance
 
