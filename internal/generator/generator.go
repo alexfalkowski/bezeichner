@@ -10,6 +10,10 @@ import (
 // ErrNotFound indicates that a generator kind cannot be resolved from a registry.
 var ErrNotFound = errors.New("generator not found")
 
+// ErrUnavailable indicates that a generator cannot produce identifiers because
+// a required runtime dependency is unavailable.
+var ErrUnavailable = errors.New("generator unavailable")
+
 // NewGenerators constructs the default generator registry.
 //
 // The returned registry maps a generator "kind" string (for example "uuid" or

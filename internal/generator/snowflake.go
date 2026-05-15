@@ -20,6 +20,10 @@ func NewSnowflake() *Snowflake {
 
 // Generate a id with snowflake.
 func (s *Snowflake) Generate(_ context.Context, app *Application) (string, error) {
+	if s.sf == nil {
+		return strings.Empty, ErrUnavailable
+	}
+
 	id, err := s.sf.NextID()
 	if err != nil {
 		return strings.Empty, err
