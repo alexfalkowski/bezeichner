@@ -15,6 +15,10 @@ type PG struct {
 
 // Generate an ID using a sequence.
 func (p *PG) Generate(ctx context.Context, app *Application) (string, error) {
+	if p.db == nil {
+		return strings.Empty, ErrUnavailable
+	}
+
 	var id int64
 
 	row := p.db.QueryRowContext(ctx, "SELECT nextval($1::regclass)", app.Name)
