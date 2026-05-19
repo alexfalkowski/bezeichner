@@ -45,7 +45,7 @@ module Bezeichner
     # @example Load generator applications
     #   Bezeichner.config.dig('generator', 'applications')
     def config
-      @config ||= Nonnative.configurations('.config/server.yml')
+      @config ||= Nonnative::ConfigurationFile.load('.config/server.yml')
     end
 
     # Returns a gRPC Health stub for the running Bezeichner service.
