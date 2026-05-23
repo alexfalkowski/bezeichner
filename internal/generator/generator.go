@@ -3,7 +3,7 @@ package generator
 import (
 	"github.com/alexfalkowski/go-service/v2/context"
 	"github.com/alexfalkowski/go-service/v2/crypto/rand"
-	"github.com/alexfalkowski/go-service/v2/database/sql/driver"
+	"github.com/alexfalkowski/go-service/v2/database/sql"
 	"github.com/alexfalkowski/go-service/v2/errors"
 )
 
@@ -19,7 +19,7 @@ var ErrUnavailable = errors.New("generator unavailable")
 // The returned registry maps a generator "kind" string (for example "uuid" or
 // "ulid") to a concrete Generator implementation. It is used by the domain layer
 // to select an implementation based on configured application kind.
-func NewGenerators(db *driver.DBs, generator *rand.Generator) Generators {
+func NewGenerators(db *sql.DBs, generator *rand.Generator) Generators {
 	return Generators{
 		"uuid":      &UUID{},
 		"ksuid":     &KSUID{},

@@ -4,13 +4,13 @@ import (
 	"strconv"
 
 	"github.com/alexfalkowski/go-service/v2/context"
-	"github.com/alexfalkowski/go-service/v2/database/sql/driver"
+	"github.com/alexfalkowski/go-service/v2/database/sql"
 	"github.com/alexfalkowski/go-service/v2/strings"
 )
 
 // PG generator.
 type PG struct {
-	db *driver.DBs
+	db *sql.DBs
 }
 
 // Generate an ID using a sequence.
