@@ -3,8 +3,8 @@ package generator
 import (
 	"github.com/alexfalkowski/go-service/v2/context"
 	"github.com/alexfalkowski/go-service/v2/crypto/rand"
+	"github.com/alexfalkowski/go-service/v2/database/sql/driver"
 	"github.com/alexfalkowski/go-service/v2/errors"
-	"github.com/linxGnu/mssqlx"
 )
 
 // ErrNotFound indicates that a generator kind cannot be resolved from a registry.
@@ -19,7 +19,7 @@ var ErrUnavailable = errors.New("generator unavailable")
 // The returned registry maps a generator "kind" string (for example "uuid" or
 // "ulid") to a concrete Generator implementation. It is used by the domain layer
 // to select an implementation based on configured application kind.
-func NewGenerators(db *mssqlx.DBs, generator *rand.Generator) Generators {
+func NewGenerators(db *driver.DBs, generator *rand.Generator) Generators {
 	return Generators{
 		"uuid":      &UUID{},
 		"ksuid":     &KSUID{},
