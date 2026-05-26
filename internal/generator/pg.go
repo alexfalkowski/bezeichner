@@ -21,7 +21,8 @@ func (p *PG) Generate(ctx context.Context, app *Application) (string, error) {
 
 	var id int64
 
-	row := p.db.QueryRowContext(ctx, "SELECT nextval($1::regclass)", app.Name)
+	// nextval advances sequence state, so it must run against the master pool.
+	row := p.db.QueryRowContextOnMaster(ctx, "SELECT nextval($1::regclass)", app.Name)
 	if err := row.Scan(&id); err != nil {
 		return strings.Empty, err
 	}

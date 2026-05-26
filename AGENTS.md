@@ -164,6 +164,12 @@ Generator implementations are in `internal/generator/*` and are selected by `App
 - The pg generator uses a Postgres sequence named after `Application.Name` and calls `nextval($1::regclass)` (see `internal/generator/pg.go:16-26`).
 - The service does **not** create sequences; you must provision them externally.
 
+### Snowflake generator deployment assumption
+
+- Do **not** flag `internal/generator/snowflake.go` using Sonyflake default settings as a general bug.
+- In the intended Kubernetes deployment, pods use normal pod networking, so Sonyflake's default private-IPv4-derived machine ID is an accepted uniqueness source for concurrently running pods.
+- Only raise Snowflake machine-ID collision risk when the task explicitly concerns local multi-process deployments, `hostNetwork`, overlapping pod CIDRs, multi-cluster shared ID spaces, IPv6-only/no-private-IPv4 environments, or changing the deployment topology/ID contract.
+
 ## Request size limits (DoS protection)
 
 Limits are enforced in the domain layer:
