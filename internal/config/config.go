@@ -9,10 +9,10 @@ import (
 
 // Config for the service.
 type Config struct {
-	Health         *health.Config    `yaml:"health,omitempty" json:"health,omitempty" toml:"health,omitempty"`
-	Generator      *generator.Config `yaml:"generator,omitempty" json:"generator,omitempty" toml:"generator,omitempty"`
-	Mapper         *mapper.Config    `yaml:"mapper,omitempty" json:"mapper,omitempty" toml:"mapper,omitempty"`
-	*config.Config `yaml:",inline" json:",inline" toml:",inline"`
+	Health         *health.Config    `yaml:"health,omitempty" json:"health,omitempty" toml:"health,omitempty" validate:"required"`
+	Generator      *generator.Config `yaml:"generator,omitempty" json:"generator,omitempty" toml:"generator,omitempty" validate:"required"`
+	Mapper         *mapper.Config    `yaml:"mapper,omitempty" json:"mapper,omitempty" toml:"mapper,omitempty" validate:"required"`
+	*config.Config `yaml:",inline" json:",inline" toml:",inline" validate:"required"`
 }
 
 func decorateConfig(cfg *Config) *config.Config {
