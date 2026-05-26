@@ -92,6 +92,10 @@ func (s *Identifier) Map(ids []string) ([]string, error) {
 		return nil, ErrInvalidArgument
 	}
 
+	if s.mapperConfig == nil {
+		return nil, ErrNotFound
+	}
+
 	mids := make([]string, len(ids))
 	for i, id := range ids {
 		mid, ok := s.mapperConfig.Identifiers[id]
