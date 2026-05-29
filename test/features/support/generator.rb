@@ -1,7 +1,11 @@
 # frozen_string_literal: true
 
-Bezeichner.pg.create
+%w[pg pg_alias].each do |name|
+  Bezeichner.pg.create(name)
+end
 
 at_exit do
-  Bezeichner.pg.destroy
+  %w[pg_alias pg].each do |name|
+    Bezeichner.pg.destroy(name)
+  end
 end

@@ -13,6 +13,7 @@ Feature: gRPC API
       | application | count |
       | uuid        |     1 |
       | uuid        |     2 |
+      | uuid_alias  |     1 |
       | ksuid       |     1 |
       | ksuid       |     2 |
       | ulid        |     1 |
@@ -27,6 +28,15 @@ Feature: gRPC API
       | typeid      |     2 |
       | pg          |     1 |
       | pg          |     2 |
+      | pg_alias    |     1 |
+
+  Scenario: Generate maximum identifiers for existing applications
+    When I request to generate identifiers with gRPC:
+      | application | uuid |
+      | count       | 1000 |
+    Then I should receive generated identifiers from gRPC:
+      | application | uuid |
+      | count       | 1000 |
 
   Scenario: Generate too many identifiers for existing applications
     When I request to generate identifiers with gRPC:
@@ -69,6 +79,11 @@ Feature: gRPC API
       | request   | response    |
       | req1      | resp1       |
       | req1,req2 | resp1,resp2 |
+      | req2,req1 | resp2,resp1 |
+
+  Scenario: Map maximum identifiers
+    When I request to map 1000 existing identifiers with gRPC
+    Then I should receive 1000 mapped identifiers from gRPC
 
   Scenario: Map too many identifiers
     When I request to map 1001 identifiers with gRPC:
