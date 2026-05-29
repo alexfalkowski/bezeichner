@@ -2,9 +2,10 @@
 
 When('I request to generate identifiers with HTTP:') do |table|
   rows = table.rows_hash
+  @request_id = SecureRandom.uuid
   opts = {
     headers: {
-      request_id: SecureRandom.uuid, user_agent: 'Bezeichner-ruby-client/1.0 HTTP/1.0',
+      request_id: @request_id, user_agent: 'Bezeichner-ruby-client/1.0 HTTP/1.0',
       content_type: :json, accept: :json
     },
     read_timeout: 10, open_timeout: 10
@@ -15,9 +16,10 @@ end
 
 When('I request to map identifiers with HTTP:') do |table|
   rows = table.rows_hash
+  @request_id = SecureRandom.uuid
   opts = {
     headers: {
-      request_id: SecureRandom.uuid, user_agent: 'Bezeichner-ruby-client/1.0 HTTP/1.0',
+      request_id: @request_id, user_agent: 'Bezeichner-ruby-client/1.0 HTTP/1.0',
       content_type: :json, accept: :json
     },
     read_timeout: 10, open_timeout: 10
@@ -27,15 +29,29 @@ When('I request to map identifiers with HTTP:') do |table|
 end
 
 When('I request to map {int} identifiers with HTTP:') do |count|
+  @request_id = SecureRandom.uuid
   opts = {
     headers: {
-      request_id: SecureRandom.uuid, user_agent: 'Bezeichner-ruby-client/1.0 HTTP/1.0',
+      request_id: @request_id, user_agent: 'Bezeichner-ruby-client/1.0 HTTP/1.0',
       content_type: :json, accept: :json
     },
     read_timeout: 10, open_timeout: 10
   }
 
   @response = Bezeichner::V1.http.map(count.times.map { SecureRandom.hex }, opts)
+end
+
+When('I request to map {int} existing identifiers with HTTP') do |count|
+  @request_id = SecureRandom.uuid
+  opts = {
+    headers: {
+      request_id: @request_id, user_agent: 'Bezeichner-ruby-client/1.0 HTTP/1.0',
+      content_type: :json, accept: :json
+    },
+    read_timeout: 10, open_timeout: 10
+  }
+
+  @response = Bezeichner::V1.http.map(Array.new(count, 'req1'), opts)
 end
 
 Then('I should receive generated identifiers from HTTP:') do |table|
@@ -45,9 +61,10 @@ Then('I should receive generated identifiers from HTTP:') do |table|
   ids = resp['ids']
   rows = table.rows_hash
 
-  expect(resp['meta'].length).to be > 0
+  expect(resp['meta']['requestId']).to eq(@request_id)
+  expect(resp['meta']['userAgent']).to eq('Bezeichner-ruby-client/1.0 HTTP/1.0')
   expect(ids.length).to eq(rows['count'].to_i)
-  expect(ids.first.length).to be > 0
+  expect(ids).to all(satisfy { |id| id.length.positive? })
 end
 
 Then('I should receive mapped identifiers from HTTP:') do |table|
@@ -57,8 +74,19 @@ Then('I should receive mapped identifiers from HTTP:') do |table|
   ids = resp['ids']
   rows = table.rows_hash
 
-  expect(resp['meta'].length).to be > 0
+  expect(resp['meta']['requestId']).to eq(@request_id)
+  expect(resp['meta']['userAgent']).to eq('Bezeichner-ruby-client/1.0 HTTP/1.0')
   expect(ids).to eq(rows['response'].split(','))
+end
+
+Then('I should receive {int} mapped identifiers from HTTP') do |count|
+  expect(@response.code).to eq(200)
+
+  resp = JSON.parse(@response.body)
+
+  expect(resp['meta']['requestId']).to eq(@request_id)
+  expect(resp['meta']['userAgent']).to eq('Bezeichner-ruby-client/1.0 HTTP/1.0')
+  expect(resp['ids']).to eq(Array.new(count, 'resp1'))
 end
 
 Then('I should receive a not found error from HTTP') do

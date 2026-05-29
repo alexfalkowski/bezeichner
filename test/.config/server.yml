@@ -9,6 +9,8 @@ generator:
   applications:
     - name: uuid
       kind: uuid
+    - name: uuid_alias
+      kind: uuid
     - name: ksuid
       kind: ksuid
     - name: ulid
@@ -22,6 +24,8 @@ generator:
     - name: typeid
       kind: typeid
     - name: pg
+      kind: pg
+    - name: pg_alias
       kind: pg
     - name: invalid_kind
       kind: invalid_kind

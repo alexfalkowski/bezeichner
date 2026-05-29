@@ -42,20 +42,28 @@ module Bezeichner
         @conn = ::PG.connect(uri.hostname, uri.port, nil, nil, uri.path[1..], uri.user, uri.password)
       end
 
-      # Creates the `pg` sequence.
+      # Creates the named sequence.
       #
+      # @param name [String] sequence name
       # @return [PG::Result] result from Postgres
       # @raise [PG::Error] if the sequence already exists or the command fails
-      def create
-        @conn.exec('CREATE SEQUENCE pg')
+      def create(name = 'pg')
+        @conn.exec("CREATE SEQUENCE #{sequence(name)}")
       end
 
-      # Drops the `pg` sequence.
+      # Drops the named sequence.
       #
+      # @param name [String] sequence name
       # @return [PG::Result] result from Postgres
       # @raise [PG::Error] if the sequence does not exist or the command fails
-      def destroy
-        @conn.exec('DROP SEQUENCE pg')
+      def destroy(name = 'pg')
+        @conn.exec("DROP SEQUENCE #{sequence(name)}")
+      end
+
+      private
+
+      def sequence(name)
+        @conn.quote_ident(name)
       end
     end
   end
