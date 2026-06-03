@@ -3,8 +3,8 @@ module github.com/alexfalkowski/bezeichner
 go 1.26.0
 
 require (
-	github.com/alexfalkowski/go-health/v2 v2.23.0
-	github.com/alexfalkowski/go-service/v2 v2.553.0
+	github.com/alexfalkowski/go-health/v2 v2.24.0
+	github.com/alexfalkowski/go-service/v2 v2.554.0
 	github.com/google/uuid v1.6.0
 	github.com/matoous/go-nanoid v1.5.1
 	github.com/oklog/ulid v1.3.1
