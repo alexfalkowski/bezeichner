@@ -23,31 +23,17 @@ generator:
       kind: nanoid
     - name: typeid
       kind: typeid
-    - name: pg
-      kind: pg
-    - name: pg_alias
-      kind: pg
     - name: invalid_kind
       kind: invalid_kind
 health:
   duration: 1s
   timeout: 1s
-sql:
-  pg:
-    masters:
-      - url: file:secrets/pg
-    max_open_conns: 5
-    max_idle_conns: 5
-    conn_max_lifetime: 1h
 telemetry:
   logger:
     kind: text
     level: info
   metrics:
     kind: prometheus
-  tracer:
-    kind: otlp
-    url: http://localhost:4318/v1/traces
 transport:
   http:
     address: tcp://:11000

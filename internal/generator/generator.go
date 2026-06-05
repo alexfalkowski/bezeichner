@@ -2,33 +2,27 @@ package generator
 
 import (
 	"github.com/alexfalkowski/go-service/v2/context"
-	"github.com/alexfalkowski/go-service/v2/crypto/rand"
-	"github.com/alexfalkowski/go-service/v2/database/sql"
 	"github.com/alexfalkowski/go-service/v2/errors"
+	"github.com/alexfalkowski/go-service/v2/id"
 )
 
 // ErrNotFound indicates that a generator kind cannot be resolved from a registry.
 var ErrNotFound = errors.New("generator not found")
-
-// ErrUnavailable indicates that a generator cannot produce identifiers because
-// a required runtime dependency is unavailable.
-var ErrUnavailable = errors.New("generator unavailable")
 
 // NewGenerators constructs the default generator registry.
 //
 // The returned registry maps a generator "kind" string (for example "uuid" or
 // "ulid") to a concrete Generator implementation. It is used by the domain layer
 // to select an implementation based on configured application kind.
-func NewGenerators(db *sql.DBs, generator *rand.Generator) Generators {
+func NewGenerators(ids *id.Map) Generators {
 	return Generators{
-		"uuid":      &UUID{},
-		"ksuid":     &KSUID{},
-		"ulid":      &ULID{generator: generator},
-		"xid":       &XID{},
+		"uuid":      NewID(ids, "uuid"),
+		"ksuid":     NewID(ids, "ksuid"),
+		"ulid":      NewID(ids, "ulid"),
+		"xid":       NewID(ids, "xid"),
 		"snowflake": NewSnowflake(),
-		"nanoid":    &NanoID{},
+		"nanoid":    NewID(ids, "nanoid"),
 		"typeid":    &TypeID{},
-		"pg":        &PG{db: db},
 	}
 }
 
@@ -48,9 +42,8 @@ func (gs Generators) Generator(kind string) (Generator, error) {
 
 // Generator generates identifiers for a configured application.
 //
-// Implementations may use the provided application configuration (for example,
-// the Postgres generator uses app.Name to select a sequence), or may ignore it.
+// Implementations may use the provided application configuration or ignore it.
 type Generator interface {
 	// Generate produces a single identifier for the given application.
-	Generate(ctx context.Context, app *Application) (string, error)
+	Generate(ctx context.Context, app *Application) string
 }

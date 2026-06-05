@@ -18,7 +18,7 @@
 // Generate depends on generator configuration (see internal/generator):
 //
 // An "application" is selected by name from generator configuration. The application
-// specifies a generator kind (for example: "uuid", "ulid", "pg", ...). The kind is
+// specifies a generator kind (for example: "uuid", "ulid", ...). The kind is
 // resolved through a Generators registry, and the selected Generator is asked to
 // generate each identifier.
 //
@@ -35,7 +35,7 @@
 //   - ErrNotFound: returned when a requested application, generator kind, or mapping
 //     entry cannot be found.
 //
-// Helper predicates IsInvalidArgument and IsNotFound are provided to classify errors.
-// Transports are expected to map these error categories to their protocol-specific
-// equivalents (e.g., gRPC codes InvalidArgument and NotFound).
+// Helper predicates are provided to classify errors when needed. Transports are
+// expected to map these error categories to their protocol-specific equivalents
+// (e.g., gRPC codes InvalidArgument and NotFound).
 package ids

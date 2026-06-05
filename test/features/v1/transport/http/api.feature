@@ -26,9 +26,6 @@ Feature: HTTP API
       | nanoid      |     2 |
       | typeid      |     1 |
       | typeid      |     2 |
-      | pg          |     1 |
-      | pg          |     2 |
-      | pg_alias    |     1 |
 
   Scenario: Generate maximum identifiers for existing applications
     When I request to generate identifiers with HTTP:
@@ -54,20 +51,6 @@ Feature: HTTP API
       | application  | count |
       | not_found    |     1 |
       | invalid_kind |     1 |
-
-  Scenario Outline: Generate identifiers for erroneous applications
-    Given I set the proxy for service "<application>" to "close_all"
-    And I should see "<application>" as unhealthy
-    When I request to generate identifiers with HTTP:
-      | application | <application> |
-      | count       | <count>       |
-    Then I should receive an internal error from HTTP
-    And I should reset the proxy for service "<application>"
-    And I should see "<application>" as healthy
-
-    Examples:
-      | application | count |
-      | pg          |     1 |
 
   Scenario Outline: Map existing identifiers
     When I request to map identifiers with HTTP:

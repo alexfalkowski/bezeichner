@@ -33,9 +33,5 @@ func (s *Server) error(err error) error {
 		return status.SafeError(codes.InvalidArgument, err)
 	}
 
-	if ids.IsNotFound(err) {
-		return status.SafeError(codes.NotFound, err)
-	}
-
-	return status.SafeError(codes.Internal, err)
+	return status.SafeError(codes.NotFound, err)
 }

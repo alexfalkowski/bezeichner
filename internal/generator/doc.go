@@ -25,33 +25,22 @@
 //
 // Generator is the common interface implemented by all generators:
 //
-//	Generate(ctx, app) (string, error)
+//	Generate(ctx, app) string
 //
-// The app parameter provides access to application configuration. Some
-// generators ignore it; others use it (for example the Postgres generator uses
-// app.Name to select a sequence).
+// The app parameter provides access to application configuration. Current
+// built-in generators ignore it.
 //
 // # Built-in kinds
 //
 // The default registry includes (at the time of writing):
 //
-//   - "uuid":      random UUID string
+//   - "uuid":      UUIDv7 string
 //   - "ksuid":     KSUID string
 //   - "ulid":      ULID string
 //   - "xid":       XID string
 //   - "snowflake": Sonyflake-based numeric ID (decimal string)
 //   - "nanoid":    NanoID string
 //   - "typeid":    TypeID string
-//   - "pg":        Postgres sequence value (decimal string)
-//
-// # Postgres ("pg") generator
-//
-// The "pg" generator reads the next value from a Postgres sequence using:
-//
-//	SELECT nextval($1::regclass)
-//
-// The sequence name is taken from Application.Name. Sequences are not created by
-// this service and must be provisioned externally.
 //
 // # Errors
 //
