@@ -4,26 +4,22 @@ import (
 	v1 "github.com/alexfalkowski/bezeichner/api/bezeichner/v1"
 	"github.com/alexfalkowski/go-health/v2/checker"
 	"github.com/alexfalkowski/go-health/v2/server"
-	"github.com/alexfalkowski/go-service/v2/database/sql"
 	"github.com/alexfalkowski/go-service/v2/di"
 	"github.com/alexfalkowski/go-service/v2/env"
 	"github.com/alexfalkowski/go-service/v2/health"
-	healthchecker "github.com/alexfalkowski/go-service/v2/health/checker"
 )
 
 // RegisterParams are the dependencies required to register health checks and observers.
 type RegisterParams struct {
 	di.In
 	Server *server.Server
-	DB     *sql.DBs
 	Config *Config
 	Name   env.Name
 }
 
 // Register installs health checks and observers into the provided health server.
 //
-// It registers a baseline set of checks ("noop" and "online") and conditionally
-// adds a database check ("pg") when a DB handle is available.
+// It registers a baseline set of checks ("noop" and "online").
 //
 // The process/service name (env.Name) is registered with the full set of checks,
 // while the gRPC service name (from the protobuf descriptor) is registered with
@@ -34,25 +30,12 @@ func Register(params RegisterParams) {
 		server.NewOnlineRegistration(params.Config.Timeout.Duration(), params.Config.Duration.Duration()),
 	}
 
-	if params.DB != nil {
-		reg := server.NewRegistration("pg",
-			params.Config.Duration.Duration(),
-			healthchecker.NewDBChecker(params.DB, params.Config.Timeout),
-		)
-		regs = append(regs, reg)
-	}
-
 	params.Server.Register(params.Name.String(), regs...)
 	params.Server.Register(v1.Service_ServiceDesc.ServiceName, regs[0])
 }
 
-func httpHealthObserver(name env.Name, db *sql.DBs, server *server.Server) error {
-	names := []string{"online"}
-	if db != nil {
-		names = append(names, "pg")
-	}
-
-	return server.Observe(name.String(), "healthz", names...)
+func httpHealthObserver(name env.Name, server *server.Server) error {
+	return server.Observe(name.String(), "healthz", "online")
 }
 
 func httpLivenessObserver(name env.Name, server *server.Server) error {

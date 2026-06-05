@@ -4,7 +4,7 @@ import (
 	"strconv"
 
 	"github.com/alexfalkowski/go-service/v2/context"
-	"github.com/alexfalkowski/go-service/v2/strings"
+	"github.com/alexfalkowski/go-service/v2/runtime"
 	"github.com/sony/sonyflake"
 )
 
@@ -18,16 +18,12 @@ func NewSnowflake() *Snowflake {
 	return &Snowflake{sf: sonyflake.NewSonyflake(sonyflake.Settings{})}
 }
 
-// Generate a id with snowflake.
-func (s *Snowflake) Generate(_ context.Context, app *Application) (string, error) {
-	if s.sf == nil {
-		return strings.Empty, ErrUnavailable
-	}
-
+// Generate a Snowflake ID.
+//
+// If Sonyflake's time range is exhausted, this method panics via [runtime.Must].
+func (s *Snowflake) Generate(_ context.Context, _ *Application) string {
 	id, err := s.sf.NextID()
-	if err != nil {
-		return strings.Empty, err
-	}
+	runtime.Must(err)
 
-	return strconv.FormatUint(id, 10), nil
+	return strconv.FormatUint(id, 10)
 }

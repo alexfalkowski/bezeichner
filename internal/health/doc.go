@@ -15,10 +15,6 @@
 //
 //   - "noop":   a checker that always reports healthy.
 //   - "online": an "online" registration that reflects the server's online state.
-//   - "pg":     a database health check when a database handle is available.
-//
-// Database checking is conditional: if the DB dependency is not present, the
-// "pg" registration is not added.
 //
 // # Timing configuration
 //

@@ -4,12 +4,10 @@ require 'securerandom'
 require 'yaml'
 require 'base64'
 
-require 'pg'
 require 'grpc/health/v1/health_services_pb'
 
 require 'bezeichner/v1/http'
 require 'bezeichner/v1/service_services_pb'
-require 'bezeichner/generator/pg'
 
 # Namespace for Ruby helpers used by Bezeichner's end-to-end (Cucumber) feature tests.
 #
@@ -21,8 +19,6 @@ require 'bezeichner/generator/pg'
 # - Preconfigured gRPC stubs for:
 #   - The Bezeichner v1 API ({Bezeichner::V1.grpc})
 #   - gRPC Health API ({Bezeichner.health_grpc})
-# - A helper for provisioning a Postgres sequence used by the `pg` generator kind
-#   ({Bezeichner.pg}).
 #
 # ## Addresses / ports
 #
@@ -58,21 +54,6 @@ module Bezeichner
     #   Bezeichner.health_grpc.check(Grpc::Health::V1::HealthCheckRequest.new(service: 'bezeichner.v1.Service'))
     def health_grpc
       @health_grpc ||= Grpc::Health::V1::Health::Stub.new('localhost:12000', :this_channel_is_insecure, channel_args: Bezeichner.user_agent)
-    end
-
-    # Returns a helper used by tests to provision the Postgres sequence required by the
-    # `pg` generator kind.
-    #
-    # The Go service does not create sequences; tests create and drop them around scenarios.
-    #
-    # @return [Bezeichner::Generator::PG]
-    #
-    # @example Create sequence for pg generator
-    #   Bezeichner.pg.create
-    # @example Drop sequence
-    #   Bezeichner.pg.destroy
-    def pg
-      @pg ||= Bezeichner::Generator::PG.new
     end
 
     # Builds and memoizes the gRPC channel arguments used by stubs created in this helper.

@@ -145,7 +145,6 @@ A representative config used by dev/feature tests is `test/.config/server.yml`.
 Notable keys observed:
 - `generator.applications[]`: generator applications (**name** and **kind**).
 - `mapper.identifiers`: mapping table for `MapIdentifiers`.
-- `sql.pg.masters[].url`: points to `file:secrets/pg` under `test/`.
 - `transport.http.address` defaults to `tcp://:11000` and `transport.grpc.address` to `tcp://:12000`.
 
 Notes:
@@ -155,14 +154,11 @@ Notes:
 ## Generators
 
 Generator implementations are in `internal/generator/*` and are selected by `Application.Kind`.
+Standard kinds such as `uuid`, `ksuid`, `ulid`, `xid`, and `nanoid` are adapted
+from `github.com/alexfalkowski/go-service/v2/id`.
 
-- Registry: `internal/generator/generator.go:14-25`.
-- Applications are defined via `internal/generator/config.go:8-24`.
-
-### Postgres (pg) generator gotcha
-
-- The pg generator uses a Postgres sequence named after `Application.Name` and calls `nextval($1::regclass)` (see `internal/generator/pg.go:16-26`).
-- The service does **not** create sequences; you must provision them externally.
+- Registry: `internal/generator/generator.go:16-30`.
+- Applications are defined via `internal/generator/config.go:3-25`.
 
 ### Snowflake generator deployment assumption
 
@@ -189,8 +185,7 @@ These surface to clients as `InvalidArgument` via the gRPC error mapper (`intern
 
 - Feature specs live under `test/features/**`.
 - Harness config: `test/nonnative.yml`.
-  - Launches `../bezeichner server -i file:.config/server.yml` (`test/nonnative.yml:10-12`).
-  - Sets up a fault-injection proxy for Postgres (`test/nonnative.yml:17-28`).
+  - Launches `../bezeichner server -i file:.config/server.yml` (`test/nonnative.yml:6-12`).
 - Cucumber report options: `test/.config/cucumber.yml:1`.
 
 If bundler fails loading native gems (e.g., `json` extension), one observed fix is rebuilding the gem:
@@ -210,5 +205,3 @@ CircleCI runs (see `.circleci/config.yml`):
 
 - `make dep`, `make lint`, `make proto-breaking`, `make sec`, `make trivy-repo`
 - `make features`, `make benchmarks`, `make analyse`, `make coverage`, `make codecov-upload`
-
-The build job uses `postgres:18-trixie` and `grafana/mimir:latest` as service containers (`.circleci/config.yml:6-13`).

@@ -17,11 +17,6 @@ import (
 //   - or an input identifier does not have a configured mapping.
 var ErrNotFound = errors.New("not found")
 
-// IsNotFound reports whether err is (or wraps) ErrNotFound.
-func IsNotFound(err error) bool {
-	return errors.Is(err, ErrNotFound)
-}
-
 // NewIdentifier constructs an Identifier domain service.
 //
 // It requires:
@@ -68,12 +63,7 @@ func (s *Identifier) Generate(ctx context.Context, application string, count uin
 
 	ids := make([]string, count)
 	for i := range ids {
-		id, err := g.Generate(ctx, app)
-		if err != nil {
-			return nil, err
-		}
-
-		ids[i] = id
+		ids[i] = g.Generate(ctx, app)
 	}
 
 	return ids, nil

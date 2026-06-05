@@ -9,8 +9,6 @@ import (
 type TypeID struct{}
 
 // Generate a TypeID.
-func (t *TypeID) Generate(_ context.Context, app *Application) (string, error) {
-	id, err := typeid.WithPrefix("")
-
-	return id.String(), err
+func (t *TypeID) Generate(_ context.Context, _ *Application) string {
+	return typeid.Must(typeid.WithPrefix("")).String()
 }

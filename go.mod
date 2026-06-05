@@ -5,11 +5,6 @@ go 1.26.0
 require (
 	github.com/alexfalkowski/go-health/v2 v2.25.0
 	github.com/alexfalkowski/go-service/v2 v2.557.0
-	github.com/google/uuid v1.6.0
-	github.com/matoous/go-nanoid v1.5.1
-	github.com/oklog/ulid v1.3.1
-	github.com/rs/xid v1.6.0
-	github.com/segmentio/ksuid v1.0.4
 	github.com/sony/sonyflake v1.3.0
 	go.jetify.com/typeid v1.3.0
 	google.golang.org/grpc v1.81.1
@@ -55,6 +50,7 @@ require (
 	github.com/gofrs/uuid/v5 v5.4.0 // indirect
 	github.com/golang-jwt/jwt/v4 v4.5.2 // indirect
 	github.com/google/pprof v0.0.0-20260507013755-92041b743c96 // indirect
+	github.com/google/uuid v1.6.0 // indirect
 	github.com/gorilla/websocket v1.5.3 // indirect
 	github.com/grpc-ecosystem/go-grpc-middleware/v2 v2.3.3 // indirect
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.29.0 // indirect
@@ -76,9 +72,11 @@ require (
 	github.com/linxGnu/mssqlx v1.1.8 // indirect
 	github.com/lmittmann/tint v1.1.3 // indirect
 	github.com/lufia/plan9stats v0.0.0-20260330125221-c963978e514e // indirect
+	github.com/matoous/go-nanoid v1.5.1 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
 	github.com/modern-go/reflect2 v1.0.2 // indirect
 	github.com/munnerz/goautoneg v0.0.0-20191010083416-a7dc8b61c822 // indirect
+	github.com/oklog/ulid v1.3.1 // indirect
 	github.com/open-feature/go-sdk v1.17.2 // indirect
 	github.com/open-feature/go-sdk-contrib/hooks/open-telemetry v0.3.7 // indirect
 	github.com/pbnjay/memory v0.0.0-20210728143218-7b4eea64cf58 // indirect
@@ -91,7 +89,9 @@ require (
 	github.com/redis/go-redis/extra/rediscmd/v9 v9.20.0 // indirect
 	github.com/redis/go-redis/extra/redisotel/v9 v9.20.0 // indirect
 	github.com/redis/go-redis/v9 v9.20.0 // indirect
+	github.com/rs/xid v1.6.0 // indirect
 	github.com/secure-io/siv-go v0.0.0-20180922214919-5ff40651e2c4 // indirect
+	github.com/segmentio/ksuid v1.0.4 // indirect
 	github.com/sethvargo/go-limiter v1.1.0 // indirect
 	github.com/sethvargo/go-retry v0.3.0 // indirect
 	github.com/shirou/gopsutil/v4 v4.26.5 // indirect

@@ -13,11 +13,13 @@ Bezeichner is a small Go service that **generates** and **maps** identifiers, ex
 - HTTP is implemented as an RPC gateway that routes by **gRPC full method name** (so both transports share the same contract).
 
 The API contract lives in:
+
 - `api/bezeichner/v1/service.proto`
 
 ## Why a service?
 
 Distributed systems often need globally unique identifiers across multiple languages and runtimes. Bezeichner centralizes identifier generation so:
+
 - you don't re-implement ID generation logic per service/language,
 - you can standardize generator choices per domain/application,
 - you can migrate/translate legacy identifiers via mapping.
@@ -25,6 +27,7 @@ Distributed systems often need globally unique identifiers across multiple langu
 ## API Overview (v1)
 
 The v1 service supports:
+
 - `GenerateIdentifiers`: generate `count` identifiers for a configured `application`
 - `MapIdentifiers`: map a list of identifiers using a configured mapping table
 
@@ -39,6 +42,7 @@ Bezeichner uses the `go-service` configuration conventions. A representative con
 ### Generator configuration
 
 Generator configuration selects **applications**, each of which has:
+
 - a `name` (the public application key you pass on requests),
 - a `kind` (the generator implementation to use).
 
@@ -51,37 +55,23 @@ Supported built-in kinds (at time of writing):
 - `snowflake`
 - `nanoid`
 - `typeid`
-- `pg` (Postgres sequence-backed)
 
 Example:
 
-```/dev/null/generator.yml#L1-21
+```yaml
 generator:
   applications:
     - name: public-uuid
       kind: uuid
     - name: internal-ulid
       kind: ulid
-    - name: order-seq
-      kind: pg
 ```
-
-#### Postgres generator (`kind: pg`)
-
-The `pg` generator reads the next value from a Postgres sequence using:
-
-- `SELECT nextval($1::regclass)`
-
-The sequence name is the configured `application.name` (i.e., `Application.Name`).
-
-Important:
-- The service **does not create sequences**. You must provision them separately (migrations/DB tooling/etc.).
 
 ### Mapper configuration
 
 Mapper configuration defines a lookup table for identifier translation (useful for legacy migrations):
 
-```/dev/null/mapper.yml#L1-6
+```yaml
 mapper:
   identifiers:
     legacy-1: canonical-1
@@ -89,6 +79,7 @@ mapper:
 ```
 
 Semantics:
+
 - Mapping is strict: if any input ID is missing from the table, the operation fails.
 - Output order matches input order.
 
@@ -96,21 +87,21 @@ Semantics:
 
 Health checks are provided via `go-health` integration. Timing is configured as durations:
 
-```/dev/null/health.yml#L1-6
+```yaml
 health:
   duration: 1s   # how often to run checks
   timeout:  1s   # max time a single check may take
 ```
 
 The service registers:
-- `noop` and `online` checks always,
-- a `pg` check only if a DB handle is configured/available.
+
+- `noop` and `online` checks.
 
 ## Running
 
 ### Local dev (hot reload)
 
-```/dev/null/commands.sh#L1-3
+```sh
 make submodule
 make dep
 make dev
@@ -122,7 +113,7 @@ make dev
 
 ### Build
 
-```/dev/null/commands.sh#L1-4
+```sh
 make build        # builds ./bezeichner (release)
 make build-test   # builds ./bezeichner test binary (features, race, coverage)
 ```
@@ -137,7 +128,7 @@ Assuming the service is listening on `localhost:12000` (default in the sample co
 
 Generate 3 IDs for application `public-uuid`:
 
-```/dev/null/grpcurl.sh#L1-7
+```sh
 grpcurl -plaintext \
   -d '{"application":"public-uuid","count":"3"}' \
   localhost:12000 \
@@ -146,7 +137,7 @@ grpcurl -plaintext \
 
 Map identifiers:
 
-```/dev/null/grpcurl.sh#L1-7
+```sh
 grpcurl -plaintext \
   -d '{"ids":["legacy-1","legacy-2"]}' \
   localhost:12000 \
@@ -161,7 +152,7 @@ Assuming the service is listening on `localhost:11000` (default in the sample co
 
 Generate identifiers:
 
-```/dev/null/curl.sh#L1-7
+```sh
 curl -sS \
   -X POST \
   -H 'content-type: application/json' \
@@ -171,7 +162,7 @@ curl -sS \
 
 Map identifiers:
 
-```/dev/null/curl.sh#L1-7
+```sh
 curl -sS \
   -X POST \
   -H 'content-type: application/json' \
@@ -180,36 +171,36 @@ curl -sS \
 ```
 
 Note:
+
 - The exact HTTP path shape is defined by the underlying `go-service` HTTP RPC router; the important part is that routing is done by gRPC full method name.
 
 ## Deployment guidance
 
 Bezeichner is typically deployed as a shared internal service. Depending on your scale and domain boundaries, you can:
+
 - run a single global instance,
 - shard by bounded context,
 - run per region/cluster.
 
-If you use the `pg` generator, ensure database connectivity and sequence provisioning are handled as part of your infrastructure/migrations.
-
 ## Design & dependencies
 
 Bezeichner builds on established ID generation libraries:
-- https://github.com/google/uuid
-- https://github.com/segmentio/ksuid
-- https://github.com/oklog/ulid
-- https://github.com/rs/xid
-- https://github.com/sony/sonyflake
-- https://go.jetify.com/typeid
+
+- <https://github.com/alexfalkowski/go-service/tree/master/id>
+- <https://github.com/sony/sonyflake>
+- <https://go.jetify.com/typeid>
 
 Service scaffolding and transport/DI patterns:
-- https://github.com/alexfalkowski/go-service/v2
+
+- <https://github.com/alexfalkowski/go-service/v2>
 
 ## Development
 
 ### Repository structure
 
 The project follows:
-- https://github.com/golang-standards/project-layout
+
+- <https://github.com/golang-standards/project-layout>
 
 ### Requirements
 
@@ -220,7 +211,7 @@ The project follows:
 
 Most `make` targets come from the `bin/` git submodule:
 
-```/dev/null/setup.sh#L1-3
+```sh
 make submodule
 make dep
 make setup
@@ -230,17 +221,13 @@ make setup
 
 Go unit/spec tests:
 
-```/dev/null/tests.sh#L1-2
+```sh
 make specs
 make lint
 ```
 
 End-to-end feature tests:
 
-```/dev/null/tests.sh#L1-1
+```sh
 make features
 ```
-
-### Changelog
-
-See `CHANGELOG.md`.
