@@ -5,7 +5,7 @@
 [![Go Reference](https://pkg.go.dev/badge/github.com/alexfalkowski/bezeichner.svg)](https://pkg.go.dev/github.com/alexfalkowski/bezeichner)
 [![Stability: Active](https://masterminds.github.io/stability/active.svg)](https://masterminds.github.io/stability/active.html)
 
-# Bezeichner
+# 🏷️ Bezeichner
 
 Bezeichner is a small Go service that **generates** and **maps** identifiers, exposed via **gRPC** and **HTTP**.
 
@@ -16,7 +16,7 @@ The API contract lives in:
 
 - `api/bezeichner/v1/service.proto`
 
-## Why a service?
+## 🤔 Why a service?
 
 Distributed systems often need globally unique identifiers across multiple languages and runtimes. Bezeichner centralizes identifier generation so:
 
@@ -24,22 +24,33 @@ Distributed systems often need globally unique identifiers across multiple langu
 - you can standardize generator choices per domain/application,
 - you can migrate/translate legacy identifiers via mapping.
 
-## API Overview (v1)
+## 🧭 API Overview (v1)
 
 The v1 service supports:
 
 - `GenerateIdentifiers`: generate `count` identifiers for a configured `application`
 - `MapIdentifiers`: map a list of identifiers using a configured mapping table
 
-Both endpoints enforce request-size limits in the domain layer for basic DoS protection (limits are currently 1000 items for both generate count and map list).
+Responses contain generated or mapped `ids` and a `meta` map reserved for transport/service metadata.
 
-## Configuration
+> [!NOTE]
+> HTTP is not a separate REST API. It is an RPC gateway over the same protobuf service contract used by gRPC.
+
+> [!WARNING]
+> Both endpoints enforce request-size limits in the domain layer for basic DoS protection. `GenerateIdentifiers.count` and the `MapIdentifiers.ids` list length are capped at `1000`; larger requests fail with `InvalidArgument`.
+
+Unknown generator applications, unresolved generator kinds, and unmapped identifiers fail with `NotFound`.
+
+## ⚙️ Configuration
 
 Bezeichner uses the `go-service` configuration conventions. A representative configuration used by development and feature tests is:
 
 - `test/.config/server.yml`
 
-### Generator configuration
+> [!TIP]
+> Use `test/.config/server.yml` as the copy-paste source for local examples. The usage examples below use application and mapping names from that file.
+
+### 🧬 Generator configuration
 
 Generator configuration selects **applications**, each of which has:
 
@@ -61,29 +72,27 @@ Example:
 ```yaml
 generator:
   applications:
-    - name: public-uuid
+    - name: uuid
       kind: uuid
-    - name: internal-ulid
+    - name: ulid
       kind: ulid
 ```
 
-### Mapper configuration
+### 🗺️ Mapper configuration
 
 Mapper configuration defines a lookup table for identifier translation (useful for legacy migrations):
 
 ```yaml
 mapper:
   identifiers:
-    legacy-1: canonical-1
-    legacy-2: canonical-2
+    req1: resp1
+    req2: resp2
 ```
 
-Semantics:
+> [!IMPORTANT]
+> Mapping is strict: if any input ID is missing from the table, the whole operation fails. Output order matches input order.
 
-- Mapping is strict: if any input ID is missing from the table, the operation fails.
-- Output order matches input order.
-
-### Health configuration
+### ❤️ Health configuration
 
 Health checks are provided via `go-health` integration. Timing is configured as durations:
 
@@ -97,9 +106,11 @@ The service registers:
 
 - `noop` and `online` checks.
 
-## Running
+The service exposes health observers for HTTP (`healthz`, `livez`, `readyz`) and gRPC health checks.
 
-### Local dev (hot reload)
+## 🚀 Running
+
+### ♻️ Local dev (hot reload)
 
 ```sh
 make submodule
@@ -107,30 +118,33 @@ make dep
 make dev
 ```
 
+> [!IMPORTANT]
+> Run `make submodule` in a fresh checkout before other `make` targets. Most build, test, lint, and protobuf targets are provided by the `bin/` git submodule.
+
 `make dev` runs the server using `air` and a config file like:
 
-- `./bezeichner server -i file:test/.config/server.yml`
+- `./bezeichner server -config file:test/.config/server.yml`
 
-### Build
+### 🏗️ Build
 
 ```sh
 make build        # builds ./bezeichner (release)
 make build-test   # builds ./bezeichner test binary (features, race, coverage)
 ```
 
-## Usage examples
+## 🧪 Usage examples
 
 Below are examples for both transports. Exact request/response schemas are defined in `api/bezeichner/v1/service.proto`.
 
-### gRPC (grpcurl)
+### 🔌 gRPC (grpcurl)
 
 Assuming the service is listening on `localhost:12000` (default in the sample config):
 
-Generate 3 IDs for application `public-uuid`:
+Generate 3 IDs for application `uuid`:
 
 ```sh
 grpcurl -plaintext \
-  -d '{"application":"public-uuid","count":"3"}' \
+  -d '{"application":"uuid","count":"3"}' \
   localhost:12000 \
   bezeichner.v1.Service/GenerateIdentifiers
 ```
@@ -139,12 +153,12 @@ Map identifiers:
 
 ```sh
 grpcurl -plaintext \
-  -d '{"ids":["legacy-1","legacy-2"]}' \
+  -d '{"ids":["req1","req2"]}' \
   localhost:12000 \
   bezeichner.v1.Service/MapIdentifiers
 ```
 
-### HTTP RPC gateway (curl)
+### 🌐 HTTP RPC gateway (curl)
 
 HTTP routes are keyed by the **gRPC full method name**. That means your HTTP client calls the same method identifiers as gRPC.
 
@@ -156,7 +170,7 @@ Generate identifiers:
 curl -sS \
   -X POST \
   -H 'content-type: application/json' \
-  --data '{"application":"public-uuid","count":"3"}' \
+  --data '{"application":"uuid","count":"3"}' \
   http://localhost:11000/bezeichner.v1.Service/GenerateIdentifiers
 ```
 
@@ -166,15 +180,14 @@ Map identifiers:
 curl -sS \
   -X POST \
   -H 'content-type: application/json' \
-  --data '{"ids":["legacy-1","legacy-2"]}' \
+  --data '{"ids":["req1","req2"]}' \
   http://localhost:11000/bezeichner.v1.Service/MapIdentifiers
 ```
 
-Note:
+> [!NOTE]
+> The generated gRPC full method names include a leading slash, for example `/bezeichner.v1.Service/GenerateIdentifiers`. In HTTP URLs, that slash is the path separator after the host; `grpcurl` uses the `service/method` form without the leading slash.
 
-- The exact HTTP path shape is defined by the underlying `go-service` HTTP RPC router; the important part is that routing is done by gRPC full method name.
-
-## Deployment guidance
+## 🛡️ Deployment guidance
 
 Bezeichner is typically deployed as a shared internal service. Depending on your scale and domain boundaries, you can:
 
@@ -182,7 +195,10 @@ Bezeichner is typically deployed as a shared internal service. Depending on your
 - shard by bounded context,
 - run per region/cluster.
 
-## Design & dependencies
+> [!CAUTION]
+> The `snowflake` generator uses Sonyflake defaults. The intended deployment assumes normal Kubernetes pod networking where each concurrently running pod has a suitable private IPv4-derived machine ID. Re-evaluate that assumption for local multi-process deployments, `hostNetwork`, overlapping pod CIDRs, multi-cluster shared ID spaces, IPv6-only environments, or environments without private IPv4 addresses.
+
+## 🔗 Design & dependencies
 
 Bezeichner builds on established ID generation libraries:
 
@@ -194,30 +210,29 @@ Service scaffolding and transport/DI patterns:
 
 - <https://github.com/alexfalkowski/go-service/v2>
 
-## Development
+## 🛠️ Development
 
-### Repository structure
+### 📁 Repository structure
 
 The project follows:
 
 - <https://github.com/golang-standards/project-layout>
 
-### Requirements
+### 📋 Requirements
 
 - Go (see `go.mod` for version)
-- Ruby (used for end-to-end feature tests; see `.ruby-version`)
+- Ruby with Bundler (used for end-to-end feature tests; no repository-pinned Ruby version is currently declared)
 
-### Setup
+### 📦 Setup
 
 Most `make` targets come from the `bin/` git submodule:
 
 ```sh
 make submodule
 make dep
-make setup
 ```
 
-### Tests
+### ✅ Tests
 
 Go unit/spec tests:
 
