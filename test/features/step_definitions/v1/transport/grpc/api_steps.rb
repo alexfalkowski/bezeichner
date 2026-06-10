@@ -6,7 +6,7 @@ When('I request to generate identifiers with gRPC:') do |table|
   metadata = { 'request-id' => @request_id }
 
   request = Bezeichner::V1::GenerateIdentifiersRequest.new(application: rows['application'], count: rows['count'].to_i)
-  @response = Bezeichner::V1.grpc.generate_identifiers(request, { metadata: })
+  @response = Bezeichner::V1.grpc.generate_identifiers(request, Bezeichner.grpc_options(metadata:))
 rescue StandardError => e
   @response = e
 end
@@ -17,7 +17,7 @@ When('I request to map identifiers with gRPC:') do |table|
   metadata = { 'request-id' => @request_id }
 
   request = Bezeichner::V1::MapIdentifiersRequest.new(ids: rows['request'].split(','))
-  @response = Bezeichner::V1.grpc.map_identifiers(request, { metadata: })
+  @response = Bezeichner::V1.grpc.map_identifiers(request, Bezeichner.grpc_options(metadata:))
 rescue StandardError => e
   @response = e
 end
@@ -27,7 +27,7 @@ When('I request to map {int} identifiers with gRPC:') do |count|
   metadata = { 'request-id' => @request_id }
 
   request = Bezeichner::V1::MapIdentifiersRequest.new(ids: count.times.map { SecureRandom.hex })
-  @response = Bezeichner::V1.grpc.map_identifiers(request, { metadata: })
+  @response = Bezeichner::V1.grpc.map_identifiers(request, Bezeichner.grpc_options(metadata:))
 rescue StandardError => e
   @response = e
 end
@@ -37,7 +37,7 @@ When('I request to map {int} existing identifiers with gRPC') do |count|
   metadata = { 'request-id' => @request_id }
 
   request = Bezeichner::V1::MapIdentifiersRequest.new(ids: Array.new(count, 'req1'))
-  @response = Bezeichner::V1.grpc.map_identifiers(request, { metadata: })
+  @response = Bezeichner::V1.grpc.map_identifiers(request, Bezeichner.grpc_options(metadata:))
 rescue StandardError => e
   @response = e
 end

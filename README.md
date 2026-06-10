@@ -106,6 +106,11 @@ The service registers:
 
 - `noop` and `online` checks.
 
+`healthz` intentionally uses the `online` check. Bezeichner follows the shared
+service convention that all services should report whether they can reach the
+outside world if they need public egress later, even when the current generate
+and map paths do not require outbound network access.
+
 The service exposes health observers for HTTP (`healthz`, `livez`, `readyz`) and gRPC health checks.
 
 ## 🚀 Running
@@ -197,6 +202,12 @@ Bezeichner is typically deployed as a shared internal service. Depending on your
 
 > [!CAUTION]
 > The `snowflake` generator uses Sonyflake defaults. The intended deployment assumes normal Kubernetes pod networking where each concurrently running pod has a suitable private IPv4-derived machine ID. Re-evaluate that assumption for local multi-process deployments, `hostNetwork`, overlapping pod CIDRs, multi-cluster shared ID spaces, IPv6-only environments, or environments without private IPv4 addresses.
+
+> [!IMPORTANT]
+> Deployments should pin released version tags instead of depending on the moving
+> `latest` Docker manifest. The release pipeline may update `latest` after
+> versioned images are published, but the versioned image tag is the deployment
+> contract.
 
 ## 🔗 Design & dependencies
 
