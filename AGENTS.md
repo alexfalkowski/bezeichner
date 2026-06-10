@@ -151,6 +151,12 @@ Notes:
 - The generator application model in code currently includes only `name` and `kind` (no `prefix`, `suffix`, or `separator` fields).
 - HTTP is an RPC gateway that routes by **gRPC full method name**, so the HTTP surface mirrors the gRPC contract in `api/bezeichner/v1/service.proto`.
 
+### Health check deployment assumption
+
+- Do **not** flag `internal/health` wiring `healthz` to the `online` check as a reliability gap.
+- This is an intentional shared service convention: all services should know whether they can talk to the outside world if public egress is needed later, even when Bezeichner's current generate/map paths do not require outbound network access.
+- Only raise this health check behavior when the task explicitly concerns changing the health contract, environments that must run without public egress, or a documented operator workflow where `healthz` must mean local-process-only health.
+
 ## Generators
 
 Generator implementations are in `internal/generator/*` and are selected by `Application.Kind`.
@@ -165,6 +171,18 @@ from `github.com/alexfalkowski/go-service/v2/id`.
 - Do **not** flag `internal/generator/snowflake.go` using Sonyflake default settings as a general bug.
 - In the intended Kubernetes deployment, pods use normal pod networking, so Sonyflake's default private-IPv4-derived machine ID is an accepted uniqueness source for concurrently running pods.
 - Only raise Snowflake machine-ID collision risk when the task explicitly concerns local multi-process deployments, `hostNetwork`, overlapping pod CIDRs, multi-cluster shared ID spaces, IPv6-only/no-private-IPv4 environments, or changing the deployment topology/ID contract.
+
+### Docker release ordering assumption
+
+- Do **not** flag `.circleci/config.yml` for not serializing the post-`version` Docker push, manifest, or deploy jobs merely because the moving `latest` manifest could be updated out of order.
+- This is an accepted release tradeoff: deployments and consumers are expected to pin released version tags, and the versioned image tag is the deployment contract.
+- Only raise release ordering risk when the task explicitly concerns `latest` consumers, unpinned image deployment, versioned tag overwrite, partial versioned artifact publication, or changing the release/deploy contract.
+
+### Docker image scan assumption
+
+- Do **not** flag `.circleci/config.yml` for not running the Docker build/Trivy image jobs on `master` before `push-docker` merely because release image publication builds the versioned image during push.
+- The intended validation model scans the test Docker image (`alexfalkowski/<name>:test.<platform>`) built by `make build-docker`; `make trivy-image` scans that tag, and the release image uses the same Dockerfile and runtime contents with the release version passed as metadata.
+- Only raise Docker image pre-publish gating risk when the Dockerfile, build script, or release process changes so the scanned test image and published versioned image can materially differ, or when the task explicitly concerns release image scanning policy.
 
 ## Request size limits (DoS protection)
 

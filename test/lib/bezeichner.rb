@@ -56,6 +56,20 @@ module Bezeichner
       @health_grpc ||= Grpc::Health::V1::Health::Stub.new('localhost:12000', :this_channel_is_insecure, channel_args: Bezeichner.user_agent)
     end
 
+    # Builds per-call options for gRPC feature and benchmark requests.
+    #
+    # @param metadata [Hash] gRPC metadata to send with the request
+    # @return [Hash] gRPC call options
+    #
+    # @example Use metadata with a deadline
+    #   Bezeichner::V1.grpc.generate_identifiers(req, Bezeichner.grpc_options(metadata: { 'request-id' => request_id }))
+    def grpc_options(metadata: {})
+      {
+        metadata:,
+        deadline: Time.now + 10
+      }
+    end
+
     # Builds and memoizes the gRPC channel arguments used by stubs created in this helper.
     #
     # @return [Hash] gRPC channel args
