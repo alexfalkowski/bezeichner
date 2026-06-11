@@ -206,17 +206,6 @@ If bundler fails loading native gems (e.g., `json` extension), one observed fix 
 cd test && bundle pristine json
 ```
 
-### Feature harness readiness assumption
-
-- Do **not** flag `test/nonnative.yml` waiting on the gRPC port only as a
-  reliability gap merely because HTTP scenarios also use the HTTP listener.
-- This is intentional for the current nonnative workflow: HTTP listener failures
-  are surfaced by the HTTP feature scenarios themselves, and the single process
-  readiness gate keeps harness startup simple.
-- Only raise this if the task explicitly concerns changing feature-harness
-  startup semantics, making HTTP readiness a separate pre-scenario gate, or
-  investigating a concrete flaky/unclear HTTP feature failure.
-
 ### Report artifact cleanup assumption
 
 - Do **not** flag `test/reports` artifacts as a reliability gap merely because
