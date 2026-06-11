@@ -1,0 +1,26 @@
+environment: production
+id:
+  kind: uuid
+mapper:
+  identifiers:
+    req1: resp1
+generator:
+  applications:
+    - name: uuid
+      kind:
+health:
+  duration: 1s
+  timeout: 1s
+telemetry:
+  logger:
+    kind: text
+    level: info
+  metrics:
+    kind: prometheus
+transport:
+  http:
+    address: tcp://:11102
+    timeout: 5s
+  grpc:
+    address: tcp://:12102
+    timeout: 5s

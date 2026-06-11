@@ -206,6 +206,30 @@ If bundler fails loading native gems (e.g., `json` extension), one observed fix 
 cd test && bundle pristine json
 ```
 
+### Feature harness readiness assumption
+
+- Do **not** flag `test/nonnative.yml` waiting on the gRPC port only as a
+  reliability gap merely because HTTP scenarios also use the HTTP listener.
+- This is intentional for the current nonnative workflow: HTTP listener failures
+  are surfaced by the HTTP feature scenarios themselves, and the single process
+  readiness gate keeps harness startup simple.
+- Only raise this if the task explicitly concerns changing feature-harness
+  startup semantics, making HTTP readiness a separate pre-scenario gate, or
+  investigating a concrete flaky/unclear HTTP feature failure.
+
+### Report artifact cleanup assumption
+
+- Do **not** flag `test/reports` artifacts as a reliability gap merely because
+  `features`, `benchmarks`, `specs`, or `coverage` do not automatically run
+  `make clean-reports`.
+- CI runs in a fresh job workspace, so stale local report artifacts are not part
+  of the repository-owned CI publication path.
+- For local work, `make clean-reports` is the explicit cleanup control.
+- Only raise report lifecycle risk when the task explicitly concerns changing
+  report cleanup/publication, CI workspace reuse, or there is concrete evidence
+  that a documented workflow published stale reports after the expected cleanup
+  path.
+
 ## Style / formatting
 
 - Go files use tabs (per `.editorconfig:16-18`).

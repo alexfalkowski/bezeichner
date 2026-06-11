@@ -57,6 +57,10 @@ Generator configuration selects **applications**, each of which has:
 - a `name` (the public application key you pass on requests),
 - a `kind` (the generator implementation to use).
 
+Application entries must have non-empty `name` and `kind` values, and
+application names must be unique. Malformed application lists fail config
+validation during startup.
+
 Supported built-in kinds (at time of writing):
 
 - `uuid`

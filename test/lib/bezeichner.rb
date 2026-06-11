@@ -3,6 +3,8 @@
 require 'securerandom'
 require 'yaml'
 require 'base64'
+require 'open3'
+require 'timeout'
 
 require 'grpc/health/v1/health_services_pb'
 
