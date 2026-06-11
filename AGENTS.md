@@ -178,12 +178,6 @@ from `github.com/alexfalkowski/go-service/v2/id`.
 - This is an accepted release tradeoff: deployments and consumers are expected to pin released version tags, and the versioned image tag is the deployment contract.
 - Only raise release ordering risk when the task explicitly concerns `latest` consumers, unpinned image deployment, versioned tag overwrite, partial versioned artifact publication, or changing the release/deploy contract.
 
-### Docker image scan assumption
-
-- Do **not** flag `.circleci/config.yml` for not running the Docker build/Trivy image jobs on `master` before `push-docker` merely because release image publication builds the versioned image during push.
-- The intended validation model scans the test Docker image (`alexfalkowski/<name>:test.<platform>`) built by `make build-docker`; `make trivy-image` scans that tag, and the release image uses the same Dockerfile and runtime contents with the release version passed as metadata.
-- Only raise Docker image pre-publish gating risk when the Dockerfile, build script, or release process changes so the scanned test image and published versioned image can materially differ, or when the task explicitly concerns release image scanning policy.
-
 ## Request size limits (DoS protection)
 
 Limits are enforced in the domain layer:
