@@ -174,8 +174,10 @@ from `github.com/alexfalkowski/go-service/v2/id`.
 
 ### Docker release ordering assumption
 
-- Do **not** flag `.circleci/config.yml` for not serializing the post-`version` Docker push, manifest, or deploy jobs merely because the moving `latest` manifest could be updated out of order.
-- This is an accepted release tradeoff: deployments and consumers are expected to pin released version tags, and the versioned image tag is the deployment contract.
+- `.circleci/config.yml` serializes the `manifest-docker` workflow job with
+  `<< pipeline.project.slug >>/manifest-docker` so overlapping master pipelines
+  do not publish the moving `latest` manifest out of order.
+- Deployments and consumers are still expected to pin released version tags, and the versioned image tag is the deployment contract.
 - Only raise release ordering risk when the task explicitly concerns `latest` consumers, unpinned image deployment, versioned tag overwrite, partial versioned artifact publication, or changing the release/deploy contract.
 
 ## Request size limits (DoS protection)
