@@ -7,8 +7,8 @@ package generator
 // Kind selects the generator implementation from a Generators registry (see
 // NewGenerators). For example: "uuid" or "ulid".
 type Application struct {
-	Name string `yaml:"name,omitempty" json:"name,omitempty" toml:"name,omitempty"`
-	Kind string `yaml:"kind,omitempty" json:"kind,omitempty" toml:"kind,omitempty"`
+	Name string `yaml:"name" json:"name" toml:"name" validate:"required"`
+	Kind string `yaml:"kind" json:"kind" toml:"kind" validate:"required"`
 }
 
 // Config contains the generator configuration.
@@ -16,7 +16,7 @@ type Application struct {
 // Applications is the set of generator applications available to the service.
 // Applications are addressed by Application.Name.
 type Config struct {
-	Applications []*Application `yaml:"applications,omitempty" json:"applications,omitempty" toml:"applications,omitempty"`
+	Applications []*Application `yaml:"applications" json:"applications" toml:"applications" validate:"unique=Name,dive,required"`
 }
 
 // Application returns the configured Application with the given name.
