@@ -9,7 +9,7 @@ const (
 
 // ErrInvalidArgument indicates the caller supplied an invalid request.
 //
-// In this package it is returned when a request exceeds the configured limits,
+// In this package it is returned when a request exceeds the fixed domain limits,
 // for example an excessive generate count or too many IDs to map.
 //
 // Use IsInvalidArgument to classify errors without relying on error strings.

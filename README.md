@@ -50,6 +50,10 @@ Bezeichner uses the `go-service` configuration conventions. A representative con
 > [!TIP]
 > Use `test/.config/server.yml` as the copy-paste source for local examples. The usage examples below use application and mapping names from that file.
 
+Startup requires the top-level `health` and `generator` blocks. The `mapper`
+block is optional, but omitting it makes every `MapIdentifiers` request fail
+with `NotFound`.
+
 ### 🧬 Generator configuration
 
 Generator configuration selects **applications**, each of which has:
@@ -63,12 +67,12 @@ validation during startup.
 
 Supported built-in kinds (at time of writing):
 
-- `uuid`
-- `ksuid`
-- `ulid`
-- `xid`
-- `snowflake`
-- `nanoid`
+- `uuid` (UUIDv7 string)
+- `ksuid` (KSUID string)
+- `ulid` (ULID string)
+- `xid` (XID string)
+- `snowflake` (Sonyflake-based numeric ID as a decimal string)
+- `nanoid` (NanoID string)
 - `typeid` (prefixless TypeID string; prefix configuration is not currently exposed)
 
 Example:
@@ -107,6 +111,8 @@ health:
   timeout:  1s   # max time a single check may take
 ```
 
+Both values must be positive durations.
+
 The service registers:
 
 - `noop` and `online` checks.
@@ -116,7 +122,14 @@ service convention that all services should report whether they can reach the
 outside world if they need public egress later, even when the current generate
 and map paths do not require outbound network access.
 
-The service exposes health observers for HTTP (`healthz`, `livez`, `readyz`) and gRPC health checks.
+The service exposes these health observers:
+
+| Observer | Check |
+| --- | --- |
+| HTTP `healthz` | `online` |
+| HTTP `livez` | `noop` |
+| HTTP `readyz` | `noop` |
+| gRPC health | `noop` |
 
 ## 🚀 Running
 

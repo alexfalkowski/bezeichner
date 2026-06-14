@@ -21,8 +21,10 @@ var ErrNotFound = errors.New("not found")
 //
 // It requires:
 //   - generator configuration (to resolve an application by name),
-//   - mapper configuration (to map identifiers),
 //   - and a generator registry (to resolve a generator by application kind).
+//
+// Mapper configuration is optional. When it is omitted, Map returns ErrNotFound
+// for every request.
 func NewIdentifier(gc *generator.Config, mc *mapper.Config, gs generator.Generators) *Identifier {
 	return &Identifier{generatorConfig: gc, mapperConfig: mc, generators: gs}
 }
@@ -43,7 +45,7 @@ type Identifier struct {
 // generator kind used to produce each identifier.
 //
 // Errors:
-//   - ErrInvalidArgument if count exceeds the configured limit.
+//   - ErrInvalidArgument if count exceeds the fixed domain limit.
 //   - ErrNotFound if the application name does not exist, or if the application
 //     kind cannot be resolved to a generator.
 func (s *Identifier) Generate(ctx context.Context, application string, count uint64) ([]string, error) {
@@ -76,7 +78,7 @@ func (s *Identifier) Generate(ctx context.Context, application string, count uin
 // operation fails.
 //
 // Errors:
-//   - ErrInvalidArgument if len(ids) exceeds the configured limit.
+//   - ErrInvalidArgument if len(ids) exceeds the fixed domain limit.
 //   - ErrNotFound if mapper configuration is omitted or any input identifier
 //     does not have a configured mapping.
 func (s *Identifier) Map(ids []string) ([]string, error) {
