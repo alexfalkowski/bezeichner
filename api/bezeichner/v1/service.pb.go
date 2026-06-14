@@ -32,6 +32,9 @@ type GenerateIdentifiersRequest struct {
 	Application string `protobuf:"bytes,1,opt,name=application,proto3" json:"application,omitempty"`
 	// count is the number of identifiers to generate.
 	//
+	// A zero value is valid when application resolves and returns an empty ids
+	// list.
+	//
 	// The maximum accepted count is 1000. Larger requests fail with
 	// InvalidArgument.
 	Count         uint64 `protobuf:"varint,2,opt,name=count,proto3" json:"count,omitempty"`
@@ -89,6 +92,9 @@ type GenerateIdentifiersResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// meta contains service and transport metadata. It is reserved for
 	// infrastructure metadata and is not business data.
+	//
+	// Bezeichner currently returns requestId and userAgent when the transport
+	// can derive them from request metadata.
 	Meta map[string]string `protobuf:"bytes,1,rep,name=meta,proto3" json:"meta,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	// ids contains the generated identifiers.
 	Ids           []string `protobuf:"bytes,2,rep,name=ids,proto3" json:"ids,omitempty"`
@@ -146,6 +152,10 @@ type MapIdentifiersRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// ids contains the identifiers to map.
 	//
+	// An empty list is valid when mapper configuration is present and returns an
+	// empty ids list. If mapper configuration is omitted, MapIdentifiers fails
+	// with NotFound before mapping.
+	//
 	// The maximum accepted list length is 1000. Larger requests fail with
 	// InvalidArgument. Mapping is strict: if mapper configuration is omitted, or
 	// if any identifier is absent from the mapper table, MapIdentifiers fails
@@ -197,6 +207,9 @@ type MapIdentifiersResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// meta contains service and transport metadata. It is reserved for
 	// infrastructure metadata and is not business data.
+	//
+	// Bezeichner currently returns requestId and userAgent when the transport
+	// can derive them from request metadata.
 	Meta map[string]string `protobuf:"bytes,1,rep,name=meta,proto3" json:"meta,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	// ids contains mapped identifiers in the same order as the request ids.
 	Ids           []string `protobuf:"bytes,2,rep,name=ids,proto3" json:"ids,omitempty"`

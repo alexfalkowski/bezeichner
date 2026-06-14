@@ -23,5 +23,8 @@
 //
 // Since the HTTP gateway delegates directly to the gRPC handlers, error
 // semantics and classification originate from the gRPC transport's mapping
-// of domain errors to status codes.
+// of domain errors to status codes. The HTTP layer then renders those
+// classifications as HTTP statuses; for this API, InvalidArgument becomes
+// HTTP 400 and NotFound becomes HTTP 404. Error bodies are written as safe
+// plain-text messages using the go-service "text/error" media type.
 package http

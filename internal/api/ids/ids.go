@@ -44,6 +44,9 @@ type Identifier struct {
 // The application is resolved from generator configuration and selects the
 // generator kind used to produce each identifier.
 //
+// A count of zero is valid and returns an empty slice when the application and
+// generator kind can be resolved.
+//
 // Errors:
 //   - ErrInvalidArgument if count exceeds the fixed domain limit.
 //   - ErrNotFound if the application name does not exist, or if the application
@@ -76,6 +79,9 @@ func (s *Identifier) Generate(ctx context.Context, application string, count uin
 // Mapping is configured via mapper configuration. If mapper configuration is
 // omitted, or if any input identifier is missing from the mapping table, the
 // operation fails.
+//
+// An empty ids slice is valid and returns an empty slice when mapper
+// configuration is present.
 //
 // Errors:
 //   - ErrInvalidArgument if len(ids) exceeds the fixed domain limit.

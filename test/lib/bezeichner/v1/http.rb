@@ -24,7 +24,13 @@ module Bezeichner
     # - {Bezeichner::V1::MapIdentifiersRequest}
     #
     # The response bodies match the protobuf response messages and may include `meta`
-    # (observability metadata) depending on server behavior.
+    # (`requestId` and `userAgent` observability metadata) depending on server behavior.
+    #
+    # ## Error responses
+    #
+    # The HTTP gateway uses the gRPC handler error mapping and renders errors as HTTP
+    # status responses. `InvalidArgument` is returned as HTTP 400, `NotFound` as HTTP
+    # 404, and safe error messages are returned as `text/error` bodies.
     #
     # ## Options
     #
@@ -34,7 +40,7 @@ module Bezeichner
       # Calls GenerateIdentifiers over HTTP.
       #
       # @param application [String] configured generator application name
-      # @param count [Integer] number of identifiers to generate
+      # @param count [Integer] number of identifiers to generate; zero returns no IDs
       # @param opts [Hash] options forwarded to {Nonnative::HTTPClient#post}
       # @return [Object] HTTP response as returned by {Nonnative::HTTPClient#post}
       #
@@ -46,7 +52,7 @@ module Bezeichner
 
       # Calls MapIdentifiers over HTTP.
       #
-      # @param ids [Array<String>] identifiers to map
+      # @param ids [Array<String>] identifiers to map; an empty list returns no IDs when mapper configuration is present
       # @param opts [Hash] options forwarded to {Nonnative::HTTPClient#post}
       # @return [Object] HTTP response as returned by {Nonnative::HTTPClient#post}
       #
