@@ -71,12 +71,14 @@ func (s *Identifier) Generate(ctx context.Context, application string, count uin
 
 // Map returns the mapped identifiers for the provided ids in the same order.
 //
-// Mapping is configured via mapper configuration. If any input identifier is
-// missing from the mapping table, the operation fails.
+// Mapping is configured via mapper configuration. If mapper configuration is
+// omitted, or if any input identifier is missing from the mapping table, the
+// operation fails.
 //
 // Errors:
 //   - ErrInvalidArgument if len(ids) exceeds the configured limit.
-//   - ErrNotFound if any input identifier does not have a configured mapping.
+//   - ErrNotFound if mapper configuration is omitted or any input identifier
+//     does not have a configured mapping.
 func (s *Identifier) Map(ids []string) ([]string, error) {
 	if len(ids) > maxMapIDs {
 		return nil, ErrInvalidArgument

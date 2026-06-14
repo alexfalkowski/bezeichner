@@ -94,7 +94,7 @@ module Bezeichner
       # @return [Bezeichner::V1::HTTP]
       #
       # @example Generate identifiers over HTTP
-      #   Bezeichner::V1.http.generate('public-uuid', 3)
+      #   Bezeichner::V1.http.generate('uuid', 3)
       def http
         @http ||= Bezeichner::V1::HTTP.new('http://localhost:11000')
       end
@@ -104,7 +104,7 @@ module Bezeichner
       # @return [Bezeichner::V1::Service::Stub]
       #
       # @example Generate identifiers over gRPC
-      #   req = Bezeichner::V1::GenerateIdentifiersRequest.new(application: 'public-uuid', count: 3)
+      #   req = Bezeichner::V1::GenerateIdentifiersRequest.new(application: 'uuid', count: 3)
       #   Bezeichner::V1.grpc.generate_identifiers(req)
       def grpc
         @grpc ||= Bezeichner::V1::Service::Stub.new('localhost:12000', :this_channel_is_insecure, channel_args: Bezeichner.user_agent)

@@ -17,9 +17,10 @@
 // The domain operation that performs mapping preserves order: it returns outputs
 // in the same order as the input slice.
 //
-// Mapping is strict: if any input identifier does not exist in the table, the
-// operation fails with a "not found" error from the domain layer. This prevents
-// silently returning partial results.
+// Mapper configuration is optional at service startup, but mapping still
+// requires it. If mapper configuration is omitted, or if any input identifier
+// does not exist in the table, the operation fails with a "not found" error
+// from the domain layer. This prevents silently returning partial results.
 //
 // # Size limits
 //

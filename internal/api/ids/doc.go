@@ -25,15 +25,16 @@
 // Map depends on mapper configuration (see internal/mapper):
 //
 // The mapper configuration provides a lookup table from input identifier to mapped
-// identifier. If any input identifier is missing, the operation returns ErrNotFound.
+// identifier. If mapper configuration is omitted, or if any input identifier is
+// missing, the operation returns ErrNotFound.
 //
 // # Errors
 //
 // The domain layer defines two primary error categories:
 //
 //   - ErrInvalidArgument: returned when request limits are exceeded.
-//   - ErrNotFound: returned when a requested application, generator kind, or mapping
-//     entry cannot be found.
+//   - ErrNotFound: returned when a requested application, generator kind,
+//     mapper configuration, or mapping entry cannot be found.
 //
 // Helper predicates are provided to classify errors when needed. Transports are
 // expected to map these error categories to their protocol-specific equivalents

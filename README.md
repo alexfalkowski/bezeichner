@@ -69,7 +69,7 @@ Supported built-in kinds (at time of writing):
 - `xid`
 - `snowflake`
 - `nanoid`
-- `typeid`
+- `typeid` (prefixless TypeID string; prefix configuration is not currently exposed)
 
 Example:
 
@@ -95,6 +95,7 @@ mapper:
 
 > [!IMPORTANT]
 > Mapping is strict: if any input ID is missing from the table, the whole operation fails. Output order matches input order.
+> The `mapper` block is optional at startup. If it is omitted, all `MapIdentifiers` requests fail with `NotFound`.
 
 ### ❤️ Health configuration
 
@@ -129,6 +130,7 @@ make dev
 
 > [!IMPORTANT]
 > Run `make submodule` in a fresh checkout before other `make` targets. Most build, test, lint, and protobuf targets are provided by the `bin/` git submodule.
+> The submodule URL is SSH-based (`git@github.com:alexfalkowski/bin.git`), so this setup path requires GitHub SSH access.
 
 `make dev` runs the server using `air` and a config file like:
 
@@ -246,6 +248,10 @@ Most `make` targets come from the `bin/` git submodule:
 make submodule
 make dep
 ```
+
+The `bin` submodule is configured with a GitHub SSH URL, so `make submodule`
+requires GitHub SSH access unless you intentionally override the submodule URL
+in your local Git configuration.
 
 ### ✅ Tests
 

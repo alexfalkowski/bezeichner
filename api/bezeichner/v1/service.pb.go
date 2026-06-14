@@ -21,11 +21,20 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// GenerateIdentifiersRequest for a specific application.
+// GenerateIdentifiersRequest asks the service to generate identifiers for a
+// configured application.
 type GenerateIdentifiersRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Application   string                 `protobuf:"bytes,1,opt,name=application,proto3" json:"application,omitempty"`
-	Count         uint64                 `protobuf:"varint,2,opt,name=count,proto3" json:"count,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// application is the configured generator application name.
+	//
+	// If the application is not configured, or if its configured kind cannot be
+	// resolved, GenerateIdentifiers fails with NotFound.
+	Application string `protobuf:"bytes,1,opt,name=application,proto3" json:"application,omitempty"`
+	// count is the number of identifiers to generate.
+	//
+	// The maximum accepted count is 1000. Larger requests fail with
+	// InvalidArgument.
+	Count         uint64 `protobuf:"varint,2,opt,name=count,proto3" json:"count,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -74,11 +83,15 @@ func (x *GenerateIdentifiersRequest) GetCount() uint64 {
 	return 0
 }
 
-// GenerateIdentifiersResponse for a specific application.
+// GenerateIdentifiersResponse contains generated identifiers and service
+// metadata.
 type GenerateIdentifiersResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Meta          map[string]string      `protobuf:"bytes,1,rep,name=meta,proto3" json:"meta,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
-	Ids           []string               `protobuf:"bytes,2,rep,name=ids,proto3" json:"ids,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// meta contains service and transport metadata. It is reserved for
+	// infrastructure metadata and is not business data.
+	Meta map[string]string `protobuf:"bytes,1,rep,name=meta,proto3" json:"meta,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	// ids contains the generated identifiers.
+	Ids           []string `protobuf:"bytes,2,rep,name=ids,proto3" json:"ids,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -127,10 +140,17 @@ func (x *GenerateIdentifiersResponse) GetIds() []string {
 	return nil
 }
 
-// MapIdentifiersRequest for some identifiers.
+// MapIdentifiersRequest asks the service to map identifiers through the
+// configured mapper table.
 type MapIdentifiersRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Ids           []string               `protobuf:"bytes,1,rep,name=ids,proto3" json:"ids,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// ids contains the identifiers to map.
+	//
+	// The maximum accepted list length is 1000. Larger requests fail with
+	// InvalidArgument. Mapping is strict: if mapper configuration is omitted, or
+	// if any identifier is absent from the mapper table, MapIdentifiers fails
+	// with NotFound.
+	Ids           []string `protobuf:"bytes,1,rep,name=ids,proto3" json:"ids,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -172,11 +192,14 @@ func (x *MapIdentifiersRequest) GetIds() []string {
 	return nil
 }
 
-// MapIdentifiersResponse for some identifiers.
+// MapIdentifiersResponse contains mapped identifiers and service metadata.
 type MapIdentifiersResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Meta          map[string]string      `protobuf:"bytes,1,rep,name=meta,proto3" json:"meta,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
-	Ids           []string               `protobuf:"bytes,2,rep,name=ids,proto3" json:"ids,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// meta contains service and transport metadata. It is reserved for
+	// infrastructure metadata and is not business data.
+	Meta map[string]string `protobuf:"bytes,1,rep,name=meta,proto3" json:"meta,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	// ids contains mapped identifiers in the same order as the request ids.
+	Ids           []string `protobuf:"bytes,2,rep,name=ids,proto3" json:"ids,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }

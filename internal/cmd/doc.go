@@ -11,8 +11,8 @@
 // package-level Module, which composes all required sub-modules.
 //
 // The server is intended to be run by providing configuration via the standard
-// go-service mechanisms (for example, using the "-i" flag to point at a config
-// file). See internal/config for the configuration schema.
+// go-service mechanisms (for example, using "-config file:<path>" to point at a
+// config file). See internal/config for the configuration schema.
 //
 // This package does not implement business logic. Domain behavior lives in
 // internal/api/ids, and transport bindings are wired under internal/api/v1.

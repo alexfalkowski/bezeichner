@@ -37,8 +37,8 @@ Feature: HTTP API
 
   Scenario: Generate too many identifiers for existing applications
     When I request to generate identifiers with HTTP:
-      | application | <application> |
-      | count       |          1001 |
+      | application | uuid |
+      | count       | 1001 |
     Then I should receive an invalid argument error from HTTP
 
   Scenario Outline: Generate identifiers for missing applications
