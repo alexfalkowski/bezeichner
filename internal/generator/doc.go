@@ -40,7 +40,7 @@
 //   - "xid":       XID string
 //   - "snowflake": Sonyflake-based numeric ID (decimal string)
 //   - "nanoid":    NanoID string
-//   - "typeid":    TypeID string
+//   - "typeid":    prefixless TypeID string
 //
 // # Errors
 //

@@ -11,6 +11,7 @@
 // The transport maps domain errors to gRPC codes as follows:
 //   - ids.ErrInvalidArgument -> codes.InvalidArgument
 //   - ids.ErrNotFound        -> codes.NotFound
+//   - all other non-nil domain errors currently fall back to codes.NotFound
 //
 // Callers should rely on these status codes (rather than parsing message text) for
 // programmatic behavior.

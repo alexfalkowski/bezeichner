@@ -38,8 +38,8 @@ module Bezeichner
       # @param opts [Hash] options forwarded to {Nonnative::HTTPClient#post}
       # @return [Object] HTTP response as returned by {Nonnative::HTTPClient#post}
       #
-      # @example Generate three UUID identifiers for application "public-uuid"
-      #   Bezeichner::V1.http.generate('public-uuid', 3)
+      # @example Generate three UUID identifiers for application "uuid"
+      #   Bezeichner::V1.http.generate('uuid', 3)
       def generate(application, count, opts = {})
         post('/bezeichner.v1.Service/GenerateIdentifiers', { application:, count: }.to_json, opts)
       end
@@ -51,7 +51,7 @@ module Bezeichner
       # @return [Object] HTTP response as returned by {Nonnative::HTTPClient#post}
       #
       # @example Map identifiers using the configured mapping table
-      #   Bezeichner::V1.http.map(%w[legacy-1 legacy-2])
+      #   Bezeichner::V1.http.map(%w[req1 req2])
       def map(ids, opts = {})
         post('/bezeichner.v1.Service/MapIdentifiers', { ids: }.to_json, opts)
       end

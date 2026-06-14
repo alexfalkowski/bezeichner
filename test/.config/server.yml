@@ -23,6 +23,8 @@ generator:
       kind: nanoid
     - name: typeid
       kind: typeid
+    # Negative fixture: this application is intentionally configured with an
+    # unresolved kind so API tests can assert NotFound behavior.
     - name: invalid_kind
       kind: invalid_kind
 health:

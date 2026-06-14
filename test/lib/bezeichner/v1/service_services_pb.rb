@@ -7,7 +7,7 @@ require 'bezeichner/v1/service_pb'
 module Bezeichner
   module V1
     module Service
-      # Service allows to manage identifiers.
+      # Service generates and maps identifiers.
       class Service
 
         include ::GRPC::GenericService
@@ -16,9 +16,16 @@ module Bezeichner
         self.unmarshal_class_method = :decode
         self.service_name = 'bezeichner.v1.Service'
 
-        # GenerateIdentifiers for a specific application.
+        # GenerateIdentifiers generates identifiers for a configured application.
+        #
+        # It returns InvalidArgument when count exceeds 1000, and NotFound when the
+        # application or generator kind cannot be resolved.
         rpc :GenerateIdentifiers, ::Bezeichner::V1::GenerateIdentifiersRequest, ::Bezeichner::V1::GenerateIdentifiersResponse
-        # MapIdentifiers for some identifiers.
+        # MapIdentifiers maps identifiers through the configured mapper table.
+        #
+        # It returns InvalidArgument when more than 1000 identifiers are requested,
+        # and NotFound when mapper configuration is omitted or any requested
+        # identifier is absent from the table.
         rpc :MapIdentifiers, ::Bezeichner::V1::MapIdentifiersRequest, ::Bezeichner::V1::MapIdentifiersResponse
       end
 

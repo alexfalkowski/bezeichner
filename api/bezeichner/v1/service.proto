@@ -5,34 +5,67 @@ package bezeichner.v1;
 option go_package = "github.com/alexfalkowski/bezeichner/api/bezeichner/v1";
 option ruby_package = "Bezeichner::V1";
 
-// GenerateIdentifiersRequest for a specific application.
+// GenerateIdentifiersRequest asks the service to generate identifiers for a
+// configured application.
 message GenerateIdentifiersRequest {
+  // application is the configured generator application name.
+  //
+  // If the application is not configured, or if its configured kind cannot be
+  // resolved, GenerateIdentifiers fails with NotFound.
   string application = 1;
+
+  // count is the number of identifiers to generate.
+  //
+  // The maximum accepted count is 1000. Larger requests fail with
+  // InvalidArgument.
   uint64 count = 2;
 }
 
-// GenerateIdentifiersResponse for a specific application.
+// GenerateIdentifiersResponse contains generated identifiers and service
+// metadata.
 message GenerateIdentifiersResponse {
+  // meta contains service and transport metadata. It is reserved for
+  // infrastructure metadata and is not business data.
   map<string, string> meta = 1;
+
+  // ids contains the generated identifiers.
   repeated string ids = 2;
 }
 
-// MapIdentifiersRequest for some identifiers.
+// MapIdentifiersRequest asks the service to map identifiers through the
+// configured mapper table.
 message MapIdentifiersRequest {
+  // ids contains the identifiers to map.
+  //
+  // The maximum accepted list length is 1000. Larger requests fail with
+  // InvalidArgument. Mapping is strict: if mapper configuration is omitted, or
+  // if any identifier is absent from the mapper table, MapIdentifiers fails
+  // with NotFound.
   repeated string ids = 1;
 }
 
-// MapIdentifiersResponse for some identifiers.
+// MapIdentifiersResponse contains mapped identifiers and service metadata.
 message MapIdentifiersResponse {
+  // meta contains service and transport metadata. It is reserved for
+  // infrastructure metadata and is not business data.
   map<string, string> meta = 1;
+
+  // ids contains mapped identifiers in the same order as the request ids.
   repeated string ids = 2;
 }
 
-// Service allows to manage identifiers.
+// Service generates and maps identifiers.
 service Service {
-  // GenerateIdentifiers for a specific application.
+  // GenerateIdentifiers generates identifiers for a configured application.
+  //
+  // It returns InvalidArgument when count exceeds 1000, and NotFound when the
+  // application or generator kind cannot be resolved.
   rpc GenerateIdentifiers(GenerateIdentifiersRequest) returns (GenerateIdentifiersResponse) {}
 
-  // MapIdentifiers for some identifiers.
+  // MapIdentifiers maps identifiers through the configured mapper table.
+  //
+  // It returns InvalidArgument when more than 1000 identifiers are requested,
+  // and NotFound when mapper configuration is omitted or any requested
+  // identifier is absent from the table.
   rpc MapIdentifiers(MapIdentifiersRequest) returns (MapIdentifiersResponse) {}
 }
