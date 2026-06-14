@@ -19,6 +19,10 @@
 //
 // and embeds *go-service/v2/config.Config for common service settings.
 //
+// Health and generator configuration are required at startup. Mapper
+// configuration is optional; when omitted, mapping requests fail with the domain
+// ErrNotFound error.
+//
 // # Dependency injection
 //
 // The package-level Module wires configuration loading and provides constructors

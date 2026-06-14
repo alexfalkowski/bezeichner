@@ -10,8 +10,8 @@
 //   - Generate: produce one or more identifiers for a named application.
 //   - Map: map a list of existing identifiers to their configured replacements.
 //
-// Both operations enforce request-size limits as a simple DoS-protection mechanism.
-// When limits are exceeded, Generate/Map return ErrInvalidArgument.
+// Both operations enforce fixed request-size limits as a simple DoS-protection
+// mechanism. When limits are exceeded, Generate/Map return ErrInvalidArgument.
 //
 // # Configuration
 //
@@ -24,9 +24,9 @@
 //
 // Map depends on mapper configuration (see internal/mapper):
 //
-// The mapper configuration provides a lookup table from input identifier to mapped
-// identifier. If mapper configuration is omitted, or if any input identifier is
-// missing, the operation returns ErrNotFound.
+// The optional mapper configuration provides a lookup table from input identifier
+// to mapped identifier. If mapper configuration is omitted, or if any input
+// identifier is missing, the operation returns ErrNotFound.
 //
 // # Errors
 //
@@ -36,7 +36,7 @@
 //   - ErrNotFound: returned when a requested application, generator kind,
 //     mapper configuration, or mapping entry cannot be found.
 //
-// Helper predicates are provided to classify errors when needed. Transports are
-// expected to map these error categories to their protocol-specific equivalents
-// (e.g., gRPC codes InvalidArgument and NotFound).
+// Use IsInvalidArgument to classify ErrInvalidArgument without relying on error
+// strings. Transports are expected to map these error categories to their
+// protocol-specific equivalents (e.g., gRPC codes InvalidArgument and NotFound).
 package ids
