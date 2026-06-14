@@ -131,6 +131,17 @@ The service exposes these health observers:
 | HTTP `readyz` | `noop` |
 | gRPC health | `noop` |
 
+With the sample config, operational HTTP routes are service-prefixed:
+
+| Endpoint | Local path |
+| --- | --- |
+| Health | `/bezeichner/healthz` |
+| Liveness | `/bezeichner/livez` |
+| Readiness | `/bezeichner/readyz` |
+| Prometheus metrics | `/bezeichner/metrics` |
+
+The gRPC health service name is `bezeichner.v1.Service`.
+
 ## 🚀 Running
 
 ### ♻️ Local dev (hot reload)
@@ -194,7 +205,7 @@ Generate identifiers:
 curl -sS \
   -X POST \
   -H 'content-type: application/json' \
-  --data '{"application":"uuid","count":"3"}' \
+  --data '{"application":"uuid","count":3}' \
   http://localhost:11000/bezeichner.v1.Service/GenerateIdentifiers
 ```
 
@@ -218,6 +229,10 @@ Bezeichner is typically deployed as a shared internal service. Depending on your
 - run a single global instance,
 - shard by bounded context,
 - run per region/cluster.
+
+Published Docker images use the `alexfalkowski/bezeichner` repository. Pin a
+released version tag such as `alexfalkowski/bezeichner:<version>` for
+deployments.
 
 > [!CAUTION]
 > The `snowflake` generator uses Sonyflake defaults. The intended deployment assumes normal Kubernetes pod networking where each concurrently running pod has a suitable private IPv4-derived machine ID. Re-evaluate that assumption for local multi-process deployments, `hostNetwork`, overlapping pod CIDRs, multi-cluster shared ID spaces, IPv6-only environments, or environments without private IPv4 addresses.
@@ -279,4 +294,10 @@ End-to-end feature tests:
 
 ```sh
 make features
+```
+
+End-to-end benchmark scenarios:
+
+```sh
+make benchmarks
 ```

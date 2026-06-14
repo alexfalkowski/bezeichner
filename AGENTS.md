@@ -150,7 +150,8 @@ A representative config used by dev/feature tests is `test/.config/server.yml`.
 Notable keys observed:
 - `generator.applications[]`: generator applications (**name** and **kind**).
 - `mapper.identifiers`: mapping table for `MapIdentifiers`.
-- `transport.http.address` defaults to `tcp://:11000` and `transport.grpc.address` to `tcp://:12000`.
+- The representative test config sets `transport.http.address` to
+  `tcp://:11000` and `transport.grpc.address` to `tcp://:12000`.
 
 Notes:
 - The generator application model in code currently includes only `name` and `kind` (no `prefix`, `suffix`, or `separator` fields).
@@ -234,7 +235,12 @@ cd test && bundle pristine json
 
 ## CI notes (CircleCI)
 
-CircleCI runs (see `.circleci/config.yml`):
+The primary CircleCI `build-service` job runs (see `.circleci/config.yml`):
 
 - `make dep`, `make lint`, `make proto-breaking`, `make proto-stale`, `make sec`
 - `make features`, `make benchmarks`, `make analyse`, `make coverage`, `make codecov-upload`
+
+The workflow also runs Docker image validation on non-master branches:
+
+- `make platform=amd64 test-docker`
+- `make platform=arm64 test-docker`
