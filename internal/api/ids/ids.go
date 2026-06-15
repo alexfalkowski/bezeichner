@@ -15,6 +15,10 @@ import (
 //   - the requested generator application name cannot be found in configuration,
 //   - the generator kind cannot be resolved from the generator registry,
 //   - or an input identifier does not have a configured mapping.
+//
+// Generate and Map may wrap ErrNotFound with the missing application, kind, or
+// identifier value, so callers should classify it with errors.Is rather than
+// direct equality.
 var ErrNotFound = errors.New("not found")
 
 // NewIdentifier constructs an Identifier domain service.

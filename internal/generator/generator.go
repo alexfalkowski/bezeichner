@@ -27,6 +27,9 @@ func NewGenerators(ids *id.Map) Generators {
 }
 
 // Generators is a registry mapping a generator kind string to a Generator.
+//
+// Treat a registry as read-only after startup. The service may resolve and call
+// generators from concurrent request handlers.
 type Generators map[string]Generator
 
 // Generator returns the Generator registered for kind.
@@ -43,6 +46,8 @@ func (gs Generators) Generator(kind string) (Generator, error) {
 // Generator generates identifiers for a configured application.
 //
 // Implementations may use the provided application configuration or ignore it.
+// Generate may be called concurrently by service request handlers; implementations
+// with mutable state must synchronize access.
 type Generator interface {
 	// Generate produces a single identifier for the given application.
 	Generate(ctx context.Context, app *Application) string

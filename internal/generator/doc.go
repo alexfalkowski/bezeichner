@@ -21,6 +21,10 @@
 // string to an implementation of the Generator interface. The registry is used
 // to resolve generators by kind via (Generators).Generator.
 //
+// Generator registries are built during startup and should be treated as
+// read-only once the service begins serving requests. Generator instances stored
+// in the registry are shared by request handlers.
+//
 // # Generator interface
 //
 // Generator is the common interface implemented by all generators:
@@ -28,7 +32,8 @@
 //	Generate(ctx, app) string
 //
 // The app parameter provides access to application configuration. Current
-// built-in generators ignore it.
+// built-in generators ignore it. Generate may be called concurrently, so custom
+// implementations must protect any mutable state they keep.
 //
 // # Built-in kinds
 //

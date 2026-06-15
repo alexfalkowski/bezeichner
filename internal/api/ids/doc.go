@@ -37,6 +37,9 @@
 //     mapper configuration, or mapping entry cannot be found.
 //
 // Use IsInvalidArgument to classify ErrInvalidArgument without relying on error
-// strings. Transports are expected to map these error categories to their
-// protocol-specific equivalents (e.g., gRPC codes InvalidArgument and NotFound).
+// strings. Operation errors may wrap ErrNotFound with request-specific context,
+// so classify not-found errors with errors.Is rather than direct equality or
+// message parsing. Transports are expected to map these error categories to
+// their protocol-specific equivalents (e.g., gRPC codes InvalidArgument and
+// NotFound).
 package ids
