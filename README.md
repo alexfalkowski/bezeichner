@@ -50,9 +50,15 @@ Bezeichner uses the `go-service` configuration conventions. A representative con
 > [!TIP]
 > Use `test/.config/server.yml` as the copy-paste source for local examples. The usage examples below use application and mapping names from that file.
 
-Startup requires the top-level `health` and `generator` blocks. The `mapper`
-block is optional, but omitting it makes every `MapIdentifiers` request fail
-with `NotFound`.
+The snippets below document the Bezeichner-owned blocks. A runnable service
+configuration also includes shared `go-service` keys, such as `environment`,
+`id`, `telemetry`, and `transport.http` / `transport.grpc` addresses. The sample
+config binds HTTP to `tcp://:11000` and gRPC to `tcp://:12000`, which is what
+the examples below assume.
+
+Startup requires the top-level `health` and `generator` blocks, plus the shared
+service configuration embedded by `go-service`. The `mapper` block is optional,
+but omitting it makes every `MapIdentifiers` request fail with `NotFound`.
 
 ### 🧬 Generator configuration
 
@@ -219,6 +225,14 @@ curl -sS \
   http://localhost:11000/bezeichner.v1.Service/MapIdentifiers
 ```
 
+HTTP errors use the same domain classification as gRPC, rendered as HTTP
+statuses with safe `text/error` response bodies:
+
+| gRPC/domain error | HTTP status | Common triggers |
+| --- | --- | --- |
+| `InvalidArgument` | `400` | `GenerateIdentifiers.count > 1000` or more than `1000` IDs to map |
+| `NotFound` | `404` | unknown application, unresolved generator kind, omitted mapper config, or unmapped ID |
+
 > [!NOTE]
 > The generated gRPC full method names include a leading slash, for example `/bezeichner.v1.Service/GenerateIdentifiers`. In HTTP URLs, that slash is the path separator after the host; `grpcurl` uses the `service/method` form without the leading slash.
 
@@ -230,9 +244,21 @@ Bezeichner is typically deployed as a shared internal service. Depending on your
 - shard by bounded context,
 - run per region/cluster.
 
+Non-master branch CI validates Docker images for both supported platforms. To
+reproduce that locally, run:
+
+```sh
+make platform=amd64 test-docker
+make platform=arm64 test-docker
+```
+
 Published Docker images use the `alexfalkowski/bezeichner` repository. Pin a
 released version tag such as `alexfalkowski/bezeichner:<version>` for
 deployments.
+
+Docker release, manifest publication, and deploy targets are CI-owned workflows
+that require release artifacts plus DockerHub or GitHub credentials. Use the
+local `test-docker` targets for image validation before pushing changes.
 
 > [!CAUTION]
 > The `snowflake` generator uses Sonyflake defaults. The intended deployment assumes normal Kubernetes pod networking where each concurrently running pod has a suitable private IPv4-derived machine ID. Re-evaluate that assumption for local multi-process deployments, `hostNetwork`, overlapping pod CIDRs, multi-cluster shared ID spaces, IPv6-only environments, or environments without private IPv4 addresses.
@@ -296,8 +322,47 @@ End-to-end feature tests:
 make features
 ```
 
+`make features` starts its own test server from `test/nonnative.yml`, so the
+sample HTTP and gRPC ports (`11000` and `12000`) must be free. Harness and server
+logs are written under `test/reports/`.
+
 End-to-end benchmark scenarios:
 
 ```sh
 make benchmarks
 ```
+
+### 🧬 Protobuf workflow
+
+The protobuf contract in `api/bezeichner/v1/service.proto` owns the service API
+schema. After changing it, regenerate and check the generated Go and Ruby stubs:
+
+```sh
+make proto-generate
+make proto-stale
+```
+
+Before pushing API contract changes, also run:
+
+```sh
+make proto-breaking
+```
+
+### 🧰 Local CI checks
+
+For a broader local pass before pushing, run the repository-owned checks that
+mirror the main CI gates without publishing artifacts:
+
+```sh
+make lint
+make proto-stale
+make sec
+make features
+make benchmarks
+make analyse
+make coverage
+```
+
+`make proto-breaking` is part of the API-change workflow above because it checks
+the protobuf contract against the remote master baseline. Codecov upload,
+release, manifest, deploy, and push targets are CI or credential-gated.
