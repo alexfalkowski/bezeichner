@@ -1,12 +1,7 @@
 # frozen_string_literal: true
 
 When('the system requests the {string} with HTTP') do |name|
-  opts = {
-    headers: { request_id: SecureRandom.uuid },
-    read_timeout: 10, open_timeout: 10
-  }
-
-  @response = Nonnative.observability.send(name, opts)
+  @response = Nonnative.observability.send(name, Bezeichner.http_options)
 end
 
 Then('the system should respond with a healthy status with HTTP') do

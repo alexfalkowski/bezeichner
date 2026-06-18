@@ -3,13 +3,12 @@
 When('I request to generate identifiers with HTTP:') do |table|
   rows = table.rows_hash
   @request_id = SecureRandom.uuid
-  opts = {
+  opts = Bezeichner.http_options(
     headers: {
       request_id: @request_id, user_agent: 'Bezeichner-ruby-client/1.0 HTTP/1.0',
       content_type: :json, accept: :json
-    },
-    read_timeout: 10, open_timeout: 10
-  }
+    }
+  )
 
   @response = Bezeichner::V1.http.generate(rows['application'], rows['count'].to_i, opts)
 end
@@ -17,39 +16,36 @@ end
 When('I request to map identifiers with HTTP:') do |table|
   rows = table.rows_hash
   @request_id = SecureRandom.uuid
-  opts = {
+  opts = Bezeichner.http_options(
     headers: {
       request_id: @request_id, user_agent: 'Bezeichner-ruby-client/1.0 HTTP/1.0',
       content_type: :json, accept: :json
-    },
-    read_timeout: 10, open_timeout: 10
-  }
+    }
+  )
 
   @response = Bezeichner::V1.http.map(rows['request'].split(','), opts)
 end
 
 When('I request to map {int} identifiers with HTTP:') do |count|
   @request_id = SecureRandom.uuid
-  opts = {
+  opts = Bezeichner.http_options(
     headers: {
       request_id: @request_id, user_agent: 'Bezeichner-ruby-client/1.0 HTTP/1.0',
       content_type: :json, accept: :json
-    },
-    read_timeout: 10, open_timeout: 10
-  }
+    }
+  )
 
   @response = Bezeichner::V1.http.map(count.times.map { SecureRandom.hex }, opts)
 end
 
 When('I request to map {int} existing identifiers with HTTP') do |count|
   @request_id = SecureRandom.uuid
-  opts = {
+  opts = Bezeichner.http_options(
     headers: {
       request_id: @request_id, user_agent: 'Bezeichner-ruby-client/1.0 HTTP/1.0',
       content_type: :json, accept: :json
-    },
-    read_timeout: 10, open_timeout: 10
-  }
+    }
+  )
 
   @response = Bezeichner::V1.http.map(Array.new(count, 'req1'), opts)
 end
