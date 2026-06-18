@@ -195,6 +195,18 @@ from `github.com/alexfalkowski/go-service/v2/id`.
 - Deployments and consumers are still expected to pin released version tags, and the versioned image tag is the deployment contract.
 - Only raise release ordering risk when the task explicitly concerns `latest` consumers, unpinned image deployment, versioned tag overwrite, partial versioned artifact publication, or changing the release/deploy contract.
 
+### GoReleaser config validation is owned by the release image
+
+- CircleCI's `version` job runs the external `package` command from
+  `alexfalkowski/release` / `alexfalkowski/docker/release`.
+- That release image's `release/package` script runs
+  `goreleaser check "$releaser"` before `goreleaser release`.
+- Reviewers should not flag the absence of a separate repository-local
+  GoReleaser config validation job as a project gap by default. Only raise it
+  with concrete evidence that the release image no longer validates
+  `.goreleaser.yml`, or that this repository has explicitly decided to own a
+  pre-release GoReleaser check locally.
+
 ## Request size limits (DoS protection)
 
 Limits are enforced in the domain layer:
@@ -226,6 +238,19 @@ These surface to clients as `InvalidArgument` via the gRPC error mapper (`intern
   concrete evidence of current workflow breakage.
 - Reviewers should not flag the lack of environment-configurable HTTP, gRPC, or
   observability endpoints as a feature gap by default.
+
+### Ruby runtime selection is owned by the shared CI image
+
+- The Ruby code under `test/` is feature-test harness code, not production
+  service code.
+- Ruby runtime selection for this harness is controlled by the external
+  `alexfalkowski/go` image from `alexfalkowski/docker/go`, which is the shared
+  service CI tooling image used by `.circleci/config.yml`.
+- Reviewers should not flag the absence of a repository-local `.ruby-version`,
+  `.tool-versions`, `mise.toml`, or Gemfile `ruby` directive as a project gap by
+  default. Only raise it with concrete evidence that the shared CI image no
+  longer supplies the expected runtime, or that this repository has explicitly
+  decided to own Ruby version selection locally for the test harness.
 
 If bundler fails loading native gems (e.g., `json` extension), one observed fix is rebuilding the gem:
 
