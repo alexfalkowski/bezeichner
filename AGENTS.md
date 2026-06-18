@@ -66,6 +66,14 @@ Notes:
 - `main_test.go` is guarded by build tag `features` (`main_test.go:1-10`).
 - `make features` depends on `make build-test` (see `bin/build/make/_service.mak:100-102`).
 
+### Local CI preflight target belongs in shared bin tooling
+
+- This repository consumes shared Make targets from the `bin/` submodule.
+- If a one-command local CI preflight target is needed, it should be added to
+  the shared `bin` Make fragments rather than as a service-local target here.
+- Reviewers should not flag the lack of a root `verify`/`ci-checks` target in
+  this repository as a feature gap by default.
+
 ### Lint / format / security
 
 ```sh
@@ -208,6 +216,16 @@ These surface to clients as `InvalidArgument` via the gRPC error mapper (`intern
 - Harness config: `test/nonnative.yml`.
   - Launches `../bezeichner server -config file:.config/server.yml` (`test/nonnative.yml:6-12`).
 - Cucumber report options: `test/.config/cucumber.yml:1`.
+
+### Ruby feature harness endpoints are local by design
+
+- The Ruby code under `test/` is a local feature-test harness, not production
+  service code.
+- Fixed localhost endpoints in `test/lib/**`, `test/nonnative.yml`, and related
+  feature helpers are intentional local harness assumptions unless there is
+  concrete evidence of current workflow breakage.
+- Reviewers should not flag the lack of environment-configurable HTTP, gRPC, or
+  observability endpoints as a feature gap by default.
 
 If bundler fails loading native gems (e.g., `json` extension), one observed fix is rebuilding the gem:
 
