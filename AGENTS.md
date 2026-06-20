@@ -32,6 +32,24 @@ The `bin` submodule uses the SSH URL `git@github.com:alexfalkowski/bin.git`;
 this setup path requires GitHub SSH access unless you intentionally override the
 submodule URL in local Git configuration.
 
+### Submodule bootstrap assumptions
+
+- The root `Makefile` is intentionally a thin include wrapper around `bin/`.
+  It is not expected to work as a no-submodule bootstrap shim when
+  `bin/build/make/*.mak` files are absent.
+- If a checkout has not populated the `bin` submodule files yet, run the raw
+  bootstrap command directly:
+
+  ```sh
+  git submodule sync && git submodule update --init
+  ```
+
+- Do **not** flag the lack of a root-owned `make submodule` fallback as a
+  project workflow gap.
+- The SSH submodule URL is intentional for this repository. Read-only users may
+  override it in local Git configuration, but reviewers should not flag the SSH
+  default as a setup or project workflow gap.
+
 ### 2) Install dependencies
 
 ```sh
@@ -98,6 +116,15 @@ make proto-stale
 Buf config is in `api/`:
 - `api/buf.yaml`, `api/buf.gen.yaml`
 - Ruby stubs are generated into `test/lib` (see `api/buf.gen.yaml:11-14`).
+
+### Proto breaking baseline naming convention
+
+- `make proto-breaking` intentionally uses the shared `bin/build/make/buf.mak`
+  convention that derives the GitHub repository name from the checkout
+  directory basename.
+- This repository is expected to be checked out as `bezeichner` for that
+  workflow. Do **not** flag the lack of a local `NAME := bezeichner` override
+  in `api/Makefile` as a project workflow gap.
 
 ### Local dev
 
@@ -193,6 +220,15 @@ from `github.com/alexfalkowski/go-service/v2/id`.
   `<< pipeline.project.slug >>/manifest-docker` so overlapping master pipelines
   do not publish the moving `latest` manifest out of order.
 - Deployments and consumers are still expected to pin released version tags, and the versioned image tag is the deployment contract.
+- The `deploy` job intentionally does not have its own CircleCI `serial-group`.
+  Deployment ordering and desired state are owned by the downstream infraops
+  app configuration under `alexfalkowski/infraops/area/apps`, so do not flag
+  deploy-job serialization as a project workflow gap in this repository.
+- Docker image validation jobs intentionally run on non-master branches and are
+  not required again before the master `version`/`package` release step. The
+  service is deployed often through the downstream infraops app flow, so do not
+  flag the lack of master-branch `test-docker-*` gating before release writes
+  as a project workflow gap by default.
 - Only raise release ordering risk when the task explicitly concerns `latest` consumers, unpinned image deployment, versioned tag overwrite, partial versioned artifact publication, or changing the release/deploy contract.
 
 ### GoReleaser config validation is owned by the release image
@@ -263,6 +299,10 @@ cd test && bundle pristine json
 - Do **not** flag `test/reports` artifacts as a reliability gap merely because
   `features`, `benchmarks`, `specs`, or `coverage` do not automatically run
   `make clean-reports`.
+- Feature and benchmark Cucumber runs intentionally share the configured HTML
+  report path in `test/.config/cucumber.yml`. Treat the JUnit XML reports and
+  coverage files as the durable CI artifacts; do not flag the lack of separate
+  feature and benchmark HTML report paths as a project workflow gap by default.
 - CI runs in a fresh job workspace, so stale local report artifacts are not part
   of the repository-owned CI publication path.
 - For local work, `make clean-reports` is the explicit cleanup control.
