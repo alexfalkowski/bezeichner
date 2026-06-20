@@ -10,7 +10,7 @@ Use `bin/AGENTS.md` for shared skills and cross-repository defaults.
 
 ## Repository at a glance
 
-- Language: **Go** (`module github.com/alexfalkowski/bezeichner`; see `go.mod:1-3` for the current Go version).
+- Language: **Go**; see `go.mod` for module path and toolchain details.
 - API contract: `api/bezeichner/v1/service.proto` (+ generated Go stubs under `api/` and Ruby stubs under `test/lib`).
 - Build tooling: the root `Makefile` is a thin wrapper around the **`bin/` git submodule** (see `.gitmodules:1-3` and `Makefile:1-3`).
 
@@ -20,11 +20,8 @@ Use `bin/AGENTS.md` for shared skills and cross-repository defaults.
 
 Most `make` targets come from the `bin/` submodule.
 
-```sh
-make submodule
-# expands to: git submodule sync && git submodule update --init
-# see: bin/build/make/git.mak:29-31
-```
+Use `make submodule` once the shared `bin` checkout is present; see
+`bin/AGENTS.md` for fresh-clone bootstrap details.
 
 ### 2) Install dependencies
 
@@ -33,8 +30,11 @@ make dep
 ```
 
 Observed behavior:
-- Go deps are vendored (`go mod vendor`) and the test-binary build uses `-mod vendor` (see `bin/build/make/_service.mak:184-186`).
-- Ruby deps for feature tests live under `test/` and are installed via bundler into `test/vendor/bundle` (see `bin/build/make/ruby.mak:15-21` and `test/.bundle/config:1-2`).
+- Go deps are vendored by the shared dependency target and the test-binary
+  build uses vendored dependencies (see `bin/build/make/_service.mak:184-186`).
+- Ruby deps for feature tests live under `test/` and are installed by the
+  shared Ruby dependency target (see `bin/build/make/ruby.mak:15-21` and
+  `test/.bundle/config:1-2`).
 
 ## Essential commands
 
@@ -66,10 +66,11 @@ Notes:
 make lint
 make fix-lint
 make format
-make sec          # govulncheck
+make sec
 ```
 
-- Go linting is via `golangci-lint` plus formatting tools (gci/gofmt/gofumpt/goimports). Generated protobuf code is excluded (`.golangci.yml:33-43`).
+- Go linting and formatting are owned by `make lint`, `make fix-lint`, and
+  `make format`. Generated protobuf code is excluded (`.golangci.yml:33-43`).
 
 ### Protobuf (Buf)
 
@@ -92,10 +93,6 @@ make dev
 ```
 
 This uses `air` to rebuild/run the server:
-
-```sh
-./bezeichner server -config file:test/.config/server.yml
-```
 
 See `bin/build/make/grpc.mak:51-53`.
 
@@ -189,11 +186,8 @@ These surface to clients as `InvalidArgument` via the gRPC error mapper (`intern
   - Launches `../bezeichner server -config file:.config/server.yml` (`test/nonnative.yml:6-12`).
 - Cucumber report options: `test/.config/cucumber.yml:1`.
 
-If bundler fails loading native gems (e.g., `json` extension), one observed fix is rebuilding the gem:
-
-```sh
-cd test && bundle pristine json
-```
+If the Ruby harness fails loading native gems, refresh dependencies through the
+repository Make targets before trying ad hoc tool commands.
 
 ### Report artifact cleanup assumption
 
