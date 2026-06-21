@@ -189,19 +189,6 @@ These surface to clients as `InvalidArgument` via the gRPC error mapper (`intern
 If the Ruby harness fails loading native gems, refresh dependencies through the
 repository Make targets before trying ad hoc tool commands.
 
-### Report artifact cleanup assumption
-
-- Do **not** flag `test/reports` artifacts as a reliability gap merely because
-  `features`, `benchmarks`, `specs`, or `coverage` do not automatically run
-  `make clean-reports`.
-- CI runs in a fresh job workspace, so stale local report artifacts are not part
-  of the repository-owned CI publication path.
-- For local work, `make clean-reports` is the explicit cleanup control.
-- Only raise report lifecycle risk when the task explicitly concerns changing
-  report cleanup/publication, CI workspace reuse, or there is concrete evidence
-  that a documented workflow published stale reports after the expected cleanup
-  path.
-
 ## Style / formatting
 
 - Go files use tabs (per `.editorconfig:16-18`).
