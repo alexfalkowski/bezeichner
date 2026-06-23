@@ -31,21 +31,23 @@
 //
 //	Generate(ctx, app) string
 //
-// The app parameter provides access to application configuration. Current
-// built-in generators ignore it. Generate may be called concurrently, so custom
-// implementations must protect any mutable state they keep.
+// The app parameter provides access to application configuration. Built-in
+// generators use app.Name as the identifier prefix. Generate may be called
+// concurrently, so custom implementations must protect any mutable state they
+// keep.
 //
 // # Built-in kinds
 //
 // The default registry includes (at the time of writing):
 //
-//   - "uuid":      UUIDv7 string
-//   - "ksuid":     KSUID string
-//   - "ulid":      ULID string
-//   - "xid":       XID string
-//   - "snowflake": Sonyflake-based numeric ID (decimal string)
-//   - "nanoid":    NanoID string
-//   - "typeid":    prefixless TypeID string
+//   - "uuid":      application-prefixed UUIDv7 string
+//   - "ksuid":     application-prefixed KSUID string
+//   - "ulid":      application-prefixed ULID string
+//   - "xid":       application-prefixed XID string
+//   - "snowflake": application-prefixed Sonyflake-based numeric ID
+//     (decimal string)
+//   - "nanoid": application-prefixed NanoID string
+//   - "typeid": TypeID string using the application name as the TypeID prefix
 //
 // # Errors
 //

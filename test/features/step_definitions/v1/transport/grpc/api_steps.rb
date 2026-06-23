@@ -16,27 +16,28 @@ When('I request to map identifiers with gRPC:') do |table|
   @request_id = SecureRandom.uuid
   metadata = { 'request-id' => @request_id }
 
-  request = Bezeichner::V1::MapIdentifiersRequest.new(ids: rows['request'].split(','))
+  request = Bezeichner::V1::MapIdentifiersRequest.new(application: rows['application'], ids: rows['request'].split(','))
   @response = Bezeichner::V1.grpc.map_identifiers(request, Bezeichner.grpc_options(metadata:))
 rescue StandardError => e
   @response = e
 end
 
-When('I request to map {int} identifiers with gRPC:') do |count|
+When('I request to map {int} identifiers with gRPC:') do |count, table|
+  rows = table.rows_hash
   @request_id = SecureRandom.uuid
   metadata = { 'request-id' => @request_id }
 
-  request = Bezeichner::V1::MapIdentifiersRequest.new(ids: count.times.map { SecureRandom.hex })
+  request = Bezeichner::V1::MapIdentifiersRequest.new(application: rows['application'], ids: count.times.map { SecureRandom.hex })
   @response = Bezeichner::V1.grpc.map_identifiers(request, Bezeichner.grpc_options(metadata:))
 rescue StandardError => e
   @response = e
 end
 
-When('I request to map {int} existing identifiers with gRPC') do |count|
+When('I request to map {int} existing identifiers with gRPC for application {string}') do |count, application|
   @request_id = SecureRandom.uuid
   metadata = { 'request-id' => @request_id }
 
-  request = Bezeichner::V1::MapIdentifiersRequest.new(ids: Array.new(count, 'req1'))
+  request = Bezeichner::V1::MapIdentifiersRequest.new(application:, ids: Array.new(count, 'req1'))
   @response = Bezeichner::V1.grpc.map_identifiers(request, Bezeichner.grpc_options(metadata:))
 rescue StandardError => e
   @response = e
@@ -48,7 +49,7 @@ Then('I should receive generated identifiers from gRPC:') do |table|
   expect(@response.meta['requestId']).to eq(@request_id)
   expect(@response.meta['userAgent']).to include('Bezeichner-ruby-client/1.0 gRPC/1.0')
   expect(@response.ids.length).to eq(rows['count'].to_i)
-  expect(@response.ids).to all(satisfy { |id| id.length.positive? })
+  expect(@response.ids).to all(satisfy { |id| id.start_with?("#{rows['application']}_") })
 end
 
 Then('I should receive mapped identifiers from gRPC:') do |table|

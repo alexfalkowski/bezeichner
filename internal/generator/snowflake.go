@@ -28,9 +28,9 @@ func NewSnowflake() *Snowflake {
 //
 // Generate panics if Sonyflake construction failed or if Sonyflake's time range
 // is exhausted.
-func (s *Snowflake) Generate(_ context.Context, _ *Application) string {
+func (s *Snowflake) Generate(_ context.Context, app *Application) string {
 	id, err := s.sf.NextID()
 	runtime.Must(err)
 
-	return strconv.FormatUint(id, 10)
+	return app.Name + "_" + strconv.FormatUint(id, 10)
 }

@@ -23,10 +23,11 @@ When('I request to map identifiers with HTTP:') do |table|
     }
   )
 
-  @response = Bezeichner::V1.http.map(rows['request'].split(','), opts)
+  @response = Bezeichner::V1.http.map(rows['application'], rows['request'].split(','), opts)
 end
 
-When('I request to map {int} identifiers with HTTP:') do |count|
+When('I request to map {int} identifiers with HTTP:') do |count, table|
+  rows = table.rows_hash
   @request_id = SecureRandom.uuid
   opts = Bezeichner.http_options(
     headers: {
@@ -35,10 +36,10 @@ When('I request to map {int} identifiers with HTTP:') do |count|
     }
   )
 
-  @response = Bezeichner::V1.http.map(count.times.map { SecureRandom.hex }, opts)
+  @response = Bezeichner::V1.http.map(rows['application'], count.times.map { SecureRandom.hex }, opts)
 end
 
-When('I request to map {int} existing identifiers with HTTP') do |count|
+When('I request to map {int} existing identifiers with HTTP for application {string}') do |count, application|
   @request_id = SecureRandom.uuid
   opts = Bezeichner.http_options(
     headers: {
@@ -47,7 +48,7 @@ When('I request to map {int} existing identifiers with HTTP') do |count|
     }
   )
 
-  @response = Bezeichner::V1.http.map(Array.new(count, 'req1'), opts)
+  @response = Bezeichner::V1.http.map(application, Array.new(count, 'req1'), opts)
 end
 
 Then('I should receive generated identifiers from HTTP:') do |table|
@@ -60,7 +61,7 @@ Then('I should receive generated identifiers from HTTP:') do |table|
   expect(resp['meta']['requestId']).to eq(@request_id)
   expect(resp['meta']['userAgent']).to eq('Bezeichner-ruby-client/1.0 HTTP/1.0')
   expect(ids.length).to eq(rows['count'].to_i)
-  expect(ids).to all(satisfy { |id| id.length.positive? })
+  expect(ids).to all(satisfy { |id| id.start_with?("#{rows['application']}_") })
 end
 
 Then('I should receive mapped identifiers from HTTP:') do |table|

@@ -2,9 +2,14 @@ environment: production
 id:
   kind: uuid
 mapper:
-  identifiers:
-    req1: resp1
-    req2: resp2
+  applications:
+    - name: uuid
+      identifiers:
+        req1: resp1
+        req2: resp2
+    - name: ulid
+      identifiers:
+        req1: ulid_resp1
 generator:
   applications:
     - name: uuid

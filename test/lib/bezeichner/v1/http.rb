@@ -52,14 +52,15 @@ module Bezeichner
 
       # Calls MapIdentifiers over HTTP.
       #
-      # @param ids [Array<String>] identifiers to map; an empty list returns no IDs when mapper configuration is present
+      # @param application [String] configured mapper application name
+      # @param ids [Array<String>] identifiers to map; an empty list returns no IDs when mapper application configuration is present
       # @param opts [Hash] options forwarded to {Nonnative::HTTPClient#post}
       # @return [Object] HTTP response as returned by {Nonnative::HTTPClient#post}
       #
-      # @example Map identifiers using the configured mapping table
-      #   Bezeichner::V1.http.map(%w[req1 req2])
-      def map(ids, opts = {})
-        post('/bezeichner.v1.Service/MapIdentifiers', { ids: }.to_json, opts)
+      # @example Map identifiers using the configured application mapping
+      #   Bezeichner::V1.http.map('uuid', %w[req1 req2])
+      def map(application, ids, opts = {})
+        post('/bezeichner.v1.Service/MapIdentifiers', { application:, ids: }.to_json, opts)
       end
     end
   end

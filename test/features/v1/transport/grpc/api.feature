@@ -54,26 +54,30 @@ Feature: gRPC API
 
   Scenario Outline: Map existing identifiers
     When I request to map identifiers with gRPC:
-      | request | <request> |
+      | application | <application> |
+      | request     | <request>     |
     Then I should receive mapped identifiers from gRPC:
       | response | <response> |
 
     Examples:
-      | request   | response    |
-      | req1      | resp1       |
-      | req1,req2 | resp1,resp2 |
-      | req2,req1 | resp2,resp1 |
+      | application | request   | response    |
+      | uuid        | req1      | resp1       |
+      | uuid        | req1,req2 | resp1,resp2 |
+      | uuid        | req2,req1 | resp2,resp1 |
+      | ulid        | req1      | ulid_resp1  |
 
   Scenario: Map maximum identifiers
-    When I request to map 1000 existing identifiers with gRPC
+    When I request to map 1000 existing identifiers with gRPC for application "uuid"
     Then I should receive 1000 mapped identifiers from gRPC
 
   Scenario: Map too many identifiers
     When I request to map 1001 identifiers with gRPC:
+      | application | uuid |
     Then I should receive an invalid argument error from gRPC
 
   Scenario Outline: Map non existing identifiers
     When I request to map identifiers with gRPC:
+      | application | uuid      |
       | request | <request> |
     Then I should receive a not found error from gRPC
 
@@ -81,3 +85,9 @@ Feature: gRPC API
       | request   |
       | req3      |
       | req1,req3 |
+
+  Scenario: Map identifiers for a missing application
+    When I request to map identifiers with gRPC:
+      | application | not_found |
+      | request     | req1      |
+    Then I should receive a not found error from gRPC

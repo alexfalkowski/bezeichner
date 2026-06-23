@@ -14,7 +14,9 @@ import (
 // In this package, it is used when:
 //   - the requested generator application name cannot be found in configuration,
 //   - the generator kind cannot be resolved from the generator registry,
-//   - or an input identifier does not have a configured mapping.
+//   - the requested mapper application name cannot be found in configuration,
+//   - or an input identifier does not have a configured mapping for the mapper
+//     application.
 //
 // Generate and Map may wrap ErrNotFound with the missing application, kind, or
 // identifier value, so callers should classify it with errors.Is rather than
@@ -60,6 +62,10 @@ func (s *Identifier) Generate(ctx context.Context, application string, count uin
 		return nil, ErrInvalidArgument
 	}
 
+	if s.generatorConfig == nil {
+		return nil, ErrNotFound
+	}
+
 	app := s.generatorConfig.Application(application)
 	if app == nil {
 		return nil, fmt.Errorf("%s: %w", application, ErrNotFound)
@@ -78,20 +84,21 @@ func (s *Identifier) Generate(ctx context.Context, application string, count uin
 	return ids, nil
 }
 
-// Map returns the mapped identifiers for the provided ids in the same order.
+// Map returns the mapped identifiers for the provided application and ids in
+// the same order.
 //
-// Mapping is configured via mapper configuration. If mapper configuration is
-// omitted, or if any input identifier is missing from the mapping table, the
-// operation fails.
+// Mapping is configured via mapper application configuration. If mapper
+// configuration is omitted, the application is missing, or any input identifier
+// is missing from the application mapping, the operation fails.
 //
 // An empty ids slice is valid and returns an empty slice when mapper
-// configuration is present.
+// application configuration is present.
 //
 // Errors:
 //   - ErrInvalidArgument if len(ids) exceeds the fixed domain limit.
-//   - ErrNotFound if mapper configuration is omitted or any input identifier
-//     does not have a configured mapping.
-func (s *Identifier) Map(ids []string) ([]string, error) {
+//   - ErrNotFound if mapper configuration is omitted, the application is
+//     missing, or any input identifier does not have a configured mapping.
+func (s *Identifier) Map(application string, ids []string) ([]string, error) {
 	if len(ids) > maxMapIDs {
 		return nil, ErrInvalidArgument
 	}
@@ -100,9 +107,14 @@ func (s *Identifier) Map(ids []string) ([]string, error) {
 		return nil, ErrNotFound
 	}
 
+	app := s.mapperConfig.Application(application)
+	if app == nil {
+		return nil, fmt.Errorf("%s: %w", application, ErrNotFound)
+	}
+
 	mids := make([]string, len(ids))
 	for i, id := range ids {
-		mid, ok := s.mapperConfig.Identifiers[id]
+		mid, ok := app.Identifiers[id]
 		if !ok {
 			return nil, fmt.Errorf("%s: %w", id, ErrNotFound)
 		}
