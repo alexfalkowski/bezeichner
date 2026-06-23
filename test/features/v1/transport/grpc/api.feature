@@ -57,18 +57,20 @@ Feature: gRPC API
       | application | <application> |
       | request     | <request>     |
     Then I should receive mapped identifiers from gRPC:
-      | response | <response> |
+      | mapped   | <mapped>   |
+      | unmapped | <unmapped> |
 
     Examples:
-      | application | request   | response    |
-      | uuid        | req1      | resp1       |
-      | uuid        | req1,req2 | resp1,resp2 |
-      | uuid        | req2,req1 | resp2,resp1 |
-      | ulid        | req1      | ulid_resp1  |
+      | application | request   | mapped               | unmapped |
+      | uuid        | req1      | req1:resp1           |          |
+      | uuid        | req1,req2 | req1:resp1,req2:resp2 |          |
+      | uuid        | req2,req1 | req1:resp1,req2:resp2 |          |
+      | ulid        | req1      | req1:ulid_resp1      |          |
 
   Scenario: Map maximum identifiers
-    When I request to map 1000 existing identifiers with gRPC for application "uuid"
-    Then I should receive 1000 mapped identifiers from gRPC
+    When I request to map 1000 identifiers with gRPC:
+      | application | uuid |
+    Then I should receive 1000 unmapped identifiers from gRPC
 
   Scenario: Map too many identifiers
     When I request to map 1001 identifiers with gRPC:
@@ -79,12 +81,14 @@ Feature: gRPC API
     When I request to map identifiers with gRPC:
       | application | uuid      |
       | request | <request> |
-    Then I should receive a not found error from gRPC
+    Then I should receive mapped identifiers from gRPC:
+      | mapped   | <mapped>   |
+      | unmapped | <unmapped> |
 
     Examples:
-      | request   |
-      | req3      |
-      | req1,req3 |
+      | request   | mapped     | unmapped |
+      | req3      |            | req3     |
+      | req1,req3 | req1:resp1 | req3     |
 
   Scenario: Map identifiers for a missing application
     When I request to map identifiers with gRPC:

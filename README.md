@@ -29,9 +29,10 @@ Distributed systems often need globally unique identifiers across multiple langu
 The v1 service supports:
 
 - `GenerateIdentifiers`: generate `count` identifiers for a configured `application`
-- `MapIdentifiers`: map a list of identifiers for a configured `application`
+- `MapIdentifiers`: classify identifiers as mapped or unmapped for a configured `application`
 
-Responses contain generated or mapped `ids` and a `meta` map reserved for transport/service metadata.
+Responses contain generated `ids` or mapped/unmapped identifiers, plus a `meta`
+map reserved for transport/service metadata.
 
 > [!NOTE]
 > HTTP is not a separate REST API. It is an RPC gateway over the same protobuf service contract used by gRPC.
@@ -39,7 +40,7 @@ Responses contain generated or mapped `ids` and a `meta` map reserved for transp
 > [!WARNING]
 > Both endpoints enforce request-size limits in the domain layer for basic DoS protection. `GenerateIdentifiers.count` and the `MapIdentifiers.ids` list length are capped at `1000`; larger requests fail with `InvalidArgument`.
 
-Unknown generator applications, unknown mapper applications, unresolved generator kinds, and unmapped identifiers fail with `NotFound`.
+Unknown generator applications, unknown mapper applications, unresolved generator kinds, and omitted mapper configuration fail with `NotFound`.
 
 ## ⚙️ Configuration
 
@@ -110,7 +111,7 @@ mapper:
 ```
 
 > [!IMPORTANT]
-> Mapping is strict: if the requested application or any input ID is missing from the mapper configuration, the whole operation fails. Output order matches input order.
+> Mapping classifies each input ID. Known IDs are returned in `mapped`; missing IDs are returned in `unmapped`. Consumers decide whether unmapped IDs should be ignored, reported, retried, or treated as failures.
 > The `mapper` block is optional at startup. If it is omitted, all `MapIdentifiers` requests fail with `NotFound`.
 
 ### ❤️ Health configuration
@@ -200,9 +201,24 @@ Map identifiers:
 
 ```sh
 grpcurl -plaintext \
-  -d '{"application":"uuid","ids":["req1","req2"]}' \
+  -d '{"application":"uuid","ids":["req1","req3"]}' \
   localhost:12000 \
   bezeichner.v1.Service/MapIdentifiers
+```
+
+The response classifies inputs by original ID:
+
+```json
+{
+  "meta": {
+    "requestId": "...",
+    "userAgent": "..."
+  },
+  "mapped": {
+    "req1": "resp1"
+  },
+  "unmapped": ["req3"]
+}
 ```
 
 ### 🌐 HTTP RPC gateway (curl)
@@ -237,7 +253,7 @@ statuses with safe `text/error` response bodies:
 | gRPC/domain error | HTTP status | Common triggers |
 | --- | --- | --- |
 | `InvalidArgument` | `400` | `GenerateIdentifiers.count > 1000` or more than `1000` IDs to map |
-| `NotFound` | `404` | unknown generator application, unknown mapper application, unresolved generator kind, omitted mapper config, or unmapped ID |
+| `NotFound` | `404` | unknown generator application, unknown mapper application, unresolved generator kind, or omitted mapper config |
 
 > [!NOTE]
 > The generated gRPC full method names include a leading slash, for example `/bezeichner.v1.Service/GenerateIdentifiers`. In HTTP URLs, that slash is the path separator after the host; `grpcurl` uses the `service/method` form without the leading slash.

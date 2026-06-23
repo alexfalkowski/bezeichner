@@ -162,9 +162,7 @@ type MapIdentifiersRequest struct {
 	// before mapping.
 	//
 	// The maximum accepted list length is 1000. Larger requests fail with
-	// InvalidArgument. Mapping is strict: if mapper configuration is omitted, or
-	// if any identifier is absent from the application mapping, MapIdentifiers
-	// fails with NotFound.
+	// InvalidArgument.
 	Ids           []string `protobuf:"bytes,2,rep,name=ids,proto3" json:"ids,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -214,7 +212,8 @@ func (x *MapIdentifiersRequest) GetIds() []string {
 	return nil
 }
 
-// MapIdentifiersResponse contains mapped identifiers and service metadata.
+// MapIdentifiersResponse contains mapped and unmapped identifiers, plus service
+// metadata.
 type MapIdentifiersResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// meta contains service and transport metadata. It is reserved for
@@ -223,8 +222,11 @@ type MapIdentifiersResponse struct {
 	// Bezeichner currently returns requestId and userAgent when the transport
 	// can derive them from request metadata.
 	Meta map[string]string `protobuf:"bytes,1,rep,name=meta,proto3" json:"meta,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
-	// ids contains mapped identifiers in the same order as the request ids.
-	Ids           []string `protobuf:"bytes,2,rep,name=ids,proto3" json:"ids,omitempty"`
+	// mapped contains entries keyed by input identifier with values set to the
+	// configured mapped identifier.
+	Mapped map[string]string `protobuf:"bytes,2,rep,name=mapped,proto3" json:"mapped,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	// unmapped contains input identifiers that could not be mapped.
+	Unmapped      []string `protobuf:"bytes,3,rep,name=unmapped,proto3" json:"unmapped,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -266,9 +268,16 @@ func (x *MapIdentifiersResponse) GetMeta() map[string]string {
 	return nil
 }
 
-func (x *MapIdentifiersResponse) GetIds() []string {
+func (x *MapIdentifiersResponse) GetMapped() map[string]string {
 	if x != nil {
-		return x.Ids
+		return x.Mapped
+	}
+	return nil
+}
+
+func (x *MapIdentifiersResponse) GetUnmapped() []string {
+	if x != nil {
+		return x.Unmapped
 	}
 	return nil
 }
@@ -289,11 +298,15 @@ const file_bezeichner_v1_service_proto_rawDesc = "" +
 	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"K\n" +
 	"\x15MapIdentifiersRequest\x12 \n" +
 	"\vapplication\x18\x01 \x01(\tR\vapplication\x12\x10\n" +
-	"\x03ids\x18\x02 \x03(\tR\x03ids\"\xa8\x01\n" +
+	"\x03ids\x18\x02 \x03(\tR\x03ids\"\xb8\x02\n" +
 	"\x16MapIdentifiersResponse\x12C\n" +
-	"\x04meta\x18\x01 \x03(\v2/.bezeichner.v1.MapIdentifiersResponse.MetaEntryR\x04meta\x12\x10\n" +
-	"\x03ids\x18\x02 \x03(\tR\x03ids\x1a7\n" +
+	"\x04meta\x18\x01 \x03(\v2/.bezeichner.v1.MapIdentifiersResponse.MetaEntryR\x04meta\x12I\n" +
+	"\x06mapped\x18\x02 \x03(\v21.bezeichner.v1.MapIdentifiersResponse.MappedEntryR\x06mapped\x12\x1a\n" +
+	"\bunmapped\x18\x03 \x03(\tR\bunmapped\x1a7\n" +
 	"\tMetaEntry\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\x1a9\n" +
+	"\vMappedEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
 	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x012\xda\x01\n" +
 	"\aService\x12n\n" +
@@ -312,7 +325,7 @@ func file_bezeichner_v1_service_proto_rawDescGZIP() []byte {
 	return file_bezeichner_v1_service_proto_rawDescData
 }
 
-var file_bezeichner_v1_service_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
+var file_bezeichner_v1_service_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_bezeichner_v1_service_proto_goTypes = []any{
 	(*GenerateIdentifiersRequest)(nil),  // 0: bezeichner.v1.GenerateIdentifiersRequest
 	(*GenerateIdentifiersResponse)(nil), // 1: bezeichner.v1.GenerateIdentifiersResponse
@@ -320,19 +333,21 @@ var file_bezeichner_v1_service_proto_goTypes = []any{
 	(*MapIdentifiersResponse)(nil),      // 3: bezeichner.v1.MapIdentifiersResponse
 	nil,                                 // 4: bezeichner.v1.GenerateIdentifiersResponse.MetaEntry
 	nil,                                 // 5: bezeichner.v1.MapIdentifiersResponse.MetaEntry
+	nil,                                 // 6: bezeichner.v1.MapIdentifiersResponse.MappedEntry
 }
 var file_bezeichner_v1_service_proto_depIdxs = []int32{
 	4, // 0: bezeichner.v1.GenerateIdentifiersResponse.meta:type_name -> bezeichner.v1.GenerateIdentifiersResponse.MetaEntry
 	5, // 1: bezeichner.v1.MapIdentifiersResponse.meta:type_name -> bezeichner.v1.MapIdentifiersResponse.MetaEntry
-	0, // 2: bezeichner.v1.Service.GenerateIdentifiers:input_type -> bezeichner.v1.GenerateIdentifiersRequest
-	2, // 3: bezeichner.v1.Service.MapIdentifiers:input_type -> bezeichner.v1.MapIdentifiersRequest
-	1, // 4: bezeichner.v1.Service.GenerateIdentifiers:output_type -> bezeichner.v1.GenerateIdentifiersResponse
-	3, // 5: bezeichner.v1.Service.MapIdentifiers:output_type -> bezeichner.v1.MapIdentifiersResponse
-	4, // [4:6] is the sub-list for method output_type
-	2, // [2:4] is the sub-list for method input_type
-	2, // [2:2] is the sub-list for extension type_name
-	2, // [2:2] is the sub-list for extension extendee
-	0, // [0:2] is the sub-list for field type_name
+	6, // 2: bezeichner.v1.MapIdentifiersResponse.mapped:type_name -> bezeichner.v1.MapIdentifiersResponse.MappedEntry
+	0, // 3: bezeichner.v1.Service.GenerateIdentifiers:input_type -> bezeichner.v1.GenerateIdentifiersRequest
+	2, // 4: bezeichner.v1.Service.MapIdentifiers:input_type -> bezeichner.v1.MapIdentifiersRequest
+	1, // 5: bezeichner.v1.Service.GenerateIdentifiers:output_type -> bezeichner.v1.GenerateIdentifiersResponse
+	3, // 6: bezeichner.v1.Service.MapIdentifiers:output_type -> bezeichner.v1.MapIdentifiersResponse
+	5, // [5:7] is the sub-list for method output_type
+	3, // [3:5] is the sub-list for method input_type
+	3, // [3:3] is the sub-list for extension type_name
+	3, // [3:3] is the sub-list for extension extendee
+	0, // [0:3] is the sub-list for field type_name
 }
 
 func init() { file_bezeichner_v1_service_proto_init() }
@@ -346,7 +361,7 @@ func file_bezeichner_v1_service_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_bezeichner_v1_service_proto_rawDesc), len(file_bezeichner_v1_service_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   6,
+			NumMessages:   7,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

@@ -33,16 +33,6 @@ rescue StandardError => e
   @response = e
 end
 
-When('I request to map {int} existing identifiers with gRPC for application {string}') do |count, application|
-  @request_id = SecureRandom.uuid
-  metadata = { 'request-id' => @request_id }
-
-  request = Bezeichner::V1::MapIdentifiersRequest.new(application:, ids: Array.new(count, 'req1'))
-  @response = Bezeichner::V1.grpc.map_identifiers(request, Bezeichner.grpc_options(metadata:))
-rescue StandardError => e
-  @response = e
-end
-
 Then('I should receive generated identifiers from gRPC:') do |table|
   rows = table.rows_hash
 
@@ -57,13 +47,15 @@ Then('I should receive mapped identifiers from gRPC:') do |table|
 
   expect(@response.meta['requestId']).to eq(@request_id)
   expect(@response.meta['userAgent']).to include('Bezeichner-ruby-client/1.0 gRPC/1.0')
-  expect(@response.ids).to eq(rows['response'].split(','))
+  expect(@response.mapped.to_h).to eq(mapping(rows['mapped']))
+  expect(@response.unmapped.to_a).to eq(identifiers(rows['unmapped']))
 end
 
-Then('I should receive {int} mapped identifiers from gRPC') do |count|
+Then('I should receive {int} unmapped identifiers from gRPC') do |count|
   expect(@response.meta['requestId']).to eq(@request_id)
   expect(@response.meta['userAgent']).to include('Bezeichner-ruby-client/1.0 gRPC/1.0')
-  expect(@response.ids).to eq(Array.new(count, 'resp1'))
+  expect(@response.mapped.to_h).to eq({})
+  expect(@response.unmapped.length).to eq(count)
 end
 
 Then('I should receive a not found error from gRPC') do
