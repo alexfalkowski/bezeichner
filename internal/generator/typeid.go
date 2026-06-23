@@ -8,7 +8,7 @@ import (
 // TypeID generator.
 type TypeID struct{}
 
-// Generate a prefixless TypeID.
-func (t *TypeID) Generate(_ context.Context, _ *Application) string {
-	return typeid.Must(typeid.WithPrefix("")).String()
+// Generate a TypeID prefixed with the application name.
+func (t *TypeID) Generate(_ context.Context, app *Application) string {
+	return typeid.Must(typeid.WithPrefix(app.Name)).String()
 }

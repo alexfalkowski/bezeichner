@@ -21,11 +21,11 @@ module Bezeichner
         # It returns InvalidArgument when count exceeds 1000, and NotFound when the
         # application or generator kind cannot be resolved.
         rpc :GenerateIdentifiers, ::Bezeichner::V1::GenerateIdentifiersRequest, ::Bezeichner::V1::GenerateIdentifiersResponse
-        # MapIdentifiers maps identifiers through the configured mapper table.
+        # MapIdentifiers maps identifiers through the configured application mapping.
         #
         # It returns InvalidArgument when more than 1000 identifiers are requested,
-        # and NotFound when mapper configuration is omitted or any requested
-        # identifier is absent from the table.
+        # and NotFound when mapper configuration is omitted, the application is not
+        # configured, or any requested identifier is absent from the mapping.
         rpc :MapIdentifiers, ::Bezeichner::V1::MapIdentifiersRequest, ::Bezeichner::V1::MapIdentifiersResponse
       end
 

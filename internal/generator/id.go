@@ -16,6 +16,6 @@ type ID struct {
 }
 
 // Generate an ID.
-func (i *ID) Generate(_ context.Context, _ *Application) string {
-	return i.generator.Generate()
+func (i *ID) Generate(_ context.Context, app *Application) string {
+	return app.Name + "_" + i.generator.Generate()
 }

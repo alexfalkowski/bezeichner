@@ -146,21 +146,26 @@ func (x *GenerateIdentifiersResponse) GetIds() []string {
 	return nil
 }
 
-// MapIdentifiersRequest asks the service to map identifiers through the
-// configured mapper table.
+// MapIdentifiersRequest asks the service to map identifiers for a configured
+// application.
 type MapIdentifiersRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
+	// application is the configured mapper application name.
+	//
+	// If the application is not configured, MapIdentifiers fails with NotFound.
+	Application string `protobuf:"bytes,1,opt,name=application,proto3" json:"application,omitempty"`
 	// ids contains the identifiers to map.
 	//
-	// An empty list is valid when mapper configuration is present and returns an
-	// empty ids list. If mapper configuration is omitted, MapIdentifiers fails
-	// with NotFound before mapping.
+	// An empty list is valid when application mapping configuration is present
+	// and returns an empty ids list. If mapper configuration is omitted, or if
+	// the application is not configured, MapIdentifiers fails with NotFound
+	// before mapping.
 	//
 	// The maximum accepted list length is 1000. Larger requests fail with
 	// InvalidArgument. Mapping is strict: if mapper configuration is omitted, or
-	// if any identifier is absent from the mapper table, MapIdentifiers fails
-	// with NotFound.
-	Ids           []string `protobuf:"bytes,1,rep,name=ids,proto3" json:"ids,omitempty"`
+	// if any identifier is absent from the application mapping, MapIdentifiers
+	// fails with NotFound.
+	Ids           []string `protobuf:"bytes,2,rep,name=ids,proto3" json:"ids,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -193,6 +198,13 @@ func (x *MapIdentifiersRequest) ProtoReflect() protoreflect.Message {
 // Deprecated: Use MapIdentifiersRequest.ProtoReflect.Descriptor instead.
 func (*MapIdentifiersRequest) Descriptor() ([]byte, []int) {
 	return file_bezeichner_v1_service_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *MapIdentifiersRequest) GetApplication() string {
+	if x != nil {
+		return x.Application
+	}
+	return ""
 }
 
 func (x *MapIdentifiersRequest) GetIds() []string {
@@ -274,9 +286,10 @@ const file_bezeichner_v1_service_proto_rawDesc = "" +
 	"\x03ids\x18\x02 \x03(\tR\x03ids\x1a7\n" +
 	"\tMetaEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\")\n" +
-	"\x15MapIdentifiersRequest\x12\x10\n" +
-	"\x03ids\x18\x01 \x03(\tR\x03ids\"\xa8\x01\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"K\n" +
+	"\x15MapIdentifiersRequest\x12 \n" +
+	"\vapplication\x18\x01 \x01(\tR\vapplication\x12\x10\n" +
+	"\x03ids\x18\x02 \x03(\tR\x03ids\"\xa8\x01\n" +
 	"\x16MapIdentifiersResponse\x12C\n" +
 	"\x04meta\x18\x01 \x03(\v2/.bezeichner.v1.MapIdentifiersResponse.MetaEntryR\x04meta\x12\x10\n" +
 	"\x03ids\x18\x02 \x03(\tR\x03ids\x1a7\n" +

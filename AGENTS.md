@@ -140,12 +140,12 @@ A representative config used by dev/feature tests is `test/.config/server.yml`.
 
 Notable keys observed:
 - `generator.applications[]`: generator applications (**name** and **kind**).
-- `mapper.identifiers`: mapping table for `MapIdentifiers`.
+- `mapper.applications[]`: mapper applications (**name** and **identifiers**) for `MapIdentifiers`.
 - The representative test config sets `transport.http.address` to
   `tcp://:11000` and `transport.grpc.address` to `tcp://:12000`.
 
 Notes:
-- The generator application model in code currently includes only `name` and `kind` (no `prefix`, `suffix`, or `separator` fields).
+- Generated identifiers are prefixed with the generator application name. Generators without native prefix support use `name_`; `typeid` uses the application name as its TypeID prefix.
 - `mapper` is optional at startup; if it is omitted, all `MapIdentifiers` requests return `NotFound`.
 - HTTP is an RPC gateway that routes by **gRPC full method name**, so the HTTP surface mirrors the gRPC contract in `api/bezeichner/v1/service.proto`.
 

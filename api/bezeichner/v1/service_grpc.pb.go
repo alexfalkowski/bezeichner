@@ -34,11 +34,11 @@ type ServiceClient interface {
 	// It returns InvalidArgument when count exceeds 1000, and NotFound when the
 	// application or generator kind cannot be resolved.
 	GenerateIdentifiers(ctx context.Context, in *GenerateIdentifiersRequest, opts ...grpc.CallOption) (*GenerateIdentifiersResponse, error)
-	// MapIdentifiers maps identifiers through the configured mapper table.
+	// MapIdentifiers maps identifiers through the configured application mapping.
 	//
 	// It returns InvalidArgument when more than 1000 identifiers are requested,
-	// and NotFound when mapper configuration is omitted or any requested
-	// identifier is absent from the table.
+	// and NotFound when mapper configuration is omitted, the application is not
+	// configured, or any requested identifier is absent from the mapping.
 	MapIdentifiers(ctx context.Context, in *MapIdentifiersRequest, opts ...grpc.CallOption) (*MapIdentifiersResponse, error)
 }
 
@@ -81,11 +81,11 @@ type ServiceServer interface {
 	// It returns InvalidArgument when count exceeds 1000, and NotFound when the
 	// application or generator kind cannot be resolved.
 	GenerateIdentifiers(context.Context, *GenerateIdentifiersRequest) (*GenerateIdentifiersResponse, error)
-	// MapIdentifiers maps identifiers through the configured mapper table.
+	// MapIdentifiers maps identifiers through the configured application mapping.
 	//
 	// It returns InvalidArgument when more than 1000 identifiers are requested,
-	// and NotFound when mapper configuration is omitted or any requested
-	// identifier is absent from the table.
+	// and NotFound when mapper configuration is omitted, the application is not
+	// configured, or any requested identifier is absent from the mapping.
 	MapIdentifiers(context.Context, *MapIdentifiersRequest) (*MapIdentifiersResponse, error)
 	mustEmbedUnimplementedServiceServer()
 }

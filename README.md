@@ -29,7 +29,7 @@ Distributed systems often need globally unique identifiers across multiple langu
 The v1 service supports:
 
 - `GenerateIdentifiers`: generate `count` identifiers for a configured `application`
-- `MapIdentifiers`: map a list of identifiers using a configured mapping table
+- `MapIdentifiers`: map a list of identifiers for a configured `application`
 
 Responses contain generated or mapped `ids` and a `meta` map reserved for transport/service metadata.
 
@@ -39,7 +39,7 @@ Responses contain generated or mapped `ids` and a `meta` map reserved for transp
 > [!WARNING]
 > Both endpoints enforce request-size limits in the domain layer for basic DoS protection. `GenerateIdentifiers.count` and the `MapIdentifiers.ids` list length are capped at `1000`; larger requests fail with `InvalidArgument`.
 
-Unknown generator applications, unresolved generator kinds, and unmapped identifiers fail with `NotFound`.
+Unknown generator applications, unknown mapper applications, unresolved generator kinds, and unmapped identifiers fail with `NotFound`.
 
 ## ⚙️ Configuration
 
@@ -71,15 +71,19 @@ Application entries must have non-empty `name` and `kind` values, and
 application names must be unique. Malformed application lists fail config
 validation during startup.
 
+Generated identifiers are prefixed with the application name followed by `_`.
+For example, an application named `uuid` returns identifiers like `uuid_<uuid>`.
+The `typeid` generator uses the application name as the native TypeID prefix.
+
 Supported built-in kinds (at time of writing):
 
-- `uuid` (UUIDv7 string)
-- `ksuid` (KSUID string)
-- `ulid` (ULID string)
-- `xid` (XID string)
-- `snowflake` (Sonyflake-based numeric ID as a decimal string)
-- `nanoid` (NanoID string)
-- `typeid` (prefixless TypeID string; prefix configuration is not currently exposed)
+- `uuid` (application-prefixed UUIDv7 string)
+- `ksuid` (application-prefixed KSUID string)
+- `ulid` (application-prefixed ULID string)
+- `xid` (application-prefixed XID string)
+- `snowflake` (application-prefixed Sonyflake-based numeric ID as a decimal string)
+- `nanoid` (application-prefixed NanoID string)
+- `typeid` (TypeID string using the application name as the TypeID prefix)
 
 Example:
 
@@ -94,17 +98,19 @@ generator:
 
 ### 🗺️ Mapper configuration
 
-Mapper configuration defines a lookup table for identifier translation (useful for legacy migrations):
+Mapper configuration defines application-scoped identifier translations (useful for legacy migrations):
 
 ```yaml
 mapper:
-  identifiers:
-    req1: resp1
-    req2: resp2
+  applications:
+    - name: uuid
+      identifiers:
+        req1: resp1
+        req2: resp2
 ```
 
 > [!IMPORTANT]
-> Mapping is strict: if any input ID is missing from the table, the whole operation fails. Output order matches input order.
+> Mapping is strict: if the requested application or any input ID is missing from the mapper configuration, the whole operation fails. Output order matches input order.
 > The `mapper` block is optional at startup. If it is omitted, all `MapIdentifiers` requests fail with `NotFound`.
 
 ### ❤️ Health configuration
@@ -194,7 +200,7 @@ Map identifiers:
 
 ```sh
 grpcurl -plaintext \
-  -d '{"ids":["req1","req2"]}' \
+  -d '{"application":"uuid","ids":["req1","req2"]}' \
   localhost:12000 \
   bezeichner.v1.Service/MapIdentifiers
 ```
@@ -221,7 +227,7 @@ Map identifiers:
 curl -sS \
   -X POST \
   -H 'content-type: application/json' \
-  --data '{"ids":["req1","req2"]}' \
+  --data '{"application":"uuid","ids":["req1","req2"]}' \
   http://localhost:11000/bezeichner.v1.Service/MapIdentifiers
 ```
 
@@ -231,7 +237,7 @@ statuses with safe `text/error` response bodies:
 | gRPC/domain error | HTTP status | Common triggers |
 | --- | --- | --- |
 | `InvalidArgument` | `400` | `GenerateIdentifiers.count > 1000` or more than `1000` IDs to map |
-| `NotFound` | `404` | unknown application, unresolved generator kind, omitted mapper config, or unmapped ID |
+| `NotFound` | `404` | unknown generator application, unknown mapper application, unresolved generator kind, omitted mapper config, or unmapped ID |
 
 > [!NOTE]
 > The generated gRPC full method names include a leading slash, for example `/bezeichner.v1.Service/GenerateIdentifiers`. In HTTP URLs, that slash is the path separator after the host; `grpcurl` uses the `service/method` form without the leading slash.

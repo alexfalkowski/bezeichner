@@ -38,20 +38,26 @@ message GenerateIdentifiersResponse {
   repeated string ids = 2;
 }
 
-// MapIdentifiersRequest asks the service to map identifiers through the
-// configured mapper table.
+// MapIdentifiersRequest asks the service to map identifiers for a configured
+// application.
 message MapIdentifiersRequest {
+  // application is the configured mapper application name.
+  //
+  // If the application is not configured, MapIdentifiers fails with NotFound.
+  string application = 1;
+
   // ids contains the identifiers to map.
   //
-  // An empty list is valid when mapper configuration is present and returns an
-  // empty ids list. If mapper configuration is omitted, MapIdentifiers fails
-  // with NotFound before mapping.
+  // An empty list is valid when application mapping configuration is present
+  // and returns an empty ids list. If mapper configuration is omitted, or if
+  // the application is not configured, MapIdentifiers fails with NotFound
+  // before mapping.
   //
   // The maximum accepted list length is 1000. Larger requests fail with
   // InvalidArgument. Mapping is strict: if mapper configuration is omitted, or
-  // if any identifier is absent from the mapper table, MapIdentifiers fails
-  // with NotFound.
-  repeated string ids = 1;
+  // if any identifier is absent from the application mapping, MapIdentifiers
+  // fails with NotFound.
+  repeated string ids = 2;
 }
 
 // MapIdentifiersResponse contains mapped identifiers and service metadata.
@@ -75,10 +81,10 @@ service Service {
   // application or generator kind cannot be resolved.
   rpc GenerateIdentifiers(GenerateIdentifiersRequest) returns (GenerateIdentifiersResponse) {}
 
-  // MapIdentifiers maps identifiers through the configured mapper table.
+  // MapIdentifiers maps identifiers through the configured application mapping.
   //
   // It returns InvalidArgument when more than 1000 identifiers are requested,
-  // and NotFound when mapper configuration is omitted or any requested
-  // identifier is absent from the table.
+  // and NotFound when mapper configuration is omitted, the application is not
+  // configured, or any requested identifier is absent from the mapping.
   rpc MapIdentifiers(MapIdentifiersRequest) returns (MapIdentifiersResponse) {}
 }
