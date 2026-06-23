@@ -39,18 +39,6 @@ When('I request to map {int} identifiers with HTTP:') do |count, table|
   @response = Bezeichner::V1.http.map(rows['application'], count.times.map { SecureRandom.hex }, opts)
 end
 
-When('I request to map {int} existing identifiers with HTTP for application {string}') do |count, application|
-  @request_id = SecureRandom.uuid
-  opts = Bezeichner.http_options(
-    headers: {
-      request_id: @request_id, user_agent: 'Bezeichner-ruby-client/1.0 HTTP/1.0',
-      content_type: :json, accept: :json
-    }
-  )
-
-  @response = Bezeichner::V1.http.map(application, Array.new(count, 'req1'), opts)
-end
-
 Then('I should receive generated identifiers from HTTP:') do |table|
   expect(@response.code).to eq(200)
 
@@ -68,22 +56,23 @@ Then('I should receive mapped identifiers from HTTP:') do |table|
   expect(@response.code).to eq(200)
 
   resp = JSON.parse(@response.body)
-  ids = resp['ids']
   rows = table.rows_hash
 
   expect(resp['meta']['requestId']).to eq(@request_id)
   expect(resp['meta']['userAgent']).to eq('Bezeichner-ruby-client/1.0 HTTP/1.0')
-  expect(ids).to eq(rows['response'].split(','))
+  expect(resp.fetch('mapped', {})).to eq(mapping(rows['mapped']))
+  expect(resp.fetch('unmapped', [])).to eq(identifiers(rows['unmapped']))
 end
 
-Then('I should receive {int} mapped identifiers from HTTP') do |count|
+Then('I should receive {int} unmapped identifiers from HTTP') do |count|
   expect(@response.code).to eq(200)
 
   resp = JSON.parse(@response.body)
 
   expect(resp['meta']['requestId']).to eq(@request_id)
   expect(resp['meta']['userAgent']).to eq('Bezeichner-ruby-client/1.0 HTTP/1.0')
-  expect(resp['ids']).to eq(Array.new(count, 'resp1'))
+  expect(resp.fetch('mapped', {})).to eq({})
+  expect(resp.fetch('unmapped', []).length).to eq(count)
 end
 
 Then('I should receive a not found error from HTTP') do

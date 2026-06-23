@@ -54,13 +54,12 @@ message MapIdentifiersRequest {
   // before mapping.
   //
   // The maximum accepted list length is 1000. Larger requests fail with
-  // InvalidArgument. Mapping is strict: if mapper configuration is omitted, or
-  // if any identifier is absent from the application mapping, MapIdentifiers
-  // fails with NotFound.
+  // InvalidArgument.
   repeated string ids = 2;
 }
 
-// MapIdentifiersResponse contains mapped identifiers and service metadata.
+// MapIdentifiersResponse contains mapped and unmapped identifiers, plus service
+// metadata.
 message MapIdentifiersResponse {
   // meta contains service and transport metadata. It is reserved for
   // infrastructure metadata and is not business data.
@@ -69,8 +68,12 @@ message MapIdentifiersResponse {
   // can derive them from request metadata.
   map<string, string> meta = 1;
 
-  // ids contains mapped identifiers in the same order as the request ids.
-  repeated string ids = 2;
+  // mapped contains entries keyed by input identifier with values set to the
+  // configured mapped identifier.
+  map<string, string> mapped = 2;
+
+  // unmapped contains input identifiers that could not be mapped.
+  repeated string unmapped = 3;
 }
 
 // Service generates and maps identifiers.
@@ -81,10 +84,11 @@ service Service {
   // application or generator kind cannot be resolved.
   rpc GenerateIdentifiers(GenerateIdentifiersRequest) returns (GenerateIdentifiersResponse) {}
 
-  // MapIdentifiers maps identifiers through the configured application mapping.
+  // MapIdentifiers classifies identifiers through the configured application
+  // mapping.
   //
   // It returns InvalidArgument when more than 1000 identifiers are requested,
-  // and NotFound when mapper configuration is omitted, the application is not
-  // configured, or any requested identifier is absent from the mapping.
+  // and NotFound when mapper configuration is omitted or the application is not
+  // configured.
   rpc MapIdentifiers(MapIdentifiersRequest) returns (MapIdentifiersResponse) {}
 }

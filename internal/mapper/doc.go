@@ -15,14 +15,14 @@
 //
 // # Semantics
 //
-// The domain operation that performs mapping preserves order: it returns outputs
-// in the same order as the input slice.
+// The domain operation that performs mapping classifies each input identifier.
+// Known identifiers are returned in a mapped result keyed by input identifier;
+// missing identifiers are returned in an unmapped list.
 //
 // Mapper configuration is optional at service startup, but mapping still
 // requires it. If mapper configuration is omitted, the requested application is
-// not configured, or any input identifier does not exist in the application
-// mapping, the operation fails with a "not found" error from the domain layer.
-// This prevents silently returning partial results.
+// not configured, the operation fails with a "not found" error from the domain
+// layer.
 //
 // # Size limits
 //

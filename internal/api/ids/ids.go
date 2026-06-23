@@ -14,9 +14,7 @@ import (
 // In this package, it is used when:
 //   - the requested generator application name cannot be found in configuration,
 //   - the generator kind cannot be resolved from the generator registry,
-//   - the requested mapper application name cannot be found in configuration,
-//   - or an input identifier does not have a configured mapping for the mapper
-//     application.
+//   - or the requested mapper application name cannot be found in configuration.
 //
 // Generate and Map may wrap ErrNotFound with the missing application, kind, or
 // identifier value, so callers should classify it with errors.Is rather than
@@ -29,8 +27,7 @@ var ErrNotFound = errors.New("not found")
 //   - generator configuration (to resolve an application by name),
 //   - and a generator registry (to resolve a generator by application kind).
 //
-// Mapper configuration is optional. When it is omitted, Map returns ErrNotFound
-// for every request.
+// Mapper configuration is optional. When it is omitted, Map returns ErrNotFound.
 func NewIdentifier(gc *generator.Config, mc *mapper.Config, gs generator.Generators) *Identifier {
 	return &Identifier{generatorConfig: gc, mapperConfig: mc, generators: gs}
 }
@@ -84,42 +81,45 @@ func (s *Identifier) Generate(ctx context.Context, application string, count uin
 	return ids, nil
 }
 
-// Map returns the mapped identifiers for the provided application and ids in
-// the same order.
+// Map classifies the provided ids into mapped and unmapped identifiers for the
+// provided application.
 //
 // Mapping is configured via mapper application configuration. If mapper
-// configuration is omitted, the application is missing, or any input identifier
-// is missing from the application mapping, the operation fails.
+// configuration is omitted or the application is missing, the operation fails.
+// If an input identifier is missing from the application mapping, the returned
+// unmapped list contains the identifier.
 //
-// An empty ids slice is valid and returns an empty slice when mapper
+// An empty ids slice is valid and returns empty collections when mapper
 // application configuration is present.
 //
 // Errors:
 //   - ErrInvalidArgument if len(ids) exceeds the fixed domain limit.
 //   - ErrNotFound if mapper configuration is omitted, the application is
-//     missing, or any input identifier does not have a configured mapping.
-func (s *Identifier) Map(application string, ids []string) ([]string, error) {
+//     missing.
+func (s *Identifier) Map(application string, ids []string) (mapper.Identifiers, []string, error) {
 	if len(ids) > maxMapIDs {
-		return nil, ErrInvalidArgument
+		return nil, nil, ErrInvalidArgument
 	}
 
 	if s.mapperConfig == nil {
-		return nil, ErrNotFound
+		return nil, nil, ErrNotFound
 	}
 
 	app := s.mapperConfig.Application(application)
 	if app == nil {
-		return nil, fmt.Errorf("%s: %w", application, ErrNotFound)
+		return nil, nil, fmt.Errorf("%s: %w", application, ErrNotFound)
 	}
 
-	mids := make([]string, len(ids))
-	for i, id := range ids {
+	mapped := make(mapper.Identifiers, len(ids))
+	unmapped := make([]string, 0)
+	for _, id := range ids {
 		mid, ok := app.Identifiers[id]
 		if !ok {
-			return nil, fmt.Errorf("%s: %w", id, ErrNotFound)
+			unmapped = append(unmapped, id)
+			continue
 		}
 
-		mids[i] = mid
+		mapped[id] = mid
 	}
-	return mids, nil
+	return mapped, unmapped, nil
 }
