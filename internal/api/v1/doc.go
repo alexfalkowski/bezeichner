@@ -2,7 +2,7 @@
 //
 // This package is responsible for composing the v1 API module using dependency
 // injection. It connects the domain service (internal/api/ids) to the transport
-// layers:
+// layers through the shared protobuf-facing service in internal/api/v1/ids:
 //
 //   - gRPC transport: internal/api/v1/transport/grpc
 //   - HTTP transport: internal/api/v1/transport/http
