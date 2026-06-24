@@ -36,7 +36,6 @@ map reserved for transport/service metadata.
 
 > [!NOTE]
 > HTTP is not a separate REST API. It is an RPC gateway over the same protobuf service contract used by gRPC.
-
 > [!WARNING]
 > Both endpoints enforce request-size limits in the domain layer for basic DoS protection. `GenerateIdentifiers.count` and the `MapIdentifiers.ids` list length are capped at `1000`; larger requests fail with `InvalidArgument`.
 
@@ -137,20 +136,20 @@ and map paths do not require outbound network access.
 
 The service exposes these health observers:
 
-| Observer | Check |
-| --- | --- |
+| Observer       | Check    |
+| -------------- | -------- |
 | HTTP `healthz` | `online` |
-| HTTP `livez` | `noop` |
-| HTTP `readyz` | `noop` |
-| gRPC health | `noop` |
+| HTTP `livez`   | `noop`   |
+| HTTP `readyz`  | `noop`   |
+| gRPC health    | `noop`   |
 
 With the sample config, operational HTTP routes are service-prefixed:
 
-| Endpoint | Local path |
-| --- | --- |
-| Health | `/bezeichner/healthz` |
-| Liveness | `/bezeichner/livez` |
-| Readiness | `/bezeichner/readyz` |
+| Endpoint           | Local path            |
+| ------------------ | --------------------- |
+| Health             | `/bezeichner/healthz` |
+| Liveness           | `/bezeichner/livez`   |
+| Readiness          | `/bezeichner/readyz`  |
 | Prometheus metrics | `/bezeichner/metrics` |
 
 The gRPC health service name is `bezeichner.v1.Service`.
@@ -159,19 +158,15 @@ The gRPC health service name is `bezeichner.v1.Service`.
 
 ### ♻️ Local dev (hot reload)
 
+After setup:
+
 ```sh
-make submodule
-make dep
 make dev
 ```
 
-> [!IMPORTANT]
-> Run `make submodule` in a fresh checkout before other `make` targets. Most build, test, lint, and protobuf targets are provided by the `bin/` git submodule.
-> The submodule URL is SSH-based (`git@github.com:alexfalkowski/bin.git`), so this setup path requires GitHub SSH access.
+`make dev` runs the server using `air` with the test config:
 
-`make dev` runs the server using `air` and a config file like:
-
-- `./bezeichner server -config file:test/.config/server.yml`
+- `cd test && ../bezeichner server -config file:.config/server.yml`
 
 ### 🏗️ Build
 
@@ -250,10 +245,10 @@ curl -sS \
 HTTP errors use the same domain classification as gRPC, rendered as HTTP
 statuses with safe `text/error` response bodies:
 
-| gRPC/domain error | HTTP status | Common triggers |
-| --- | --- | --- |
-| `InvalidArgument` | `400` | `GenerateIdentifiers.count > 1000` or more than `1000` IDs to map |
-| `NotFound` | `404` | unknown generator application, unknown mapper application, unresolved generator kind, or omitted mapper config |
+| gRPC/domain error | HTTP status | Common triggers                                                                                                |
+| ----------------- | ----------- | -------------------------------------------------------------------------------------------------------------- |
+| `InvalidArgument` | `400`       | `GenerateIdentifiers.count > 1000` or more than `1000` IDs to map                                              |
+| `NotFound`        | `404`       | unknown generator application, unknown mapper application, unresolved generator kind, or omitted mapper config |
 
 > [!NOTE]
 > The generated gRPC full method names include a leading slash, for example `/bezeichner.v1.Service/GenerateIdentifiers`. In HTTP URLs, that slash is the path separator after the host; `grpcurl` uses the `service/method` form without the leading slash.
@@ -284,7 +279,6 @@ local `test-docker` targets for image validation before pushing changes.
 
 > [!CAUTION]
 > The `snowflake` generator uses Sonyflake defaults. The intended deployment assumes normal Kubernetes pod networking where each concurrently running pod has a suitable private IPv4-derived machine ID. Re-evaluate that assumption for local multi-process deployments, `hostNetwork`, overlapping pod CIDRs, multi-cluster shared ID spaces, IPv6-only environments, or environments without private IPv4 addresses.
-
 > [!IMPORTANT]
 > Deployments should pin released version tags instead of depending on the moving
 > `latest` Docker manifest. The release pipeline may update `latest` after
@@ -318,16 +312,13 @@ The project follows:
 
 ### 📦 Setup
 
-Most `make` targets come from the `bin/` git submodule:
+Initialize the `bin/` submodule and install dependencies:
 
 ```sh
-make submodule
+git submodule sync
+git submodule update --init
 make dep
 ```
-
-The `bin` submodule is configured with a GitHub SSH URL, so `make submodule`
-requires GitHub SSH access unless you intentionally override the submodule URL
-in your local Git configuration.
 
 ### ✅ Tests
 
@@ -335,6 +326,11 @@ Go unit/spec tests:
 
 ```sh
 make specs
+```
+
+Lint checks:
+
+```sh
 make lint
 ```
 
