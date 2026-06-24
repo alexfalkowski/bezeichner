@@ -2,10 +2,8 @@ package grpc
 
 import (
 	v1 "github.com/alexfalkowski/bezeichner/api/bezeichner/v1"
-	"github.com/alexfalkowski/bezeichner/internal/api/ids"
+	"github.com/alexfalkowski/bezeichner/internal/api/v1/ids"
 	"github.com/alexfalkowski/go-service/v2/net/grpc"
-	"github.com/alexfalkowski/go-service/v2/net/grpc/codes"
-	"github.com/alexfalkowski/go-service/v2/net/grpc/status"
 )
 
 // Register server.
@@ -22,16 +20,4 @@ func NewServer(id *ids.Identifier) *Server {
 type Server struct {
 	v1.UnimplementedServiceServer
 	id *ids.Identifier
-}
-
-func (s *Server) error(err error) error {
-	if err == nil {
-		return nil
-	}
-
-	if ids.IsInvalidArgument(err) {
-		return status.SafeError(codes.InvalidArgument, err)
-	}
-
-	return status.SafeError(codes.NotFound, err)
 }

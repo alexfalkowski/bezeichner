@@ -1,10 +1,7 @@
-// Package grpc provides the gRPC transport implementation for the Bezeichner v1 API.
+// Package grpc provides the gRPC transport registration for the Bezeichner v1 API.
 //
-// This package adapts the protobuf-defined service in api/bezeichner/v1 to the
-// domain service in internal/api/ids. It is responsible for:
-//   - Implementing the generated v1.ServiceServer interface.
-//   - Translating transport requests into domain calls.
-//   - Mapping domain error categories to gRPC status codes.
+// This package wraps the shared protobuf-facing identifier from
+// internal/api/v1/ids and registers the wrapper with a gRPC service registrar.
 //
 // # Error mapping
 //
@@ -18,11 +15,10 @@
 //
 // # Responses and metadata
 //
-// RPC handlers attach response metadata derived from the incoming context via the
-// shared meta helpers.
+// RPC handlers attach response metadata derived from the incoming context via
+// the shared meta helpers in internal/api/v1/ids.
 //
 // # Registration
 //
-// Use Register to register a Server implementation with a gRPC service registrar.
-// Construct servers using NewServer, which injects the domain Identifier service.
+// Use Register to register the gRPC server with a gRPC service registrar.
 package grpc
