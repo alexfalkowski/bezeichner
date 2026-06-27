@@ -28,9 +28,10 @@ module Bezeichner
     #
     # ## Error responses
     #
-    # The HTTP gateway uses the gRPC handler error mapping and renders errors as HTTP
-    # status responses. `InvalidArgument` is returned as HTTP 400, `NotFound` as HTTP
-    # 404, and safe error messages are returned as `text/error` bodies.
+    # The HTTP gateway uses the same domain error categories as gRPC and renders
+    # them as HTTP status responses. `InvalidArgument` is returned as HTTP 400,
+    # `NotFound` as HTTP 404, and safe error messages are returned as
+    # `text/error` bodies.
     #
     # ## Options
     #

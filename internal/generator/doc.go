@@ -47,7 +47,10 @@
 //   - "snowflake": application-prefixed Sonyflake-based numeric ID
 //     (decimal string)
 //   - "nanoid": application-prefixed NanoID string
-//   - "typeid": TypeID string using the application name as the TypeID prefix
+//   - "typeid": TypeID string using the application name as the TypeID prefix.
+//     Application names used with "typeid" must satisfy TypeID prefix syntax:
+//     lowercase ASCII letters and underscores only, at most 63 characters, and
+//     no leading or trailing underscore.
 //
 // # Errors
 //
