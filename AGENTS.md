@@ -159,6 +159,20 @@ from `github.com/alexfalkowski/go-service/v2/id`.
 - Registry: `internal/generator/generator.go:16-30`.
 - Applications are defined via `internal/generator/config.go:3-25`.
 
+### TypeID generator application-name contract
+
+- `typeid` is a Bezeichner-owned adapter around `go.jetify.com/typeid`, not a
+  `go-service/v2/id` generator.
+- The `typeid` generator intentionally uses the configured application name as
+  the native TypeID prefix.
+- Treat valid TypeID prefix syntax as part of the operator/application-name
+  contract for `kind: typeid`. Do **not** flag missing extra validation for
+  invalid TypeID prefixes, or request-time failures caused by invalid TypeID
+  application names, as a general code issue.
+- Only raise TypeID prefix validation concerns when the task explicitly concerns
+  changing the TypeID naming contract, making invalid configuration fail earlier,
+  or documenting TypeID application-name restrictions.
+
 ### Snowflake generator deployment assumption
 
 - Do **not** flag `internal/generator/snowflake.go` using Sonyflake default settings as a general bug.
