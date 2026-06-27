@@ -74,6 +74,9 @@ validation during startup.
 Generated identifiers are prefixed with the application name followed by `_`.
 For example, an application named `uuid` returns identifiers like `uuid_<uuid>`.
 The `typeid` generator uses the application name as the native TypeID prefix.
+For `kind: typeid`, choose application names that are valid TypeID prefixes:
+lowercase ASCII letters and underscores only (`[a-z_]`), at most 63 characters,
+and not starting or ending with `_`.
 
 Supported built-in kinds (at time of writing):
 
