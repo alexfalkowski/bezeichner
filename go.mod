@@ -3,8 +3,8 @@ module github.com/alexfalkowski/bezeichner
 go 1.26.0
 
 require (
-	github.com/alexfalkowski/go-health/v2 v2.32.0
-	github.com/alexfalkowski/go-service/v2 v2.620.0
+	github.com/alexfalkowski/go-health/v2 v2.33.0
+	github.com/alexfalkowski/go-service/v2 v2.621.0
 	github.com/sony/sonyflake v1.3.0
 	go.jetify.com/typeid v1.3.0
 	google.golang.org/grpc v1.81.1
