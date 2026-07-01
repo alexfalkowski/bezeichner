@@ -35,8 +35,8 @@ type GenerateIdentifiersRequest struct {
 	// A zero value is valid when application resolves and returns an empty ids
 	// list.
 	//
-	// The maximum accepted count is 1000. Larger requests fail with
-	// InvalidArgument.
+	// The effective maximum is configured by service operators and defaults to
+	// 1000. Larger requests fail with InvalidArgument.
 	Count         uint64 `protobuf:"varint,2,opt,name=count,proto3" json:"count,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -161,8 +161,8 @@ type MapIdentifiersRequest struct {
 	// the application is not configured, MapIdentifiers fails with NotFound
 	// before mapping.
 	//
-	// The maximum accepted list length is 1000. Larger requests fail with
-	// InvalidArgument.
+	// The effective maximum list length is configured by service operators and
+	// defaults to 1000. Larger requests fail with InvalidArgument.
 	Ids           []string `protobuf:"bytes,2,rep,name=ids,proto3" json:"ids,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache

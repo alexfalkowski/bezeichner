@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/alexfalkowski/bezeichner/internal/generator"
+	"github.com/alexfalkowski/bezeichner/internal/limits"
 	"github.com/alexfalkowski/bezeichner/internal/mapper"
 	"github.com/alexfalkowski/go-service/v2/context"
 	"github.com/alexfalkowski/go-service/v2/errors"
@@ -27,9 +28,10 @@ var ErrNotFound = errors.New("not found")
 //   - generator configuration (to resolve an application by name),
 //   - and a generator registry (to resolve a generator by application kind).
 //
+// Limits configuration is optional and defaults to the built-in domain limits.
 // Mapper configuration is optional. When it is omitted, Map returns ErrNotFound.
-func NewIdentifier(gc *generator.Config, mc *mapper.Config, gs generator.Generators) *Identifier {
-	return &Identifier{generatorConfig: gc, mapperConfig: mc, generators: gs}
+func NewIdentifier(generator *generator.Config, mapper *mapper.Config, generators generator.Generators, limits *limits.Config) *Identifier {
+	return &Identifier{generatorConfig: generator, mapperConfig: mapper, generators: generators, limits: limits}
 }
 
 // Identifier is the domain service that generates and maps identifiers.
@@ -40,6 +42,7 @@ type Identifier struct {
 	generatorConfig *generator.Config
 	mapperConfig    *mapper.Config
 	generators      generator.Generators
+	limits          *limits.Config
 }
 
 // Generate returns count identifiers for the given application name.
@@ -51,11 +54,11 @@ type Identifier struct {
 // generator kind can be resolved.
 //
 // Errors:
-//   - ErrInvalidArgument if count exceeds the fixed domain limit.
+//   - ErrInvalidArgument if count exceeds the configured domain limit.
 //   - ErrNotFound if the application name does not exist, or if the application
 //     kind cannot be resolved to a generator.
 func (s *Identifier) Generate(ctx context.Context, application string, count uint64) ([]string, error) {
-	if count > maxGenerateCount {
+	if count > s.limits.MaxGenerateCount() {
 		return nil, ErrInvalidArgument
 	}
 
@@ -93,11 +96,11 @@ func (s *Identifier) Generate(ctx context.Context, application string, count uin
 // application configuration is present.
 //
 // Errors:
-//   - ErrInvalidArgument if len(ids) exceeds the fixed domain limit.
+//   - ErrInvalidArgument if len(ids) exceeds the configured domain limit.
 //   - ErrNotFound if mapper configuration is omitted, the application is
 //     missing.
 func (s *Identifier) Map(application string, ids []string) (mapper.Identifiers, []string, error) {
-	if len(ids) > maxMapIDs {
+	if uint64(len(ids)) > s.limits.MaxMapIDs() {
 		return nil, nil, ErrInvalidArgument
 	}
 

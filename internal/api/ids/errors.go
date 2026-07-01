@@ -2,14 +2,9 @@ package ids
 
 import "github.com/alexfalkowski/go-service/v2/errors"
 
-const (
-	maxGenerateCount = 1000
-	maxMapIDs        = 1000
-)
-
 // ErrInvalidArgument indicates the caller supplied an invalid request.
 //
-// In this package it is returned when a request exceeds the fixed domain limits,
+// In this package it is returned when a request exceeds the domain limits,
 // for example an excessive generate count or too many IDs to map.
 //
 // Use IsInvalidArgument to classify errors without relying on error strings.

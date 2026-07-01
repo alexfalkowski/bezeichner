@@ -127,7 +127,7 @@ The v1 module wires transports and the domain service:
 
 - Domain logic: `internal/api/ids/`
   - `Identifier.Generate` and `Identifier.Map` (`internal/api/ids/ids.go`).
-  - Request-size limits are enforced here (`internal/api/ids/limits.go`).
+  - Request-size limits are enforced here using `internal/limits.Config`.
 - gRPC transport:
   - `internal/api/v1/transport/grpc/*` implements the protobuf service.
   - Errors are mapped to gRPC status codes in `internal/api/v1/transport/grpc/grpc.go:27-41`.
@@ -183,8 +183,8 @@ from `github.com/alexfalkowski/go-service/v2/id`.
 
 Limits are enforced in the domain layer:
 
-- `GenerateIdentifiers`: `count` is capped (`internal/api/ids/ids.go:33-36`, `internal/api/ids/limits.go:5-8`).
-- `MapIdentifiers`: number of IDs is capped (`internal/api/ids/ids.go:62-65`).
+- `GenerateIdentifiers`: `count` is capped in `internal/api/ids/ids.go` using `internal/limits.Config`.
+- `MapIdentifiers`: number of IDs is capped in `internal/api/ids/ids.go` using `internal/limits.Config`.
 
 These surface to clients as `InvalidArgument` via the gRPC error mapper (`internal/api/v1/transport/grpc/grpc.go:32-34`).
 

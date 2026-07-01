@@ -30,15 +30,15 @@ Feature: HTTP API
   Scenario: Generate maximum identifiers for existing applications
     When I request to generate identifiers with HTTP:
       | application | uuid |
-      | count       | 1000 |
+      | count       | 2 |
     Then I should receive generated identifiers from HTTP:
       | application | uuid |
-      | count       | 1000 |
+      | count       | 2 |
 
   Scenario: Generate too many identifiers for existing applications
     When I request to generate identifiers with HTTP:
       | application | uuid |
-      | count       | 1001 |
+      | count       | 3 |
     Then I should receive an invalid argument error from HTTP
 
   Scenario Outline: Generate identifiers for missing applications
@@ -68,12 +68,12 @@ Feature: HTTP API
       | ulid        | req1      | req1:ulid_resp1      |          |
 
   Scenario: Map maximum identifiers
-    When I request to map 1000 identifiers with HTTP:
+    When I request to map 2 identifiers with HTTP:
       | application | uuid |
-    Then I should receive 1000 unmapped identifiers from HTTP
+    Then I should receive 2 unmapped identifiers from HTTP
 
   Scenario: Map too many identifiers
-    When I request to map 1001 identifiers with HTTP:
+    When I request to map 3 identifiers with HTTP:
       | application | uuid |
     Then I should receive an invalid argument error from HTTP
 

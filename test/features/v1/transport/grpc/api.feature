@@ -30,15 +30,15 @@ Feature: gRPC API
   Scenario: Generate maximum identifiers for existing applications
     When I request to generate identifiers with gRPC:
       | application | uuid |
-      | count       | 1000 |
+      | count       | 2 |
     Then I should receive generated identifiers from gRPC:
       | application | uuid |
-      | count       | 1000 |
+      | count       | 2 |
 
   Scenario: Generate too many identifiers for existing applications
     When I request to generate identifiers with gRPC:
       | application | uuid |
-      | count       | 1001 |
+      | count       | 3 |
     Then I should receive an invalid argument error from gRPC
 
   Scenario Outline: Generate identifiers for missing applications
@@ -68,12 +68,12 @@ Feature: gRPC API
       | ulid        | req1      | req1:ulid_resp1      |          |
 
   Scenario: Map maximum identifiers
-    When I request to map 1000 identifiers with gRPC:
+    When I request to map 2 identifiers with gRPC:
       | application | uuid |
-    Then I should receive 1000 unmapped identifiers from gRPC
+    Then I should receive 2 unmapped identifiers from gRPC
 
   Scenario: Map too many identifiers
-    When I request to map 1001 identifiers with gRPC:
+    When I request to map 3 identifiers with gRPC:
       | application | uuid |
     Then I should receive an invalid argument error from gRPC
 

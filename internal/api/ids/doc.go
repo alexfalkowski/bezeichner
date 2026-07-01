@@ -10,7 +10,7 @@
 //   - Generate: produce one or more identifiers for a named application.
 //   - Map: classify a list of existing identifiers as mapped or unmapped.
 //
-// Both operations enforce fixed request-size limits as a simple DoS-protection
+// Both operations enforce request-size limits as a simple DoS-protection
 // mechanism. When limits are exceeded, Generate/Map return ErrInvalidArgument.
 //
 // # Configuration
