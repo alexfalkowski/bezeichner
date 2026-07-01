@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 When('the system requests the health status with gRPC') do
-  request = Grpc::Health::V1::HealthCheckRequest.new(service: 'bezeichner.v1.Service')
-  @response = Bezeichner.health_grpc.check(request, Bezeichner.grpc_options)
+  @response = Bezeichner.health_grpc.check(deadline: Time.now + 10)
 end
 
 Then('the system should respond with a healthy status with gRPC') do
