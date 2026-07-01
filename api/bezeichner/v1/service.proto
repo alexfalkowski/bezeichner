@@ -38,6 +38,58 @@ message GenerateIdentifiersResponse {
   repeated string ids = 2;
 }
 
+// GeneratorApplication describes a configured generator application.
+message GeneratorApplication {
+  // name is the configured application name accepted by GenerateIdentifiers.
+  string name = 1;
+
+  // kind is the configured generator kind for the application.
+  string kind = 2;
+}
+
+// MapperApplication describes a configured mapper application.
+message MapperApplication {
+  // name is the configured application name accepted by MapIdentifiers.
+  string name = 1;
+}
+
+// RequestLimits contains effective per-request item-count limits.
+message RequestLimits {
+  // generate_count is the effective maximum GenerateIdentifiers count.
+  uint64 generate_count = 1;
+
+  // map_ids is the effective maximum MapIdentifiers ids length.
+  uint64 map_ids = 2;
+}
+
+// ListApplicationsRequest asks the service to report configured application
+// names and safe capability metadata.
+message ListApplicationsRequest {}
+
+// ListApplicationsResponse contains safe application discovery data.
+message ListApplicationsResponse {
+  // meta contains service and transport metadata. It is reserved for
+  // infrastructure metadata and is not business data.
+  //
+  // Bezeichner currently returns requestId and userAgent when the transport
+  // can derive them from request metadata.
+  map<string, string> meta = 1;
+
+  // generator_applications contains configured generator application names and
+  // configured generator kinds in config order.
+  repeated GeneratorApplication generator_applications = 2;
+
+  // mapper_applications contains configured mapper application names in config
+  // order. It does not expose mapper identifier entries.
+  repeated MapperApplication mapper_applications = 3;
+
+  // generator_kinds contains supported generator kinds in deterministic order.
+  repeated string generator_kinds = 4;
+
+  // limits contains effective per-request item-count limits.
+  RequestLimits limits = 5;
+}
+
 // MapIdentifiersRequest asks the service to map identifiers for a configured
 // application.
 message MapIdentifiersRequest {
@@ -83,6 +135,13 @@ service Service {
   // It returns InvalidArgument when count exceeds the configured limit, and
   // NotFound when the application or generator kind cannot be resolved.
   rpc GenerateIdentifiers(GenerateIdentifiersRequest) returns (GenerateIdentifiersResponse) {}
+
+  // ListApplications reports configured application names and safe capability
+  // metadata.
+  //
+  // It does not expose mapper identifier entries, raw config, transport
+  // settings, telemetry settings, or resolved secret values.
+  rpc ListApplications(ListApplicationsRequest) returns (ListApplicationsResponse) {}
 
   // MapIdentifiers classifies identifiers through the configured application
   // mapping.

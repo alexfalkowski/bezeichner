@@ -14,6 +14,7 @@ module Bezeichner
     # POSTs JSON to paths like:
     #
     # - `/bezeichner.v1.Service/GenerateIdentifiers`
+    # - `/bezeichner.v1.Service/ListApplications`
     # - `/bezeichner.v1.Service/MapIdentifiers`
     #
     # ## Request/response schema
@@ -21,6 +22,7 @@ module Bezeichner
     # The JSON request bodies match the protobuf request messages:
     #
     # - {Bezeichner::V1::GenerateIdentifiersRequest}
+    # - {Bezeichner::V1::ListApplicationsRequest}
     # - {Bezeichner::V1::MapIdentifiersRequest}
     #
     # The response bodies match the protobuf response messages and may include `meta`
@@ -49,6 +51,14 @@ module Bezeichner
       #   Bezeichner::V1.http.generate('uuid', 3)
       def generate(application, count, opts = {})
         post('/bezeichner.v1.Service/GenerateIdentifiers', { application:, count: }.to_json, opts)
+      end
+
+      # Calls ListApplications over HTTP.
+      #
+      # @param opts [Hash] options forwarded to {Nonnative::HTTPClient#post}
+      # @return [Object] HTTP response as returned by {Nonnative::HTTPClient#post}
+      def list(opts = {})
+        post('/bezeichner.v1.Service/ListApplications', {}.to_json, opts)
       end
 
       # Calls MapIdentifiers over HTTP.

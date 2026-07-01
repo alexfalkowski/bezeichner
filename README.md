@@ -29,17 +29,24 @@ Distributed systems often need globally unique identifiers across multiple langu
 The v1 service supports:
 
 - `GenerateIdentifiers`: generate `count` identifiers for a configured `application`
+- `ListApplications`: report configured application names and safe capability metadata
 - `MapIdentifiers`: classify identifiers as mapped or unmapped for a configured `application`
 
-Responses contain generated `ids` or mapped/unmapped identifiers, plus a `meta`
-map reserved for transport/service metadata.
+Responses contain generated `ids`, mapped/unmapped identifiers, or application
+discovery data, plus a `meta` map reserved for transport/service metadata.
 
 > [!NOTE]
 > HTTP is not a separate REST API. It is an RPC gateway over the same protobuf service contract used by gRPC.
 > [!WARNING]
-> Both endpoints enforce request-size limits in the domain layer for basic DoS protection. By default, `GenerateIdentifiers.count` and the `MapIdentifiers.ids` list length are capped at `1000`; larger requests fail with `InvalidArgument`.
+> `GenerateIdentifiers` and `MapIdentifiers` enforce request-size limits in the domain layer for basic DoS protection. By default, `GenerateIdentifiers.count` and the `MapIdentifiers.ids` list length are capped at `1000`; larger requests fail with `InvalidArgument`.
 
 Unknown generator applications, unknown mapper applications, unresolved generator kinds, and omitted mapper configuration fail with `NotFound`.
+
+`ListApplications` is intended for client and operator discovery. It reports
+configured generator application names and kinds, configured mapper application
+names, supported generator kinds, and the effective request limits. It does not
+expose mapper identifier entries, raw config, transport settings, telemetry
+settings, or resolved secrets.
 
 ## ⚙️ Configuration
 
@@ -200,6 +207,15 @@ Below are examples for both transports. Exact request/response schemas are defin
 
 Assuming the service is listening on `localhost:12000` (default in the sample config):
 
+List configured applications and limits:
+
+```sh
+grpcurl -plaintext \
+  -d '{}' \
+  localhost:12000 \
+  bezeichner.v1.Service/ListApplications
+```
+
 Generate 3 IDs for application `uuid`:
 
 ```sh
@@ -238,6 +254,16 @@ The response classifies inputs by original ID:
 HTTP routes are keyed by the **gRPC full method name**. That means your HTTP client calls the same method identifiers as gRPC.
 
 Assuming the service is listening on `localhost:11000` (default in the sample config):
+
+List configured applications and limits:
+
+```sh
+curl -sS \
+  -X POST \
+  -H 'content-type: application/json' \
+  --data '{}' \
+  http://localhost:11000/bezeichner.v1.Service/ListApplications
+```
 
 Generate identifiers:
 

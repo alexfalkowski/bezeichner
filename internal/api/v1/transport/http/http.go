@@ -9,6 +9,7 @@ import (
 // Register for HTTP.
 func Register(server *Server) {
 	rpc.Route(v1.Service_GenerateIdentifiers_FullMethodName, server.GenerateIdentifiers)
+	rpc.Route(v1.Service_ListApplications_FullMethodName, server.ListApplications)
 	rpc.Route(v1.Service_MapIdentifiers_FullMethodName, server.MapIdentifiers)
 }
 

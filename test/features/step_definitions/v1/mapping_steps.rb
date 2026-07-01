@@ -11,3 +11,12 @@ def identifiers(value)
 
   value.split(',')
 end
+
+def applications(value)
+  value.to_h do |app|
+    name = app.respond_to?(:name) ? app.name : app['name']
+    kind = app.respond_to?(:kind) ? app.kind : app['kind']
+
+    [name, kind]
+  end
+end
