@@ -17,5 +17,9 @@ processes:
       - 12000
     log: reports/server.log
     readiness:
-      port: 11000
-      path: /bezeichner/readyz
+      - kind: http
+        port: 11000
+        path: /bezeichner/readyz
+      - kind: grpc
+        port: 12000
+        service: bezeichner.v1.Service

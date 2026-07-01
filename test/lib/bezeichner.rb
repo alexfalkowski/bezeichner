@@ -6,8 +6,6 @@ require 'base64'
 require 'open3'
 require 'timeout'
 
-require 'grpc/health/v1/health_services_pb'
-
 require 'bezeichner/v1/http'
 require 'bezeichner/v1/service_services_pb'
 
@@ -50,12 +48,12 @@ module Bezeichner
     #
     # The server is expected to expose the standard gRPC Health Checking Protocol.
     #
-    # @return [Grpc::Health::V1::Health::Stub]
+    # @return [Nonnative::GRPCHealth]
     #
     # @example Check service health
-    #   Bezeichner.health_grpc.check(Grpc::Health::V1::HealthCheckRequest.new(service: 'bezeichner.v1.Service'))
+    #   Bezeichner.health_grpc.check
     def health_grpc
-      @health_grpc ||= Grpc::Health::V1::Health::Stub.new('localhost:12000', :this_channel_is_insecure, channel_args: Bezeichner.user_agent)
+      @health_grpc ||= Nonnative.grpc_health(host: 'localhost', port: 12_000, service: 'bezeichner.v1.Service')
     end
 
     # Builds per-call options for gRPC feature and benchmark requests.
