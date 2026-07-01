@@ -64,11 +64,11 @@ module Bezeichner
       # Calls MapIdentifiers over HTTP.
       #
       # @param application [String] configured mapper application name
-      # @param ids [Array<String>] identifiers to classify as mapped or unmapped
+      # @param ids [Array<String>] identifiers to map in request order
       # @param opts [Hash] options forwarded to {Nonnative::HTTPClient#post}
       # @return [Object] HTTP response as returned by {Nonnative::HTTPClient#post}
       #
-      # @example Classify identifiers using the configured application mapping
+      # @example Map identifiers using the configured application mapping
       #   Bezeichner::V1.http.map('uuid', %w[req1 req3])
       def map(application, ids, opts = {})
         post('/bezeichner.v1.Service/MapIdentifiers', { application:, ids: }.to_json, opts)

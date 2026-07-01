@@ -30,10 +30,11 @@ The v1 service supports:
 
 - `GenerateIdentifiers`: generate `count` identifiers for a configured `application`
 - `ListApplications`: report configured application names and safe capability metadata
-- `MapIdentifiers`: classify identifiers as mapped or unmapped for a configured `application`
+- `MapIdentifiers`: map identifiers for a configured `application`, preserving input order
 
-Responses contain generated `ids`, mapped/unmapped identifiers, or application
-discovery data, plus a `meta` map reserved for transport/service metadata.
+Responses contain generated identifiers, ordered mapping results, or
+application discovery data, plus a `meta` map reserved for transport/service
+metadata.
 
 > [!NOTE]
 > HTTP is not a separate REST API. It is an RPC gateway over the same protobuf service contract used by gRPC.
@@ -120,7 +121,7 @@ mapper:
 ```
 
 > [!IMPORTANT]
-> Mapping classifies each input ID. Known IDs are returned in `mapped`; missing IDs are returned in `unmapped`. Consumers decide whether unmapped IDs should be ignored, reported, retried, or treated as failures.
+> Mapping returns one result for each input ID in the same order. Known IDs include `mapped`; missing IDs omit `mapped`. Consumers decide whether unmapped IDs should be ignored, reported, retried, or treated as failures.
 > The `mapper` block is optional at startup. If it is omitted, all `MapIdentifiers` requests fail with `NotFound`.
 
 ### 🚧 Request limit configuration
@@ -234,7 +235,7 @@ grpcurl -plaintext \
   bezeichner.v1.Service/MapIdentifiers
 ```
 
-The response classifies inputs by original ID:
+The response keeps one result per input ID:
 
 ```json
 {
@@ -242,10 +243,15 @@ The response classifies inputs by original ID:
     "requestId": "...",
     "userAgent": "..."
   },
-  "mapped": {
-    "req1": "resp1"
-  },
-  "unmapped": ["req3"]
+  "ids": [
+    {
+      "id": "req1",
+      "mapped": "resp1"
+    },
+    {
+      "id": "req3"
+    }
+  ]
 }
 ```
 

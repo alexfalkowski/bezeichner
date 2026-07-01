@@ -66,15 +66,15 @@ Feature: HTTP API
       | application | <application> |
       | request     | <request>     |
     Then I should receive mapped identifiers from HTTP:
-      | mapped   | <mapped>   |
-      | unmapped | <unmapped> |
+      | results | <results> |
 
     Examples:
-      | application | request   | mapped               | unmapped |
-      | uuid        | req1      | req1:resp1           |          |
-      | uuid        | req1,req2 | req1:resp1,req2:resp2 |          |
-      | uuid        | req2,req1 | req1:resp1,req2:resp2 |          |
-      | ulid        | req1      | req1:ulid_resp1      |          |
+      | application | request   | results               |
+      | uuid        | req1      | req1:resp1            |
+      | uuid        | req1,req2 | req1:resp1,req2:resp2 |
+      | uuid        | req2,req1 | req2:resp2,req1:resp1 |
+      | uuid        | req1,req1 | req1:resp1,req1:resp1 |
+      | ulid        | req1      | req1:ulid_resp1       |
 
   Scenario: Map maximum identifiers
     When I request to map 2 identifiers with HTTP:
@@ -91,13 +91,12 @@ Feature: HTTP API
       | application | uuid      |
       | request | <request> |
     Then I should receive mapped identifiers from HTTP:
-      | mapped   | <mapped>   |
-      | unmapped | <unmapped> |
+      | results | <results> |
 
     Examples:
-      | request   | mapped     | unmapped |
-      | req3      |            | req3     |
-      | req1,req3 | req1:resp1 | req3     |
+      | request   | results          |
+      | req3      | req3:            |
+      | req1,req3 | req1:resp1,req3: |
 
   Scenario: Map identifiers for a missing application
     When I request to map identifiers with HTTP:

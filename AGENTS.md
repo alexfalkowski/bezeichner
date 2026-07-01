@@ -147,7 +147,7 @@ Notable keys observed:
 Notes:
 - Generated identifiers are prefixed with the generator application name. Generators without native prefix support use `name_`; `typeid` uses the application name as its TypeID prefix.
 - `mapper` is optional at startup; if it is omitted, all `MapIdentifiers` requests return `NotFound`.
-- `MapIdentifiers` classifies missing input IDs in the `unmapped` response list instead of failing the whole request.
+- `MapIdentifiers` returns one result per input ID in request order; missing input IDs omit the optional `mapped` value instead of failing the whole request.
 - HTTP is an RPC gateway that routes by **gRPC full method name**, so the HTTP surface mirrors the gRPC contract in `api/bezeichner/v1/service.proto`.
 
 ## Generators

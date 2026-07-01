@@ -87,8 +87,7 @@ Then('I should receive mapped identifiers from HTTP:') do |table|
 
   expect(resp['meta']['requestId']).to eq(@request_id)
   expect(resp['meta']['userAgent']).to eq('Bezeichner-ruby-client/1.0 HTTP/1.0')
-  expect(resp.fetch('mapped', {})).to eq(mapping(rows['mapped']))
-  expect(resp.fetch('unmapped', [])).to eq(identifiers(rows['unmapped']))
+  expect(mapped_identifier_results(resp.fetch('ids', []))).to eq(mapped_identifiers(rows['results']))
 end
 
 Then('I should receive {int} unmapped identifiers from HTTP') do |count|
@@ -98,8 +97,8 @@ Then('I should receive {int} unmapped identifiers from HTTP') do |count|
 
   expect(resp['meta']['requestId']).to eq(@request_id)
   expect(resp['meta']['userAgent']).to eq('Bezeichner-ruby-client/1.0 HTTP/1.0')
-  expect(resp.fetch('mapped', {})).to eq({})
-  expect(resp.fetch('unmapped', []).length).to eq(count)
+  expect(mapped_identifier_results(resp.fetch('ids', []))).to all(satisfy { |result| !result.key?('mapped') })
+  expect(resp.fetch('ids', []).length).to eq(count)
 end
 
 Then('I should receive a not found error from HTTP') do

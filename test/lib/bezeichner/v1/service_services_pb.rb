@@ -27,8 +27,7 @@ module Bezeichner
         # It does not expose mapper identifier entries, raw config, transport
         # settings, telemetry settings, or resolved secret values.
         rpc :ListApplications, ::Bezeichner::V1::ListApplicationsRequest, ::Bezeichner::V1::ListApplicationsResponse
-        # MapIdentifiers classifies identifiers through the configured application
-        # mapping.
+        # MapIdentifiers maps identifiers through the configured application mapping.
         #
         # It returns InvalidArgument when more identifiers than the configured limit
         # are requested, and NotFound when mapper configuration is omitted or the
