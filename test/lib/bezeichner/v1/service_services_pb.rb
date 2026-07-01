@@ -21,6 +21,12 @@ module Bezeichner
         # It returns InvalidArgument when count exceeds the configured limit, and
         # NotFound when the application or generator kind cannot be resolved.
         rpc :GenerateIdentifiers, ::Bezeichner::V1::GenerateIdentifiersRequest, ::Bezeichner::V1::GenerateIdentifiersResponse
+        # ListApplications reports configured application names and safe capability
+        # metadata.
+        #
+        # It does not expose mapper identifier entries, raw config, transport
+        # settings, telemetry settings, or resolved secret values.
+        rpc :ListApplications, ::Bezeichner::V1::ListApplicationsRequest, ::Bezeichner::V1::ListApplicationsResponse
         # MapIdentifiers classifies identifiers through the configured application
         # mapping.
         #

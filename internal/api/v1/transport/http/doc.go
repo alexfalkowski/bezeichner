@@ -16,6 +16,7 @@
 // for example:
 //
 //   - v1.Service_GenerateIdentifiers_FullMethodName
+//   - v1.Service_ListApplications_FullMethodName
 //   - v1.Service_MapIdentifiers_FullMethodName
 //
 // Those routes are wired to methods on Server, which delegates to

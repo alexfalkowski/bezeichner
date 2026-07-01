@@ -20,6 +20,7 @@ const _ = grpc.SupportPackageIsVersion9
 
 const (
 	Service_GenerateIdentifiers_FullMethodName = "/bezeichner.v1.Service/GenerateIdentifiers"
+	Service_ListApplications_FullMethodName    = "/bezeichner.v1.Service/ListApplications"
 	Service_MapIdentifiers_FullMethodName      = "/bezeichner.v1.Service/MapIdentifiers"
 )
 
@@ -34,6 +35,12 @@ type ServiceClient interface {
 	// It returns InvalidArgument when count exceeds the configured limit, and
 	// NotFound when the application or generator kind cannot be resolved.
 	GenerateIdentifiers(ctx context.Context, in *GenerateIdentifiersRequest, opts ...grpc.CallOption) (*GenerateIdentifiersResponse, error)
+	// ListApplications reports configured application names and safe capability
+	// metadata.
+	//
+	// It does not expose mapper identifier entries, raw config, transport
+	// settings, telemetry settings, or resolved secret values.
+	ListApplications(ctx context.Context, in *ListApplicationsRequest, opts ...grpc.CallOption) (*ListApplicationsResponse, error)
 	// MapIdentifiers classifies identifiers through the configured application
 	// mapping.
 	//
@@ -61,6 +68,16 @@ func (c *serviceClient) GenerateIdentifiers(ctx context.Context, in *GenerateIde
 	return out, nil
 }
 
+func (c *serviceClient) ListApplications(ctx context.Context, in *ListApplicationsRequest, opts ...grpc.CallOption) (*ListApplicationsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListApplicationsResponse)
+	err := c.cc.Invoke(ctx, Service_ListApplications_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *serviceClient) MapIdentifiers(ctx context.Context, in *MapIdentifiersRequest, opts ...grpc.CallOption) (*MapIdentifiersResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(MapIdentifiersResponse)
@@ -82,6 +99,12 @@ type ServiceServer interface {
 	// It returns InvalidArgument when count exceeds the configured limit, and
 	// NotFound when the application or generator kind cannot be resolved.
 	GenerateIdentifiers(context.Context, *GenerateIdentifiersRequest) (*GenerateIdentifiersResponse, error)
+	// ListApplications reports configured application names and safe capability
+	// metadata.
+	//
+	// It does not expose mapper identifier entries, raw config, transport
+	// settings, telemetry settings, or resolved secret values.
+	ListApplications(context.Context, *ListApplicationsRequest) (*ListApplicationsResponse, error)
 	// MapIdentifiers classifies identifiers through the configured application
 	// mapping.
 	//
@@ -101,6 +124,9 @@ type UnimplementedServiceServer struct{}
 
 func (UnimplementedServiceServer) GenerateIdentifiers(context.Context, *GenerateIdentifiersRequest) (*GenerateIdentifiersResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GenerateIdentifiers not implemented")
+}
+func (UnimplementedServiceServer) ListApplications(context.Context, *ListApplicationsRequest) (*ListApplicationsResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method ListApplications not implemented")
 }
 func (UnimplementedServiceServer) MapIdentifiers(context.Context, *MapIdentifiersRequest) (*MapIdentifiersResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method MapIdentifiers not implemented")
@@ -144,6 +170,24 @@ func _Service_GenerateIdentifiers_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Service_ListApplications_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListApplicationsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ServiceServer).ListApplications(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Service_ListApplications_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ServiceServer).ListApplications(ctx, req.(*ListApplicationsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Service_MapIdentifiers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(MapIdentifiersRequest)
 	if err := dec(in); err != nil {
@@ -172,6 +216,10 @@ var Service_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GenerateIdentifiers",
 			Handler:    _Service_GenerateIdentifiers_Handler,
+		},
+		{
+			MethodName: "ListApplications",
+			Handler:    _Service_ListApplications_Handler,
 		},
 		{
 			MethodName: "MapIdentifiers",
