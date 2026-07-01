@@ -15,9 +15,9 @@
 //
 // # Semantics
 //
-// The domain operation that performs mapping classifies each input identifier.
-// Known identifiers are returned in a mapped result keyed by input identifier;
-// missing identifiers are returned in an unmapped list.
+// The domain operation that performs mapping returns one result for each input
+// identifier. Known identifiers include a mapped value, while missing
+// identifiers omit it.
 //
 // Mapper configuration is optional at service startup, but mapping still
 // requires it. If mapper configuration is omitted, the requested application is

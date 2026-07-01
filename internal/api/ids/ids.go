@@ -17,9 +17,8 @@ import (
 //   - the generator kind cannot be resolved from the generator registry,
 //   - or the requested mapper application name cannot be found in configuration.
 //
-// Generate and Map may wrap ErrNotFound with the missing application, kind, or
-// identifier value, so callers should classify it with errors.Is rather than
-// direct equality.
+// Generate and Map may wrap ErrNotFound with the missing application or kind,
+// so callers should classify it with errors.Is rather than direct equality.
 var ErrNotFound = errors.New("not found")
 
 // NewIdentifier constructs an Identifier domain service.
@@ -84,45 +83,50 @@ func (s *Identifier) Generate(ctx context.Context, application string, count uin
 	return ids, nil
 }
 
-// Map classifies the provided ids into mapped and unmapped identifiers for the
-// provided application.
+// MappedIdentifier contains one mapping result for one request input.
+type MappedIdentifier struct {
+	Mapped *string
+	ID     string
+}
+
+// Map maps the provided ids for the provided application.
 //
 // Mapping is configured via mapper application configuration. If mapper
 // configuration is omitted or the application is missing, the operation fails.
-// If an input identifier is missing from the application mapping, the returned
-// unmapped list contains the identifier.
+// If an input identifier is missing from the application mapping, its result
+// contains no mapped value.
 //
-// An empty ids slice is valid and returns empty collections when mapper
+// An empty ids slice is valid and returns an empty result when mapper
 // application configuration is present.
 //
 // Errors:
 //   - ErrInvalidArgument if len(ids) exceeds the configured domain limit.
 //   - ErrNotFound if mapper configuration is omitted, the application is
 //     missing.
-func (s *Identifier) Map(application string, ids []string) (mapper.Identifiers, []string, error) {
+func (s *Identifier) Map(application string, ids []string) ([]*MappedIdentifier, error) {
 	if uint64(len(ids)) > s.limits.MaxMapIDs() {
-		return nil, nil, ErrInvalidArgument
+		return nil, ErrInvalidArgument
 	}
 
 	if s.mapperConfig == nil {
-		return nil, nil, ErrNotFound
+		return nil, ErrNotFound
 	}
 
 	app := s.mapperConfig.Application(application)
 	if app == nil {
-		return nil, nil, fmt.Errorf("%s: %w", application, ErrNotFound)
+		return nil, fmt.Errorf("%s: %w", application, ErrNotFound)
 	}
 
-	mapped := make(mapper.Identifiers, len(ids))
-	unmapped := make([]string, 0)
+	results := make([]*MappedIdentifier, 0, len(ids))
 	for _, id := range ids {
+		result := &MappedIdentifier{ID: id}
 		mid, ok := app.Identifiers[id]
-		if !ok {
-			unmapped = append(unmapped, id)
-			continue
+		if ok {
+			result.Mapped = &mid
 		}
 
-		mapped[id] = mid
+		results = append(results, result)
 	}
-	return mapped, unmapped, nil
+
+	return results, nil
 }

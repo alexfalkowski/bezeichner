@@ -8,7 +8,7 @@
 // The main entry point is Identifier, which offers two operations:
 //
 //   - Generate: produce one or more identifiers for a named application.
-//   - Map: classify a list of existing identifiers as mapped or unmapped.
+//   - Map: map a list of existing identifiers while preserving input order.
 //
 // Both operations enforce request-size limits as a simple DoS-protection
 // mechanism. When limits are exceeded, Generate/Map return ErrInvalidArgument.
@@ -27,8 +27,8 @@
 // The optional mapper configuration provides a lookup table from input
 // identifier to mapped identifier. If mapper configuration is omitted, or if the
 // requested application is missing, the operation returns ErrNotFound. Missing
-// input identifiers are returned in Map's unmapped list instead of failing the
-// whole operation.
+// input identifiers return a result without a mapped value instead of failing
+// the whole operation.
 //
 // # Errors
 //

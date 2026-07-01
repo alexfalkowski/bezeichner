@@ -41,8 +41,7 @@ type ServiceClient interface {
 	// It does not expose mapper identifier entries, raw config, transport
 	// settings, telemetry settings, or resolved secret values.
 	ListApplications(ctx context.Context, in *ListApplicationsRequest, opts ...grpc.CallOption) (*ListApplicationsResponse, error)
-	// MapIdentifiers classifies identifiers through the configured application
-	// mapping.
+	// MapIdentifiers maps identifiers through the configured application mapping.
 	//
 	// It returns InvalidArgument when more identifiers than the configured limit
 	// are requested, and NotFound when mapper configuration is omitted or the
@@ -105,8 +104,7 @@ type ServiceServer interface {
 	// It does not expose mapper identifier entries, raw config, transport
 	// settings, telemetry settings, or resolved secret values.
 	ListApplications(context.Context, *ListApplicationsRequest) (*ListApplicationsResponse, error)
-	// MapIdentifiers classifies identifiers through the configured application
-	// mapping.
+	// MapIdentifiers maps identifiers through the configured application mapping.
 	//
 	// It returns InvalidArgument when more identifiers than the configured limit
 	// are requested, and NotFound when mapper configuration is omitted or the

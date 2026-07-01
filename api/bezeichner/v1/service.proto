@@ -110,8 +110,17 @@ message MapIdentifiersRequest {
   repeated string ids = 2;
 }
 
-// MapIdentifiersResponse contains mapped and unmapped identifiers, plus service
-// metadata.
+// MappedIdentifier contains one mapping result for one request input.
+message MappedIdentifier {
+  // id is the original input identifier.
+  string id = 1;
+
+  // mapped is present when id was found in the configured mapping.
+  optional string mapped = 2;
+}
+
+// MapIdentifiersResponse contains mapping results aligned to request order,
+// plus service metadata.
 message MapIdentifiersResponse {
   // meta contains service and transport metadata. It is reserved for
   // infrastructure metadata and is not business data.
@@ -120,12 +129,9 @@ message MapIdentifiersResponse {
   // can derive them from request metadata.
   map<string, string> meta = 1;
 
-  // mapped contains entries keyed by input identifier with values set to the
-  // configured mapped identifier.
-  map<string, string> mapped = 2;
-
-  // unmapped contains input identifiers that could not be mapped.
-  repeated string unmapped = 3;
+  // ids contains one result for each request input in the same order. Duplicate
+  // request inputs produce duplicate response entries.
+  repeated MappedIdentifier ids = 2;
 }
 
 // Service generates and maps identifiers.
@@ -143,8 +149,7 @@ service Service {
   // settings, telemetry settings, or resolved secret values.
   rpc ListApplications(ListApplicationsRequest) returns (ListApplicationsResponse) {}
 
-  // MapIdentifiers classifies identifiers through the configured application
-  // mapping.
+  // MapIdentifiers maps identifiers through the configured application mapping.
   //
   // It returns InvalidArgument when more identifiers than the configured limit
   // are requested, and NotFound when mapper configuration is omitted or the

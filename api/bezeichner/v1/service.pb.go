@@ -494,8 +494,63 @@ func (x *MapIdentifiersRequest) GetIds() []string {
 	return nil
 }
 
-// MapIdentifiersResponse contains mapped and unmapped identifiers, plus service
-// metadata.
+// MappedIdentifier contains one mapping result for one request input.
+type MappedIdentifier struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// id is the original input identifier.
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	// mapped is present when id was found in the configured mapping.
+	Mapped        *string `protobuf:"bytes,2,opt,name=mapped,proto3,oneof" json:"mapped,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *MappedIdentifier) Reset() {
+	*x = MappedIdentifier{}
+	mi := &file_bezeichner_v1_service_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MappedIdentifier) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MappedIdentifier) ProtoMessage() {}
+
+func (x *MappedIdentifier) ProtoReflect() protoreflect.Message {
+	mi := &file_bezeichner_v1_service_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use MappedIdentifier.ProtoReflect.Descriptor instead.
+func (*MappedIdentifier) Descriptor() ([]byte, []int) {
+	return file_bezeichner_v1_service_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *MappedIdentifier) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *MappedIdentifier) GetMapped() string {
+	if x != nil && x.Mapped != nil {
+		return *x.Mapped
+	}
+	return ""
+}
+
+// MapIdentifiersResponse contains mapping results aligned to request order,
+// plus service metadata.
 type MapIdentifiersResponse struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// meta contains service and transport metadata. It is reserved for
@@ -504,18 +559,16 @@ type MapIdentifiersResponse struct {
 	// Bezeichner currently returns requestId and userAgent when the transport
 	// can derive them from request metadata.
 	Meta map[string]string `protobuf:"bytes,1,rep,name=meta,proto3" json:"meta,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
-	// mapped contains entries keyed by input identifier with values set to the
-	// configured mapped identifier.
-	Mapped map[string]string `protobuf:"bytes,2,rep,name=mapped,proto3" json:"mapped,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
-	// unmapped contains input identifiers that could not be mapped.
-	Unmapped      []string `protobuf:"bytes,3,rep,name=unmapped,proto3" json:"unmapped,omitempty"`
+	// ids contains one result for each request input in the same order. Duplicate
+	// request inputs produce duplicate response entries.
+	Ids           []*MappedIdentifier `protobuf:"bytes,2,rep,name=ids,proto3" json:"ids,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *MapIdentifiersResponse) Reset() {
 	*x = MapIdentifiersResponse{}
-	mi := &file_bezeichner_v1_service_proto_msgTypes[8]
+	mi := &file_bezeichner_v1_service_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -527,7 +580,7 @@ func (x *MapIdentifiersResponse) String() string {
 func (*MapIdentifiersResponse) ProtoMessage() {}
 
 func (x *MapIdentifiersResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_bezeichner_v1_service_proto_msgTypes[8]
+	mi := &file_bezeichner_v1_service_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -540,7 +593,7 @@ func (x *MapIdentifiersResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MapIdentifiersResponse.ProtoReflect.Descriptor instead.
 func (*MapIdentifiersResponse) Descriptor() ([]byte, []int) {
-	return file_bezeichner_v1_service_proto_rawDescGZIP(), []int{8}
+	return file_bezeichner_v1_service_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *MapIdentifiersResponse) GetMeta() map[string]string {
@@ -550,16 +603,9 @@ func (x *MapIdentifiersResponse) GetMeta() map[string]string {
 	return nil
 }
 
-func (x *MapIdentifiersResponse) GetMapped() map[string]string {
+func (x *MapIdentifiersResponse) GetIds() []*MappedIdentifier {
 	if x != nil {
-		return x.Mapped
-	}
-	return nil
-}
-
-func (x *MapIdentifiersResponse) GetUnmapped() []string {
-	if x != nil {
-		return x.Unmapped
+		return x.Ids
 	}
 	return nil
 }
@@ -598,15 +644,15 @@ const file_bezeichner_v1_service_proto_rawDesc = "" +
 	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"K\n" +
 	"\x15MapIdentifiersRequest\x12 \n" +
 	"\vapplication\x18\x01 \x01(\tR\vapplication\x12\x10\n" +
-	"\x03ids\x18\x02 \x03(\tR\x03ids\"\xb8\x02\n" +
+	"\x03ids\x18\x02 \x03(\tR\x03ids\"J\n" +
+	"\x10MappedIdentifier\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1b\n" +
+	"\x06mapped\x18\x02 \x01(\tH\x00R\x06mapped\x88\x01\x01B\t\n" +
+	"\a_mapped\"\xc9\x01\n" +
 	"\x16MapIdentifiersResponse\x12C\n" +
-	"\x04meta\x18\x01 \x03(\v2/.bezeichner.v1.MapIdentifiersResponse.MetaEntryR\x04meta\x12I\n" +
-	"\x06mapped\x18\x02 \x03(\v21.bezeichner.v1.MapIdentifiersResponse.MappedEntryR\x06mapped\x12\x1a\n" +
-	"\bunmapped\x18\x03 \x03(\tR\bunmapped\x1a7\n" +
+	"\x04meta\x18\x01 \x03(\v2/.bezeichner.v1.MapIdentifiersResponse.MetaEntryR\x04meta\x121\n" +
+	"\x03ids\x18\x02 \x03(\v2\x1f.bezeichner.v1.MappedIdentifierR\x03ids\x1a7\n" +
 	"\tMetaEntry\x12\x10\n" +
-	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\x1a9\n" +
-	"\vMappedEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
 	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x012\xc1\x02\n" +
 	"\aService\x12n\n" +
@@ -636,26 +682,26 @@ var file_bezeichner_v1_service_proto_goTypes = []any{
 	(*ListApplicationsRequest)(nil),     // 5: bezeichner.v1.ListApplicationsRequest
 	(*ListApplicationsResponse)(nil),    // 6: bezeichner.v1.ListApplicationsResponse
 	(*MapIdentifiersRequest)(nil),       // 7: bezeichner.v1.MapIdentifiersRequest
-	(*MapIdentifiersResponse)(nil),      // 8: bezeichner.v1.MapIdentifiersResponse
-	nil,                                 // 9: bezeichner.v1.GenerateIdentifiersResponse.MetaEntry
-	nil,                                 // 10: bezeichner.v1.ListApplicationsResponse.MetaEntry
-	nil,                                 // 11: bezeichner.v1.MapIdentifiersResponse.MetaEntry
-	nil,                                 // 12: bezeichner.v1.MapIdentifiersResponse.MappedEntry
+	(*MappedIdentifier)(nil),            // 8: bezeichner.v1.MappedIdentifier
+	(*MapIdentifiersResponse)(nil),      // 9: bezeichner.v1.MapIdentifiersResponse
+	nil,                                 // 10: bezeichner.v1.GenerateIdentifiersResponse.MetaEntry
+	nil,                                 // 11: bezeichner.v1.ListApplicationsResponse.MetaEntry
+	nil,                                 // 12: bezeichner.v1.MapIdentifiersResponse.MetaEntry
 }
 var file_bezeichner_v1_service_proto_depIdxs = []int32{
-	9,  // 0: bezeichner.v1.GenerateIdentifiersResponse.meta:type_name -> bezeichner.v1.GenerateIdentifiersResponse.MetaEntry
-	10, // 1: bezeichner.v1.ListApplicationsResponse.meta:type_name -> bezeichner.v1.ListApplicationsResponse.MetaEntry
+	10, // 0: bezeichner.v1.GenerateIdentifiersResponse.meta:type_name -> bezeichner.v1.GenerateIdentifiersResponse.MetaEntry
+	11, // 1: bezeichner.v1.ListApplicationsResponse.meta:type_name -> bezeichner.v1.ListApplicationsResponse.MetaEntry
 	2,  // 2: bezeichner.v1.ListApplicationsResponse.generator_applications:type_name -> bezeichner.v1.GeneratorApplication
 	3,  // 3: bezeichner.v1.ListApplicationsResponse.mapper_applications:type_name -> bezeichner.v1.MapperApplication
 	4,  // 4: bezeichner.v1.ListApplicationsResponse.limits:type_name -> bezeichner.v1.RequestLimits
-	11, // 5: bezeichner.v1.MapIdentifiersResponse.meta:type_name -> bezeichner.v1.MapIdentifiersResponse.MetaEntry
-	12, // 6: bezeichner.v1.MapIdentifiersResponse.mapped:type_name -> bezeichner.v1.MapIdentifiersResponse.MappedEntry
+	12, // 5: bezeichner.v1.MapIdentifiersResponse.meta:type_name -> bezeichner.v1.MapIdentifiersResponse.MetaEntry
+	8,  // 6: bezeichner.v1.MapIdentifiersResponse.ids:type_name -> bezeichner.v1.MappedIdentifier
 	0,  // 7: bezeichner.v1.Service.GenerateIdentifiers:input_type -> bezeichner.v1.GenerateIdentifiersRequest
 	5,  // 8: bezeichner.v1.Service.ListApplications:input_type -> bezeichner.v1.ListApplicationsRequest
 	7,  // 9: bezeichner.v1.Service.MapIdentifiers:input_type -> bezeichner.v1.MapIdentifiersRequest
 	1,  // 10: bezeichner.v1.Service.GenerateIdentifiers:output_type -> bezeichner.v1.GenerateIdentifiersResponse
 	6,  // 11: bezeichner.v1.Service.ListApplications:output_type -> bezeichner.v1.ListApplicationsResponse
-	8,  // 12: bezeichner.v1.Service.MapIdentifiers:output_type -> bezeichner.v1.MapIdentifiersResponse
+	9,  // 12: bezeichner.v1.Service.MapIdentifiers:output_type -> bezeichner.v1.MapIdentifiersResponse
 	10, // [10:13] is the sub-list for method output_type
 	7,  // [7:10] is the sub-list for method input_type
 	7,  // [7:7] is the sub-list for extension type_name
@@ -668,6 +714,7 @@ func file_bezeichner_v1_service_proto_init() {
 	if File_bezeichner_v1_service_proto != nil {
 		return
 	}
+	file_bezeichner_v1_service_proto_msgTypes[8].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
