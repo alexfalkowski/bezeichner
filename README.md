@@ -37,7 +37,7 @@ map reserved for transport/service metadata.
 > [!NOTE]
 > HTTP is not a separate REST API. It is an RPC gateway over the same protobuf service contract used by gRPC.
 > [!WARNING]
-> Both endpoints enforce request-size limits in the domain layer for basic DoS protection. `GenerateIdentifiers.count` and the `MapIdentifiers.ids` list length are capped at `1000`; larger requests fail with `InvalidArgument`.
+> Both endpoints enforce request-size limits in the domain layer for basic DoS protection. By default, `GenerateIdentifiers.count` and the `MapIdentifiers.ids` list length are capped at `1000`; larger requests fail with `InvalidArgument`.
 
 Unknown generator applications, unknown mapper applications, unresolved generator kinds, and omitted mapper configuration fail with `NotFound`.
 
@@ -115,6 +115,20 @@ mapper:
 > [!IMPORTANT]
 > Mapping classifies each input ID. Known IDs are returned in `mapped`; missing IDs are returned in `unmapped`. Consumers decide whether unmapped IDs should be ignored, reported, retried, or treated as failures.
 > The `mapper` block is optional at startup. If it is omitted, all `MapIdentifiers` requests fail with `NotFound`.
+
+### 🚧 Request limit configuration
+
+Request limits configure Bezeichner-owned per-request item caps:
+
+```yaml
+limits:
+  generate_count: 1000
+  map_ids: 1000
+```
+
+Both values are optional and default to `1000` when omitted. Set lower values
+for smaller deployments or stricter abuse controls. Requests above the effective
+limit fail with `InvalidArgument`.
 
 ### ❤️ Health configuration
 
@@ -250,7 +264,7 @@ statuses with safe `text/error` response bodies:
 
 | gRPC/domain error | HTTP status | Common triggers                                                                                                |
 | ----------------- | ----------- | -------------------------------------------------------------------------------------------------------------- |
-| `InvalidArgument` | `400`       | `GenerateIdentifiers.count > 1000` or more than `1000` IDs to map                                              |
+| `InvalidArgument` | `400`       | `GenerateIdentifiers.count` or `MapIdentifiers.ids` exceeds the configured request limit                       |
 | `NotFound`        | `404`       | unknown generator application, unknown mapper application, unresolved generator kind, or omitted mapper config |
 
 > [!NOTE]

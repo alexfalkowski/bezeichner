@@ -11,5 +11,6 @@ var Module = di.Module(
 	di.Decorate(decorateConfig),
 	di.Constructor(healthConfig),
 	di.Constructor(generatorConfig),
+	di.Constructor(limitsConfig),
 	di.Constructor(mapperConfig),
 )

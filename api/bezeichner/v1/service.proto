@@ -19,8 +19,8 @@ message GenerateIdentifiersRequest {
   // A zero value is valid when application resolves and returns an empty ids
   // list.
   //
-  // The maximum accepted count is 1000. Larger requests fail with
-  // InvalidArgument.
+  // The effective maximum is configured by service operators and defaults to
+  // 1000. Larger requests fail with InvalidArgument.
   uint64 count = 2;
 }
 
@@ -53,8 +53,8 @@ message MapIdentifiersRequest {
   // the application is not configured, MapIdentifiers fails with NotFound
   // before mapping.
   //
-  // The maximum accepted list length is 1000. Larger requests fail with
-  // InvalidArgument.
+  // The effective maximum list length is configured by service operators and
+  // defaults to 1000. Larger requests fail with InvalidArgument.
   repeated string ids = 2;
 }
 
@@ -80,15 +80,15 @@ message MapIdentifiersResponse {
 service Service {
   // GenerateIdentifiers generates identifiers for a configured application.
   //
-  // It returns InvalidArgument when count exceeds 1000, and NotFound when the
-  // application or generator kind cannot be resolved.
+  // It returns InvalidArgument when count exceeds the configured limit, and
+  // NotFound when the application or generator kind cannot be resolved.
   rpc GenerateIdentifiers(GenerateIdentifiersRequest) returns (GenerateIdentifiersResponse) {}
 
   // MapIdentifiers classifies identifiers through the configured application
   // mapping.
   //
-  // It returns InvalidArgument when more than 1000 identifiers are requested,
-  // and NotFound when mapper configuration is omitted or the application is not
-  // configured.
+  // It returns InvalidArgument when more identifiers than the configured limit
+  // are requested, and NotFound when mapper configuration is omitted or the
+  // application is not configured.
   rpc MapIdentifiers(MapIdentifiersRequest) returns (MapIdentifiersResponse) {}
 }

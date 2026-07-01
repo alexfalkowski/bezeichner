@@ -1,6 +1,9 @@
 environment: production
 id:
   kind: uuid
+limits:
+  generate_count: 2
+  map_ids: 2
 mapper:
   applications:
     - name: uuid

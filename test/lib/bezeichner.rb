@@ -2,7 +2,6 @@
 
 require 'securerandom'
 require 'yaml'
-require 'base64'
 require 'open3'
 require 'timeout'
 

@@ -31,15 +31,15 @@ const (
 type ServiceClient interface {
 	// GenerateIdentifiers generates identifiers for a configured application.
 	//
-	// It returns InvalidArgument when count exceeds 1000, and NotFound when the
-	// application or generator kind cannot be resolved.
+	// It returns InvalidArgument when count exceeds the configured limit, and
+	// NotFound when the application or generator kind cannot be resolved.
 	GenerateIdentifiers(ctx context.Context, in *GenerateIdentifiersRequest, opts ...grpc.CallOption) (*GenerateIdentifiersResponse, error)
 	// MapIdentifiers classifies identifiers through the configured application
 	// mapping.
 	//
-	// It returns InvalidArgument when more than 1000 identifiers are requested,
-	// and NotFound when mapper configuration is omitted or the application is not
-	// configured.
+	// It returns InvalidArgument when more identifiers than the configured limit
+	// are requested, and NotFound when mapper configuration is omitted or the
+	// application is not configured.
 	MapIdentifiers(ctx context.Context, in *MapIdentifiersRequest, opts ...grpc.CallOption) (*MapIdentifiersResponse, error)
 }
 
@@ -79,15 +79,15 @@ func (c *serviceClient) MapIdentifiers(ctx context.Context, in *MapIdentifiersRe
 type ServiceServer interface {
 	// GenerateIdentifiers generates identifiers for a configured application.
 	//
-	// It returns InvalidArgument when count exceeds 1000, and NotFound when the
-	// application or generator kind cannot be resolved.
+	// It returns InvalidArgument when count exceeds the configured limit, and
+	// NotFound when the application or generator kind cannot be resolved.
 	GenerateIdentifiers(context.Context, *GenerateIdentifiersRequest) (*GenerateIdentifiersResponse, error)
 	// MapIdentifiers classifies identifiers through the configured application
 	// mapping.
 	//
-	// It returns InvalidArgument when more than 1000 identifiers are requested,
-	// and NotFound when mapper configuration is omitted or the application is not
-	// configured.
+	// It returns InvalidArgument when more identifiers than the configured limit
+	// are requested, and NotFound when mapper configuration is omitted or the
+	// application is not configured.
 	MapIdentifiers(context.Context, *MapIdentifiersRequest) (*MapIdentifiersResponse, error)
 	mustEmbedUnimplementedServiceServer()
 }
