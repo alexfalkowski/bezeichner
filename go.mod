@@ -4,7 +4,7 @@ go 1.26.0
 
 require (
 	github.com/alexfalkowski/go-health/v2 v2.33.0
-	github.com/alexfalkowski/go-service/v2 v2.628.0
+	github.com/alexfalkowski/go-service/v2 v2.630.0
 	github.com/sony/sonyflake v1.3.0
 	go.jetify.com/typeid v1.3.0
 	google.golang.org/grpc v1.82.0
