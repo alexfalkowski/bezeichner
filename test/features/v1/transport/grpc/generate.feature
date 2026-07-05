@@ -1,0 +1,53 @@
+Feature: gRPC Generate API
+  These endpoints allows users to generate identifiers.
+
+  Scenario Outline: Generate identifiers for existing applications
+    When I request to generate identifiers with gRPC:
+      | application | <application> |
+      | count       | <count>       |
+    Then I should receive generated identifiers from gRPC:
+      | application | <application> |
+      | count       | <count>       |
+
+    Examples:
+      | application | count |
+      | uuid        |     1 |
+      | uuid        |     2 |
+      | uuid_alias  |     1 |
+      | ksuid       |     1 |
+      | ksuid       |     2 |
+      | ulid        |     1 |
+      | ulid        |     2 |
+      | xid         |     1 |
+      | xid         |     2 |
+      | snowflake   |     1 |
+      | snowflake   |     2 |
+      | nanoid      |     1 |
+      | nanoid      |     2 |
+      | typeid      |     1 |
+      | typeid      |     2 |
+
+  Scenario: Generate maximum identifiers for existing applications
+    When I request to generate identifiers with gRPC:
+      | application | uuid |
+      | count       | 2 |
+    Then I should receive generated identifiers from gRPC:
+      | application | uuid |
+      | count       | 2 |
+
+  Scenario: Generate too many identifiers for existing applications
+    When I request to generate identifiers with gRPC:
+      | application | uuid |
+      | count       | 3 |
+    Then I should receive an invalid argument error from gRPC
+
+  Scenario Outline: Generate identifiers for missing applications
+    When I request to generate identifiers with gRPC:
+      | application | <application> |
+      | count       | <count>       |
+    Then I should receive a not found error from gRPC
+
+    Examples:
+      | application  | count |
+      | not_found    |     1 |
+      | invalid_kind |     1 |
