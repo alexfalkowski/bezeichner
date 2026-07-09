@@ -3,8 +3,8 @@ module github.com/alexfalkowski/bezeichner
 go 1.26.0
 
 require (
-	github.com/alexfalkowski/go-health/v2 v2.33.0
-	github.com/alexfalkowski/go-service/v2 v2.653.0
+	github.com/alexfalkowski/go-health/v2 v2.34.0
+	github.com/alexfalkowski/go-service/v2 v2.657.0
 	github.com/sony/sonyflake v1.3.0
 	go.jetify.com/typeid v1.3.0
 	google.golang.org/grpc v1.82.0
@@ -20,7 +20,7 @@ require (
 	github.com/KimMachineGun/automemlimit v0.7.5 // indirect
 	github.com/XSAM/otelsql v0.42.0 // indirect
 	github.com/aead/cmac v0.0.0-20160719120800-7af84192f0b1 // indirect
-	github.com/alexfalkowski/go-sync v1.27.0 // indirect
+	github.com/alexfalkowski/go-sync v1.29.0 // indirect
 	github.com/arl/statsviz v0.8.1 // indirect
 	github.com/avfs/avfs v0.35.0 // indirect
 	github.com/beevik/ntp v1.5.0 // indirect
