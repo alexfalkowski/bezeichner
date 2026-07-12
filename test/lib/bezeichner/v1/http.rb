@@ -47,8 +47,8 @@ module Bezeichner
       # @param opts [Hash] options forwarded to {Nonnative::HTTPClient#post}
       # @return [Object] HTTP response as returned by {Nonnative::HTTPClient#post}
       #
-      # @example Generate three UUID identifiers for application "uuid"
-      #   Bezeichner::V1.http.generate('uuid', 3)
+      # @example Generate two UUID identifiers for application "uuid"
+      #   Bezeichner::V1.http.generate('uuid', 2)
       def generate(application, count, opts = {})
         post('/bezeichner.v1.Service/GenerateIdentifiers', { application:, count: }.to_json, opts)
       end

@@ -5,13 +5,16 @@
 //
 // # Overview
 //
-// The main entry point is Identifier, which offers two operations:
+// The main entry point is Identifier, which offers three operations:
 //
+//   - Applications: report configured application names, supported generator
+//     kinds, and effective request limits without exposing mapper identifier
+//     entries.
 //   - Generate: produce one or more identifiers for a named application.
 //   - Map: map a list of existing identifiers while preserving input order.
 //
-// Both operations enforce request-size limits as a simple DoS-protection
-// mechanism. When limits are exceeded, Generate/Map return ErrInvalidArgument.
+// Generate and Map enforce request-size limits as a simple DoS-protection
+// mechanism. When limits are exceeded, they return ErrInvalidArgument.
 //
 // # Configuration
 //

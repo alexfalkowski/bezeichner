@@ -12,6 +12,8 @@
 //	  input -> output
 //
 // For example, a configuration might map legacy IDs to new canonical IDs.
+// Application entries must be non-nil, names must be non-empty, and names must
+// be unique; invalid lists fail service configuration validation during startup.
 //
 // # Semantics
 //

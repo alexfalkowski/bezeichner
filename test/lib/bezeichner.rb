@@ -35,7 +35,7 @@ module Bezeichner
   class << self
     # Loads and memoizes the service configuration used by the feature test harness.
     #
-    # @return [Hash] configuration loaded by nonnative
+    # @return [Config::Options] configuration loaded by nonnative
     #
     # @example Load generator applications
     #   Bezeichner.config.dig('generator', 'applications')
@@ -56,6 +56,8 @@ module Bezeichner
     end
 
     # Builds per-call options for gRPC feature and benchmark requests.
+    #
+    # The deadline is set to 10 seconds after this method is called.
     #
     # @param metadata [Hash] gRPC metadata to send with the request
     # @return [Hash] gRPC call options
@@ -109,18 +111,21 @@ module Bezeichner
       # @return [Bezeichner::V1::HTTP]
       #
       # @example Generate identifiers over HTTP
-      #   Bezeichner::V1.http.generate('uuid', 3)
+      #   Bezeichner::V1.http.generate('uuid', 2)
       def http
         @http ||= Bezeichner::V1::HTTP.new('http://localhost:11000')
       end
 
       # Returns a gRPC stub for the Bezeichner v1 API.
       #
+      # Pass {Bezeichner.grpc_options} with each call to use the harness's
+      # 10-second deadline.
+      #
       # @return [Bezeichner::V1::Service::Stub]
       #
       # @example Generate identifiers over gRPC
-      #   req = Bezeichner::V1::GenerateIdentifiersRequest.new(application: 'uuid', count: 3)
-      #   Bezeichner::V1.grpc.generate_identifiers(req)
+      #   req = Bezeichner::V1::GenerateIdentifiersRequest.new(application: 'uuid', count: 2)
+      #   Bezeichner::V1.grpc.generate_identifiers(req, Bezeichner.grpc_options)
       def grpc
         @grpc ||= Bezeichner::V1::Service::Stub.new('localhost:12000', :this_channel_is_insecure, channel_args: Bezeichner.user_agent)
       end
