@@ -9,7 +9,10 @@ type Application struct {
 	Name        string      `yaml:"name" json:"name" toml:"name" validate:"required"`
 }
 
-// Config for mapper.
+// Config contains the mapper applications available to the service.
+//
+// Application entries must be non-nil, names must be non-empty, and names must
+// be unique.
 type Config struct {
 	Applications []*Application `yaml:"applications" json:"applications" toml:"applications" validate:"unique=Name,dive,required"`
 }

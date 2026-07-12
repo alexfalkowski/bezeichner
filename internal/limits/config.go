@@ -6,12 +6,16 @@ const (
 )
 
 // Config configures per-request item-count limits.
+//
+// A nil Config or a zero field uses the built-in default of 1000 items.
 type Config struct {
 	GenerateCount uint64 `yaml:"generate_count,omitempty" json:"generate_count,omitempty" toml:"generate_count,omitempty"`
 	MapIDs        uint64 `yaml:"map_ids,omitempty" json:"map_ids,omitempty" toml:"map_ids,omitempty"`
 }
 
 // MaxGenerateCount returns the effective GenerateIdentifiers count limit.
+//
+// It returns 1000 when c is nil or GenerateCount is zero.
 func (c *Config) MaxGenerateCount() uint64 {
 	if c == nil || c.GenerateCount == 0 {
 		return defaultGenerateCount
@@ -21,6 +25,8 @@ func (c *Config) MaxGenerateCount() uint64 {
 }
 
 // MaxMapIDs returns the effective MapIdentifiers ids limit.
+//
+// It returns 1000 when c is nil or MapIDs is zero.
 func (c *Config) MaxMapIDs() uint64 {
 	if c == nil || c.MapIDs == 0 {
 		return defaultMapIDs

@@ -12,7 +12,7 @@ Use `bin/AGENTS.md` for shared skills and cross-repository defaults.
 
 - Language: **Go**; see `go.mod` for module path and toolchain details.
 - API contract: `api/bezeichner/v1/service.proto` (+ generated Go stubs under `api/` and Ruby stubs under `test/lib`).
-- Build tooling: the root `Makefile` is a thin wrapper around the **`bin/` git submodule** (see `.gitmodules:1-3` and `Makefile:1-3`).
+- Build tooling: the root `Makefile` is a thin wrapper around the **`bin/` git submodule** (see `.gitmodules:1-3` and `Makefile:1-5`).
 
 ## First steps
 
@@ -31,9 +31,10 @@ make dep
 
 Observed behavior:
 - Go deps are vendored by the shared dependency target and the test-binary
-  build uses vendored dependencies (see `bin/build/make/_service.mak:184-186`).
+  build uses vendored dependencies (see `bin/build/make/_service.mak:135-155`
+  and `bin/build/make/_service.mak:195-197`).
 - Ruby deps for feature tests live under `test/` and are installed by the
-  shared Ruby dependency target (see `bin/build/make/ruby.mak:15-21` and
+  shared Ruby dependency target (see `bin/build/make/ruby.mak:17-22` and
   `test/.bundle/config:1-2`).
 
 ## Essential commands
@@ -45,7 +46,7 @@ make build        # builds ./bezeichner (release binary)
 make build-test   # builds ./bezeichner test binary (-tags features, -race, coverage enabled)
 ```
 
-Implementation: `bin/build/make/_service.mak:180-186`.
+Implementation: `bin/build/make/_service.mak:191-197`.
 
 ### Test
 
@@ -57,8 +58,8 @@ make coverage     # HTML + func coverage reports
 ```
 
 Notes:
-- `main_test.go` is guarded by build tag `features` (`main_test.go:1-10`).
-- `make features` depends on `make build-test` (see `bin/build/make/_service.mak:100-102`).
+- `main_test.go` is guarded by build tag `features` (`main_test.go:1-11`).
+- `make features` depends on `make build-test` (see `bin/build/make/_service.mak:107-109`).
 
 ### Lint / format / security
 
@@ -70,7 +71,7 @@ make sec
 ```
 
 - Go linting and formatting are owned by `make lint`, `make fix-lint`, and
-  `make format`. Generated protobuf code is excluded (`.golangci.yml:33-43`).
+  `make format`. Generated protobuf code is excluded (`.golangci.yml:33-51`).
 
 ### Protobuf (Buf)
 
@@ -103,13 +104,13 @@ make start
 make stop
 ```
 
-These call scripts under `bin/build/docker/env` (see `bin/build/make/_service.mak:230-236`).
+These call scripts under `bin/build/docker/env` (see `bin/build/make/_service.mak:239-245`).
 
 ## Code organization
 
 ### Entry points / CLI
 
-- `main.go` constructs a `go-service/v2/cli` application and registers the `server` command (`main.go:9-15`).
+- `main.go` constructs a `go-service/v2/cli` application and registers the `server` command (`main.go:10-15`).
 - The server command is registered in `internal/cmd/server.go:9-12` and wires DI via `internal/cmd/module.go:13-19`.
 
 ### Dependency injection (DI)
@@ -121,16 +122,17 @@ The service uses `go-service/v2/di` modules:
   - `config.Module`, `health.Module`, `generator.Module`, `v1.Module`
 
 The v1 module wires transports and the domain service:
-- `internal/api/v1/module.go:11-16`.
+- `internal/api/v1/module.go:11-17`.
 
 ### API layers
 
 - Domain logic: `internal/api/ids/`
-  - `Identifier.Generate` and `Identifier.Map` (`internal/api/ids/ids.go`).
+  - `Identifier.Applications`, `Identifier.Generate`, and `Identifier.Map`
+    (`internal/api/ids/applications.go` and `internal/api/ids/ids.go`).
   - Request-size limits are enforced here using `internal/limits.Config`.
 - gRPC transport:
   - `internal/api/v1/transport/grpc/*` implements the protobuf service.
-  - Errors are mapped to gRPC status codes in `internal/api/v1/transport/grpc/grpc.go:27-41`.
+  - Errors are mapped to gRPC status codes in `internal/api/v1/transport/grpc/error.go:9-15`.
 - HTTP transport:
   - `internal/api/v1/transport/http/http.go:9-13` routes HTTP RPC calls by gRPC full method name.
 
@@ -156,8 +158,8 @@ Generator implementations are in `internal/generator/*` and are selected by `App
 Standard kinds such as `uuid`, `ksuid`, `ulid`, `xid`, and `nanoid` are adapted
 from `github.com/alexfalkowski/go-service/v2/id`.
 
-- Registry: `internal/generator/generator.go:16-30`.
-- Applications are defined via `internal/generator/config.go:3-25`.
+- Registry: `internal/generator/generator.go:17-27`.
+- Applications are defined via `internal/generator/config.go:3-33`.
 
 ### TypeID generator application-name contract
 
@@ -186,13 +188,13 @@ Limits are enforced in the domain layer:
 - `GenerateIdentifiers`: `count` is capped in `internal/api/ids/ids.go` using `internal/limits.Config`.
 - `MapIdentifiers`: number of IDs is capped in `internal/api/ids/ids.go` using `internal/limits.Config`.
 
-These surface to clients as `InvalidArgument` via the gRPC error mapper (`internal/api/v1/transport/grpc/grpc.go:32-34`).
+These surface to clients as `InvalidArgument` via the gRPC error mapper (`internal/api/v1/transport/grpc/error.go:9-14`).
 
 ## Testing
 
 ### Go specs
 
-`make specs` runs gotestsum with race and coverage (see `bin/build/make/_service.mak:108-111`). Outputs land under `test/reports/`.
+`make specs` runs gotestsum with race and coverage (see `bin/build/make/_service.mak:115-118`). Outputs land under `test/reports/`.
 
 ### Feature tests (Ruby / nonnative)
 

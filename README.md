@@ -120,6 +120,10 @@ mapper:
         req2: resp2
 ```
 
+Each configured mapper application must be non-null, have a non-empty `name`,
+and use a name that is unique within the list. Invalid application lists fail
+configuration validation during startup.
+
 > [!IMPORTANT]
 > Mapping returns one result for each input ID in the same order. Known IDs include `mapped`; missing IDs omit `mapped`. Consumers decide whether unmapped IDs should be ignored, reported, retried, or treated as failures.
 > The `mapper` block is optional at startup. If it is omitted, all `MapIdentifiers` requests fail with `NotFound`.
@@ -134,9 +138,13 @@ limits:
   map_ids: 1000
 ```
 
-Both values are optional and default to `1000` when omitted. Set lower values
-for smaller deployments or stricter abuse controls. Requests above the effective
-limit fail with `InvalidArgument`.
+Both values are optional. Omitted or zero values use the default of `1000`;
+zero does not disable the operation. Set a positive lower value for smaller
+deployments or stricter abuse controls. Requests above the effective limit fail
+with `InvalidArgument`.
+
+The representative `test/.config/server.yml` overrides both limits to `2`, so
+the local transport examples below stay within that fixture's limits.
 
 ### ❤️ Health configuration
 
@@ -217,11 +225,11 @@ grpcurl -plaintext \
   bezeichner.v1.Service/ListApplications
 ```
 
-Generate 3 IDs for application `uuid`:
+Generate 2 IDs for application `uuid`:
 
 ```sh
 grpcurl -plaintext \
-  -d '{"application":"uuid","count":"3"}' \
+  -d '{"application":"uuid","count":"2"}' \
   localhost:12000 \
   bezeichner.v1.Service/GenerateIdentifiers
 ```
@@ -277,7 +285,7 @@ Generate identifiers:
 curl -sS \
   -X POST \
   -H 'content-type: application/json' \
-  --data '{"application":"uuid","count":3}' \
+  --data '{"application":"uuid","count":2}' \
   http://localhost:11000/bezeichner.v1.Service/GenerateIdentifiers
 ```
 
@@ -327,7 +335,7 @@ that require release artifacts plus DockerHub or GitHub credentials. Use the
 local `test-docker` targets for image validation before pushing changes.
 
 > [!CAUTION]
-> The `snowflake` generator uses Sonyflake defaults. The intended deployment assumes normal Kubernetes pod networking where each concurrently running pod has a suitable private IPv4-derived machine ID. Re-evaluate that assumption for local multi-process deployments, `hostNetwork`, overlapping pod CIDRs, multi-cluster shared ID spaces, IPv6-only environments, or environments without private IPv4 addresses.
+> The `snowflake` generator uses Sonyflake defaults. The intended deployment assumes normal Kubernetes pod networking where each concurrently running pod has a suitable private IPv4-derived machine ID. Re-evaluate that assumption for local multi-process deployments, `hostNetwork`, overlapping pod CIDRs, multi-cluster shared ID spaces, IPv6-only environments, or environments without private IPv4 addresses. If Sonyflake cannot derive a machine ID, a generation request panics; use another generator kind when the deployment cannot meet this assumption.
 > [!IMPORTANT]
 > Deployments should pin released version tags instead of depending on the moving
 > `latest` Docker manifest. The release pipeline may update `latest` after
@@ -344,7 +352,7 @@ Bezeichner builds on established ID generation libraries:
 
 Service scaffolding and transport/DI patterns:
 
-- <https://github.com/alexfalkowski/go-service/v2>
+- <https://github.com/alexfalkowski/go-service>
 
 ## 🛠️ Development
 

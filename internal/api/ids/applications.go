@@ -28,6 +28,11 @@ type Limits struct {
 }
 
 // Applications returns configured application names and safe capability data.
+//
+// Generator and mapper applications retain configuration order, generator
+// kinds are sorted, and Limits contains the effective values after defaults are
+// applied. Mapper application results contain names only; configured identifier
+// entries are not exposed.
 func (s *Identifier) Applications() *Applications {
 	return &Applications{
 		GeneratorApplications: s.generatorApplications(),
