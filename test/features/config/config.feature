@@ -7,7 +7,7 @@ Feature: Configuration
 
     Examples:
       | config                            |
-      | duplicate_generator_names.yml     |
-      | empty_generator_application.yml   |
-      | empty_generator_kind.yml          |
-      | nil_generator_application.yml     |
+      | duplicate_generator_names.yaml     |
+      | empty_generator_application.yaml   |
+      | empty_generator_kind.yaml          |
+      | nil_generator_application.yaml     |

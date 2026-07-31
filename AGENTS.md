@@ -138,7 +138,7 @@ The v1 module wires transports and the domain service:
 
 ## Configuration
 
-A representative config used by dev/feature tests is `test/.config/server.yml`.
+A representative config used by dev/feature tests is `test/.config/server.yaml`.
 
 Notable keys observed:
 - `generator.applications[]`: generator applications (**name** and **kind**).
@@ -200,7 +200,7 @@ These surface to clients as `InvalidArgument` via the gRPC error mapper (`intern
 
 - Feature specs live under `test/features/**`.
 - Harness config: `test/nonnative.yml`.
-  - Launches `../bezeichner server -config file:.config/server.yml` (`test/nonnative.yml:6-12`).
+  - Launches `../bezeichner server -config file:.config/server.yaml` (`test/nonnative.yml:6-12`).
 - Cucumber report options: `test/.config/cucumber.yml:1`.
 
 If the Ruby harness fails loading native gems, refresh dependencies through the
