@@ -14,7 +14,7 @@ require 'bezeichner/v1/service_services_pb'
 # client library; it is a thin convenience layer used by tests under `test/features/**`.
 #
 # It provides:
-# - Access to the loaded test configuration (`.config/server.yml`) via {Bezeichner.config}.
+# - Access to the loaded test configuration (`.config/server.yaml`) via {Bezeichner.config}.
 # - Preconfigured gRPC stubs for:
 #   - The Bezeichner v1 API ({Bezeichner::V1.grpc})
 #   - gRPC Health API ({Bezeichner.health_grpc})
@@ -40,7 +40,7 @@ module Bezeichner
     # @example Load generator applications
     #   Bezeichner.config.dig('generator', 'applications')
     def config
-      @config ||= Nonnative::ConfigurationFile.load('.config/server.yml')
+      @config ||= Nonnative::ConfigurationFile.load('.config/server.yaml')
     end
 
     # Returns a gRPC Health stub for the running Bezeichner service.

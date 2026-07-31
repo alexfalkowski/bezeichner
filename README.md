@@ -53,10 +53,10 @@ settings, or resolved secrets.
 
 Bezeichner uses the `go-service` configuration conventions. A representative configuration used by development and feature tests is:
 
-- `test/.config/server.yml`
+- `test/.config/server.yaml`
 
 > [!TIP]
-> Use `test/.config/server.yml` as the copy-paste source for local examples. The usage examples below use application and mapping names from that file.
+> Use `test/.config/server.yaml` as the copy-paste source for local examples. The usage examples below use application and mapping names from that file.
 
 The snippets below document the Bezeichner-owned blocks. A runnable service
 configuration also includes shared `go-service` keys, such as `environment`,
@@ -143,7 +143,7 @@ zero does not disable the operation. Set a positive lower value for smaller
 deployments or stricter abuse controls. Requests above the effective limit fail
 with `InvalidArgument`.
 
-The representative `test/.config/server.yml` overrides both limits to `2`, so
+The representative `test/.config/server.yaml` overrides both limits to `2`, so
 the local transport examples below stay within that fixture's limits.
 
 ### ❤️ Health configuration
@@ -199,7 +199,7 @@ make dev
 
 `make dev` runs the server using `air` with the test config:
 
-- `cd test && ../bezeichner server -config file:.config/server.yml`
+- `cd test && ../bezeichner server -config file:.config/server.yaml`
 
 ### 🏗️ Build
 
