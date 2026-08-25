@@ -4,10 +4,10 @@ go 1.27.0
 
 require (
 	github.com/alexfalkowski/go-health/v2 v2.39.0
-	github.com/alexfalkowski/go-service/v2 v2.763.0
+	github.com/alexfalkowski/go-service/v2 v2.764.0
 	github.com/sony/sonyflake v1.3.0
 	go.jetify.com/typeid v1.3.0
-	google.golang.org/grpc v1.83.1
+	google.golang.org/grpc v1.83.2
 	google.golang.org/protobuf v1.36.12
 )
 
