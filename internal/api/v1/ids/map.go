@@ -5,7 +5,6 @@ import (
 	"github.com/alexfalkowski/bezeichner/internal/api/ids"
 	"github.com/alexfalkowski/go-service/v2/context"
 	"github.com/alexfalkowski/go-service/v2/meta"
-	"github.com/alexfalkowski/go-service/v2/strings"
 )
 
 // MapIdentifiers for identifiers.
@@ -16,7 +15,7 @@ func (i *Identifier) MapIdentifiers(ctx context.Context, req *v1.MapIdentifiersR
 	}
 
 	resp := &v1.MapIdentifiersResponse{
-		Meta: meta.CamelStrings(ctx, strings.Empty),
+		Meta: meta.Strings(ctx),
 		Ids:  mappedIdentifiers(ids),
 	}
 

@@ -248,8 +248,8 @@ The response keeps one result per input ID:
 ```json
 {
   "meta": {
-    "requestId": "...",
-    "userAgent": "..."
+    "request_id": "...",
+    "user_agent": "..."
   },
   "ids": [
     {

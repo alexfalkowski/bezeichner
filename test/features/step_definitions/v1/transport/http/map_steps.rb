@@ -32,8 +32,8 @@ Then('I should receive mapped identifiers from HTTP:') do |table|
   resp = JSON.parse(@response.body)
   rows = table.rows_hash
 
-  expect(resp['meta']['requestId']).to eq(@request_id)
-  expect(resp['meta']['userAgent']).to eq('Bezeichner-ruby-client/1.0 HTTP/1.0')
+  expect(resp['meta']['request_id']).to eq(@request_id)
+  expect(resp['meta']['user_agent']).to eq('Bezeichner-ruby-client/1.0 HTTP/1.0')
   expect(mapped_identifier_results(resp.fetch('ids', []))).to eq(mapped_identifiers(rows['results']))
 end
 
@@ -42,8 +42,8 @@ Then('I should receive {int} unmapped identifiers from HTTP') do |count|
 
   resp = JSON.parse(@response.body)
 
-  expect(resp['meta']['requestId']).to eq(@request_id)
-  expect(resp['meta']['userAgent']).to eq('Bezeichner-ruby-client/1.0 HTTP/1.0')
+  expect(resp['meta']['request_id']).to eq(@request_id)
+  expect(resp['meta']['user_agent']).to eq('Bezeichner-ruby-client/1.0 HTTP/1.0')
   expect(mapped_identifier_results(resp.fetch('ids', []))).to all(satisfy { |result| !result.key?('mapped') })
   expect(resp.fetch('ids', []).length).to eq(count)
 end

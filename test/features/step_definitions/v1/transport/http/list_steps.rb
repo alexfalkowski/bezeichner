@@ -18,8 +18,8 @@ Then('I should receive configured applications from HTTP:') do |table|
   resp = JSON.parse(@response.body)
   rows = table.rows_hash
 
-  expect(resp['meta']['requestId']).to eq(@request_id)
-  expect(resp['meta']['userAgent']).to eq('Bezeichner-ruby-client/1.0 HTTP/1.0')
+  expect(resp['meta']['request_id']).to eq(@request_id)
+  expect(resp['meta']['user_agent']).to eq('Bezeichner-ruby-client/1.0 HTTP/1.0')
   expect(applications(resp['generator_applications'])).to eq(mapping(rows['generator_applications']))
   expect(resp['mapper_applications'].map { |app| app['name'] }).to eq(identifiers(rows['mapper_applications']))
   expect(resp['generator_kinds']).to eq(identifiers(rows['generator_kinds']))

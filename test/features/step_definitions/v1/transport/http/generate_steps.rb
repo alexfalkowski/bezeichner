@@ -20,8 +20,8 @@ Then('I should receive generated identifiers from HTTP:') do |table|
   ids = resp['ids']
   rows = table.rows_hash
 
-  expect(resp['meta']['requestId']).to eq(@request_id)
-  expect(resp['meta']['userAgent']).to eq('Bezeichner-ruby-client/1.0 HTTP/1.0')
+  expect(resp['meta']['request_id']).to eq(@request_id)
+  expect(resp['meta']['user_agent']).to eq('Bezeichner-ruby-client/1.0 HTTP/1.0')
   expect(ids.length).to eq(rows['count'].to_i)
   expect(ids).to all(satisfy { |id| id.start_with?("#{rows['application']}_") })
 end
