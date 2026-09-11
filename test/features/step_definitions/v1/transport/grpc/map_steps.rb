@@ -25,14 +25,14 @@ end
 Then('I should receive mapped identifiers from gRPC:') do |table|
   rows = table.rows_hash
 
-  expect(@response.meta['requestId']).to eq(@request_id)
-  expect(@response.meta['userAgent']).to include('Bezeichner-ruby-client/1.0 gRPC/1.0')
+  expect(@response.meta['request_id']).to eq(@request_id)
+  expect(@response.meta['user_agent']).to include('Bezeichner-ruby-client/1.0 gRPC/1.0')
   expect(mapped_identifier_results(@response.ids)).to eq(mapped_identifiers(rows['results']))
 end
 
 Then('I should receive {int} unmapped identifiers from gRPC') do |count|
-  expect(@response.meta['requestId']).to eq(@request_id)
-  expect(@response.meta['userAgent']).to include('Bezeichner-ruby-client/1.0 gRPC/1.0')
+  expect(@response.meta['request_id']).to eq(@request_id)
+  expect(@response.meta['user_agent']).to include('Bezeichner-ruby-client/1.0 gRPC/1.0')
   expect(mapped_identifier_results(@response.ids)).to all(satisfy { |result| !result.key?('mapped') })
   expect(@response.ids.length).to eq(count)
 end

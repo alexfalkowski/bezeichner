@@ -5,7 +5,6 @@ import (
 	"github.com/alexfalkowski/bezeichner/internal/api/ids"
 	"github.com/alexfalkowski/go-service/v2/context"
 	"github.com/alexfalkowski/go-service/v2/meta"
-	"github.com/alexfalkowski/go-service/v2/strings"
 )
 
 // ListApplications for identifiers.
@@ -13,7 +12,7 @@ func (i *Identifier) ListApplications(ctx context.Context, _ *v1.ListApplication
 	apps := i.id.Applications()
 
 	resp := &v1.ListApplicationsResponse{
-		Meta:                  meta.CamelStrings(ctx, strings.Empty),
+		Meta:                  meta.Strings(ctx),
 		GeneratorApplications: generatorApplications(apps.GeneratorApplications),
 		MapperApplications:    mapperApplications(apps.MapperApplications),
 		GeneratorKinds:        apps.GeneratorKinds,

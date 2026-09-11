@@ -30,7 +30,7 @@ message GenerateIdentifiersResponse {
   // meta contains service and transport metadata. It is reserved for
   // infrastructure metadata and is not business data.
   //
-  // Bezeichner currently returns requestId and userAgent when the transport
+  // Bezeichner currently returns request_id and user_agent when the transport
   // can derive them from request metadata.
   map<string, string> meta = 1;
 
@@ -71,7 +71,7 @@ message ListApplicationsResponse {
   // meta contains service and transport metadata. It is reserved for
   // infrastructure metadata and is not business data.
   //
-  // Bezeichner currently returns requestId and userAgent when the transport
+  // Bezeichner currently returns request_id and user_agent when the transport
   // can derive them from request metadata.
   map<string, string> meta = 1;
 
@@ -125,7 +125,7 @@ message MapIdentifiersResponse {
   // meta contains service and transport metadata. It is reserved for
   // infrastructure metadata and is not business data.
   //
-  // Bezeichner currently returns requestId and userAgent when the transport
+  // Bezeichner currently returns request_id and user_agent when the transport
   // can derive them from request metadata.
   map<string, string> meta = 1;
 

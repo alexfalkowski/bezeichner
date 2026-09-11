@@ -13,8 +13,8 @@ end
 Then('I should receive configured applications from gRPC:') do |table|
   rows = table.rows_hash
 
-  expect(@response.meta['requestId']).to eq(@request_id)
-  expect(@response.meta['userAgent']).to include('Bezeichner-ruby-client/1.0 gRPC/1.0')
+  expect(@response.meta['request_id']).to eq(@request_id)
+  expect(@response.meta['user_agent']).to include('Bezeichner-ruby-client/1.0 gRPC/1.0')
   expect(applications(@response.generator_applications)).to eq(mapping(rows['generator_applications']))
   expect(@response.mapper_applications.map(&:name)).to eq(identifiers(rows['mapper_applications']))
   expect(@response.generator_kinds).to eq(identifiers(rows['generator_kinds']))

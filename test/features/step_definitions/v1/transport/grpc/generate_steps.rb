@@ -14,8 +14,8 @@ end
 Then('I should receive generated identifiers from gRPC:') do |table|
   rows = table.rows_hash
 
-  expect(@response.meta['requestId']).to eq(@request_id)
-  expect(@response.meta['userAgent']).to include('Bezeichner-ruby-client/1.0 gRPC/1.0')
+  expect(@response.meta['request_id']).to eq(@request_id)
+  expect(@response.meta['user_agent']).to include('Bezeichner-ruby-client/1.0 gRPC/1.0')
   expect(@response.ids.length).to eq(rows['count'].to_i)
   expect(@response.ids).to all(satisfy { |id| id.start_with?("#{rows['application']}_") })
 end

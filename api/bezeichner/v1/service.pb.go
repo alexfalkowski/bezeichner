@@ -93,7 +93,7 @@ type GenerateIdentifiersResponse struct {
 	// meta contains service and transport metadata. It is reserved for
 	// infrastructure metadata and is not business data.
 	//
-	// Bezeichner currently returns requestId and userAgent when the transport
+	// Bezeichner currently returns request_id and user_agent when the transport
 	// can derive them from request metadata.
 	Meta map[string]string `protobuf:"bytes,1,rep,name=meta,proto3" json:"meta,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	// ids contains the generated identifiers.
@@ -346,7 +346,7 @@ type ListApplicationsResponse struct {
 	// meta contains service and transport metadata. It is reserved for
 	// infrastructure metadata and is not business data.
 	//
-	// Bezeichner currently returns requestId and userAgent when the transport
+	// Bezeichner currently returns request_id and user_agent when the transport
 	// can derive them from request metadata.
 	Meta map[string]string `protobuf:"bytes,1,rep,name=meta,proto3" json:"meta,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	// generator_applications contains configured generator application names and
@@ -556,7 +556,7 @@ type MapIdentifiersResponse struct {
 	// meta contains service and transport metadata. It is reserved for
 	// infrastructure metadata and is not business data.
 	//
-	// Bezeichner currently returns requestId and userAgent when the transport
+	// Bezeichner currently returns request_id and user_agent when the transport
 	// can derive them from request metadata.
 	Meta map[string]string `protobuf:"bytes,1,rep,name=meta,proto3" json:"meta,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	// ids contains one result for each request input in the same order. Duplicate

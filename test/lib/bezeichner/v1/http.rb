@@ -26,7 +26,7 @@ module Bezeichner
     # - {Bezeichner::V1::MapIdentifiersRequest}
     #
     # The response bodies match the protobuf response messages and may include `meta`
-    # (`requestId` and `userAgent` observability metadata) depending on server behavior.
+    # (`request_id` and `user_agent` observability metadata) depending on server behavior.
     #
     # ## Error responses
     #
