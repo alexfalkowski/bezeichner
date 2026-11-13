@@ -1,8 +1,8 @@
 package ids
 
-import "github.com/alexfalkowski/go-service/v2/di"
+import "github.com/alexfalkowski/go-signal/v2"
 
-// Module for fx.
-var Module = di.Module(
-	di.Constructor(NewIdentifier),
+// Module provides the transport-independent identifier service.
+var Module = signal.Module(
+	signal.Constructor(NewIdentifier),
 )

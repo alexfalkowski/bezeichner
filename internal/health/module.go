@@ -1,12 +1,12 @@
 package health
 
-import "github.com/alexfalkowski/go-service/v2/di"
+import "github.com/alexfalkowski/go-signal/v2"
 
-// Module for fx.
-var Module = di.Module(
-	di.Register(Register),
-	di.Register(httpHealthObserver),
-	di.Register(httpLivenessObserver),
-	di.Register(httpReadinessObserver),
-	di.Register(grpcObserver),
+// Module registers health checks and HTTP and gRPC observers.
+var Module = signal.Module(
+	signal.Register(Register),
+	signal.Register(httpHealthObserver),
+	signal.Register(httpLivenessObserver),
+	signal.Register(httpReadinessObserver),
+	signal.Register(grpcObserver),
 )

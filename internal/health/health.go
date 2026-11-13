@@ -4,14 +4,14 @@ import (
 	v1 "github.com/alexfalkowski/bezeichner/api/bezeichner/v1"
 	"github.com/alexfalkowski/go-health/v2/checker"
 	"github.com/alexfalkowski/go-health/v2/server"
-	"github.com/alexfalkowski/go-service/v2/di"
-	"github.com/alexfalkowski/go-service/v2/env"
-	"github.com/alexfalkowski/go-service/v2/health"
+	"github.com/alexfalkowski/go-service/v3/env"
+	"github.com/alexfalkowski/go-service/v3/health"
+	"github.com/alexfalkowski/go-signal/v2"
 )
 
 // RegisterParams are the dependencies required to register health checks and observers.
 type RegisterParams struct {
-	di.In
+	signal.In
 	Server *server.Server
 	Config *Config
 	Name   env.Name

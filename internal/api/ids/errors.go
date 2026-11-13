@@ -1,6 +1,6 @@
 package ids
 
-import "github.com/alexfalkowski/go-service/v2/errors"
+import "github.com/alexfalkowski/go-service/v3/errors"
 
 // ErrInvalidArgument indicates the caller supplied an invalid request.
 //

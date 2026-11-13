@@ -1,6 +1,6 @@
 package generator
 
-import "github.com/alexfalkowski/go-service/v2/di"
+import "github.com/alexfalkowski/go-signal/v2"
 
-// Module for fx.
-var Module = di.Module(di.Constructor(NewGenerators))
+// Module provides the configured identifier generators.
+var Module = signal.Module(signal.Constructor(NewGenerators))

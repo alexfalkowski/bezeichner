@@ -1,8 +1,8 @@
 package generator
 
 import (
-	"github.com/alexfalkowski/go-service/v2/context"
-	"github.com/alexfalkowski/go-service/v2/id"
+	"github.com/alexfalkowski/go-service/v3/context"
+	"github.com/alexfalkowski/go-service/v3/id"
 )
 
 // NewID adapts the go-service ID generator registered for kind.

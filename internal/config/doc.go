@@ -18,7 +18,7 @@
 //   - internal/limits.Config
 //   - internal/mapper.Config
 //
-// and embeds *go-service/v2/config.Config for common service settings.
+// and embeds *go-service/v3/config.Config for common service settings.
 //
 // Health and generator configuration are required at startup. Limits and mapper
 // configuration are optional; omitted limits use domain defaults, while omitted
