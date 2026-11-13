@@ -68,8 +68,7 @@ jobs:
           key: bezeichner-go-lint-cache-{{ checksum "go.sum" }}-{{ checksum "~/.go-lint-version" }}-{{ checksum ".source-key" }}
           paths:
             - ~/.cache/golangci-lint
-      # Restore after the /v2 go_package migration reaches master.
-      # - run: make proto-breaking
+      - run: make proto-breaking
       - run: make proto-stale
       - run: make sec
       - run: make features
