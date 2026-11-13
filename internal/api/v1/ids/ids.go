@@ -1,7 +1,7 @@
 package ids
 
 import (
-	"github.com/alexfalkowski/bezeichner/internal/api/ids"
+	"github.com/alexfalkowski/bezeichner/v2/internal/api/ids"
 )
 
 // NewIdentifier for identifiers.

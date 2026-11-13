@@ -1,10 +1,10 @@
 package cmd
 
 import (
-	v1 "github.com/alexfalkowski/bezeichner/internal/api/v1"
-	"github.com/alexfalkowski/bezeichner/internal/config"
-	"github.com/alexfalkowski/bezeichner/internal/generator"
-	"github.com/alexfalkowski/bezeichner/internal/health"
+	v1 "github.com/alexfalkowski/bezeichner/v2/internal/api/v1"
+	"github.com/alexfalkowski/bezeichner/v2/internal/config"
+	"github.com/alexfalkowski/bezeichner/v2/internal/generator"
+	"github.com/alexfalkowski/bezeichner/v2/internal/health"
 	"github.com/alexfalkowski/go-service/v3/module"
 	"github.com/alexfalkowski/go-signal/v2"
 )

@@ -1,8 +1,8 @@
 package grpc
 
 import (
-	v1 "github.com/alexfalkowski/bezeichner/api/bezeichner/v1"
-	"github.com/alexfalkowski/bezeichner/internal/api/v1/ids"
+	v1 "github.com/alexfalkowski/bezeichner/v2/api/bezeichner/v1"
+	"github.com/alexfalkowski/bezeichner/v2/internal/api/v1/ids"
 	"github.com/alexfalkowski/go-service/v3/net/grpc"
 )
 

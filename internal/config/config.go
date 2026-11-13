@@ -1,10 +1,10 @@
 package config
 
 import (
-	"github.com/alexfalkowski/bezeichner/internal/generator"
-	"github.com/alexfalkowski/bezeichner/internal/health"
-	"github.com/alexfalkowski/bezeichner/internal/limits"
-	"github.com/alexfalkowski/bezeichner/internal/mapper"
+	"github.com/alexfalkowski/bezeichner/v2/internal/generator"
+	"github.com/alexfalkowski/bezeichner/v2/internal/health"
+	"github.com/alexfalkowski/bezeichner/v2/internal/limits"
+	"github.com/alexfalkowski/bezeichner/v2/internal/mapper"
 	"github.com/alexfalkowski/go-service/v3/config"
 )
 

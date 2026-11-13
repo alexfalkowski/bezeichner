@@ -1,9 +1,9 @@
 package v1
 
 import (
-	"github.com/alexfalkowski/bezeichner/internal/api/v1/ids"
-	"github.com/alexfalkowski/bezeichner/internal/api/v1/transport/grpc"
-	"github.com/alexfalkowski/bezeichner/internal/api/v1/transport/http"
+	"github.com/alexfalkowski/bezeichner/v2/internal/api/v1/ids"
+	"github.com/alexfalkowski/bezeichner/v2/internal/api/v1/transport/grpc"
+	"github.com/alexfalkowski/bezeichner/v2/internal/api/v1/transport/http"
 	"github.com/alexfalkowski/go-signal/v2"
 )
 
