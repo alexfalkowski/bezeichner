@@ -658,7 +658,7 @@ const file_bezeichner_v1_service_proto_rawDesc = "" +
 	"\aService\x12n\n" +
 	"\x13GenerateIdentifiers\x12).bezeichner.v1.GenerateIdentifiersRequest\x1a*.bezeichner.v1.GenerateIdentifiersResponse\"\x00\x12e\n" +
 	"\x10ListApplications\x12&.bezeichner.v1.ListApplicationsRequest\x1a'.bezeichner.v1.ListApplicationsResponse\"\x00\x12_\n" +
-	"\x0eMapIdentifiers\x12$.bezeichner.v1.MapIdentifiersRequest\x1a%.bezeichner.v1.MapIdentifiersResponse\"\x00BHZ5github.com/alexfalkowski/bezeichner/api/bezeichner/v1\xea\x02\x0eBezeichner::V1b\x06proto3"
+	"\x0eMapIdentifiers\x12$.bezeichner.v1.MapIdentifiersRequest\x1a%.bezeichner.v1.MapIdentifiersResponse\"\x00BKZ8github.com/alexfalkowski/bezeichner/v2/api/bezeichner/v1\xea\x02\x0eBezeichner::V1b\x06proto3"
 
 var (
 	file_bezeichner_v1_service_proto_rawDescOnce sync.Once

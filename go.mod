@@ -1,4 +1,4 @@
-module github.com/alexfalkowski/bezeichner
+module github.com/alexfalkowski/bezeichner/v2
 
 go 1.27.0
 

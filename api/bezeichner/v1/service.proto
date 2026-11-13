@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package bezeichner.v1;
 
-option go_package = "github.com/alexfalkowski/bezeichner/api/bezeichner/v1";
+option go_package = "github.com/alexfalkowski/bezeichner/v2/api/bezeichner/v1";
 option ruby_package = "Bezeichner::V1";
 
 // GenerateIdentifiersRequest asks the service to generate identifiers for a

@@ -1,8 +1,8 @@
 package ids
 
 import (
-	v1 "github.com/alexfalkowski/bezeichner/api/bezeichner/v1"
-	"github.com/alexfalkowski/bezeichner/internal/api/ids"
+	v1 "github.com/alexfalkowski/bezeichner/v2/api/bezeichner/v1"
+	"github.com/alexfalkowski/bezeichner/v2/internal/api/ids"
 	"github.com/alexfalkowski/go-service/v3/context"
 	"github.com/alexfalkowski/go-service/v3/meta"
 )

@@ -1,13 +1,16 @@
 ![Gopher](assets/gopher.png)
 [![CircleCI](https://circleci.com/gh/alexfalkowski/bezeichner.svg?style=shield)](https://circleci.com/gh/alexfalkowski/bezeichner)
 [![codecov](https://codecov.io/gh/alexfalkowski/bezeichner/graph/badge.svg?token=TDRSV3MGSM)](https://codecov.io/gh/alexfalkowski/bezeichner)
-[![Go Report Card](https://goreportcard.com/badge/github.com/alexfalkowski/bezeichner)](https://goreportcard.com/report/github.com/alexfalkowski/bezeichner)
-[![Go Reference](https://pkg.go.dev/badge/github.com/alexfalkowski/bezeichner.svg)](https://pkg.go.dev/github.com/alexfalkowski/bezeichner)
+[![Go Reference](https://pkg.go.dev/badge/github.com/alexfalkowski/bezeichner/v2.svg)](https://pkg.go.dev/github.com/alexfalkowski/bezeichner/v2)
 [![Stability: Active](https://masterminds.github.io/stability/active.svg)](https://masterminds.github.io/stability/active.html)
 
 # 🏷️ Bezeichner
 
 Bezeichner is a small Go service that **generates** and **maps** identifiers, exposed via **gRPC** and **HTTP**.
+
+The Go module is `github.com/alexfalkowski/bezeichner/v2`. Go clients migrating
+from v1 must add `/v2` to their Bezeichner import paths, for example
+`github.com/alexfalkowski/bezeichner/v2/api/bezeichner/v1` for the generated API.
 
 - gRPC is the primary API surface.
 - HTTP is implemented as an RPC gateway that routes by **gRPC full method name** (so both transports share the same contract).

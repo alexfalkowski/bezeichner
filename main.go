@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/alexfalkowski/bezeichner/internal/cmd"
+	"github.com/alexfalkowski/bezeichner/v2/internal/cmd"
 	"github.com/alexfalkowski/go-service/v3/cli"
 	"github.com/alexfalkowski/go-service/v3/context"
 	"github.com/alexfalkowski/go-service/v3/os"

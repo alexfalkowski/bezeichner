@@ -1,7 +1,7 @@
 package http
 
 import (
-	v1 "github.com/alexfalkowski/bezeichner/api/bezeichner/v1"
+	v1 "github.com/alexfalkowski/bezeichner/v2/api/bezeichner/v1"
 	"github.com/alexfalkowski/go-service/v3/context"
 )
 
