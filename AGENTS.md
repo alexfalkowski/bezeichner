@@ -110,15 +110,15 @@ These call scripts under `bin/build/docker/env` (see `bin/build/make/_service.ma
 
 ### Entry points / CLI
 
-- `main.go` constructs a `go-service/v2/cli` application and registers the `server` command (`main.go:10-15`).
+- `main.go` constructs a `go-service/v3/cli` application and registers the `server` command (`main.go:10-15`).
 - The server command is registered in `internal/cmd/server.go:9-12` and wires DI via `internal/cmd/module.go:13-19`.
 
 ### Dependency injection (DI)
 
-The service uses `go-service/v2/di` modules:
+The service uses `go-signal/v2` modules:
 
 - Root module composition: `internal/cmd/module.go:13-19`
-  - `module.Server` (from `go-service/v2`)
+  - `module.Server` (from `go-service/v3`)
   - `config.Module`, `health.Module`, `generator.Module`, `v1.Module`
 
 The v1 module wires transports and the domain service:
@@ -156,7 +156,7 @@ Notes:
 
 Generator implementations are in `internal/generator/*` and are selected by `Application.Kind`.
 Standard kinds such as `uuid`, `ksuid`, `ulid`, `xid`, and `nanoid` are adapted
-from `github.com/alexfalkowski/go-service/v2/id`.
+from `github.com/alexfalkowski/go-service/v3/id`.
 
 - Registry: `internal/generator/generator.go:17-27`.
 - Applications are defined via `internal/generator/config.go:3-33`.
@@ -164,7 +164,7 @@ from `github.com/alexfalkowski/go-service/v2/id`.
 ### TypeID generator application-name contract
 
 - `typeid` is a Bezeichner-owned adapter around `go.jetify.com/typeid`, not a
-  `go-service/v2/id` generator.
+  `go-service/v3/id` generator.
 - The `typeid` generator intentionally uses the configured application name as
   the native TypeID prefix.
 - Treat valid TypeID prefix syntax as part of the operator/application-name

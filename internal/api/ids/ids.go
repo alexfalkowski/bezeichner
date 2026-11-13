@@ -6,8 +6,8 @@ import (
 	"github.com/alexfalkowski/bezeichner/internal/generator"
 	"github.com/alexfalkowski/bezeichner/internal/limits"
 	"github.com/alexfalkowski/bezeichner/internal/mapper"
-	"github.com/alexfalkowski/go-service/v2/context"
-	"github.com/alexfalkowski/go-service/v2/errors"
+	"github.com/alexfalkowski/go-service/v3/context"
+	"github.com/alexfalkowski/go-service/v3/errors"
 )
 
 // ErrNotFound indicates that a requested resource does not exist.

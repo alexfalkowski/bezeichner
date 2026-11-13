@@ -1,9 +1,9 @@
 package generator
 
 import (
-	"github.com/alexfalkowski/go-service/v2/context"
-	"github.com/alexfalkowski/go-service/v2/errors"
-	"github.com/alexfalkowski/go-service/v2/id"
+	"github.com/alexfalkowski/go-service/v3/context"
+	"github.com/alexfalkowski/go-service/v3/errors"
+	"github.com/alexfalkowski/go-service/v3/id"
 )
 
 // ErrNotFound indicates that a generator kind cannot be resolved from a registry.

@@ -3,8 +3,8 @@ package generator
 import (
 	"strconv"
 
-	"github.com/alexfalkowski/go-service/v2/context"
-	"github.com/alexfalkowski/go-service/v2/runtime"
+	"github.com/alexfalkowski/go-service/v3/context"
+	"github.com/alexfalkowski/go-service/v3/runtime"
 	"github.com/sony/sonyflake"
 )
 
