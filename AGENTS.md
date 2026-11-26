@@ -8,6 +8,14 @@ HTTP is implemented as an RPC gateway that routes by gRPC full method name.
 
 Use `bin/AGENTS.md` for shared skills and cross-repository defaults.
 
+## Accepted design
+
+Before recording a finding, audit entry or proposed change, read the
+[accepted-design index](docs/agents/accepted-design.md) and its relevant
+area files. Apply the recorded scope of each decision. Add owner-accepted
+design choices, tradeoffs and dependency limitations to the relevant area file
+as they are agreed.
+
 ## Repository at a glance
 
 - Language: **Go**; see `go.mod` for module path and toolchain details.
@@ -160,26 +168,6 @@ from `github.com/alexfalkowski/go-service/v3/id`.
 
 - Registry: `internal/generator/generator.go:17-27`.
 - Applications are defined via `internal/generator/config.go:3-33`.
-
-### TypeID generator application-name contract
-
-- `typeid` is a Bezeichner-owned adapter around `go.jetify.com/typeid`, not a
-  `go-service/v3/id` generator.
-- The `typeid` generator intentionally uses the configured application name as
-  the native TypeID prefix.
-- Treat valid TypeID prefix syntax as part of the operator/application-name
-  contract for `kind: typeid`. Do **not** flag missing extra validation for
-  invalid TypeID prefixes, or request-time failures caused by invalid TypeID
-  application names, as a general code issue.
-- Only raise TypeID prefix validation concerns when the task explicitly concerns
-  changing the TypeID naming contract, making invalid configuration fail earlier,
-  or documenting TypeID application-name restrictions.
-
-### Snowflake generator deployment assumption
-
-- Do **not** flag `internal/generator/snowflake.go` using Sonyflake default settings as a general bug.
-- In the intended Kubernetes deployment, pods use normal pod networking, so Sonyflake's default private-IPv4-derived machine ID is an accepted uniqueness source for concurrently running pods.
-- Only raise Snowflake machine-ID collision risk when the task explicitly concerns local multi-process deployments, `hostNetwork`, overlapping pod CIDRs, multi-cluster shared ID spaces, IPv6-only/no-private-IPv4 environments, or changing the deployment topology/ID contract.
 
 ## Request size limits (DoS protection)
 
